@@ -1,7 +1,8 @@
-FlAdmin是一款基于ThinkPHP+Bootstrap的极速后台开发框架，
-是蜂雷自研发系统后端框架，
-主要用于构建 蜂雷直播基地产业园pass平台，
-后端微服务解耦级解决方案
+FlAdmin是一款基于ThinkPHP+Bootstrap的稳健智能后台开发框架，
+FlAdmin后端微服务解耦级解决方案
+FlAdmin是蜂雷自研发系统后端框架，
+FlAdmin主要用于构建 蜂雷直播基地产业园pass平台，
+FlAdmin 是 FengleiAdmin 简称 FlAdmin
 版权归 © 蜂雷 京ICP证030173号  科权科技（上海）有限公司 所有
 © 2022 上海蜂雷网络科技有限公司 版权所有 All Rights Reserved 沪ICP备15022866号-2 
 
