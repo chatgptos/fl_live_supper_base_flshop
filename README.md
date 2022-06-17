@@ -47,7 +47,7 @@ https://demo.FlAdmin.net
 
 交流社区: https://ask.FlAdmin.net
 
-QQ群: [636393962](https://jq.qq.com/?_wv=1027&k=487PNBb)(满) [708784003](https://jq.qq.com/?_wv=1027&k=5ObjtwM)(满) [964776039](https://jq.qq.com/?_wv=1027&k=59qjU2P)(3群) [749803490](https://jq.qq.com/?_wv=1027&k=5tczi88)(满) [767103006](https://jq.qq.com/?_wv=1027&k=5Z1U751)(满) [675115483](https://jq.qq.com/?_wv=1027&k=54I6mts)(6群)
+QQ群: [1276789849](https://jq.qq.com/?_wv=1027&k=487PNBb)(满) [1154638287](https://jq.qq.com/?_wv=1027&k=5ObjtwM)(群2) 
 
 Github: https://github.com/karsonzhang/FlAdmin
 
