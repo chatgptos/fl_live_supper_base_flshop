@@ -13,7 +13,7 @@ return [
     'Admin Password'                                                                                        => '管理员密码',
     'Repeat Password'                                                                                       => '重复管理员密码',
     'Website'                                                                                               => '网站名称',
-    'My Website'                                                                                            => '我的网站',
+    'My Website'                                                                                            => '蜂雷后端Pass微服务框架',
     'Install now'                                                                                           => '点击安装',
     'Installing'                                                                                            => '安装中...',
     'Home'                                                                                                  => '访问首页',

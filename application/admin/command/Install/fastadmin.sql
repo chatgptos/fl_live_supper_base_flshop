@@ -1,6 +1,7 @@
 /*
  FastAdmin Install SQL
  Date: 2020-06-11 22:11:09
+ Created by:jack
 */
 
 SET FOREIGN_KEY_CHECKS = 0;

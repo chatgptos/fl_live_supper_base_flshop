@@ -1,10 +1,10 @@
 <?php
 
 return array (
-  'name' => '蜂雷直播平台',
-  'beian' => '沪ICP备15022866号-2',
+  'name' => '蜂雷后端Pass微服务框架',
+  'beian' => '',
   'cdnurl' => '',
-  'version' => '1.0.5',
+  'version' => '1.0.1',
   'timezone' => 'Asia/Shanghai',
   'forbiddenip' => '',
   'languages' => 
