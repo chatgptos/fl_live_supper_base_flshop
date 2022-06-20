@@ -14,7 +14,7 @@ class User extends Model
     // 开启自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
     // 定义时间戳字段名
-    protected $createTime = 'createtime';
+    protected $create_time = 'create_time';
     protected $updateTime = 'updatetime';
     // 追加属性
     protected $append = [

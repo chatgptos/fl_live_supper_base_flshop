@@ -81,11 +81,11 @@ abstract class Driver
 
     /**
      * 获取过期剩余时长
-     * @param $expiretime
+     * @param $expire_time
      * @return float|int|mixed
      */
-    protected function getExpiredIn($expiretime)
+    protected function getExpiredIn($expire_time)
     {
-        return $expiretime ? max(0, $expiretime - time()) : 365 * 86400;
+        return $expire_time ? max(0, $expire_time - time()) : 365 * 86400;
     }
 }

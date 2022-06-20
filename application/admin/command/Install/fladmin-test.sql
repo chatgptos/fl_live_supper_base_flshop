@@ -5,6 +5,93 @@
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
+-- ----------------------------
+-- Table structure for fl_admin_log
+-- ----------------------------
+DROP TABLE IF EXISTS `fl_admin_log`;
+CREATE TABLE `fl_admin_log` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `admin_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '管理员ID',
+  `username` varchar(30) DEFAULT '' COMMENT '管理员名字',
+  `url` varchar(1500) DEFAULT '' COMMENT '操作页面',
+  `title` varchar(100) DEFAULT '' COMMENT '日志标题',
+  `content` longtext NOT NULL COMMENT '内容',
+  `ip` varchar(50) DEFAULT '' COMMENT 'IP',
+  `useragent` varchar(255) DEFAULT '' COMMENT 'User-Agent',
+  `created` bigint(16) DEFAULT NULL COMMENT '操作时间',
+  PRIMARY KEY (`id`),
+  KEY `name` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT='管理员日志表';
+
+
+
+-- 思维脑图
+-- 数字展厅
+-- 观展报名
+-- 参展报名
+-- 虚拟展厅
+
+-- 产业园运营管理平台
+-- 展厅管理（一）
+-- 展厅模板配置
+-- 展厅信息管理
+-- 展位管理
+
+-- 活动管理（一）
+-- 活动模板管理
+-- 活动信息管理
+
+-- 展商管理（一）
+-- 展商信息
+-- 洽谈信息
+-- 交易信息
+
+-- 观众管理
+
+-- 直播间管理
+-- 直播间信息管理
+-- 样品管理（二）
+-- 数字可视化看板
+
+
+-- 小程序
+
+
+-- 商家运营平台
+-- 参展服务（一）
+-- 权益包
+-- 我的参展
+-- 商家服务（二）
+-- 数据导入
+-- 店铺管理
+-- 商品管理
+-- 订单管理
+-- 样单管理
+-- 售后管理
+-- 资产管理
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- ----------------------------
 -- Table structure for fl_admin
@@ -462,7 +549,7 @@ CREATE TABLE `fl_user` (
   `successions` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '连续登录天数',
   `maxsuccessions` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '最大连续登录天数',
   `prev_time` bigint(16) DEFAULT NULL COMMENT '上次登录时间',
-  `login_time1` bigint(16) DEFAULT NULL COMMENT '登录时间',
+  `login_time` bigint(16) DEFAULT NULL COMMENT '登录时间',
   `loginip` varchar(50) DEFAULT '' COMMENT '登录IP',
   `loginfailure` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '失败次数',
   `joinip` varchar(50) DEFAULT '' COMMENT '加入IP',

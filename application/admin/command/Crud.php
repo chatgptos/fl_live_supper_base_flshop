@@ -223,7 +223,7 @@ class Crud extends Command
      * 添加时间字段
      * @var string
      */
-    protected $createTimeField = 'createtime';
+    protected $createdField = 'created';
 
     /**
      * 更新时间字段
@@ -415,7 +415,7 @@ class Crud extends Command
             $this->headingFilterField = $headingfilterfield;
         }
 
-        $this->reservedField = array_merge($this->reservedField, [$this->createTimeField, $this->updateTimeField, $this->deleteTimeField]);
+        $this->reservedField = array_merge($this->reservedField, [$this->createdField, $this->updateTimeField, $this->deleteTimeField]);
 
         $dbconnect = Db::connect($db);
         $dbname = Config::get($db . '.database');
@@ -1103,8 +1103,8 @@ class Crud extends Command
                 'langList'                => $langList,
                 'softDeleteClassPath'     => in_array($this->deleteTimeField, $fieldArr) ? "use traits\model\SoftDelete;" : '',
                 'softDelete'              => in_array($this->deleteTimeField, $fieldArr) ? "use SoftDelete;" : '',
-                'modelAutoWriteTimestamp' => in_array($this->createTimeField, $fieldArr) || in_array($this->updateTimeField, $fieldArr) ? "'integer'" : 'false',
-                'createTime'              => in_array($this->createTimeField, $fieldArr) ? "'{$this->createTimeField}'" : 'false',
+                'modelAutoWriteTimestamp' => in_array($this->createdField, $fieldArr) || in_array($this->updateTimeField, $fieldArr) ? "'integer'" : 'false',
+                'created'              => in_array($this->createdField, $fieldArr) ? "'{$this->createdField}'" : 'false',
                 'updateTime'              => in_array($this->updateTimeField, $fieldArr) ? "'{$this->updateTimeField}'" : 'false',
                 'deleteTime'              => in_array($this->deleteTimeField, $fieldArr) ? "'{$this->deleteTimeField}'" : 'false',
                 'relationSearch'          => $relations ? 'true' : 'false',

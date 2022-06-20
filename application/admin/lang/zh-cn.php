@@ -96,7 +96,7 @@ return [
     'End time'                                              => '结束时间',
     'Create time'                                           => '创建时间',
     'Update time'                                           => '更新时间',
-    'Createtime'                                            => '创建时间',
+    'created'                                            => '创建时间',
     'Updatetime'                                            => '更新时间',
     'Deletetime'                                            => '删除时间',
     'Flag'                                                  => '标志',

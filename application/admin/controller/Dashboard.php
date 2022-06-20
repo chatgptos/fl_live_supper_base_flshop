@@ -31,8 +31,8 @@ class Dashboard extends Backend
         $column = [];
         $starttime = Date::unixtime('day', -6);
         $endtime = Date::unixtime('day', 0, 'end');
-        $joinlist = Db("user")->where('jointime', 'between time', [$starttime, $endtime])
-            ->field('jointime, status, COUNT(*) AS nums, DATE_FORMAT(FROM_UNIXTIME(jointime), "%Y-%m-%d") AS join_date')
+        $joinlist = Db("user")->where('join_time', 'between time', [$starttime, $endtime])
+            ->field('join_time, status, COUNT(*) AS nums, DATE_FORMAT(FROM_UNIXTIME(join_time), "%Y-%m-%d") AS join_date')
             ->group('join_date')
             ->select();
         for ($time = $starttime; $time <= $endtime;) {
@@ -58,12 +58,12 @@ class Dashboard extends Backend
             'totaladdon'        => $totaladdon,
             'totaladmin'        => Admin::count(),
             'totalcategory'     => \app\common\model\Category::count(),
-            'todayusersignup'   => User::whereTime('jointime', 'today')->count(),
-            'todayuserlogin'    => User::whereTime('logintime', 'today')->count(),
-            'sevendau'          => User::whereTime('jointime|logintime|prevtime', '-7 days')->count(),
-            'thirtydau'         => User::whereTime('jointime|logintime|prevtime', '-30 days')->count(),
-            'threednu'          => User::whereTime('jointime', '-3 days')->count(),
-            'sevendnu'          => User::whereTime('jointime', '-7 days')->count(),
+            'todayusersignup'   => User::whereTime('join_time', 'today')->count(),
+            'todayuserlogin'    => User::whereTime('login_time', 'today')->count(),
+            'sevendau'          => User::whereTime('join_time|login_time|prev_time', '-7 days')->count(),
+            'thirtydau'         => User::whereTime('join_time|login_time|prev_time', '-30 days')->count(),
+            'threednu'          => User::whereTime('join_time', '-3 days')->count(),
+            'sevendnu'          => User::whereTime('join_time', '-7 days')->count(),
             'dbtablenums'       => count($dbTableList),
             'dbsize'            => array_sum(array_map(function ($item) {
                 return $item['Data_length'] + $item['Index_length'];
@@ -71,10 +71,9 @@ class Dashboard extends Backend
             'totalworkingaddon' => $totalworkingaddon,
             'attachmentnums'    => Attachment::count(),
             'attachmentsize'    => Attachment::sum('filesize'),
-            'picturenums'       => Attachment::where('mimetype', 'like', 'image/%')->count(),
-            'picturesize'       => Attachment::where('mimetype', 'like', 'image/%')->sum('filesize'),
+            'picturenums'       => Attachment::where('mime_type', 'like', 'image/%')->count(),
+            'picturesize'       => Attachment::where('mime_type', 'like', 'image/%')->sum('filesize'),
         ]);
-
         $this->assignconfig('column', array_keys($userlist));
         $this->assignconfig('userdata', array_values($userlist));
 

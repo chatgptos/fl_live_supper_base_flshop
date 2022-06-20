@@ -20,7 +20,7 @@ return [
     'Application'              => '应用',
     'Zip'                      => '压缩包',
     'Extparam'                 => '透传数据',
-    'Createtime'               => '创建日期',
+    'created'               => '创建日期',
     'Uploadtime'               => '上传时间',
     'Storage'                  => '存储引擎',
     'Category1'                => '分类一',

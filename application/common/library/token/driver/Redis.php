@@ -114,9 +114,9 @@ class Redis extends Driver
         //获取有效期
         $expire = $this->handler->ttl($key);
         $expire = $expire < 0 ? 365 * 86400 : $expire;
-        $expiretime = time() + $expire;
+        $expire_time = time() + $expire;
         //解决使用redis方式储存token时api接口Token刷新与检测因expires_in拼写错误报错的BUG
-        $result = ['token' => $token, 'user_id' => $value, 'expiretime' => $expiretime, 'expires_in' => $expire];
+        $result = ['token' => $token, 'user_id' => $value, 'expire_time' => $expire_time, 'expires_in' => $expire];
 
         return $result;
     }

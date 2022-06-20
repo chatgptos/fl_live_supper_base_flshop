@@ -18,9 +18,9 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => Env::get('app.debug', false),
+    'app_debug'              => Env::get('app.debug', true),
     // 应用Trace
-    'app_trace'              => Env::get('app.trace', false),
+    'app_trace'              => Env::get('app.trace', true),
     // 应用模式状态
     'app_status'             => '',
     // 是否支持多模块
@@ -135,7 +135,7 @@ return [
         'taglib_begin' => '{',
         // 标签库标签结束标记
         'taglib_end'   => '}',
-        'tpl_cache'    => true,
+        'tpl_cache'    => false,
     ],
     // 视图输出字符串内容替换,留空则会自动进行计算
     'view_replace_str'       => [
@@ -253,7 +253,7 @@ return [
         // 驱动方式
         'type'     => 'Mysql',
         // 缓存前缀
-        'key'      => 'Xg87UwJPkGmtjclHnZIfTuye0pWQq6zY',
+        'key'      => 'ZqmMHfeCl9FUnPJ25pa1gwu4ANThGkLS',
         // 加密方式
         'hashalgo' => 'ripemd160',
         // 缓存有效期 0表示永久缓存

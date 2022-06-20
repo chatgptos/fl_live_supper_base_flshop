@@ -43,8 +43,8 @@ define(['jquery', 'bootstrap', 'backend', 'form', 'table'], function ($, undefin
                         {field: 'storage', title: __('Storage'), formatter: Table.api.formatter.search, operate: 'like'},
                         {field: 'mimetype', title: __('Mimetype'), formatter: Controller.api.formatter.mimetype},
                         {
-                            field: 'createtime',
-                            title: __('Createtime'),
+                            field: 'created',
+                            title: __('created'),
                             formatter: Table.api.formatter.datetime,
                             operate: 'RANGE',
                             addclass: 'datetimerange',
@@ -163,7 +163,7 @@ define(['jquery', 'bootstrap', 'backend', 'form', 'table'], function ($, undefin
                             },
                             formatter: Controller.api.formatter.mimetype
                         },
-                        {field: 'createtime', title: __('Createtime'), width: 120, formatter: Table.api.formatter.datetime, datetimeFormat: 'YYYY-MM-DD', operate: 'RANGE', addclass: 'datetimerange', sortable: true},
+                        {field: 'created', title: __('created'), width: 120, formatter: Table.api.formatter.datetime, datetimeFormat: 'YYYY-MM-DD', operate: 'RANGE', addclass: 'datetimerange', sortable: true},
                         {
                             field: 'operate', title: __('Operate'), width: 85, events: {
                                 'click .btn-chooseone': function (e, value, row, index) {

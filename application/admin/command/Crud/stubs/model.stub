@@ -19,7 +19,7 @@ class {%modelName%} extends Model
     protected $autoWriteTimestamp = {%modelAutoWriteTimestamp%};
 
     // 定义时间戳字段名
-    protected $createTime = {%createTime%};
+    protected $created = {%created%};
     protected $updateTime = {%updateTime%};
     protected $deleteTime = {%deleteTime%};
 

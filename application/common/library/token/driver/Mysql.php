@@ -40,7 +40,7 @@ class Mysql extends Driver
         $tokentime = cache('tokentime');
         if (!$tokentime || $tokentime < $time - 86400) {
             cache('tokentime', $time);
-            $this->handler->where('expiretime', '<', $time)->where('expiretime', '>', 0)->delete();
+            $this->handler->where('expire_time', '<', $time)->where('expire_time', '>', 0)->delete();
         }
     }
 
@@ -53,9 +53,9 @@ class Mysql extends Driver
      */
     public function set($token, $user_id, $expire = null)
     {
-        $expiretime = !is_null($expire) && $expire !== 0 ? time() + $expire : 0;
+        $expire_time = !is_null($expire) && $expire !== 0 ? time() + $expire : 0;
         $token = $this->getEncryptedToken($token);
-        $this->handler->insert(['token' => $token, 'user_id' => $user_id, 'createtime' => time(), 'expiretime' => $expiretime]);
+        $this->handler->insert(['token' => $token, 'user_id' => $user_id, 'created' => time(), 'expire_time' => $expire_time]);
         return true;
     }
 
@@ -68,11 +68,11 @@ class Mysql extends Driver
     {
         $data = $this->handler->where('token', $this->getEncryptedToken($token))->find();
         if ($data) {
-            if (!$data['expiretime'] || $data['expiretime'] > time()) {
+            if (!$data['expire_time'] || $data['expire_time'] > time()) {
                 //返回未加密的token给客户端使用
                 $data['token'] = $token;
                 //返回剩余有效时间
-                $data['expires_in'] = $this->getExpiredIn($data['expiretime']);
+                $data['expires_in'] = $this->getExpiredIn($data['expire_time']);
                 return $data;
             } else {
                 self::delete($token);

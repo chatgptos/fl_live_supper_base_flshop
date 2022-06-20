@@ -14,7 +14,7 @@
     {volist name="row" id="vo" }
     <tr>
         <td>{:__($key)}</td>
-        <td>{if $key=='createtime'}{$vo|datetime}{else/}{$vo|htmlentities}{/if}</td>
+        <td>{if $key=='created'}{$vo|datetime}{else/}{$vo|htmlentities}{/if}</td>
     </tr>
     {/volist}
     </tbody>

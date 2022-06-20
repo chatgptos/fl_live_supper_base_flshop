@@ -12,8 +12,8 @@ class AdminLog extends Model
     // 开启自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
     // 定义时间戳字段名
-    protected $createTime = 'createtime';
-    protected $updateTime = '';
+    protected $created = 'created';
+    protected $modified = '';
     //自定义日志标题
     protected static $title = '';
     //自定义日志内容
@@ -95,6 +95,7 @@ class AdminLog extends Model
         if (!is_array($content)) {
             return $content;
         }
+
         foreach ($content as $index => &$item) {
             if (preg_match("/(password|salt|token)/i", $index)) {
                 $item = "***";

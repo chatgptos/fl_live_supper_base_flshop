@@ -41,7 +41,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'jstree'], function (
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
                         {field: 'name', title: __('Name')},
-                        {field: 'createtime', title: __('Createtime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange', sortable: true},
+                        {field: 'created', title: __('created'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange', sortable: true},
                         {field: 'updatetime', title: __('Updatetime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange', sortable: true},
                         {field: 'status', title: __('Status'), formatter: Table.api.formatter.status},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}

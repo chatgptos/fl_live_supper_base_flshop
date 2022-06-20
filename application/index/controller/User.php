@@ -70,6 +70,8 @@ class User extends Frontend
             $this->success(__('You\'ve logged in, do not login again'), $url ? $url : url('user/index'));
         }
         if ($this->request->isPost()) {
+
+            die;
             $username = $this->request->post('username');
             $password = $this->request->post('password');
             $email = $this->request->post('email');
@@ -293,9 +295,9 @@ class User extends Frontend
                 $where['filename'] = ['like', '%' . $filterArr['filename'] . '%'];
             }
 
-            if (isset($filterArr['createtime'])) {
-                $timeArr = explode(' - ', $filterArr['createtime']);
-                $where['createtime'] = ['between', [strtotime($timeArr[0]), strtotime($timeArr[1])]];
+            if (isset($filterArr['created'])) {
+                $timeArr = explode(' - ', $filterArr['created']);
+                $where['created'] = ['between', [strtotime($timeArr[0]), strtotime($timeArr[1])]];
             }
             $search = $this->request->get('search');
             if ($search) {

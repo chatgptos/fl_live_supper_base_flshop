@@ -161,7 +161,7 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
                             {field: 'imagewidth', title: __('Imagewidth'), operate: false},
                             {field: 'imageheight', title: __('Imageheight'), operate: false},
                             {field: 'mimetype', title: __('Mimetype'), formatter: Table.api.formatter.search},
-                            {field: 'createtime', title: __('Createtime'), width: 120, formatter: Table.api.formatter.datetime, datetimeFormat: 'YYYY-MM-DD', operate: 'RANGE', addclass: 'datetimerange', sortable: true},
+                            {field: 'created', title: __('created'), width: 120, formatter: Table.api.formatter.datetime, datetimeFormat: 'YYYY-MM-DD', operate: 'RANGE', addclass: 'datetimerange', sortable: true},
                             {
                                 field: 'operate', title: __('Operate'), width: 85, events: {
                                     'click .btn-chooseone': function (e, value, row, index) {

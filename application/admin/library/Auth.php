@@ -58,7 +58,7 @@ class Auth extends \fast\Auth
             return false;
         }
         $admin->loginfailure = 0;
-        $admin->logintime = time();
+        $admin->login_time = time();
         $admin->loginip = request()->ip();
         $admin->token = Random::uuid();
         $admin->save();
@@ -93,14 +93,14 @@ class Auth extends \fast\Auth
         if (!$keeplogin) {
             return false;
         }
-        list($id, $keeptime, $expiretime, $key) = explode('|', $keeplogin);
-        if ($id && $keeptime && $expiretime && $key && $expiretime > time()) {
+        list($id, $keeptime, $expire_time, $key) = explode('|', $keeplogin);
+        if ($id && $keeptime && $expire_time && $key && $expire_time > time()) {
             $admin = Admin::get($id);
             if (!$admin || !$admin->token) {
                 return false;
             }
             //token有变更
-            if ($key != md5(md5($id) . md5($keeptime) . md5($expiretime) . $admin->token . config('token.key'))) {
+            if ($key != md5(md5($id) . md5($keeptime) . md5($expire_time) . $admin->token . config('token.key'))) {
                 return false;
             }
             $ip = request()->ip();
@@ -126,9 +126,9 @@ class Auth extends \fast\Auth
     protected function keeplogin($keeptime = 0)
     {
         if ($keeptime) {
-            $expiretime = time() + $keeptime;
-            $key = md5(md5($this->id) . md5($keeptime) . md5($expiretime) . $this->token . config('token.key'));
-            $data = [$this->id, $keeptime, $expiretime, $key];
+            $expire_time = time() + $keeptime;
+            $key = md5(md5($this->id) . md5($keeptime) . md5($expire_time) . $this->token . config('token.key'));
+            $data = [$this->id, $keeptime, $expire_time, $key];
             Cookie::set('keeplogin', implode('|', $data), 86400 * 7);
             return true;
         }
@@ -433,8 +433,8 @@ class Auth extends \fast\Auth
             $v['badge'] = isset($badgeList[$v['name']]) ? $badgeList[$v['name']] : '';
             $v['title'] = __($v['title']);
             $v['url'] = preg_match("/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/i", $v['url']) ? $v['url'] : url($v['url']);
-            $v['menuclass'] = in_array($v['menutype'], ['dialog', 'ajax']) ? 'btn-' . $v['menutype'] : '';
-            $v['menutabs'] = !$v['menutype'] || in_array($v['menutype'], ['default', 'addtabs']) ? 'addtabs="' . $v['id'] . '"' : '';
+            $v['menuclass'] = in_array($v['menu_type'], ['dialog', 'ajax']) ? 'btn-' . $v['menu_type'] : '';
+            $v['menutabs'] = !$v['menu_type'] || in_array($v['menu_type'], ['default', 'addtabs']) ? 'addtabs="' . $v['id'] . '"' : '';
             $selected = $v['name'] == $fixedPage ? $v : $selected;
             $referer = $v['url'] == $refererUrl ? $v : $referer;
         }
@@ -476,7 +476,7 @@ class Auth extends \fast\Auth
                 );
                 $current = in_array($item['id'], $selectParentIds);
                 $url = $childList ? 'javascript:;' : $item['url'];
-                $addtabs = $childList || !$url ? "" : (stripos($url, "?") !== false ? "&" : "?") . "ref=" . ($item['menutype'] ? $item['menutype'] : 'addtabs');
+                $addtabs = $childList || !$url ? "" : (stripos($url, "?") !== false ? "&" : "?") . "ref=" . ($item['menu_type'] ? $item['menu_type'] : 'addtabs');
                 $childList = str_replace(
                     '" pid="' . $item['id'] . '"',
                     ' ' . ($current ? '' : 'hidden') . '" pid="' . $item['id'] . '"',

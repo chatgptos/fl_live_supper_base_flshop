@@ -66,7 +66,7 @@ return [
     'Intro'                                                   => '介绍',
     'Version'                                                 => '版本',
     'New version'                                             => '新版本',
-    'Createtime'                                              => '添加时间',
+    'created'                                              => '添加时间',
     'Releasetime'                                             => '更新时间',
     'Detail'                                                  => '插件详情',
     'Document'                                                => '文档',

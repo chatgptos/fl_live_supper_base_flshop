@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'name' => '蜂雷直播基地平台',
+  'name' => '蜂雷后端Pass微服务框架',
   'beian' => '',
   'cdnurl' => '',
   'version' => '1.0.1',
