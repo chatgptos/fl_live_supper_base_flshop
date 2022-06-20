@@ -173,7 +173,7 @@ class Install extends Command
             throw new Exception(__('Please input correct website'));
         }
 
-        $sql = file_get_contents(INSTALL_PATH . 'fastadmin.sql');
+        $sql = file_get_contents(INSTALL_PATH . 'fladmin.sql');
 
         $sql = str_replace("`fa_", "`{$mysqlPrefix}", $sql);
 
