@@ -12,10 +12,10 @@ use think\Db;
 use think\Exception;
 
 /**
- * 插件管理
+ * 服务管理
  *
  * @icon   fa fa-cube
- * @remark 可在线安装、卸载、禁用、启用、配置、升级插件，插件升级前请做好备份。
+ * @remark 可在线安装、卸载、禁用、启用、配置、升级服务，服务升级前请做好备份。
  */
 class Addon extends Backend
 {
@@ -31,7 +31,7 @@ class Addon extends Backend
     }
 
     /**
-     * 插件列表
+     * 服务列表
      */
     public function index()
     {
@@ -78,7 +78,7 @@ class Addon extends Backend
                 }
                 try {
                     $addon = get_addon_instance($name);
-                    //插件自定义配置实现逻辑
+                    //服务自定义配置实现逻辑
                     if (method_exists($addon, 'config')) {
                         $addon->config($name, $config);
                     } else {
@@ -173,9 +173,9 @@ class Addon extends Backend
             Service::uninstall($name, $force);
             if ($tables) {
                 $prefix = Config::get('database.prefix');
-                //删除插件关联表
+                //删除服务关联表
                 foreach ($tables as $index => $table) {
-                    //忽略非插件标识的表名
+                    //忽略非服务标识的表名
                     if (!preg_match("/^{$prefix}{$name}/", $table)) {
                         continue;
                     }
@@ -248,7 +248,7 @@ class Addon extends Backend
     }
 
     /**
-     * 更新插件
+     * 更新服务
      */
     public function upgrade()
     {
@@ -311,7 +311,7 @@ class Addon extends Backend
     }
 
     /**
-     * 已装插件
+     * 已装服务
      */
     public function downloaded()
     {
@@ -404,7 +404,7 @@ class Addon extends Backend
     }
 
     /**
-     * 获取插件相关表
+     * 获取服务相关表
      */
     public function get_table_list()
     {
@@ -415,7 +415,7 @@ class Addon extends Backend
         $tables = get_addon_tables($name);
         $prefix = Config::get('database.prefix');
         foreach ($tables as $index => $table) {
-            //忽略非插件标识的表名
+            //忽略非服务标识的表名
             if (!preg_match("/^{$prefix}{$name}/", $table)) {
                 unset($tables[$index]);
             }

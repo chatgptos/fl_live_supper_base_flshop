@@ -76,7 +76,7 @@ class Common
 
     public function addonBegin(&$request)
     {
-        // 加载插件语言包
+        // 加载服务语言包
         $lang = request()->langset();
         $lang = preg_match("/^([a-zA-Z\-_]{2,10})\$/i", $lang) ? $lang : 'zh-cn';
         Lang::load([

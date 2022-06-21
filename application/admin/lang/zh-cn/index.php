@@ -41,7 +41,7 @@ return [
     'Wipe all cache'                                             => '一键清除缓存',
     'Wipe content cache'                                         => '清除内容缓存',
     'Wipe template cache'                                        => '清除模板缓存',
-    'Wipe addons cache'                                          => '清除插件缓存',
+    'Wipe addons cache'                                          => '清除服务缓存',
     'Wipe browser cache'                                         => '清除浏览器缓存',
     'Wipe browser cache tips'                                    => '清除浏览器端静态JS、CSS、图片等资源',
     'Check for updates'                                          => '检测更新',

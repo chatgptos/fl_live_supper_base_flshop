@@ -16,7 +16,7 @@
             <a href="javascript:;" class="btn btn-info btn-captcha" data-url="{:addon_url('wechat/captcha/send')}" data-type="wechat" data-event="[event]">获取验证码</a>
         </span>
     {else/}
-        请在后台插件管理中安装《微信管理插件》
+        请在后台服务管理中安装《微信管理服务》
     {/if}
 {elseif "[type]" == 'text' /}
     <input type="text" name="captcha" class="form-control" data-rule="required;length({$Think.config.captcha.length})" />

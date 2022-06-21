@@ -25,7 +25,7 @@ return [
     'module_init'  => [
         'app\\common\\behavior\\Common',
     ],
-    // 插件开始
+    // 服务开始
     'addon_begin'  => [
         'app\\common\\behavior\\Common',
     ],

@@ -6,13 +6,13 @@ use app\common\library\Menu;
 use think\Addons;
 
 /**
- * 插件
+ * 服务
  */
 class {%addonClassName%} extends Addons
 {
 
     /**
-     * 插件安装方法
+     * 服务安装方法
      * @return bool
      */
     public function install()
@@ -22,7 +22,7 @@ class {%addonClassName%} extends Addons
     }
 
     /**
-     * 插件卸载方法
+     * 服务卸载方法
      * @return bool
      */
     public function uninstall()
@@ -32,7 +32,7 @@ class {%addonClassName%} extends Addons
     }
 
     /**
-     * 插件启用方法
+     * 服务启用方法
      * @return bool
      */
     public function enable()
@@ -42,7 +42,7 @@ class {%addonClassName%} extends Addons
     }
 
     /**
-     * 插件禁用方法
+     * 服务禁用方法
      * @return bool
      */
     public function disable()

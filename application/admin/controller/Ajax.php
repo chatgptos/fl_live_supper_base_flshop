@@ -208,7 +208,7 @@ class Ajax extends Backend
                         break;
                     }
                 case 'addons':
-                    // 插件缓存
+                    // 服务缓存
                     Service::refresh();
                     if ($type == 'addons') {
                         break;

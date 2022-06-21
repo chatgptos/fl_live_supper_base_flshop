@@ -24,7 +24,7 @@ FlAdmin 是 FengleiAdmin 简称 FlAdmin
     * 基于`Bootstrap`开发，自适应手机、平板、PC
     * 基于`RequireJS`进行JS模块管理，按需加载
     * 基于`Less`进行样式开发
-* 强大的插件扩展功能
+* 强大的服务扩展功能
 
 ## 安装使用
 
@@ -150,3 +150,166 @@ FlAdmin项目目录
 ├── build.php
 ├── composer.json           //Composer包配置
 └── think                   //命令行控制台入口（使用 php think 命令进入）
+
+一键生成API文档
+FlAdmin中的一键生成API文档可以在命令行或后台一键生成我们API接口的接口测试文档，可以直接在线模拟接口请求，查看参数示例和返回示例。
+
+准备工作
+请确保你的API模块下的控制器代码没有语法错误，控制器类注释、方法名注释完整，注释规则请参考下方注释规则。
+
+请确保你的FlAdmin已经安装成功且能正常登录后台。
+
+请确保php所在的目录已经加入到系统环境变量，否则会提示找不到该命令。
+
+打开命令行控制台进入到你的站点根目录，也就是think文件所在的目录。
+
+常用命令
+//一键生成API文档
+php think api --force=true
+//指定https://www.example.com为API接口请求域名,默认为空
+php think api -u https://www.example.com --force=true
+//输出自定义文件为myapi.html,默认为api.html
+php think api -o myapi.html --force=true
+//修改API模板为mytemplate.html，默认为index.html
+php think api -e mytemplate.html --force=true
+//修改标题为Demo,作者为Lily
+php think api -t Demo -a Lily --force=true
+//生成服务标识为cms的API文档
+php think api -a cms -o cmsapi.html --force=true
+//查看API接口命令行帮助
+php think api -h
+参数介绍
+-u, --url[=URL]            默认API请求URL地址 [default: ""]
+-m, --module[=MODULE]      模块名(admin/index/api) [default: "api"]
+-a, --addon[=ADDON]      服务标识(addons目录下的服务标识) [default: ""]
+-o, --output[=OUTPUT]      输出文件 [default: "api.html"]
+-e, --template[=TEMPLATE]  模板文件 [default: "index.html"]
+-f, --force[=FORCE]        覆盖模式 [default: false]
+-t, --title[=TITLE]        文档标题 [default: "FlAdmin"]
+-c, --class[=CLASS]        扩展类 (multiple values allowed)
+-l, --language[=LANGUAGE]  语言 [default: "zh-cn"]
+注释规则
+在我们的控制器中通常分为两部分注释，一是控制器头部的注释，二是控制器方法的注释。
+
+控制器注释
+
+名称	描述	示例
+@ApiSector	API分组名称	(测试分组)
+@ApiRoute	API接口URL，此@ApiRoute只是基础URL	(/api/test)
+@ApiInternal	忽略的控制器,表示此控制将不加入API文档	无
+@ApiWeigh	API方法的排序,值越大越靠前	(99)
+控制器方法注释
+
+名称	描述	示例
+@ApiTitle	API接口的标题,为空时将自动匹配注释的文本信息	(测试标题)
+@ApiSummary	API接口描述	(测试描述)
+@ApiRoute	API接口地址,为空时将自动计算请求地址	(/api/test/index)
+@ApiMethod	API接口请求方法,默认为GET	(POST)
+@ApiSector	API分组,默认按钮控制器或控制器的@ApiSector进行分组	(测试分组)
+@ApiParams	API请求参数,如果在@ApiRoute中有对应的{@参数名}，将进行替换	(name="id", type="integer", required=true, description="会员ID")
+@ApiHeaders	API请求传递的Headers信息	(name=token, type=string, required=true, description="请求的Token")
+@ApiReturn	API返回的结果示例	({"code":1,"msg":"返回成功"})
+@ApiReturnParams	API返回的结果参数介绍	(name="code", type="integer", required=true, sample="0")
+@ApiReturnHeaders	API返回的Headers信息	(name="token", type="integer", required=true, sample="123456")
+@ApiInternal	忽略的方法,表示此方法将不加入文档	无
+@ApiWeigh	API方法的排序,值越大越靠前	(99)
+标准范例
+<?php
+
+namespace app\api\controller;
+
+/**
+ * 测试API控制器
+ */
+class Test extends \app\common\controller\Api
+{
+
+    // 无需验证登录的方法
+    protected $noNeedLogin = ['test'];
+    // 无需要判断权限规则的方法
+    protected $noNeedRight = ['*'];
+
+    /**
+     * 首页
+     *
+     * 可以通过@ApiInternal忽略请求的方法
+     * @ApiInternal
+     */
+    public function index()
+    {
+        return 'index';
+    }
+
+    /**
+     * 私有方法
+     * 私有的方法将不会出现在文档列表
+     */
+    private function privatetest()
+    {
+        return 'private';
+    }
+
+    /**
+     * 测试方法
+     *
+     * @ApiTitle    (测试名称)
+     * @ApiSummary  (测试描述信息)
+     * @ApiSector   (测试分组)
+     * @ApiMethod   (POST)
+     * @ApiRoute    (/api/test/test/id/{id}/name/{name})
+     * @ApiHeaders  (name=token, type=string, required=true, description="请求的Token")
+     * @ApiParams   (name="id", type="integer", required=true, description="会员ID")
+     * @ApiParams   (name="name", type="string", required=true, description="用户名")
+     * @ApiParams   (name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}", description="扩展数据")
+     * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")
+     * @ApiReturnParams   (name="msg", type="string", required=true, sample="返回成功")
+     * @ApiReturnParams   (name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}", description="扩展数据返回")
+     * @ApiReturn   ({
+        'code':'1',
+        'mesg':'返回成功'
+     * })
+     */
+    public function test($id = '', $name = '')
+    {
+        $this->success("返回成功", $this->request->request());
+    }
+
+}
+常见问题
+如果控制器的方法是private或protected的，则将不会生成相应的API文档。
+
+如果注释不生效，请检查注释文本是否正确。
+
+
+
+一键管理服务
+FlAdmin中的服务可以通过命令行快速的进行安装、卸载、禁用和启用。
+
+准备工作
+请确保你的FlAdmin已经能正常登录后台。
+
+请确保php所在的目录已经加入到系统环境变量，否则会提示找不到该命令。
+
+打开命令行控制台进入到你的站点根目录，也就是think文件所在的目录。
+
+常用命令
+//创建一个myaddon本地服务，常用于开发自己的服务时使用
+php think addon -a myaddon -c create
+//刷新服务缓存，如果禁用启用了服务，部分文件需要刷新才会生效
+php think addon -a example -c refresh
+//卸载本地的example服务
+php think addon -a example -c uninstall
+//启用本地的example服务
+php think addon -a example -c enable
+//禁用本地的example服务
+php think addon -a example -c disable
+//将本地的example服务打包成zip文件
+php think addon -a example -c package
+常见问题 
+如果管理服务后不生效，请在后台右上角清除缓存重试。
+更多一键管理服务的参数请使用php think addon --help查看。
+
+文档最后更新时间：2022-06-21 09:30:37
+
+
+

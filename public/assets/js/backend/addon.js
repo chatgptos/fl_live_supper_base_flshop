@@ -234,7 +234,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
                 });
             });
 
-            // 查看插件首页
+            // 查看服务首页
             $(document).on("click", ".btn-addonindex", function () {
                 if ($(this).attr("href") == 'javascript:;') {
                     Layer.msg(__('Not installed tips'), {icon: 7});
@@ -477,7 +477,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
                             }
                         });
                     } else if (ret && ret.code === -3) {
-                        //插件目录发现影响全局的文件
+                        //服务目录发现影响全局的文件
                         Layer.open({
                             content: Template("conflicttpl", ret.data),
                             shade: 0.8,
@@ -509,7 +509,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
                     Controller.api.refresh(table, name);
                 }, function (data, ret) {
                     if (ret && ret.code === -3) {
-                        //插件目录发现影响全局的文件
+                        //服务目录发现影响全局的文件
                         Layer.open({
                             content: Template("conflicttpl", ret.data),
                             shade: 0.8,
@@ -545,7 +545,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
                     Controller.api.refresh(table, name);
                 }, function (data, ret) {
                     if (ret && ret.code === -3) {
-                        //插件目录发现影响全局的文件
+                        //服务目录发现影响全局的文件
                         Layer.open({
                             content: Template("conflicttpl", ret.data),
                             shade: 0.8,
@@ -752,7 +752,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
             refresh: function (table, name) {
                 //刷新左侧边栏
                 Fast.api.refreshmenu();
-                //刷新插件JS缓存
+                //刷新服务JS缓存
                 Fast.api.ajax({url: require.toUrl('addons.js'), loading: false}, function () {
                     return false;
                 }, function () {

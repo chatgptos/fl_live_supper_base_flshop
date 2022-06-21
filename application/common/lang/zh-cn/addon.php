@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'addon %s not found'                          => '插件未找到',
-    'addon %s is disabled'                        => '插件已禁用',
-    'addon controller %s not found'               => '插件控制器未找到',
-    'addon action %s not found'                   => '插件控制器方法未找到',
-    'addon can not be empty'                      => '插件不能为空',
+    'addon %s not found'                          => '服务未找到',
+    'addon %s is disabled'                        => '服务已禁用',
+    'addon controller %s not found'               => '服务控制器未找到',
+    'addon action %s not found'                   => '服务控制器方法未找到',
+    'addon can not be empty'                      => '服务不能为空',
     'Keep login'                                  => '保持会话',
     'Forgot password'                             => '忘记密码?',
     'Username'                                    => '用户名',
@@ -71,7 +71,7 @@ return [
     'Create time'                                 => '创建时间',
     'Flag'                                        => '标志',
     'Home'                                        => '首页',
-    'Store'                                       => '插件市场',
+    'Store'                                       => '服务市场',
     'Services'                                    => '服务',
     'Download'                                    => '下载',
     'Demo'                                        => '演示',

@@ -65,7 +65,7 @@ class Api extends Command
         $title = $input->getOption('title');
         // 模块
         $module = $input->getOption('module');
-        // 插件
+        // 服务
         $addon = $input->getOption('addon');
 
         $moduleDir = $addonDir = '';

@@ -77,7 +77,7 @@ class Menu
 
     /**
      * 升级菜单
-     * @param string $name 插件名称
+     * @param string $name 服务名称
      * @param array  $menu 新菜单
      * @return bool
      */
@@ -120,14 +120,14 @@ class Menu
     }
 
     /**
-     * 刷新插件菜单配置缓存
+     * 刷新服务菜单配置缓存
      * @param string $name
      * @param array  $menu
      */
     public static function refresh($name, $menu = [])
     {
         if (!$menu) {
-            // $menu为空时表示首次安装，首次安装需刷新插件菜单标识缓存
+            // $menu为空时表示首次安装，首次安装需刷新服务菜单标识缓存
             $menuIds = Menu::getAuthRuleIdsByName($name);
             $menus = Db::name("auth_rule")->where('id', 'in', $menuIds)->column('name');
         } else {
@@ -143,7 +143,7 @@ class Menu
             $menus = $getMenus($menu);
         }
 
-        //刷新新的插件核心菜单缓存
+        //刷新新的服务核心菜单缓存
         Service::config($name, ['menus' => $menus]);
     }
 

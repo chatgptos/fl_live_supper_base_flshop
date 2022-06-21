@@ -22,7 +22,7 @@ class Demo extends Api
     /**
      * 测试方法
      *
-     * @ApiTitle    (测试名称)
+     * @ApiTitle    (蜂雷测试名称)
      * @ApiSummary  (测试描述信息)
      * @ApiMethod   (POST)
      * @ApiRoute    (/api/demo/test/id/{id}/name/{name})
