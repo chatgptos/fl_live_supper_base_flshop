@@ -313,3 +313,32 @@ php think addon -a example -c package
 
 
 
+一键生成菜单
+FlAdmin可通过命令控制台快速的一键生成后台的权限节点菜单规则，同时后台的管理菜单也会同步改变，操作非常简单。
+
+准备工作
+首先确保已经将FlAdmin配置好，数据库连接正确，同时确保已经通过上一步的一键生成CRUD已经生成了test的CRUD。
+
+请确保php所在的目录已经加入到系统环境变量，否则会提示找不到该命令。
+
+打开命令行控制台进入到你的站点根目录，也就是think文件所在的目录。
+
+常用命令
+//一键生成test控制器的权限菜单
+php think menu -c test
+//一键生成mydir/test控制器的权限菜单
+php think menu -c mydir/test
+//删除test控制器生成的菜单
+php think menu -c test -d 1
+//一键生成所有控制器的权限菜单，执行前请备份数据库。
+php think menu -c all-controller
+常见问题
+在使用php think menu前确保你的控制器已经添加或通过php think crud生成好。
+如果之前已经生成了菜单,需要再次生成,请登录后台手动删除之前生成的菜单或使用php think menu -c 控制器名 -d 1来删除。
+如果生成层级目录的菜单，在后台展示时父级菜单会以目录名称显示，如果需要修改可以在application/admin/lang/zh-cn.php中追加相应的语言包即可。
+使用范例
+示例
+
+更多CRUD一键生成可使用的参数请使用php think menu --help查看。
+
+文档最后更新时间：2022-06-20 15:29:21 
