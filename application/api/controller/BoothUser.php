@@ -5,7 +5,7 @@ namespace app\api\controller;
 use app\common\controller\Api;
 
 /**
- * 展商信息
+ * 展商报名参展信息
  */
 class BoothUser extends Api
 {
@@ -21,10 +21,10 @@ class BoothUser extends Api
 
 
     /**
-     * 展商信息
+     * 展商报名参展信息
      *
-     * @ApiTitle    (展商信息)
-     * @ApiSummary  (展商信息)
+     * @ApiTitle    (展商报名参展信息)
+     * @ApiSummary  (展商报名参展信息)
      * @ApiMethod   (POST)
      * @ApiParams   (name="id", type="integer", required=true, description="展商id")
      * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")
