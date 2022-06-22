@@ -229,7 +229,7 @@ class Crud extends Command
      * 更新时间字段
      * @var string
      */
-    protected $updateTimeField = 'updatetime';
+    protected $updateTimeField = 'modified';
 
     /**
      * 软删除时间字段

@@ -20,8 +20,8 @@ class {%modelName%} extends Model
 
     // 定义时间戳字段名
     protected $created = {%created%};
-    protected $updateTime = {%updateTime%};
-    protected $deleteTime = {%deleteTime%};
+    protected $updateTime = {%modified%};
+    protected $deleteTime = {%deleted%};
 
     // 追加属性
     protected $append = [

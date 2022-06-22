@@ -13,8 +13,8 @@ class Category extends Model
     // 开启自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
     // 定义时间戳字段名
-    protected $create_time = 'create_time';
-    protected $updateTime = 'updatetime';
+    protected $create_time = 'created';
+    protected $updateTime = 'modified';
     // 追加属性
     protected $append = [
         'type_text',

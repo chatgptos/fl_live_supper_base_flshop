@@ -10,8 +10,8 @@ class Attachment extends Model
     // 开启自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
     // 定义时间戳字段名
-    protected $create_time = 'create_time';
-    protected $updateTime = 'updatetime';
+    protected $create_time = 'created';
+    protected $updateTime = 'modified';
     // 定义字段类型
     protected $type = [
     ];

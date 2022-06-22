@@ -20,8 +20,8 @@ class Test extends Model
 
     // 定义时间戳字段名
     protected $created = false;
-    protected $updateTime = 'updatetime';
-    protected $deleteTime = 'deletetime';
+    protected $updateTime = 'modified';
+    protected $deleteTime = 'deleted';
 
     // 追加属性
     protected $append = [
