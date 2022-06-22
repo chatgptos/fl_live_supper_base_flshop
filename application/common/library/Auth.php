@@ -307,7 +307,7 @@ class Auth
                     $user->maxsuccessions = max($user->successions, $user->maxsuccessions);
                 }
 
-                $user->pre_vtime = $user->login_time;
+                $user->prev_time = $user->login_time;
                 //记录本次登录的IP和时间
                 $user->loginip = $ip;
                 $user->login_time = $time;
