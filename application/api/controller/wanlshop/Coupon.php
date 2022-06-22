@@ -30,7 +30,7 @@ class Coupon extends Api
 				// 'rangetype' => 'all', 1.0.5升级 
 				'invalid' => 0
 			])
-			->order('createtime desc')
+			->order('created desc')
 			->paginate()
 			->each(function($order, $key){
 				$order['shop'] = $order->shop?$order->shop->visible(['shopname']):[];
@@ -173,7 +173,7 @@ class Coupon extends Api
 				'state' => $state, 
 				'user_id' => $this->auth->id
 			])
-			->order('createtime desc')
+			->order('created desc')
 			->paginate()
 			->each(function($order, $key){
 				$order['shop'] = $order->shop?$order->shop->visible(['shopname']):[];
@@ -292,7 +292,7 @@ class Coupon extends Api
 			}
 			$list = model('app\api\model\wanlshop\Goods')
 				->where($where)
-				->order('createtime desc')
+				->order('created desc')
 				->paginate();
 			foreach ($list as $row) {
 				$row->shop->visible(['id','avatar','shopname']);

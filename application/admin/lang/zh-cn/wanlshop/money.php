@@ -15,5 +15,5 @@ return [
     'Type refund'   => '退款',
     'Type sys'      => '系统业务',
     'Service_ids'   => '业务ID',
-    'Createtime'    => '创建时间'
+    'created'    => '创建时间'
 ];

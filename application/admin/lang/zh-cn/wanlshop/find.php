@@ -28,7 +28,7 @@ return [
     'State screenshot'  => '截图中',
     'State normal'      => '发布成功',
     'Comments'          => '评论',
-    'Createtime'        => '创建时间',
+    'created'        => '创建时间',
     'Updatetime'        => '更新时间',
     'Deletetime'        => '删除时间',
     'User.id'           => 'ID',

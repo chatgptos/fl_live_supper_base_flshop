@@ -29,7 +29,7 @@ return [
     'Reason 12'             => '违法信息',
     'Reason 13'             => '诈骗信息',
     'Receipt'               => '处理回执',
-    'Createtime'            => '创建时间',
+    'created'            => '创建时间',
     'Updatetime'            => '更新时间',
     'Deletetime'            => '删除时间',
     'State'                 => '状态',

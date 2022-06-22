@@ -13,14 +13,14 @@ class Withdraw extends Model
     protected $autoWriteTimestamp = 'int';
 
     // 定义时间戳字段名
-    protected $createTime = 'createtime';
+    protected $created = 'created';
     protected $updateTime = 'updatetime';
     protected $deleteTime = false;
 
     // 追加属性
     protected $append = [
         'status_text',
-		'createtime_text',
+		'created_text',
 		'updatetime_text',
         'transfertime_text'
     ];
@@ -61,9 +61,9 @@ class Withdraw extends Model
         return isset($list[$value]) ? $list[$value] : '';
     }
 	
-	public function getCreatetimeTextAttr($value, $data)
+	public function getcreatedTextAttr($value, $data)
 	{
-	    $value = $value ? $value : (isset($data['createtime']) ? $data['createtime'] : '');
+	    $value = $value ? $value : (isset($data['created']) ? $data['created'] : '');
 	    return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
 	}
 	public function getUpdatetimeTextAttr($value, $data)

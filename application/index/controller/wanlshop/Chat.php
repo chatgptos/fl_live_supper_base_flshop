@@ -37,8 +37,8 @@ class Chat extends Wanlshop
 	        // 查询是否有离线消息 1.0.2升级 弃用貌似意义不大
 	   //      $list = $this->model
 	   //          ->where(['to_id' => $user_id, 'online' => 0, 'type' => 'chat'])
-	   //          ->whereTime('createtime', 'week')
-	   //          ->field('id,form_uid,to_id,form,message,type,online,createtime')
+	   //          ->whereTime('created', 'week')
+	   //          ->field('id,form_uid,to_id,form,message,type,online,created')
 	   //          ->select();
 	   //      foreach ($list as $row) {
 	   //          $this->wanlchat->send($user_id, $row);
@@ -65,7 +65,7 @@ class Chat extends Wanlshop
 		    $tolist = [];
 		    $chatModel = $this->model;
 		    $history = $chatModel->where("(form_uid={$uid} or to_id={$uid}) and type='chat'")
-		        ->order('createtime esc')
+		        ->order('created esc')
 		        ->select();
 		    foreach (collection($history)->toArray() as $vo) {
 		        if ($vo['form_uid'] == $uid) {
@@ -90,7 +90,7 @@ class Chat extends Wanlshop
 		            ->count();
 		        //查询和店铺最新消息
 		        $content = $chatModel->where("((form_uid={$uid} and to_id={$user['id']}) or (form_uid={$user['id']} and to_id={$uid})) and type='chat'")
-		            ->order('createtime desc')
+		            ->order('created desc')
 		            ->limit(1)
 		            ->find();
 		        //转换图片类型
@@ -114,11 +114,11 @@ class Chat extends Wanlshop
 		            'avatar' => $user['avatar'],
 		            'content' => $msgtext,
 		            'count' => $count,
-					'createtime' => $content['createtime'],
+					'created' => $content['created'],
 					'isOnline' => $this->wanlchat->isOnline($user['id'])
 		        ];
 				// 时间排序
-				$datetime[] = $content['createtime'];
+				$datetime[] = $content['created'];
 		    }
 			if($datetime){
 				array_multisort($datetime, SORT_DESC, $chat);
@@ -152,8 +152,8 @@ class Chat extends Wanlshop
 	            ->update(['isread' => 1]);
 	        $chat = $this->model
 	            ->where("((form_uid={$uid} and to_id={$id}) or (form_uid={$id} and to_id={$uid})) and type='chat'")
-	            // ->whereTime('createtime', 'month')
-	            ->order('createtime esc')
+	            // ->whereTime('created', 'month')
+	            ->order('created esc')
 	            ->limit(500) //最多拉取500条，迭代版本做分页
 	            ->select();
 	        $this->success("成功", null, [

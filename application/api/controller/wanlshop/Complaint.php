@@ -26,7 +26,7 @@ class Complaint extends Api
 		$this->request->filter(['strip_tags']);
 		$list = $this->model
 			->where('user_id', $this->auth->id)
-			->order('createtime desc')
+			->order('created desc')
 			->paginate();
 		foreach ($list as $row) {
 			// 举报类型:0=用户举报,1=商品举报,2=店铺举报,3=拼团举报
@@ -55,7 +55,7 @@ class Complaint extends Api
     	}
     	$list = $this->model
     		->where('user_id', $this->auth->id)
-    		->order('createtime desc')
+    		->order('created desc')
     		->paginate();
     	$this->success('ok',$list);
     }

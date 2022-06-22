@@ -36,10 +36,10 @@ class Team extends Api
 			$this->error(__('未找到任何拼团'));
 		}
 		$row->team = model('app\api\model\wanlshop\groups\Team')
-			->field('id,user_id,username,nickname,avatar,order_goods_id,createtime')
+			->field('id,user_id,username,nickname,avatar,order_goods_id,created')
 			->with(['user'])
 			->where('group_no', $id)
-			->order('createtime', 'asc')
+			->order('created', 'asc')
 			->select();
 			
 		foreach ($row->team as $team) {

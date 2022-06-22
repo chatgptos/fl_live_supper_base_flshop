@@ -125,7 +125,7 @@ class Refund extends Wanlshop
 		}
 		$row['log'] = model('app\index\model\wanlshop\RefundLog')
 			->where(['refund_id' => $row['id']])
-			->order('createtime desc')
+			->order('created desc')
 			->select();
 	    $this->view->assign("row", $row);
 		return $this->view->fetch();

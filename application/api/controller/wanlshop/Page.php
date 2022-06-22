@@ -42,7 +42,7 @@ class Page extends Api
 	{
 	    $row = model('app\api\model\wanlshop\Article')
 	    	->where('id', 'in', $ids)
-	    	->field('id,title,image,views,createtime')
+	    	->field('id,title,image,views,created')
 	    	->select();
 	    $this->success('ok', $row);
 	}

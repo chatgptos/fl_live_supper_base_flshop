@@ -31,7 +31,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             			{field: 'name', title: __('Name'), align: 'left', formatter: Controller.api.formatter.escape2Html},
                         {field: 'image', title: __('Image'), events: Table.api.events.image, formatter: Table.api.formatter.image},
                         // {field: 'flag', title: __('Flag'), searchList: {"hot":__('Hot'),"new":__('New'),"recommend":__('Recommend')}, operate:'FIND_IN_SET', formatter: Table.api.formatter.label},
-                        {field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'status', title: __('Status'), searchList: {"normal":__('Normal'),"hidden":__('Hidden')}, formatter: Table.api.formatter.status},
             			{field: 'id',title: __('展开'),operate: false, formatter: Controller.api.formatter.subnode},

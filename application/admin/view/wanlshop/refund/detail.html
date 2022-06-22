@@ -72,12 +72,12 @@
 							{case value="5"}<span class="label label-danger">{$row.state_text|htmlentities}</span>{/case}
 						{/switch}
 					</p>
-					<p>下单时间：<small>{$row.order.createtime|date="Y年m月d日 h:i:s",###}</small></p>
+					<p>下单时间：<small>{$row.order.created|date="Y年m月d日 h:i:s",###}</small></p>
 					{notempty name="row.order.paymenttime"}<p>付款时间：<small>{$row.order.paymenttime|date="Y年m月d日 h:i:s",###}</small></p>{/notempty}
 					{notempty name="row.order.delivertime"}<p>发货时间：<small>{$row.order.delivertime|date="Y年m月d日 h:i:s",###}</small></p>{/notempty}
 					{notempty name="row.order.taketime"}<p>收货时间：<small>{$row.order.taketime|date="Y年m月d日 h:i:s",###}</small></p>{/notempty}
 					{notempty name="row.order.dealtime"}<p>成交时间：<small>{$row.order.dealtime|date="Y年m月d日 h:i:s",###}</small></p>{/notempty}
-					<p>退款时间：<small>{$row.createtime|date="Y年m月d日 h:i:s",###}</small></p>
+					<p>退款时间：<small>{$row.created|date="Y年m月d日 h:i:s",###}</small></p>
 				</div>
 			</div>
 		</div>
@@ -125,7 +125,7 @@
 							<td style="text-align: left; vertical-align: middle; ">{$row.shop.shopname|htmlentities}</td>
 							{/eq}
 							<td style="text-align: left; vertical-align: middle; " width="60%">{$vo.content}</td>
-							<td style="text-align: left; vertical-align: middle; ">{$vo.createtime_text}</td>
+							<td style="text-align: left; vertical-align: middle; ">{$vo.created_text}</td>
 						</tr>
 					{/volist}
 					

@@ -1141,8 +1141,8 @@ class User extends Api
 	{
 		$list = model('app\api\model\wanlshop\GoodsComment')
 			->where('user_id', $this->auth->id)
-			->field('id,images,score,goods_id,order_goods_id,state,content,createtime')
-			->order('createtime desc')
+			->field('id,images,score,goods_id,order_goods_id,state,content,created')
+			->order('created desc')
 			->paginate()
 			->each(function($data, $key){
 				$data['order_goods'] = $data->order_goods ? $data->order_goods->visible(['id','title','image','price']):'';
@@ -1161,7 +1161,7 @@ class User extends Api
 		if ($this->request->isPost()) {
 			$list = model('app\common\model\ScoreLog')
 				->where('user_id', $this->auth->id)
-				->order('createtime desc')
+				->order('created desc')
 				->paginate();
 			$this->success('ok',$list);
 		}

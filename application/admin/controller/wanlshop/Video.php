@@ -58,7 +58,7 @@ class Video extends Backend
                     ->paginate($limit);
 
             foreach ($list as $row) {
-                $row->visible(['id','video_id','cover_url','snapshots','suggestion','bitrate','definition','duration','url','format','fps','height','width','size','createtime']);
+                $row->visible(['id','video_id','cover_url','snapshots','suggestion','bitrate','definition','duration','url','format','fps','height','width','size','created']);
                 $row->visible(['wanlshopfind']);
 				$row->getRelation('wanlshopfind')->visible(['id','content']);
             }

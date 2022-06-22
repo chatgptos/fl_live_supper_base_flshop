@@ -32,7 +32,7 @@ return [
     'Valuation 1'           => '按重量',
     'Valuation 2'           => '按体积',
     'Pricedata'             => '快递价格',
-    'Createtime'            => '创建时间',
+    'created'            => '创建时间',
     'Updatetime'            => '更新时间',
     'Deletetime'            => '删除时间',
     'Status'                => '状态',
@@ -49,7 +49,7 @@ return [
 	'Drag to sort'        => '拖动进行排序',
 	// 发货
 	'State'                 => '类型',
-	'Createtime'            => '创建时间',
+	'created'            => '创建时间',
 	'Paymenttime'           => '付款时间',
 	'Delivertime'           => '发货时间',
 	'Dealtime'              => '成交时间',

@@ -8,7 +8,7 @@ return [
     'Flag index'     => '搜索条',
     'Flag recommend' => '推荐',
     'Views'          => '搜索次数',
-    'Createtime'     => '创建时间',
+    'created'     => '创建时间',
     'Updatetime'     => '更新时间',
     'Deletetime'     => '删除时间',
     'Weigh'          => '权重',

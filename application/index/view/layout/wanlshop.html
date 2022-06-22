@@ -128,7 +128,7 @@
 													<div class="main">
 														<div class="user">
 															<span class="username text-cut">{{item.nickname}}</span>
-															<span class="time">{{timefriendly(item.createtime)}}</span>
+															<span class="time">{{timefriendly(item.created)}}</span>
 														</div>
 														<div class="info text-cut">
 															<span v-if="item.count > 0">
@@ -238,7 +238,7 @@
 									<div class="chat-user">
 										<img :src="cdnurl(item.form.id == shop.user_id ? shop.avatar : item.form.avatar)">
 										<cite>
-											<span>{{timefriendly(item.createtime)}}</span>
+											<span>{{timefriendly(item.created)}}</span>
 										</cite>
 									</div>
 									<!-- 文字消息 -->

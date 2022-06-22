@@ -42,7 +42,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'fps', title: __('Fps'), formatter: Controller.api.formatter.fps},
                         {field: 'id', title: __('分辨率'), formatter: Controller.api.formatter.resolving},
                         {field: 'size', title: __('Size'), formatter: Controller.api.formatter.size},
-                        {field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
+                        {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                         {
                         	field: 'operate', 
                         	title: __('Operate'), 

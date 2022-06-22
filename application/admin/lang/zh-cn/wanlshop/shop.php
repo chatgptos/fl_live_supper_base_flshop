@@ -24,7 +24,7 @@ return [
     'Score_service'   => '卖家服务',
     'Score_logistics' => '物流服务',
     'Weigh'           => '权重',
-    'Createtime'      => '创店时间',
+    'created'      => '创店时间',
     'Updatetime'      => '更新时间',
     'Deletetime'      => '删除时间',
     'Status'          => '状态'

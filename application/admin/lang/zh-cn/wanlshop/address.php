@@ -18,7 +18,7 @@ return [
     'Address'           => '详细地址',
     'Address_name'      => '地址名称',
     'Location'          => '经纬度',
-    'Createtime'        => '创建时间',
+    'created'        => '创建时间',
     'Updatetime'        => '更新时间',
     'Deletetime'        => '删除时间',
     'Status'            => '状态'

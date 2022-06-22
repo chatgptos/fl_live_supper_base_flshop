@@ -137,7 +137,7 @@
 						<div class="th-inner">
 							<input name="checkbox" data-id="<%=item.id%>" id="order_<%=item.id%>" type="checkbox" /> 
 							<label style="margin-left: 2px;" for="order_<%=item.id%>">订单号：<%=item.order_no%></label>
-							<label style="margin-left:60px;" for="order_<%=item.id%>">创建时间：<%=Moment(item.createtime*1000).format("YYYY-MM-DD HH:mm:ss")%></label>
+							<label style="margin-left:60px;" for="order_<%=item.id%>">创建时间：<%=Moment(item.created*1000).format("YYYY-MM-DD HH:mm:ss")%></label>
 						</div>
 					</th>
 				</tr>			   

@@ -34,7 +34,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
                         {field: 'memo', title: __('Memo'), operate: 'LIKE'},
                         {field: 'type', title: __('Type'), searchList: {"pay":__('Type pay'),"groups":__('Type groups'),"recharge":__('Type recharge'),"withdraw":__('Type withdraw'),"refund":__('Type refund'),"sys":__('Type sys')}, formatter: Table.api.formatter.normal},
                         {field: 'service_ids', title: __('Service_ids'), operate: 'LIKE'},
-                        {field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
+                        {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate,buttons: [{name: 'detail',title: __('资金详情'),classname: 'btn btn-xs btn-info btn-dialog',icon: 'fa fa-eye',url: 'wanlshop/money/detail'}],formatter: Table.api.formatter.operate}
                     ]
                 ]

@@ -79,7 +79,7 @@ class Money extends Backend
 			if($money['type'] == 'pay'){
 				$order = model('app\admin\model\wanlshop\Order')
 					->where('order_no', 'in', $money['service_ids'])
-					->field('id,shop_id,createtime,paymenttime')
+					->field('id,shop_id,created,paymenttime')
 					->select();
 				if(!$order){
 					$this->error(__('订单异常'));
@@ -98,7 +98,7 @@ class Money extends Backend
 			}else if($money['type'] == 'groups'){
 				$order = model('app\admin\model\wanlshop\GroupsOrder')
 					->where('order_no', 'in', $money['service_ids'])
-					->field('id,shop_id,createtime,paymenttime')
+					->field('id,shop_id,created,paymenttime')
 					->select();
 				if(!$order){
 					$this->error(__('订单异常'));
@@ -130,7 +130,7 @@ class Money extends Backend
 			}else if($money['type'] == 'refund'){
 				$order = model('app\api\model\wanlshop\Order')
 					->where('order_no', $money['service_ids'])
-					->field('id,shop_id,order_no,createtime,paymenttime')
+					->field('id,shop_id,order_no,created,paymenttime')
 					->find();
 				if(!$order){
 					$this->error(__('订单异常'));
@@ -138,7 +138,7 @@ class Money extends Backend
 				$order->shop->visible(['shopname']);
 				$order['refund'] = model('app\api\model\wanlshop\Refund')
 					->where(['order_id' => $order['id']])
-					->field('id,price,type,reason,createtime,completetime')
+					->field('id,price,type,reason,created,completetime')
 					->find();
 				$service = $order;
 			}

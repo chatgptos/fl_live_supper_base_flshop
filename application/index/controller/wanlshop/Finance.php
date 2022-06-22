@@ -125,7 +125,7 @@ class Finance extends Wanlshop
 			    $this->error('提现金额不能低于' . $config['withdraw']['minmoney'] . '元');
 			}
 			if ($config['withdraw']['monthlimit']) {
-			    $count = model('app\index\model\wanlshop\Withdraw')->where('user_id', $this->auth->id)->whereTime('createtime', 'month')->count();
+			    $count = model('app\index\model\wanlshop\Withdraw')->where('user_id', $this->auth->id)->whereTime('created', 'month')->count();
 			    if ($count >= $config['withdraw']['monthlimit']) {
 			        $this->error("已达到本月最大可提现次数");
 			    }
@@ -160,7 +160,7 @@ class Finance extends Wanlshop
 		}else{
 			$bank = model('app\index\model\wanlshop\PayAccount')
 			    ->where(['user_id' => $this->auth->id])
-			    ->order('createtime desc')
+			    ->order('created desc')
 			    ->find();
 			$this->assignconfig('usermoney', $this->auth->money);
 			$this->assignconfig('servicefee', $config['withdraw']['servicefee']);

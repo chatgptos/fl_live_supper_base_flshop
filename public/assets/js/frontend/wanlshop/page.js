@@ -28,7 +28,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 		                {field: 'name', title: __('Name')},
 						{field: 'shop_id', title: __('Shop_id')},
 						{field: 'type', title: __('Type'), searchList: {"page":__('Page'),"shop":__('Shop'),"index":__('Index')}, formatter: Table.api.formatter.normal},
-		                {field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+		                {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 		                {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 		                {field: 'status', title: __('Status'), searchList: {"normal":__('Normal'),"hidden":__('Hidden')}, formatter: Table.api.formatter.status},
 		                {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
@@ -61,7 +61,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 						{field: 'id', title: __('Id')},
 						{field: 'name', title: __('Name')},
 						{field: 'type', title: __('Type'), searchList: {"page":__('Page'),"shop":__('Shop'),"index":__('Index')}, formatter: Table.api.formatter.normal},
-						{field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+						{field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 						{field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 						{field: 'deletetime', title: __('Deletetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 			            {

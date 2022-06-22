@@ -14,7 +14,7 @@ return [
     'Background_url'             => '封面背景图片',
     'Logo_src'                   => 'LOGO图标地址',
     'Checked'                    => '选中状态',
-    'Createtime'                 => '创建时间',
+    'created'                 => '创建时间',
     'Updatetime'                 => '更新时间',
     'Deletetime'                 => '删除时间',
     'Weigh'                      => '权重',

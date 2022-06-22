@@ -33,7 +33,7 @@ return [
     'Cardtype'   => '卡片类型',
     'Cardcode'   => '账户/账号',
     'Transfertime'     => '转账时间',
-    'Createtime'       => '创建时间',
+    'created'       => '创建时间',
 	'Are you sure you want to delete the %s selected item?' => '确定删除选中的 %s 项?',
 	'Are you sure you want to delete this item?'            => '确定删除此项?',
 	'Are you sure you want to delete or turncate?'          => '确定删除或清空?',

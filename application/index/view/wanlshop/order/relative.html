@@ -69,7 +69,7 @@
 		{switch name="row.state" }
 		    {case value="1"}
 				<tr>
-					<td class="status"><span class="day">{$row.createtime|date="Y.m.d",###}</span><span class="time">{$row.createtime|date="H:i",###}</span><span class="week">{$week[date('w', $row.paymenttime)]}</span></td>
+					<td class="status"><span class="day">{$row.created|date="Y.m.d",###}</span><span class="time">{$row.created|date="H:i",###}</span><span class="week">{$week[date('w', $row.paymenttime)]}</span></td>
 					<td class="process">
 						<i class="fa fa-credit-card"></i>
 					</td>

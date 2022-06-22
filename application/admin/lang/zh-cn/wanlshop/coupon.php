@@ -33,7 +33,7 @@ return [
     'Usenum'				=> '已使用数量',
     'Content'               => '卡券使用说明',
     'Invalid'				=> '是否有效',
-    'Createtime'            => '创建时间',
+    'created'            => '创建时间',
     'Updatetime'            => '更新时间',
     'Deletetime'            => '删除时间',
     'Shop.shopname' => '店铺名称'

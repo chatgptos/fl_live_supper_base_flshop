@@ -54,8 +54,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 							title: __('Like')
 						},
 						{
-							field: 'createtime',
-							title: __('Createtime'),
+							field: 'created',
+							title: __('created'),
 							operate: 'RANGE',
 							addclass: 'datetimerange',
 							autocomplete: false,

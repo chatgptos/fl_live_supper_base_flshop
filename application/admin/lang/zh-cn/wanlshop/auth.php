@@ -25,7 +25,7 @@ return [
     'Verify 2'   => '审核中',
     'Verify 3'   => '通过',
     'Verify 4'   => '未通过',
-    'Createtime' => '创店时间',
+    'created' => '创店时间',
     'Updatetime' => '更新时间',
     'Deletetime' => '删除时间',
     'Status'     => '状态'

@@ -465,8 +465,8 @@ class Product extends Api
 		// 按条件查询
 		$list = $recordModel
 			->where('id', 'in', $footprintIds)
-			->field('goods_id, createtime')
-			->order('createtime', 'desc')
+			->field('goods_id, created')
+			->order('created', 'desc')
 			->paginate();
 		foreach ($list as $row) {
 		    $row['goods'] = $goodsModel
@@ -495,7 +495,7 @@ class Product extends Api
 			$list = model('app\api\model\wanlshop\Record')
 				->where(['shop_id' => $shop_id, 'user_id' => $this->auth->id])
 				->group('goods_id')
-				->field('goods_id, createtime')
+				->field('goods_id, created')
 				->select();
 			foreach ($list as $row) {
 				// 1.0.8升级
@@ -526,7 +526,7 @@ class Product extends Api
 		// 是否传入商品ID
 		$id ? $id : ($this->error(__('非正常访问')));
 		// 加载商品模型
-		$goodsCommentModel = model('app\api\model\wanlshop\GoodsComment')->order('createtime desc');
+		$goodsCommentModel = model('app\api\model\wanlshop\GoodsComment')->order('created desc');
 		//查询tag 评价:0=好评,1=中评,2=差评
 		if($tag){
 			if($tag == 'good'){

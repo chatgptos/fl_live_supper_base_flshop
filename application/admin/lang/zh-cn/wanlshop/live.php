@@ -18,7 +18,7 @@ return [
     'State 1'               => '正在直播',
     'State 2'               => '直播结束',
     'State 3'               => '直播封禁',
-    'Createtime'            => '创建时间',
+    'created'            => '创建时间',
     'Updatetime'            => '更新时间',
     'Deletetime'            => '删除时间',
     'Wanlshopfind.id'       => 'FIND_ID',

@@ -19,7 +19,7 @@ return [
     'Score_deliver'         => '发货相符',
     'Score_logistics'       => '物流相符',
     'Switch'                => '匿名评论',
-    'Createtime'            => '创建时间',
+    'created'            => '创建时间',
     'Updatetime'            => '更新时间',
     'Deletetime'            => '删除时间',
     'Status'                => '状态',

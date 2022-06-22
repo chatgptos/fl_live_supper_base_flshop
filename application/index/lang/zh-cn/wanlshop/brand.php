@@ -10,7 +10,7 @@ return [
     'Content'      => '内容介绍',
     'Weigh'        => '权重',
     'Switch'       => '是否启用',
-    'Createtime'   => '创建时间',
+    'created'   => '创建时间',
     'Updatetime'   => '更新时间',
     'Deletetime'   => '删除时间',
     'Status'       => '状态',

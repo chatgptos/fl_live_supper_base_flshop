@@ -33,7 +33,7 @@ return [
     'State 3'                  => '申请平台介入',
     'State 4'                  => '成功退款',
     'State 5'                  => '退款已关闭',
-    'Createtime'               => '创建时间',
+    'created'               => '创建时间',
     'Updatetime'               => '更新时间',
     'Deletetime'               => '删除时间',
     'Status'                   => '状态',

@@ -27,7 +27,7 @@ class Refund extends Api
 			$list = model('app\api\model\wanlshop\Refund')
 				->where('user_id', $this->auth->id)
 				->field('id,shop_id,goods_ids,order_type,price,type,state')
-				->order('createtime desc')
+				->order('created desc')
 				->paginate()
 				->each(function($data, $index){
 					if($data['order_type'] === 'goods'){
@@ -282,7 +282,7 @@ class Refund extends Api
 	{
 		$log = model('app\api\model\wanlshop\RefundLog')
 			->where(['refund_id' => $id, 'user_id' => $this->auth->id])
-			->order('createtime desc')
+			->order('created desc')
 			->select();
 		if($log){
 			$data = [];
@@ -305,7 +305,7 @@ class Refund extends Api
 					'id' => $vo['id'],
 					'content' => $vo['content'],
 					'name' => $name,
-					'createtime_text' => $vo['createtime_text'],
+					'created_text' => $vo['created_text'],
 					'avatar' => $avatar
 				];
 			}

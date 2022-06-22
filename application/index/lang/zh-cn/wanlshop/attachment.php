@@ -14,7 +14,7 @@ return [
     'Filesize'           => '文件大小',
     'Mimetype'           => 'Mime类型',
     'Extparam'           => '透传数据',
-    'Createtime'         => '创建日期',
+    'created'         => '创建日期',
     'Uploadtime'         => '上传时间',
     'Storage'            => '存储引擎',
     'Upload to third'    => '上传到第三方',

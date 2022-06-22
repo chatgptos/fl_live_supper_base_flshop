@@ -15,7 +15,7 @@ return [
     'State 5'               => '待评论',
 	'State 6'               => '已完成',
 	'State 7'               => '已取消',
-    'Createtime'            => '创建时间',
+    'created'            => '创建时间',
     'Paymenttime'           => '付款时间',
     'Delivertime'           => '发货时间',
     'Dealtime'              => '成交时间',

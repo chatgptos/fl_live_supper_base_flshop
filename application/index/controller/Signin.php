@@ -25,17 +25,17 @@ class Signin extends Frontend
         $date = $this->request->request('date', date("Y-m-d"), "trim");
         $time = strtotime($date);
 
-        $lastdata = \addons\signin\model\Signin::where('user_id', $this->auth->id)->order('createtime', 'desc')->find();
-        $successions = $lastdata && $lastdata['createtime'] > Date::unixtime('day', -1) ? $lastdata['successions'] : 0;
-        $signin = \addons\signin\model\Signin::where('user_id', $this->auth->id)->whereTime('createtime', 'today')->find();
+        $lastdata = \addons\signin\model\Signin::where('user_id', $this->auth->id)->order('created', 'desc')->find();
+        $successions = $lastdata && $lastdata['created'] > Date::unixtime('day', -1) ? $lastdata['successions'] : 0;
+        $signin = \addons\signin\model\Signin::where('user_id', $this->auth->id)->whereTime('created', 'today')->find();
 
         $calendar = new \addons\signin\library\Calendar();
         $list = \addons\signin\model\Signin::where('user_id', $this->auth->id)
-            ->field('id,createtime')
-            ->whereTime('createtime', 'between', [date("Y-m-1", $time), date("Y-m-1", strtotime("+1 month", $time))])
+            ->field('id,created')
+            ->whereTime('created', 'between', [date("Y-m-1", $time), date("Y-m-1", strtotime("+1 month", $time))])
             ->select();
         foreach ($list as $index => $item) {
-            $calendar->addEvent(date("Y-m-d", $item->createtime), date("Y-m-d", $item->createtime), "", false, "signed");
+            $calendar->addEvent(date("Y-m-d", $item->created), date("Y-m-d", $item->created), "", false, "signed");
         }
         $this->assignconfig('fillupscore', $config['fillupscore']);
         $this->assignconfig('isfillup', $config['isfillup']);
@@ -60,9 +60,9 @@ class Signin extends Frontend
             $config = get_addon_config('signin');
             $signdata = $config['signinscore'];
 
-            $lastdata = \addons\signin\model\Signin::where('user_id', $this->auth->id)->order('createtime', 'desc')->find();
-            $successions = $lastdata && $lastdata['createtime'] > Date::unixtime('day', -1) ? $lastdata['successions'] : 0;
-            $signin = \addons\signin\model\Signin::where('user_id', $this->auth->id)->whereTime('createtime', 'today')->find();
+            $lastdata = \addons\signin\model\Signin::where('user_id', $this->auth->id)->order('created', 'desc')->find();
+            $successions = $lastdata && $lastdata['created'] > Date::unixtime('day', -1) ? $lastdata['successions'] : 0;
+            $signin = \addons\signin\model\Signin::where('user_id', $this->auth->id)->whereTime('created', 'today')->find();
             if ($signin) {
                 $this->error('今天已签到,请明天再来!');
             } else {
@@ -70,7 +70,7 @@ class Signin extends Frontend
                 $score = isset($signdata['s' . $successions]) ? $signdata['s' . $successions] : $signdata['sn'];
                 Db::startTrans();
                 try {
-                    \addons\signin\model\Signin::create(['user_id' => $this->auth->id, 'successions' => $successions, 'createtime' => time()]);
+                    \addons\signin\model\Signin::create(['user_id' => $this->auth->id, 'successions' => $successions, 'created' => time()]);
                     \app\common\model\User::score($score, $this->auth->id, "连续签到{$successions}天");
                     Db::commit();
                 } catch (Exception $e) {
@@ -109,22 +109,22 @@ class Signin extends Frontend
         }
         $count = \addons\signin\model\Signin::where('user_id', $this->auth->id)
             ->where('type', 'fillup')
-            ->whereTime('createtime', 'between', [Date::unixtime('month'), Date::unixtime('month', 0, 'end')])
+            ->whereTime('created', 'between', [Date::unixtime('month'), Date::unixtime('month', 0, 'end')])
             ->count();
         if ($config['fillupnumsinmonth'] <= $count) {
             $this->error("每月只允许补签{$config['fillupnumsinmonth']}次");
         }
-        Db::name('signin')->whereTime('createtime', 'd')->select();
+        Db::name('signin')->whereTime('created', 'd')->select();
         $signin = \addons\signin\model\Signin::where('user_id', $this->auth->id)
             ->where('type', 'fillup')
-            ->whereTime('createtime', 'between', [$date, date("Y-m-d 23:59:59", $time)])
+            ->whereTime('created', 'between', [$date, date("Y-m-d 23:59:59", $time)])
             ->count();
         if ($signin) {
             $this->error("该日期无需补签到");
         }
         $successions = 1;
         $prev = $signin = \addons\signin\model\Signin::where('user_id', $this->auth->id)
-            ->whereTime('createtime', 'between', [date("Y-m-d", strtotime("-1 day", $time)), date("Y-m-d 23:59:59", strtotime("-1 day", $time))])
+            ->whereTime('created', 'between', [date("Y-m-d", strtotime("-1 day", $time)), date("Y-m-d 23:59:59", strtotime("-1 day", $time))])
             ->find();
         if ($prev) {
             $successions = $prev['successions'] + 1;
@@ -134,8 +134,8 @@ class Signin extends Frontend
             \app\common\model\User::score(-$config['fillupscore'], $this->auth->id, '签到补签');
             //寻找日期之后的
             $nextList = \addons\signin\model\Signin::where('user_id', $this->auth->id)
-                ->where('createtime', '>=', strtotime("+1 day", $time))
-                ->order('createtime', 'asc')
+                ->where('created', '>=', strtotime("+1 day", $time))
+                ->order('created', 'asc')
                 ->select();
             foreach ($nextList as $index => $item) {
                 //如果是阶段数据，则中止
@@ -143,12 +143,12 @@ class Signin extends Frontend
                     break;
                 }
                 $day = $index + 1;
-                if (date("Y-m-d", $item->createtime) == date("Y-m-d", strtotime("+{$day} day", $time))) {
+                if (date("Y-m-d", $item->created) == date("Y-m-d", strtotime("+{$day} day", $time))) {
                     $item->successions = $successions + $day;
                     $item->save();
                 }
             }
-            \addons\signin\model\Signin::create(['user_id' => $this->auth->id, 'type' => 'fillup', 'successions' => $successions, 'createtime' => $time + 43200]);
+            \addons\signin\model\Signin::create(['user_id' => $this->auth->id, 'type' => 'fillup', 'successions' => $successions, 'created' => $time + 43200]);
             Db::commit();
         } catch (PDOException $e) {
             Db::rollback();

@@ -107,7 +107,7 @@ class Order extends Api
 		$order = model('app\api\model\wanlshop\groups\Order')
 			->where(['id' => $id, 'user_id' => $this->auth->id])
 			->field('id,shop_id,order_no,isaddress,express_no,express_name,
-			freight_type,state,createtime,paymenttime,delivertime,taketime,dealtime')
+			freight_type,state,created,paymenttime,delivertime,taketime,dealtime')
 			->find();
 		$order ? $order : ($this->error(__('网络繁忙')));
 		// 输出配置
@@ -118,14 +118,14 @@ class Order extends Api
 				$express = [
 					'context' => '付款后，完成拼团即可将宝贝发出',
 					'status' => '尚未付款',
-					'time' => date('Y-m-d H:i:s', $order['createtime'])
+					'time' => date('Y-m-d H:i:s', $order['created'])
 				];
 				break;
 			case 2:
 				$express = [
 					'context' => '正在分享拼团中',
 					'status' => '已付款',
-					'time' => date('Y-m-d H:i:s', $order['createtime'])
+					'time' => date('Y-m-d H:i:s', $order['created'])
 				];
 				break;
 			case 3:
@@ -434,7 +434,7 @@ class Order extends Api
 			//获取订单
 			$order = model('app\api\model\wanlshop\groups\Order')
 				->where(['id' => $id, 'user_id' => $this->auth->id])
-				->field('id,shop_id,express_name,express_no,order_no,createtime,paymenttime,delivertime')
+				->field('id,shop_id,express_name,express_no,order_no,created,paymenttime,delivertime')
 				->find();
 			// 获取快递
 			switch ($order['state']) {
@@ -442,7 +442,7 @@ class Order extends Api
 					$express[] = [
 						'context' => '付款后，即可将宝贝发出',
 						'status' => '尚未付款',
-						'time' => date('Y-m-d H:i:s', $order['createtime'])
+						'time' => date('Y-m-d H:i:s', $order['created'])
 					];
 					break;
 				case 2:

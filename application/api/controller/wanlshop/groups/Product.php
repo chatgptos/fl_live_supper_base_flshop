@@ -319,7 +319,7 @@ class Product extends Api
 		// 是否传入商品ID
 		$id ? $id : ($this->error(__('非正常访问')));
 		// 加载商品模型
-		$goodsCommentModel = model('app\api\model\wanlshop\GoodsComment')->order('createtime desc');
+		$goodsCommentModel = model('app\api\model\wanlshop\GoodsComment')->order('created desc');
 		//查询tag 评价:0=好评,1=中评,2=差评
 		if($tag){
 			if($tag == 'good'){

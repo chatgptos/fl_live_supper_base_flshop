@@ -188,7 +188,7 @@ class Pay extends Api
 	    if ($this->request->isPost()) {
 		    $row = model('app\api\model\wanlshop\PayAccount')
 		        ->where(['user_id' => $this->auth->id])
-		        ->order('createtime desc')
+		        ->order('created desc')
 		        ->select();
 		    $this->success('ok', $row);
 		}
@@ -242,7 +242,7 @@ class Pay extends Api
 			$config = get_addon_config('wanlshop');
 		    $bank = model('app\api\model\wanlshop\PayAccount')
 		        ->where(['user_id' => $this->auth->id])
-		        ->order('createtime desc')
+		        ->order('created desc')
 		        ->find();
 		    $this->success('ok', [
 		        'money' => $this->auth->money,
@@ -287,7 +287,7 @@ class Pay extends Api
                 $this->error('提现金额不能低于' . $config['withdraw']['minmoney'] . '元');
             }
             if ($config['withdraw']['monthlimit']) {
-                $count = \app\api\model\wanlshop\Withdraw::where('user_id', $this->auth->id)->whereTime('createtime', 'month')->count();
+                $count = \app\api\model\wanlshop\Withdraw::where('user_id', $this->auth->id)->whereTime('created', 'month')->count();
                 if ($count >= $config['withdraw']['monthlimit']) {
                     $this->error("已达到本月最大可提现次数");
                 }
@@ -333,7 +333,7 @@ class Pay extends Api
 		if ($this->request->isPost()) {
 			$list = model('app\api\model\wanlshop\Withdraw')
 				->where('user_id', $this->auth->id)
-				->order('createtime desc')
+				->order('created desc')
 				->paginate();
 			$this->success('ok',$list);
 		}
@@ -350,7 +350,7 @@ class Pay extends Api
 		if ($this->request->isPost()) {
 			$list = model('app\common\model\MoneyLog')
 				->where('user_id', $this->auth->id)
-				->order('createtime desc')
+				->order('created desc')
 				->paginate();
 			$this->success('ok',$list);
 		}
@@ -363,7 +363,7 @@ class Pay extends Api
 	public function details($id = null, $type = null)
 	{
 		if($type == 'pay'){
-			$field = 'id,shop_id,createtime,paymenttime';
+			$field = 'id,shop_id,created,paymenttime';
 			$order = model('app\api\model\wanlshop\Order')
 				->where('order_no', 'in', $id)
 				->where('user_id', $this->auth->id)
@@ -393,7 +393,7 @@ class Pay extends Api
 			}
 			$this->success('ok', $order);
 		}else if($type == 'groups'){
-			$field = 'id,shop_id,createtime,paymenttime';
+			$field = 'id,shop_id,created,paymenttime';
 			$order = model('app\api\model\wanlshop\groups\Order')
 				->where('order_no', 'in', $id)
 				->where('user_id', $this->auth->id)
@@ -439,7 +439,7 @@ class Pay extends Api
 			$order = model('app\api\model\wanlshop\Order')
 				->where('order_no', $id)
 				->where('user_id', $this->auth->id)
-				->field('id,shop_id,order_no,createtime,paymenttime')
+				->field('id,shop_id,order_no,created,paymenttime')
 				->find();
 			if(!$order){
 				$this->error(__('订单异常'));
@@ -447,7 +447,7 @@ class Pay extends Api
 			$order->shop->visible(['shopname']);
 			$order['refund'] = model('app\api\model\wanlshop\Refund')
 				->where(['order_id' => $order['id'], 'user_id' => $this->auth->id])
-				->field('id,price,type,reason,createtime,completetime')
+				->field('id,price,type,reason,created,completetime')
 				->find();
 			$this->success('ok', $order);
 		}else{ // 系统

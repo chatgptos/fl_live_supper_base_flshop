@@ -14,7 +14,7 @@ return [
 	'Destroy'    => '销毁',
 	'Destroy all'=> '清空回收站',
 	'Recycle bin'=> '历史页面',
-    'Createtime' => '创建时间',
+    'created' => '创建时间',
     'Updatetime' => '更新时间',
     'Deletetime' => '删除时间',
 	

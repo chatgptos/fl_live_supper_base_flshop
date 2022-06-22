@@ -38,7 +38,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
                         {field: 'order_no', title: __('Order_no')},
                         {field: 'express_no', title: __('Express_no')},
                         {field: 'state', title: __('State'), searchList: {"2":__('State 2'),"3":__('State 3'),"4":__('State 4'),"5":__('State 5'),"6":__('State 6'),"7":__('State 7')}, formatter: Table.api.formatter.normal},
-                        {field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'paymenttime', title: __('Paymenttime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'delivertime', title: __('Delivertime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'dealtime', title: __('Dealtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
@@ -121,7 +121,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
                         {field: 'delivery', title: __('Delivery'), searchList: {"0":__('Delivery 0'),"1":__('Delivery 1'),"2":__('Delivery 2'),"3":__('Delivery 3'),"4":__('Delivery 4'),"5":__('Delivery 5'),"6":__('Delivery 6'),"7":__('Delivery 7'),"8":__('Delivery 8'),"9":__('Delivery 9'),"10":__('Delivery 10'),"11":__('Delivery 11'),"12":__('Delivery 12'),"13":__('Delivery 13'),"14":__('Delivery 14'),"15":__('Delivery 15'),"16":__('Delivery 16'),"17":__('Delivery 17'),"18":__('Delivery 18')}, formatter: Table.api.formatter.normal},
                         {field: 'isdelivery', title: __('Isdelivery'), searchList: {"0":__('Isdelivery 0'),"1":__('Isdelivery 1')}, formatter: Table.api.formatter.normal},
                         {field: 'valuation', title: __('Valuation'), searchList: {"0":__('Valuation 0'),"1":__('Valuation 1'),"2":__('Valuation 2')}, formatter: Table.api.formatter.normal},
-                        {field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'status', title: __('Status'), searchList: {"normal":__('Normal'),"hidden":__('Hidden')}, formatter: Table.api.formatter.status},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}

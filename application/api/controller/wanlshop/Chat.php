@@ -42,7 +42,7 @@ class Chat extends Api
 			$id ? $id : ($this->error(__('非正常访问')));
 			$row = model('app\api\model\wanlshop\Shop')
 				->where(['id' => $id])
-				->field('id,user_id,shopname,avatar,state,level,city,like,isself,createtime')
+				->field('id,user_id,shopname,avatar,state,level,city,like,isself,created')
 				->find();
 			if($row){
 				if($type == 'chat'){
@@ -73,7 +73,7 @@ class Chat extends Api
 											'text' => $shop_config['welcome']
 										]
 									],
-									'createtime' => time()
+									'created' => time()
 								]);
 							}
 						}
@@ -117,8 +117,8 @@ class Chat extends Api
 			    // 查询是否有离线消息
 				$list = model('app\api\model\wanlshop\Chat')
 					->where(['to_id' => $user_id, 'online' => 0, 'type' => 'chat'])
-					->whereTime('createtime', 'week')
-					->field('id,form_uid,to_id,form,message,type,online,createtime')
+					->whereTime('created', 'week')
+					->field('id,form_uid,to_id,form,message,type,online,created')
 					->select();
 				foreach($list as $message){
 					$this->wanlchat->send($user_id, $message);
@@ -146,10 +146,10 @@ class Chat extends Api
 		$list = [];
 		$sub = Db::name('WanlshopChat')
 			->where(['type' => 'chat'])
-			->order('createtime', 'desc')
-		    ->field('to_id as uid, message, isread, type, createtime')
+			->order('created', 'desc')
+		    ->field('to_id as uid, message, isread, type, created')
 		    ->where('form_uid ='.$user_id)
-		    ->union('SELECT form_uid as uid, message, isread, type, createtime FROM '.config('database.prefix').'wanlshop_chat WHERE to_id = '.$user_id)
+		    ->union('SELECT form_uid as uid, message, isread, type, created FROM '.config('database.prefix').'wanlshop_chat WHERE to_id = '.$user_id)
 			->buildSql();
 		$query = Db::table($sub)
 			->alias('temp')
@@ -189,7 +189,7 @@ class Chat extends Api
 					'avatar' => $shop['avatar'],
 					'content' => $msgtext,
 					'count' => $count,
-					'createtime' => $row['createtime']
+					'created' => $row['created']
 				];
 			}
 		}
@@ -276,8 +276,8 @@ class Chat extends Api
 			// 查询历史记录
 			$result = model('app\api\model\wanlshop\Chat')
 				->where("((form_uid={$uid} and to_id={$id}) or (form_uid={$id} and to_id={$uid})) and type='chat'")
-				->whereTime('createtime', 'month')
-				->order('createtime Desc')
+				->whereTime('created', 'month')
+				->order('created Desc')
 				->paginate();
 			$this->success(__('发送成功'), $result);
 		}
@@ -370,7 +370,7 @@ class Chat extends Api
 				$data['form']['id'] = 0;
 				$data['message']['type'] = 'text'; //默认消息
 				$data['message']['content']['text'] = $this->chatConfig['config']['auth_reply'];
-				$data['createtime'] = time();
+				$data['created'] = time();
 				$this->wanlchat->send($post['form_id'], $data);
 			}else if($post['type'] == 'shop'){
 				
@@ -400,7 +400,7 @@ class Chat extends Api
 			$data['type'] = 'service';
 			$data['form']['id'] = 0;
 			$data['message']['type'] = 'text'; //默认消息
-			$data['createtime'] = time();
+			$data['created'] = time();
 			if($post['to_id'] == 0){
 				if($post['message']['type'] == 'text'){
 					if($content == '人工客服' || $content == '客服' || $content == '人工'){

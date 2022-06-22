@@ -38,7 +38,7 @@ return [
     'Year'               => '年',
     'Times'              => '时间',
     'Refreshtime'        => '刷新时间(int)',
-    'Createtime'         => '创建时间',
+    'created'         => '创建时间',
     'Updatetime'         => '更新时间',
     'Deletetime'         => '删除时间',
     'Weigh'              => '权重',

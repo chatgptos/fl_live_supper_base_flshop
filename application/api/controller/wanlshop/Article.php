@@ -40,8 +40,8 @@ class Article extends Api
 			}
 			$data = model('app\api\model\wanlshop\Article')
 				->where($where)
-				->field('id,title,description,image,images,flag,views,createtime')
-				->order('createtime desc')
+				->field('id,title,description,image,images,flag,views,created')
+				->order('created desc')
 				->paginate();
 			
 			$this->success('返回成功', $data);

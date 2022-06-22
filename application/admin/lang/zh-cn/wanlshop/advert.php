@@ -22,7 +22,7 @@ return [
     'Enddate'         => '结束日期',
     'Views'           => '点击次数',
     'Show'            => '展示次数',
-    'Createtime'      => '创建时间',
+    'created'      => '创建时间',
     'Updatetime'      => '更新时间',
     'Deletetime'      => '删除时间',
     'Weigh'           => '权重',

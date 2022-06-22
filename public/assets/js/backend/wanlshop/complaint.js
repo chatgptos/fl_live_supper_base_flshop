@@ -32,7 +32,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         // {field: 'complaint_goods_id', title: __('Complaint_goods_id')},
                         {field: 'images', title: __('Images'), events: Table.api.events.image, formatter: Table.api.formatter.images},
                         {field: 'reason', title: __('Reason'), searchList: {"0":__('Reason 0'),"1":__('Reason 1'),"2":__('Reason 2'),"3":__('Reason 3'),"4":__('Reason 4'),"5":__('Reason 5'),"6":__('Reason 6'),"7":__('Reason 7'),"8":__('Reason 8'),"9":__('Reason 9'),"10":__('Reason 10'),"11":__('Reason 11'),"12":__('Reason 12'),"13":__('Reason 13')}, formatter: Table.api.formatter.normal},
-                        {field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'state', title: __('State'), searchList: {"normal":__('State normal'),"hidden":__('State hidden')}, formatter: Table.api.formatter.normal},
                         // {field: 'wanlshopgoods.title', title: __('Wanlshopgoods.title')},

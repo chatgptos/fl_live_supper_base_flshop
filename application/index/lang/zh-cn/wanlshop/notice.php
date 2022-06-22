@@ -15,7 +15,7 @@ return [
     'Modules live'          => '直播',
     'Modules new'           => '商家上新',
     'Modules_id'            => '所属ID',
-    'Createtime'            => '创建时间',
+    'created'            => '创建时间',
     'Updatetime'            => '更新时间',
     'Deletetime'            => '删除时间',
     'Status'                => '状态'

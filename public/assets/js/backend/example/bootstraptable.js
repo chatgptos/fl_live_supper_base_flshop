@@ -97,7 +97,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
                         },
                         //启用时间段搜索
                         {
-                            field: 'createtime',
+                            field: 'created',
                             title: __('Update time'),
                             sortable: true,
                             formatter: Table.api.formatter.datetime,

@@ -15,6 +15,6 @@ return [
     'Status successed' => '成功',
     'Status rejected'  => '已拒绝',
     'Transfertime'     => '转账时间',
-    'Createtime'       => '添加时间',
+    'created'       => '添加时间',
     'Updatetime'       => '更新时间'
 ];

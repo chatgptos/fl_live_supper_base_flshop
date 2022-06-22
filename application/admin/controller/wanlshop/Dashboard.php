@@ -69,7 +69,7 @@ class Dashboard extends Backend
 				$MoneyPaySum += $money;
 			}
 			// 统计今日
-			if(date("Ymd", $vo['createtime']) == date("Ymd")){
+			if(date("Ymd", $vo['created']) == date("Ymd")){
 				if($vo['type'] == 'pay'){
 					$MoneyLogDayPay += $money;
 				}else if($vo['type'] == 'recharge'){
@@ -130,8 +130,8 @@ class Dashboard extends Backend
 		$list = model('app\admin\model\wanlshop\Order')
 			->alias([$prefix.'wanlshop_order'=>'order', $prefix.'wanlshop_pay'=>'pay'])
 			->join($prefix.'wanlshop_pay','pay.order_id = order.id')
-			->where('order.createtime', 'between time', [$starttime, $endtime])
-			->field('order.createtime, order.status,COUNT(*) AS nums,SUM(pay.price) AS amount,MIN(order.createtime) AS min_paytime,MAX(order.createtime) AS max_paytime,DATE_FORMAT(FROM_UNIXTIME(order.createtime), "' . $format . '") AS paydata')
+			->where('order.created', 'between time', [$starttime, $endtime])
+			->field('order.created, order.status,COUNT(*) AS nums,SUM(pay.price) AS amount,MIN(order.created) AS min_paytime,MAX(order.created) AS max_paytime,DATE_FORMAT(FROM_UNIXTIME(order.created), "' . $format . '") AS paydata')
 			->group('paydata')
 			->select();
 	    $column = [];

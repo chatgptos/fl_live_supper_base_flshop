@@ -32,7 +32,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
 						{field: 'type',title: __('Type'),searchList: {"0": __('Type 0'),"1": __('Type 1')},formatter: Table.api.formatter.normal},
 						{field: 'reason',title: __('Reason'),searchList: {"0": __('Reason 0'),"1": __('Reason 1'),"2": __('Reason 2'),"3": __('Reason 3'),"4": __('Reason 4'),"5": __('Reason 5'),"6": __('Reason 6')},formatter: Table.api.formatter.normal},
 						{field: 'images',title: __('Images'),events: Table.api.events.image,formatter: Table.api.formatter.images},
-						{field: 'createtime',title: __('Createtime'),operate: 'RANGE',addclass: 'datetimerange',formatter: Table.api.formatter.datetime},
+						{field: 'created',title: __('created'),operate: 'RANGE',addclass: 'datetimerange',formatter: Table.api.formatter.datetime},
 						{field: 'state',title: __('State'),searchList: {"0": __('State 0'),"1": __('State 1'),"2": __('State 2'),"3": __('State 3'),"4": __('State 4'),"5": __('State 5'),"6": __('State 6')},align: 'left',formatter: Table.api.formatter.status},
 						{
 							field: 'operate',

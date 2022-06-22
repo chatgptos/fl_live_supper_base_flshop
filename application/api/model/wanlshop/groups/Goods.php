@@ -15,7 +15,7 @@ class Goods extends Model
     protected $autoWriteTimestamp = 'int';
 
     // 定义时间戳字段名
-    protected $createTime = 'createtime';
+    protected $created = 'created';
     protected $updateTime = 'updatetime';
     protected $deleteTime = 'deletetime';
 	
@@ -58,7 +58,7 @@ class Goods extends Model
 		
 		$list = $comment
 			->where($where)
-			->order('createtime desc')
+			->order('created desc')
 			->field('id,user_id,content,suk,images,score')
 			->limit(1) // 默认展示几条评论
 			->select();

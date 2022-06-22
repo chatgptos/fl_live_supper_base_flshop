@@ -113,7 +113,7 @@ class Order extends Wanlshop
 				$express = [
 					'context' => '付款后，即可将宝贝发出',
 					'status' => '尚未付款',
-					'time' => date('Y-m-d H:i:s', $row['createtime'])
+					'time' => date('Y-m-d H:i:s', $row['created'])
 				];
 				break;
 			case 2:

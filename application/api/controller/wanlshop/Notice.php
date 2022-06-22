@@ -30,8 +30,8 @@ class Notice extends Api
 	{
 		$list = model('app\api\model\wanlshop\Notice')
 			->where(['user_id' => $this->auth->id, 'type' => $type])
-			->where('createtime','> time',date('Y-m-d',time()-2592000))
-			->order('createtime desc')
+			->where('created','> time',date('Y-m-d',time()-2592000))
+			->order('created desc')
 			->paginate()
 			->each(function($order, $key){
 				// 类型:order=订单,refund=退款,groupsorder=拼团订单,groupsrefund=拼团退款,live=直播,goods=商品

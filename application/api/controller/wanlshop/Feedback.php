@@ -26,7 +26,7 @@ class Feedback extends Api
 		$this->request->filter(['strip_tags']);
 		$list = $this->model
 			->where('user_id', $this->auth->id)
-			->order('createtime desc')
+			->order('created desc')
 			->paginate();
 		$this->success('ok',$list);
 	}
@@ -46,7 +46,7 @@ class Feedback extends Api
     	}
     	$list = $this->model
     		->where('user_id', $this->auth->id)
-    		->order('createtime desc')
+    		->order('created desc')
     		->paginate();
     	$this->success('ok',$list);
     }

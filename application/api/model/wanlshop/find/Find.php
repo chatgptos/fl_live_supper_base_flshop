@@ -17,26 +17,26 @@ class Find extends Model
     protected $autoWriteTimestamp = 'int';
 
     // 定义时间戳字段名
-    protected $createTime = 'createtime';
+    protected $created = 'created';
     protected $updateTime = 'updatetime';
     protected $deleteTime = 'deletetime';
 
     // 追加属性
     protected $append = [
         'type_text',
-		'createtime_text',
-		'createtime_date'
+		'created_text',
+		'created_date'
     ];
 	
-	public function getCreatetimeTextAttr($value, $data)
+	public function getcreatedTextAttr($value, $data)
 	{
-	    $value = $value ? $value : (isset($data['createtime']) ? $data['createtime'] : '');
+	    $value = $value ? $value : (isset($data['created']) ? $data['created'] : '');
 	    return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
 	}
 	
-	public function getCreatetimeDateAttr($value, $data)
+	public function getcreatedDateAttr($value, $data)
 	{
-	    $value = $value ? $value : (isset($data['createtime']) ? $data['createtime'] : '');
+	    $value = $value ? $value : (isset($data['created']) ? $data['created'] : '');
 	    return is_numeric($value) ? date("d", $value) : $value;
 	}
 	

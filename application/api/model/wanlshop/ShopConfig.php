@@ -15,6 +15,6 @@ class ShopConfig extends Model
     protected $autoWriteTimestamp = 'int';
     
     // 定义时间戳字段名
-    protected $createTime = 'createtime';
+    protected $created = 'created';
     protected $updateTime = 'updatetime';
 }

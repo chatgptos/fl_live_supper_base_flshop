@@ -30,8 +30,8 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 						field: "description",
 						title: __("Description")
 					}, {
-						field: "createtime",
-						title: __("Createtime"),
+						field: "created",
+						title: __("created"),
 						operate: "RANGE",
 						addclass: "datetimerange",
 						formatter: a.api.formatter.datetime
@@ -92,7 +92,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 							e.msgList.some(function(n) {
 								if (n.id == p.form.id) {
 									var a = "";
-									return n.createtime = p.createtime, "text" == p.message.type && (a = p.message.content.text), "img" ==
+									return n.created = p.created, "text" == p.message.type && (a = p.message.content.text), "img" ==
 										p.message.type && (a = "[图片消息]"), "voice" == p.message.type && (a = "[语音消息]"), n.content = a, e.isCount
 										.indexOf(n.id) < 0 && (n.count += 1, t("用户" + p.form.name + "发来消息：" + a)), !0
 								}
@@ -243,7 +243,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 								type: e,
 								content: t
 							},
-							createtime: parseInt((new Date).getTime() / 1e3)
+							created: parseInt((new Date).getTime() / 1e3)
 						};
 						this.onChat(JSON.parse(JSON.stringify(n))), this.send(n)
 					},

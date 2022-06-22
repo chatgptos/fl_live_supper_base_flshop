@@ -38,7 +38,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 						{field: 'alreadygrant', title: __('Alreadygrant'), formatter: Controller.api.formatter.alreadygrant},//上色
 						{field: 'id', title: __('有效期'), formatter: Controller.api.formatter.overdue},
 						{field: 'invalid', title: __('Invalid'), formatter: Controller.api.formatter.invalid},
-						{field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+						{field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
                 ]

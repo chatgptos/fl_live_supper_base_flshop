@@ -43,8 +43,8 @@ class Service extends Backend
 			// 查询是否有离线消息
 			$list = model('app\admin\model\wanlshop\Chat')
 				->where(['to_id' => $user_id, 'online' => 0, 'type' => 'service'])
-				->whereTime('createtime', 'week')
-				->field('id,form_uid,to_id,form,message,type,online,createtime')
+				->whereTime('created', 'week')
+				->field('id,form_uid,to_id,form,message,type,online,created')
 				->select();
 			$this->success(__('绑定成功'),null,$this->wanlchat->isOnline($user_id));
 		}
@@ -69,7 +69,7 @@ class Service extends Backend
 		    
 			
 		    $history = $chatModel->where("(form_uid={$user_id} or to_id={$user_id}) and type='service'")
-		        ->order('createtime esc')
+		        ->order('created esc')
 		        ->select();
 		    foreach (collection($history)->toArray() as $vo) {
 		        if ($vo['form_uid'] == $user_id) {
@@ -94,7 +94,7 @@ class Service extends Backend
 		            ->count();
 		        //查询和店铺最新消息
 		        $content = $chatModel->where("((form_uid={$user_id} and to_id={$user['id']}) or (form_uid={$user['id']} and to_id={$user_id})) and type='service'")
-		            ->order('createtime desc')
+		            ->order('created desc')
 		            ->limit(1)
 		            ->find();
 		        //转换图片类型
@@ -118,11 +118,11 @@ class Service extends Backend
 		            'avatar' => $user['avatar'],
 		            'content' => $msgtext,
 		            'count' => $count,
-					'createtime' => $content['createtime'],
+					'created' => $content['created'],
 					'isOnline' => $this->wanlchat->isOnline($user['id'])
 		        ];
 				// 时间排序
-				$datetime[] = $content['createtime'];
+				$datetime[] = $content['created'];
 		    }
 			if($datetime){
 				array_multisort($datetime, SORT_DESC, $chat);
@@ -157,8 +157,8 @@ class Service extends Backend
 			// 查询历史记录
 			$result = $chat
 				->where("((form_uid={$user_id} and to_id={$id}) or (form_uid={$id} and to_id={$user_id})) and type='service'")
-				->whereTime('createtime', 'month')
-				->order('createtime esc')
+				->whereTime('created', 'month')
+				->order('created esc')
 				->select();
 			// 读取历史记录则标记已读
 			$chat->where(['form_uid' => $id, 'to_id' => $user_id, 'isread' => 0])

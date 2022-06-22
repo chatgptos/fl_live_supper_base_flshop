@@ -19,7 +19,7 @@ return [
     'Width'                => '宽度',
     'Size'                 => '视频大小',
     'Fit'                  => '视频的表现形式 ',
-    'Createtime'           => '创建时间',
+    'created'           => '创建时间',
     'Updatetime'           => '更新时间',
     'Deletetime'           => '删除时间',
     'Wanlshopfind.id'      => 'FIND_ID',

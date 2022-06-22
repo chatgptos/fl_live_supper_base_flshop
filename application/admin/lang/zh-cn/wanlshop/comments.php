@@ -7,7 +7,7 @@ return [
     'Find_id'       => 'FIND_ID',
     'Content'       => '评论内容',
     'Like'          => '赞',
-    'Createtime'    => '评论时间',
+    'created'    => '评论时间',
     'Updatetime'    => '更新时间',
     'Deletetime'    => '删除时间',
     'Status'        => '状态',

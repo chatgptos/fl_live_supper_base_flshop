@@ -20,7 +20,7 @@ return [
     'State success'             => '已成团',
     'State fail'                => '拼团失败',
     'State auto'                => '自动成团',
-    'Createtime'                => '开团时间',
+    'created'                => '开团时间',
     'Grouptime'                 => '成团时间',
     'Validitytime'              => '有效时间',
     'Updatetime'                => '更新时间',

@@ -30,7 +30,7 @@ class Test extends Model
         'genderdata_text',
         'hobbydata_text',
         'refreshtime_text',
-        'createtime_text',
+        'created_text',
         'status_text',
         'state_text'
     ];
@@ -117,9 +117,9 @@ class Test extends Model
     }
 
 
-    public function getCreatetimeTextAttr($value, $data)
+    public function getcreatedTextAttr($value, $data)
     {
-        $value = $value ? $value : (isset($data['createtime']) ? $data['createtime'] : '');
+        $value = $value ? $value : (isset($data['created']) ? $data['created'] : '');
         return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
     }
 
@@ -154,7 +154,7 @@ class Test extends Model
         return $value === '' ? null : ($value && !is_numeric($value) ? strtotime($value) : $value);
     }
 
-    protected function setCreatetimeAttr($value)
+    protected function setcreatedAttr($value)
     {
         return $value === '' ? null : ($value && !is_numeric($value) ? strtotime($value) : $value);
     }

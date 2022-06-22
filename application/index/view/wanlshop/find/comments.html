@@ -16,7 +16,7 @@
 					{{item.content}}
 				</div>
 				<div class="bar">
-					<div>{{item.createtime_text}}</div>
+					<div>{{item.created_text}}</div>
 					<div><i class="fa fa-thumbs-up"></i> {{item.like}}</div>
 				</div>
 				<div class="item" v-for="(child, keys) in item.childlist" :key="keys">
@@ -32,7 +32,7 @@
 							{{child.content}}
 						</div>
 						<div class="bar">
-							<div>{{child.createtime_text}}</div>
+							<div>{{child.created_text}}</div>
 							<div><i class="fa fa-thumbs-up"></i> {{child.like}}</div>
 						</div>
 					</div>

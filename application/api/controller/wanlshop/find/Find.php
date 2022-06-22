@@ -153,7 +153,7 @@ class Find extends Api
 			$list = model('app\api\model\wanlshop\find\User')
 				->where('user_id', 'in', array_column($user, 'id'))
 				->field('id, user_id, user_no, fans, praised')
-				->order('createtime DESC')
+				->order('created DESC')
 				->paginate();
 			foreach ($list as $row) {
 				$row->isFollow = model('app\api\model\wanlshop\find\Follow')
@@ -170,7 +170,7 @@ class Find extends Api
 				->where($exclude)
 				->where($client)
 				->where($where)
-				->order('createtime DESC')
+				->order('created DESC')
 				->paginate();
 			foreach ($list as $row) {
 				if(!$type || $type === 'follow' || $type === 'find' || $row['type'] === 'video'){
@@ -185,7 +185,7 @@ class Find extends Api
 							$row->isLive = model('app\api\model\wanlshop\Live')->where(['shop_id' => $shop['id'], 'state' => 1])->field('id')->find();
 							$row->newGoods = model('app\api\model\wanlshop\Goods')
 								->where('shop_id', $shop['id'])
-								->whereTime('createtime', 'w') // 查询本周
+								->whereTime('created', 'w') // 查询本周
 								->count();
 						}else{
 							$row->user->visible(['id','avatar','username','nickname']);
@@ -242,7 +242,7 @@ class Find extends Api
 			$row->isLive = model('app\api\model\wanlshop\Live')->where(['shop_id' => $shop['id'], 'state' => 1])->field('id')->find();
 			$row->newGoods = model('app\api\model\wanlshop\Goods')
 				->where('shop_id', $shop['id'])
-				->whereTime('createtime', 'w') // 查询本周
+				->whereTime('created', 'w') // 查询本周
 				->count();
 		}else{
 			// 1.1.4升级

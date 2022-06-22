@@ -16,6 +16,6 @@ return [
     'Type release' => '正式版',
     'Packgesize'   => '包大小MB',
     'Enforce'      => '强制更新',
-    'Createtime'   => '创建时间',
+    'created'   => '创建时间',
     'Updatetime'   => '更新时间'
 ];

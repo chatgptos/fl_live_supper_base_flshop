@@ -28,7 +28,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'user_id', title: __('User_id'), formatter: Table.api.formatter.search},
                         {field: 'user.nickname', title: __('Nickname')},
                         {field: 'successions', title: __('Successions'), formatter: Table.api.formatter.search, sortable: true},
-                        {field: 'createtime', title: __('Createtime'), sortable: true, operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'created', title: __('created'), sortable: true, operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
                     ]
                 ]
             });

@@ -39,7 +39,7 @@ class Response extends Backend
             $params = $this->request->post("row/a");
             $params['eventkey'] = isset($params['eventkey']) && $params['eventkey'] ? $params['eventkey'] : uniqid();
             $params['content'] = json_encode($params['content']);
-            $params['createtime'] = time();
+            $params['created'] = time();
             if ($params) {
                 $this->model->save($params);
                 $this->success();
