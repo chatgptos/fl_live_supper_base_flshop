@@ -716,7 +716,7 @@ class Crud extends Command
 
             if ($import) {
                 $controllerImport = $this->getReplacedStub('mixins/import', []);
-                $importHtml = '<a href="javascript:;" class="btn btn-danger btn-import {:$auth->check(\'' . $controllerUrl . '/import\')?\'\':\'hide\'}" title="{:__(\'Import\')}" id="btn-import-file" data-url="ajax/upload" data-mimetype="csv,xls,xlsx" data-multiple="false"><i class="fa fa-upload"></i> {:__(\'Import\')}</a>';
+                $importHtml = '<a href="javascript:;" class="btn btn-danger btn-import {:$auth->check(\'' . $controllerUrl . '/import\')?\'\':\'hide\'}" title="{:__(\'Import\')}" id="btn-import-file" data-url="ajax/upload" data-mime_type="csv,xls,xlsx" data-multiple="false"><i class="fa fa-upload"></i> {:__(\'Import\')}</a>';
             }
 
             //循环所有字段,开始构造视图的HTML和JS信息
@@ -1663,8 +1663,8 @@ EOD;
     {
         $uploadfilter = $selectfilter = '';
         if ($this->isMatchSuffix($field, $this->imageField)) {
-            $uploadfilter = ' data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp"';
-            $selectfilter = ' data-mimetype="image/*"';
+            $uploadfilter = ' data-mime_type="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp"';
+            $selectfilter = ' data-mime_type="image/*"';
         }
         $multiple = substr($field, -1) == 's' ? ' data-multiple="true"' : ' data-multiple="false"';
         $preview = ' data-preview-id="p-' . $field . '"';

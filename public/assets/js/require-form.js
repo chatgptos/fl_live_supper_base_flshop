@@ -249,12 +249,12 @@ define(['jquery', 'bootstrap', 'upload', 'validator', 'validator-lang'], functio
                     $(".faselect,.fachoose", form).off('click').on('click', function () {
                         var that = this;
                         var multiple = $(this).data("multiple") ? $(this).data("multiple") : false;
-                        var mimetype = $(this).data("mimetype") ? $(this).data("mimetype") : '';
+                        var mime_type = $(this).data("mime_type") ? $(this).data("mime_type") : '';
                         var admin_id = $(this).data("admin-id") ? $(this).data("admin-id") : '';
                         var user_id = $(this).data("user-id") ? $(this).data("user-id") : '';
-                        mimetype = mimetype.replace(/\/\*/ig, '/');
+                        mime_type = mime_type.replace(/\/\*/ig, '/');
                         var url = $(this).data("url") ? $(this).data("url") : (typeof Backend !== 'undefined' ? "general/attachment/select" : "user/attachment");
-                        parent.Fast.api.open(url + "?element_id=" + $(this).attr("id") + "&multiple=" + multiple + "&mimetype=" + mimetype + "&admin_id=" + admin_id + "&user_id=" + user_id, __('Choose'), {
+                        parent.Fast.api.open(url + "?element_id=" + $(this).attr("id") + "&multiple=" + multiple + "&mime_type=" + mime_type + "&admin_id=" + admin_id + "&user_id=" + user_id, __('Choose'), {
                             callback: function (data) {
                                 var button = $("#" + $(that).attr("id"));
                                 var maxcount = $(button).data("maxcount");

@@ -109,7 +109,7 @@ class Shop extends flshop
             $size /= 1024;
         }
         $this->view->assign("picSum", round($size, 2).$units[$i]);
-		$this->view->assign("mimetypeList", \app\common\model\Attachment::getMimetypeList());
+		$this->view->assign("mime_typeList", \app\common\model\Attachment::getmime_typeList());
         return $this->view->fetch('flshop/attachment/index');
     }
     

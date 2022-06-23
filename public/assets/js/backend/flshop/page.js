@@ -736,7 +736,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 					},
 					// 选择媒体
 					attachmentLink(key, num, type, multiple){
-						parent.Fast.api.open("general/attachment/select?mimetype=video/*&multiple=" + multiple, __('选择链接'), {
+						parent.Fast.api.open("general/attachment/select?mime_type=video/*&multiple=" + multiple, __('选择链接'), {
 							area: ['800px', '600px'],
 						    callback: function (data) {
 								console.log(data);

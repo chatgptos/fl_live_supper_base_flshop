@@ -575,7 +575,7 @@
 								                <div class="input-group">
 								                    <input id="c-cert_client" class="form-control" size="50" name="row[sdk_qq][cert_client]" type="text" value="{$flshop.sdk_qq.cert_client|htmlentities}" data-tip="可选, 仅在退款、红包等情况时需要用到">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-cert_client" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"cert_client"}' data-mimetype="pem" data-input-id="c-cert_client" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-cert_client" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"cert_client"}' data-mime_type="pem" data-input-id="c-cert_client" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-cert_client"></span>
 								                </div>
@@ -593,7 +593,7 @@
 								                <div class="input-group">
 								                    <input id="c-cert_key" class="form-control" size="50" name="row[sdk_qq][cert_key]" type="text" value="{$flshop.sdk_qq.cert_key|htmlentities}" data-tip="可选, 仅在退款、红包等情况时需要用到">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-cert_key" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"cert_key"}' data-mimetype="pem" data-input-id="c-cert_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-cert_key" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"cert_key"}' data-mime_type="pem" data-input-id="c-cert_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-cert_key"></span>
 								                </div>
@@ -710,7 +710,7 @@
 								                <div class="input-group">
 								                    <input id="c-app_cert_public_key" class="form-control" size="50" name="row[sdk_alipay][app_cert_public_key]" type="text" value="{$flshop.sdk_alipay.app_cert_public_key|default=''|htmlentities}">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-app_cert_public_key" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"app_cert_public_key"}' data-mimetype="crt" data-input-id="c-app_cert_public_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-app_cert_public_key" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"app_cert_public_key"}' data-mime_type="crt" data-input-id="c-app_cert_public_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-app_cert_public_key"></span>
 								                </div>
@@ -728,7 +728,7 @@
 								                <div class="input-group">
 								                    <input id="c-ali_public_key" class="form-control" size="50" name="row[sdk_alipay][ali_public_key]" type="text" value="{$flshop.sdk_alipay.ali_public_key|default=''|htmlentities}" placeholder="公钥请直接粘贴，公钥证书请点击右侧的上传">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-ali_public_key" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"ali_public_key"}' data-mimetype="crt" data-input-id="c-ali_public_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-ali_public_key" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"ali_public_key"}' data-mime_type="crt" data-input-id="c-ali_public_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-ali_public_key"></span>
 								                </div>
@@ -746,7 +746,7 @@
 								                <div class="input-group">
 								                    <input id="c-alipay_root_cert" class="form-control" size="50" name="row[sdk_alipay][alipay_root_cert]" type="text" value="{$flshop.sdk_alipay.alipay_root_cert|default=''|htmlentities}">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-alipay_root_cert" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"alipay_root_cert"}' data-mimetype="crt" data-input-id="c-alipay_root_cert" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-alipay_root_cert" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"alipay_root_cert"}' data-mime_type="crt" data-input-id="c-alipay_root_cert" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-alipay_root_cert"></span>
 								                </div>

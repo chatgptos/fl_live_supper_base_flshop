@@ -11,7 +11,7 @@
                 <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-filter"></i> {:__('Filter Type')}</a>
                 <ul class="dropdown-menu text-left" role="menu">
                     <li class="active"><a href="javascript:" data-value="">{:__('All')}</a></li>
-                    {foreach name="mimetypeList" id="item"}
+                    {foreach name="mime_typeList" id="item"}
                     <li><a href="javascript:" data-value="{$key}">{$item}</a></li>
                     {/foreach}
                 </ul>

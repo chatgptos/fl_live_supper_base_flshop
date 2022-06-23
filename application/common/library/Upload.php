@@ -99,18 +99,18 @@ class Upload
      * @return bool
      * @throws UploadException
      */
-    protected function checkMimetype()
+    protected function checkmime_type()
     {
-        $mimetypeArr = explode(',', strtolower($this->config['mimetype']));
+        $mime_typeArr = explode(',', strtolower($this->config['mime_type']));
         $typeArr = explode('/', $this->fileInfo['type']);
-        //Mimetype值不正确
+        //mime_type值不正确
         if (stripos($this->fileInfo['type'], '/') === false) {
             throw new UploadException(__('Uploaded file format is limited'));
         }
         //验证文件后缀
-        if ($this->config['mimetype'] === '*'
-            || in_array($this->fileInfo['suffix'], $mimetypeArr) || in_array('.' . $this->fileInfo['suffix'], $mimetypeArr)
-            || in_array($typeArr[0] . "/*", $mimetypeArr) || (in_array($this->fileInfo['type'], $mimetypeArr) && stripos($this->fileInfo['type'], '/') !== false)) {
+        if ($this->config['mime_type'] === '*'
+            || in_array($this->fileInfo['suffix'], $mime_typeArr) || in_array('.' . $this->fileInfo['suffix'], $mime_typeArr)
+            || in_array($typeArr[0] . "/*", $mime_typeArr) || (in_array($this->fileInfo['type'], $mime_typeArr) && stripos($this->fileInfo['type'], '/') !== false)) {
             return true;
         }
         throw new UploadException(__('Uploaded file format is limited'));
@@ -354,7 +354,7 @@ class Upload
 
         $this->checkSize();
         $this->checkExecutable();
-        $this->checkMimetype();
+        $this->checkmime_type();
         $this->checkImage();
 
         $savekey = $savekey ? $savekey : $this->getSavekey();
@@ -402,9 +402,9 @@ class Upload
             'imageheight' => $this->fileInfo['imageheight'],
             'image_type'   => $this->fileInfo['suffix'],
             'imageframes' => 0,
-            'mimetype'    => $this->fileInfo['type'],
+            'mime_type'    => $this->fileInfo['type'],
             'url'         => $uploadDir . $file->getSaveName(),
-            'uploadtime'  => time(),
+            'upload_time'  => time(),
             'storage'     => 'local',
             'sha1'        => $sha1,
             'extparam'    => '',

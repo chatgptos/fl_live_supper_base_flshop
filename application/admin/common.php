@@ -125,7 +125,7 @@ if (!function_exists('build_toolbar')) {
                 continue;
             }
             list($href, $class, $icon, $text, $title) = $btnAttr[$v];
-            //$extend = $v == 'import' ? 'id="btn-import-file" data-url="ajax/upload" data-mimetype="csv,xls,xlsx" data-multiple="false"' : '';
+            //$extend = $v == 'import' ? 'id="btn-import-file" data-url="ajax/upload" data-mime_type="csv,xls,xlsx" data-multiple="false"' : '';
             //$html[] = '<a href="' . $href . '" class="' . $class . '" title="' . $title . '" ' . $extend . '><i class="' . $icon . '"></i> ' . $text . '</a>';
             if ($v == 'import') {
                 $template = str_replace('/', '_', $controller);
@@ -144,7 +144,7 @@ if (!function_exists('build_toolbar')) {
                 if (!empty($download)) {
                     $html[] = <<<EOT
                         <div class="btn-group">
-                            <button type="button" href="{$href}" class="btn btn-info btn-import" title="{$title}" id="btn-import-file" data-url="ajax/upload" data-mimetype="csv,xls,xlsx" data-multiple="false"><i class="{$icon}"></i> {$text}</button>
+                            <button type="button" href="{$href}" class="btn btn-info btn-import" title="{$title}" id="btn-import-file" data-url="ajax/upload" data-mime_type="csv,xls,xlsx" data-multiple="false"><i class="{$icon}"></i> {$text}</button>
                             <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="下载批量导入模版">
                                 <span class="caret"></span>
                                 <span class="sr-only">Toggle Dropdown</span>
@@ -153,7 +153,7 @@ if (!function_exists('build_toolbar')) {
                         </div>
 EOT;
                 } else {
-                    $html[] = '<a href="' . $href . '" class="' . $class . '" title="' . $title . '" id="btn-import-file" data-url="ajax/upload" data-mimetype="csv,xls,xlsx" data-multiple="false"><i class="' . $icon . '"></i> ' . $text . '</a>';
+                    $html[] = '<a href="' . $href . '" class="' . $class . '" title="' . $title . '" id="btn-import-file" data-url="ajax/upload" data-mime_type="csv,xls,xlsx" data-multiple="false"><i class="' . $icon . '"></i> ' . $text . '</a>';
                 }
             } else {
                 $html[] = '<a href="' . $href . '" class="' . $class . '" title="' . $title . '"><i class="' . $icon . '"></i> ' . $text . '</a>';

@@ -23,7 +23,7 @@ class Attachment extends flshop
     {
         parent::_initialize();
         $this->model = model('Attachment');
-        $this->view->assign("mimetypeList", \app\common\model\Attachment::getMimetypeList());
+        $this->view->assign("mime_typeList", \app\common\model\Attachment::getmime_typeList());
     }
     
     /**
@@ -34,18 +34,18 @@ class Attachment extends flshop
         //设置过滤方法
         $this->request->filter(['strip_tags']);
         if ($this->request->isAjax()) {
-            $mimetypeQuery = [];
+            $mime_typeQuery = [];
             $filter = $this->request->request('filter');
             $filterArr = (array)json_decode($filter, true);
-            if (isset($filterArr['mimetype']) && preg_match("/[]\,|\*]/", $filterArr['mimetype'])) {
-                $this->request->get(['filter' => json_encode(array_diff_key($filterArr, ['mimetype' => '']))]);
-                $mimetypeQuery = function ($query) use ($filterArr) {
-                    $mimetypeArr = explode(',', $filterArr['mimetype']);
-                    foreach ($mimetypeArr as $index => $item) {
+            if (isset($filterArr['mime_type']) && preg_match("/[]\,|\*]/", $filterArr['mime_type'])) {
+                $this->request->get(['filter' => json_encode(array_diff_key($filterArr, ['mime_type' => '']))]);
+                $mime_typeQuery = function ($query) use ($filterArr) {
+                    $mime_typeArr = explode(',', $filterArr['mime_type']);
+                    foreach ($mime_typeArr as $index => $item) {
                         if (stripos($item, "/*") !== false) {
-                            $query->whereOr('mimetype', 'like', str_replace("/*", "/", $item) . '%');
+                            $query->whereOr('mime_type', 'like', str_replace("/*", "/", $item) . '%');
                         } else {
-                            $query->whereOr('mimetype', 'like', '%' . $item . '%');
+                            $query->whereOr('mime_type', 'like', '%' . $item . '%');
                         }
                     }
                 };
@@ -53,13 +53,13 @@ class Attachment extends flshop
     
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
-                ->where($mimetypeQuery)
+                ->where($mime_typeQuery)
                 ->where($where)
                 ->order($sort, $order)
                 ->count();
     
             $list = $this->model
-                ->where($mimetypeQuery)
+                ->where($mime_typeQuery)
                 ->where($where)
                 ->order($sort, $order)
                 ->limit($offset, $limit)

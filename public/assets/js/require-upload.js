@@ -130,7 +130,7 @@ define(['jquery', 'bootstrap', 'dropzone', 'template'], function ($, undefined, 
                         var url = $(this).data("url");
                         var maxsize = $(this).data("maxsize");
                         var maxcount = $(this).data("maxcount");
-                        var mimetype = $(this).data("mimetype");
+                        var mime_type = $(this).data("mime_type");
                         var multipart = $(this).data("multipart");
                         var multiple = $(this).data("multiple");
 
@@ -147,16 +147,16 @@ define(['jquery', 'bootstrap', 'dropzone', 'template'], function ($, undefined, 
                         //最大可上传文件大小
                         maxsize = typeof maxsize !== "undefined" ? maxsize : Config.upload.maxsize;
                         //文件类型
-                        mimetype = typeof mimetype !== "undefined" ? mimetype : Config.upload.mimetype;
+                        mime_type = typeof mime_type !== "undefined" ? mime_type : Config.upload.mime_type;
                         //请求的表单参数
                         multipart = typeof multipart !== "undefined" ? multipart : Config.upload.multipart;
                         //是否支持批量上传
                         multiple = typeof multiple !== "undefined" ? multiple : Config.upload.multiple;
                         //后缀特殊处理
-                        mimetype = mimetype.split(",").map(function (k) {
+                        mime_type = mime_type.split(",").map(function (k) {
                             return k.indexOf("/") > -1 ? k : (!k || k === "*" || k.charAt(0) === "." ? k : "." + k);
                         }).join(",");
-                        mimetype = mimetype === '*' ? null : mimetype;
+                        mime_type = mime_type === '*' ? null : mime_type;
 
                         //最大文件限制转换成mb
                         var maxFilesize = (function (maxsize) {
@@ -203,7 +203,7 @@ define(['jquery', 'bootstrap', 'dropzone', 'template'], function ($, undefined, 
                             chunking: chunking,
                             chunkSize: chunkSize,
                             maxFilesize: maxFilesize,
-                            acceptedFiles: mimetype,
+                            acceptedFiles: mime_type,
                             maxFiles: (maxcount && parseInt(maxcount) > 1 ? maxcount : (multiple ? null : 1)),
                             timeout: timeout,
                             parallelUploads: 1,

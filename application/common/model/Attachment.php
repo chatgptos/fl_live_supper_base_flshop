@@ -34,7 +34,7 @@ class Attachment extends Model
         });
     }
 
-    public function setUploadtimeAttr($value)
+    public function setupload_timeAttr($value)
     {
         return is_numeric($value) ? $value : strtotime($value);
     }
@@ -66,10 +66,10 @@ class Attachment extends Model
     }
 
     /**
-     * 获取Mimetype列表
+     * 获取mime_type列表
      * @return array
      */
-    public static function getMimetypeList()
+    public static function getmime_typeList()
     {
         $data = [
             "image/*"        => __("Image"),

@@ -41,7 +41,7 @@ define(['jquery', 'bootstrap', 'backend', 'form', 'table'], function ($, undefin
                         {field: 'imageheight', title: __('Imageheight'), sortable: true},
                         {field: 'image_type', title: __('image_type'), sortable: true, formatter: Table.api.formatter.search, operate: 'like'},
                         {field: 'storage', title: __('Storage'), formatter: Table.api.formatter.search, operate: 'like'},
-                        {field: 'mimetype', title: __('Mimetype'), formatter: Controller.api.formatter.mimetype},
+                        {field: 'mime_type', title: __('mime_type'), formatter: Controller.api.formatter.mime_type},
                         {
                             field: 'created',
                             title: __('created'),
@@ -66,7 +66,7 @@ define(['jquery', 'bootstrap', 'backend', 'form', 'table'], function ($, undefin
             $('.filter-type ul li a', table.closest(".panel-intro")).on('click', function (e) {
                 $(this).closest("ul").find("li").removeClass("active");
                 $(this).closest("li").addClass("active");
-                var field = 'mimetype';
+                var field = 'mime_type';
                 var value = $(this).data("value") || '';
                 var object = $("[name='" + field + "']", table.closest(".bootstrap-table").find(".commonsearch-table"));
                 if (object.prop('tagName') == "SELECT") {
@@ -157,11 +157,11 @@ define(['jquery', 'bootstrap', 'backend', 'form', 'table'], function ($, undefin
                         {field: 'imagewidth', title: __('Imagewidth'), operate: false, sortable: true},
                         {field: 'imageheight', title: __('Imageheight'), operate: false, sortable: true},
                         {
-                            field: 'mimetype', title: __('Mimetype'), sortable: true, operate: 'LIKE %...%',
+                            field: 'mime_type', title: __('mime_type'), sortable: true, operate: 'LIKE %...%',
                             process: function (value, arg) {
                                 return value.replace(/\*/g, '%');
                             },
-                            formatter: Controller.api.formatter.mimetype
+                            formatter: Controller.api.formatter.mime_type
                         },
                         {field: 'created', title: __('created'), width: 120, formatter: Table.api.formatter.datetime, datetimeFormat: 'YYYY-MM-DD', operate: 'RANGE', addclass: 'datetimerange', sortable: true},
                         {
@@ -181,7 +181,7 @@ define(['jquery', 'bootstrap', 'backend', 'form', 'table'], function ($, undefin
             $('.filter-type ul li a', table.closest(".panel-intro")).on('click', function (e) {
                 $(this).closest("ul").find("li").removeClass("active");
                 $(this).closest("li").addClass("active");
-                var field = 'mimetype';
+                var field = 'mime_type';
                 var value = $(this).data("value") || '';
                 var object = $("[name='" + field + "']", table.closest(".bootstrap-table").find(".commonsearch-table"));
                 if (object.prop('tagName') == "SELECT") {
@@ -237,7 +237,7 @@ define(['jquery', 'bootstrap', 'backend', 'form', 'table'], function ($, undefin
             formatter: {
                 thumb: function (value, row, index) {
                     var html = '';
-                    if (row.mimetype.indexOf("image") > -1) {
+                    if (row.mime_type.indexOf("image") > -1) {
                         html = '<a href="' + row.fullurl + '" target="_blank"><img src="' + row.fullurl + row.thumb_style + '" alt="" style="max-height:60px;max-width:120px"></a>';
                     } else {
                         html = '<a href="' + row.fullurl + '" target="_blank"><img src="' + Fast.api.fixurl("ajax/icon") + "?suffix=" + row.image_type + '" alt="" style="max-height:90px;max-width:120px"></a>';
@@ -250,7 +250,7 @@ define(['jquery', 'bootstrap', 'backend', 'form', 'table'], function ($, undefin
                 filename: function (value, row, index) {
                     return '<div style="width:150px;margin:0 auto;text-align:center;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;">' + Table.api.formatter.search.call(this, value, row, index) + '</div>';
                 },
-                mimetype: function (value, row, index) {
+                mime_type: function (value, row, index) {
                     return '<div style="width:80px;margin:0 auto;text-align:center;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;">' + Table.api.formatter.search.call(this, value, row, index) + '</div>';
                 },
             }

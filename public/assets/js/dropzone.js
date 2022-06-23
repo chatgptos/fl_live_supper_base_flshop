@@ -311,7 +311,7 @@ function (_Emitter) {
          * If `null` the original mime type will be used. To force jpeg, for example, use `image/jpeg`.
          * See `resizeWidth` for more information.
          */
-        resizeMimeType: null,
+        resizemime_type: null,
 
         /**
          * The quality of the resized images. See `resizeWidth`.
@@ -375,7 +375,7 @@ function (_Emitter) {
          * **Deprecated!**
          * Use acceptedFiles instead.
          */
-        acceptedMimeTypes: null,
+        acceptedmime_types: null,
 
         /**
          * If false, files will be added to the queue but the queue will not be
@@ -1109,8 +1109,8 @@ function (_Emitter) {
       throw new Error("No URL provided.");
     }
 
-    if (_this.options.acceptedFiles && _this.options.acceptedMimeTypes) {
-      throw new Error("You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
+    if (_this.options.acceptedFiles && _this.options.acceptedmime_types) {
+      throw new Error("You can't provide both 'acceptedFiles' and 'acceptedmime_types'. 'acceptedmime_types' is deprecated.");
     }
 
     if (_this.options.uploadMultiple && _this.options.chunking) {
@@ -1118,9 +1118,9 @@ function (_Emitter) {
     } // Backwards compatibility
 
 
-    if (_this.options.acceptedMimeTypes) {
-      _this.options.acceptedFiles = _this.options.acceptedMimeTypes;
-      delete _this.options.acceptedMimeTypes;
+    if (_this.options.acceptedmime_types) {
+      _this.options.acceptedFiles = _this.options.acceptedmime_types;
+      delete _this.options.acceptedmime_types;
     } // Backwards compatibility
 
 
@@ -2083,15 +2083,15 @@ function (_Emitter) {
           // The image has not been resized
           return callback(file);
         } else {
-          var resizeMimeType = _this11.options.resizeMimeType;
+          var resizemime_type = _this11.options.resizemime_type;
 
-          if (resizeMimeType == null) {
-            resizeMimeType = file.type;
+          if (resizemime_type == null) {
+            resizemime_type = file.type;
           }
 
-          var resizedDataURL = canvas.toDataURL(resizeMimeType, _this11.options.resizeQuality);
+          var resizedDataURL = canvas.toDataURL(resizemime_type, _this11.options.resizeQuality);
 
-          if (resizeMimeType === 'image/jpeg' || resizeMimeType === 'image/jpg') {
+          if (resizemime_type === 'image/jpeg' || resizemime_type === 'image/jpg') {
             // Now add the original EXIF information
             resizedDataURL = ExifRestore.restore(file.dataURL, resizedDataURL);
           }
@@ -3443,8 +3443,8 @@ Dropzone.isValidFile = function (file, acceptedFiles) {
 
 
   acceptedFiles = acceptedFiles.split(",");
-  var mimeType = file.type;
-  var baseMimeType = mimeType.replace(/\/.*$/, "");
+  var mime_type = file.type;
+  var basemime_type = mime_type.replace(/\/.*$/, "");
   var _iteratorNormalCompletion36 = true;
   var _didIteratorError36 = false;
   var _iteratorError36 = undefined;
@@ -3460,11 +3460,11 @@ Dropzone.isValidFile = function (file, acceptedFiles) {
         }
       } else if (/\/\*$/.test(validType)) {
         // This is something like a image/* mime type
-        if (baseMimeType === validType.replace(/\/.*$/, "")) {
+        if (basemime_type === validType.replace(/\/.*$/, "")) {
           return true;
         }
       } else {
-        if (mimeType === validType) {
+        if (mime_type === validType) {
           return true;
         }
       }

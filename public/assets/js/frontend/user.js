@@ -145,7 +145,7 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
                             {
                                 field: 'url', title: __('Preview'), formatter: function (value, row, index) {
                                     var html = '';
-                                    if (row.mimetype.indexOf("image") > -1) {
+                                    if (row.mime_type.indexOf("image") > -1) {
                                         html = '<a href="' + row.fullurl + '" target="_blank"><img src="' + row.fullurl + row.thumb_style + '" alt="" style="max-height:60px;max-width:120px"></a>';
                                     } else {
                                         html = '<a href="' + row.fullurl + '" target="_blank"><img src="' + Fast.api.fixurl("ajax/icon") + "?suffix=" + row.image_type + '" alt="" style="max-height:90px;max-width:120px"></a>';
@@ -160,7 +160,7 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
                             },
                             {field: 'imagewidth', title: __('Imagewidth'), operate: false},
                             {field: 'imageheight', title: __('Imageheight'), operate: false},
-                            {field: 'mimetype', title: __('Mimetype'), formatter: Table.api.formatter.search},
+                            {field: 'mime_type', title: __('mime_type'), formatter: Table.api.formatter.search},
                             {field: 'created', title: __('created'), width: 120, formatter: Table.api.formatter.datetime, datetimeFormat: 'YYYY-MM-DD', operate: 'RANGE', addclass: 'datetimerange', sortable: true},
                             {
                                 field: 'operate', title: __('Operate'), width: 85, events: {

@@ -97,7 +97,7 @@
 								<a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled {:$auth->check('flshop/article/del')?'':'hide'}"
 								 title="{:__('Delete')}"><i class="fa fa-trash"></i> {:__('Delete')}</a>
 								<a href="javascript:;" class="btn btn-danger btn-import {:$auth->check('flshop/article/import')?'':'hide'}"
-								 title="{:__('Import')}" id="btn-import-file" data-url="ajax/upload" data-mimetype="csv,xls,xlsx" data-multiple="false"><i
+								 title="{:__('Import')}" id="btn-import-file" data-url="ajax/upload" data-mime_type="csv,xls,xlsx" data-multiple="false"><i
 									 class="fa fa-upload"></i> {:__('Import')}</a>
 
 								<div class="dropdown btn-group {:$auth->check('flshop/article/multi')?'':'hide'}">

@@ -11,12 +11,12 @@
             {foreach name="categoryList" item="vo"}
             <li><a href="#t-{$key}" data-value="{$key}" data-toggle="tab">{$vo}</a></li>
             {/foreach}
-            {if stripos(request()->get('mimetype'),'image/')===false}
+            {if stripos(request()->get('mime_type'),'image/')===false}
             <li class="pull-right dropdown filter-type">
                 <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-filter"></i> {:__('Filter Type')}</a>
                 <ul class="dropdown-menu text-left" role="menu">
                     <li class="active"><a href="javascript:" data-value="">{:__('All')}</a></li>
-                    {foreach name="mimetypeList" id="item"}
+                    {foreach name="mime_typeList" id="item"}
                     <li><a href="javascript:" data-value="{$key}">{$item}</a></li>
                     {/foreach}
                 </ul>
@@ -31,7 +31,7 @@
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         {:build_toolbar('refresh')}
-                        <span><button type="button" id="faupload-image" class="btn btn-success faupload" data-mimetype="{$mimetype|default=''|htmlentities}" data-multiple="true"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                        <span><button type="button" id="faupload-image" class="btn btn-success faupload" data-mime_type="{$mime_type|default=''|htmlentities}" data-multiple="true"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
                         {if request()->get('multiple') == 'true'}
                         <a class="btn btn-danger btn-choose-multi"><i class="fa fa-check"></i> {:__('Choose')}</a>
                         {/if}

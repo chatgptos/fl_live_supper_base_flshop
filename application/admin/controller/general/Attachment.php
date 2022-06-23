@@ -25,7 +25,7 @@ class Attachment extends Backend
     {
         parent::_initialize();
         $this->model = model('Attachment');
-        $this->view->assign("mimetypeList", \app\common\model\Attachment::getMimetypeList());
+        $this->view->assign("mime_typeList", \app\common\model\Attachment::getmime_typeList());
         $this->view->assign("categoryList", \app\common\model\Attachment::getCategoryList());
         $this->assignconfig("categoryList", \app\common\model\Attachment::getCategoryList());
     }
@@ -38,20 +38,20 @@ class Attachment extends Backend
         //设置过滤方法
         $this->request->filter(['strip_tags', 'trim']);
         if ($this->request->isAjax()) {
-            $mimetypeQuery = [];
+            $mime_typeQuery = [];
             $filter = $this->request->request('filter');
             $filterArr = (array)json_decode($filter, true);
             if (isset($filterArr['category']) && $filterArr['category'] == 'unclassed') {
                 $filterArr['category'] = ',unclassed';
                 $this->request->get(['filter' => json_encode(array_diff_key($filterArr, ['category' => '']))]);
             }
-            if (isset($filterArr['mimetype']) && preg_match("/(\/|\,|\*)/", $filterArr['mimetype'])) {
-                $mimetype = $filterArr['mimetype'];
-                $filterArr = array_diff_key($filterArr, ['mimetype' => '']);
-                $mimetypeQuery = function ($query) use ($mimetype) {
-                    $mimetypeArr = array_filter(explode(',', $mimetype));
-                    foreach ($mimetypeArr as $index => $item) {
-                        $query->whereOr('mimetype', 'like', '%' . str_replace("/*", "/", $item) . '%');
+            if (isset($filterArr['mime_type']) && preg_match("/(\/|\,|\*)/", $filterArr['mime_type'])) {
+                $mime_type = $filterArr['mime_type'];
+                $filterArr = array_diff_key($filterArr, ['mime_type' => '']);
+                $mime_typeQuery = function ($query) use ($mime_type) {
+                    $mime_typeArr = array_filter(explode(',', $mime_type));
+                    foreach ($mime_typeArr as $index => $item) {
+                        $query->whereOr('mime_type', 'like', '%' . str_replace("/*", "/", $item) . '%');
                     }
                 };
             }
@@ -60,7 +60,7 @@ class Attachment extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
             $list = $this->model
-                ->where($mimetypeQuery)
+                ->where($mime_typeQuery)
                 ->where($where)
                 ->order($sort, $order)
                 ->paginate($limit);
@@ -85,9 +85,9 @@ class Attachment extends Backend
         if ($this->request->isAjax()) {
             return $this->index();
         }
-        $mimetype = $this->request->get('mimetype', '');
-        $mimetype = substr($mimetype, -1) === '/' ? $mimetype . '*' : $mimetype;
-        $this->view->assign('mimetype', $mimetype);
+        $mime_type = $this->request->get('mime_type', '');
+        $mime_type = substr($mime_type, -1) === '/' ? $mime_type . '*' : $mime_type;
+        $this->view->assign('mime_type', $mime_type);
         return $this->view->fetch();
     }
 

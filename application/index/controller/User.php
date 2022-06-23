@@ -273,20 +273,20 @@ class User extends Frontend
         //设置过滤方法
         $this->request->filter(['strip_tags']);
         if ($this->request->isAjax()) {
-            $mimetypeQuery = [];
+            $mime_typeQuery = [];
             $where = [];
             $filter = $this->request->request('filter');
             $filterArr = (array)json_decode($filter, true);
-            if (isset($filterArr['mimetype']) && preg_match("/(\/|\,|\*)/", $filterArr['mimetype'])) {
-                $this->request->get(['filter' => json_encode(array_diff_key($filterArr, ['mimetype' => '']))]);
-                $mimetypeQuery = function ($query) use ($filterArr) {
-                    $mimetypeArr = array_filter(explode(',', $filterArr['mimetype']));
-                    foreach ($mimetypeArr as $index => $item) {
-                        $query->whereOr('mimetype', 'like', '%' . str_replace("/*", "/", $item) . '%');
+            if (isset($filterArr['mime_type']) && preg_match("/(\/|\,|\*)/", $filterArr['mime_type'])) {
+                $this->request->get(['filter' => json_encode(array_diff_key($filterArr, ['mime_type' => '']))]);
+                $mime_typeQuery = function ($query) use ($filterArr) {
+                    $mime_typeArr = array_filter(explode(',', $filterArr['mime_type']));
+                    foreach ($mime_typeArr as $index => $item) {
+                        $query->whereOr('mime_type', 'like', '%' . str_replace("/*", "/", $item) . '%');
                     }
                 };
-            } elseif (isset($filterArr['mimetype'])) {
-                $where['mimetype'] = ['like', '%' . $filterArr['mimetype'] . '%'];
+            } elseif (isset($filterArr['mime_type'])) {
+                $where['mime_type'] = ['like', '%' . $filterArr['mime_type'] . '%'];
             }
 
             if (isset($filterArr['filename'])) {
@@ -307,14 +307,14 @@ class User extends Frontend
             $limit = $this->request->get("limit", 0);
             $total = $model
                 ->where($where)
-                ->where($mimetypeQuery)
+                ->where($mime_typeQuery)
                 ->where('user_id', $this->auth->id)
                 ->order("id", "DESC")
                 ->count();
 
             $list = $model
                 ->where($where)
-                ->where($mimetypeQuery)
+                ->where($mime_typeQuery)
                 ->where('user_id', $this->auth->id)
                 ->order("id", "DESC")
                 ->limit($offset, $limit)
@@ -328,10 +328,10 @@ class User extends Frontend
 
             return json($result);
         }
-        $mimetype = $this->request->get('mimetype', '');
-        $mimetype = substr($mimetype, -1) === '/' ? $mimetype . '*' : $mimetype;
-        $this->view->assign('mimetype', $mimetype);
-        $this->view->assign("mimetypeList", \app\common\model\Attachment::getMimetypeList());
+        $mime_type = $this->request->get('mime_type', '');
+        $mime_type = substr($mime_type, -1) === '/' ? $mime_type . '*' : $mime_type;
+        $this->view->assign('mime_type', $mime_type);
+        $this->view->assign("mime_typeList", \app\common\model\Attachment::getmime_typeList());
         return $this->view->fetch();
     }
 }

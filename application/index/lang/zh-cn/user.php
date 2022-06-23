@@ -72,7 +72,7 @@ return [
     'Preview'                                    => '预览',
     'Filename'                                   => '文件名',
     'Filesize'                                   => '文件大小',
-    'Mimetype'                                   => 'Mime类型',
+    'mime_type'                                   => 'Mime类型',
     'Image'                                      => '图片',
     'Audio'                                      => '音频',
     'Video'                                      => '视频',
@@ -81,6 +81,6 @@ return [
     'Zip'                                        => '压缩包',
     'Extparam'                                   => '透传数据',
     'created'                                 => '创建日期',
-    'Uploadtime'                                 => '上传时间',
+    'upload_time'                                 => '上传时间',
     'Storage'                                    => '存储引擎',
 ];

@@ -932,7 +932,7 @@ EOD;
     public function image($name = null, $value = null, $inputAttr = [], $uploadAttr = [], $chooseAttr = [], $previewAttr = [])
     {
         $default = [
-            'data-mimetype' => 'image/gif,image/jpeg,image/png,image/jpg,image/bmp'
+            'data-mime_type' => 'image/gif,image/jpeg,image/png,image/jpg,image/bmp'
         ];
         $uploadAttr = is_array($uploadAttr) ? array_merge($default, $uploadAttr) : $uploadAttr;
         $chooseAttr = is_array($chooseAttr) ? array_merge($default, $chooseAttr) : $chooseAttr;
@@ -954,7 +954,7 @@ EOD;
     {
         $default = [
             'data-multiple' => 'true',
-            'data-mimetype' => 'image/gif,image/jpeg,image/png,image/jpg,image/bmp'
+            'data-mime_type' => 'image/gif,image/jpeg,image/png,image/jpg,image/bmp'
         ];
         $uploadAttr = is_array($uploadAttr) ? array_merge($default, $uploadAttr) : $uploadAttr;
         $chooseAttr = is_array($chooseAttr) ? array_merge($default, $chooseAttr) : $chooseAttr;

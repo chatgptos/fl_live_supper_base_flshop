@@ -183,7 +183,7 @@ class Config extends Model
             'uploadurl'  => $uploadurl,
             'bucket'     => 'local',
             'maxsize'    => $uploadcfg['maxsize'],
-            'mimetype'   => $uploadcfg['mimetype'],
+            'mime_type'   => $uploadcfg['mime_type'],
             'chunking'   => $uploadcfg['chunking'],
             'chunksize'  => $uploadcfg['chunksize'],
             'savekey'    => $uploadcfg['savekey'],

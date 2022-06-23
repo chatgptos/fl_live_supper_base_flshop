@@ -37,7 +37,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                             {field: 'url', title: __('Url'), formatter: Table.api.formatter.url},
                             {field: 'imagewidth', title: __('Imagewidth')},
                             {field: 'imageheight', title: __('Imageheight')},
-                            {field: 'mimetype', title: __('Mimetype')},
+                            {field: 'mime_type', title: __('mime_type')},
                             {field: 'operate', title: __('Operate'), table: table1, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                         ]
                     ]

@@ -27,8 +27,8 @@
                             <div class="input-group">
                                 <input id="c-files" data-rule="required" class="form-control" size="50" name="row[files]" type="text" value="https://cdn.fastadmin.net/uploads/addons/blog.png,https://cdn.fastadmin.net/uploads/addons/cms.png,https://cdn.fastadmin.net/uploads/addons/vote.png">
                                 <div class="input-group-addon no-border no-padding">
-                                    <span><button type="button" id="plupload-files" class="btn btn-danger plupload" data-input-id="c-files" data-mimetype="*" data-multiple="true" data-preview-id="p-files"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
-                                    <span><button type="button" id="fachoose-files" class="btn btn-primary fachoose" data-input-id="c-files" data-mimetype="*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                    <span><button type="button" id="plupload-files" class="btn btn-danger plupload" data-input-id="c-files" data-mime_type="*" data-multiple="true" data-preview-id="p-files"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                    <span><button type="button" id="fachoose-files" class="btn btn-primary fachoose" data-input-id="c-files" data-mime_type="*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
                                 </div>
                                 <span class="msg-box n-right" for="c-files"></span>
                             </div>
@@ -58,8 +58,8 @@
                             <div class="input-group">
                                 <input id="c-images" data-rule="required" class="form-control" size="50" name="row[images]" type="text" value="https://cdn.fastadmin.net/uploads/addons/example.png,https://cdn.fastadmin.net/uploads/addons/upyun.png,https://cdn.fastadmin.net/uploads/addons/alioss.png">
                                 <div class="input-group-addon no-border no-padding">
-                                    <span><button type="button" id="plupload-images" class="btn btn-danger plupload" data-input-id="c-images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="true" data-preview-id="p-images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
-                                    <span><button type="button" id="fachoose-images" class="btn btn-primary fachoose" data-input-id="c-images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                    <span><button type="button" id="plupload-images" class="btn btn-danger plupload" data-input-id="c-images" data-mime_type="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="true" data-preview-id="p-images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                    <span><button type="button" id="fachoose-images" class="btn btn-primary fachoose" data-input-id="c-images" data-mime_type="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
                                 </div>
                                 <span class="msg-box n-right" for="c-images"></span>
                             </div>
@@ -172,7 +172,7 @@
                                     <td>
                                         <input type="hidden" name="<%=name%>[<%=index%>][image]" id="c-image-<%=index%>" value="<%=row.image%>">
                                         <!--@formatter:off-->
-                                        <button type="button" id="faupload-image" class="btn btn-danger faupload upload-image" data-input-id="c-image-<%=index%>" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" <%if(row.image){%>style="background-image: url('<%=Fast.api.cdnurl(row.image)%>')"<%}%>></button>
+                                        <button type="button" id="faupload-image" class="btn btn-danger faupload upload-image" data-input-id="c-image-<%=index%>" data-mime_type="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" <%if(row.image){%>style="background-image: url('<%=Fast.api.cdnurl(row.image)%>')"<%}%>></button>
                                         <!--@formatter:on-->
                                     </td>
                                     <td><input type="text" name="<%=name%>[<%=index%>][time]" class="form-control datetimepicker" style="width:120px" value="<%=row.time%>" placeholder="时间"/></td>

@@ -387,7 +387,7 @@ define(['jquery', 'bootstrap', 'table', 'backend', 'form', 'vue'], function($, u
 					},
 					addImg() {
 						parent.Fast.api.open(
-							"flshop/attachment/select?element_id=fachoose-image&multiple=true&mimetype=image/*",
+							"flshop/attachment/select?element_id=fachoose-image&multiple=true&mime_type=image/*",
 							__('选择图片'), {
 								callback: (data) => {
 									if (data.url) {

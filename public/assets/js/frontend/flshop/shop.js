@@ -128,7 +128,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		                        return (size / Math.pow(1024, i)).toFixed(i < 2 ? 0 : 2) * 1 + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i];
 		                    }
 		                },
-		                {field: 'mimetype', title: __('Mimetype'), formatter: Table.api.formatter.search},
+		                {field: 'mime_type', title: __('mime_type'), formatter: Table.api.formatter.search},
 		                {
 		                    field: 'created',
 		                    title: __('created'),
@@ -159,7 +159,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		api: {
 			formatter: {
 				thumb: function (value, row, index) {
-				    if (row.mimetype.indexOf("image") > -1) {
+				    if (row.mime_type.indexOf("image") > -1) {
 				        var style = row.storage == 'upyun' ? '!/fwfh/120x90' : '';
 				        return '<a href="' + row.fullurl + '" target="_blank"><img src="' + row.fullurl + style + '" alt="" style="max-height:90px;max-width:120px"></a>';
 				    } else {
