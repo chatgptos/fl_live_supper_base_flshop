@@ -1,8 +1,8 @@
 <?php
 // 2020年2月17日21:41:44
-namespace app\index\controller\flshop;
+namespace app\index\controller\Flshop;
 
-use app\common\controller\flshop;
+use app\common\controller\Flshop;
 
 /**
  * 附件管理
@@ -10,7 +10,7 @@ use app\common\controller\flshop;
  * @icon fa fa-circle-o
  * @remark 主要用于管理上传到又拍云的数据或上传至本服务的上传数据
  */
-class Attachment extends flshop
+class Attachment extends Flshop
 {
 
     /**

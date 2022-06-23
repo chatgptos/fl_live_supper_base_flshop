@@ -145,6 +145,7 @@ class Flshop extends Controller
         Hook::listen("upload_config_init", $upload);
 		// 获取配置
 		$flshop = get_addon_config('flshop');
+
         // 配置信息
         $config = [
             'site'           => array_intersect_key($site, array_flip(['name', 'cdnurl', 'version', 'timezone', 'languages'])),
@@ -169,7 +170,7 @@ class Flshop extends Controller
         $this->loadlang($controllername);
 		
         $this->assign('site', $site);
-        $this->assign('config', $config);
+        $this->assign('config', $config); 
     }
 
     /**

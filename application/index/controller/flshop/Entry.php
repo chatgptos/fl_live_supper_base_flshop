@@ -84,6 +84,10 @@ class Entry extends Frontend
     public function stepfour()
     {
         $this->view->assign('title', '商家审核');
+
+        echo '<pre>';
+        var_dump($this->view);
+        die;
         return $this->view->fetch();
     }
 }

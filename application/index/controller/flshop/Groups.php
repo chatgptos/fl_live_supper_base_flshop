@@ -1,6 +1,6 @@
 <?php
-namespace app\index\controller\flshop;
-use app\common\controller\flshop;
+namespace app\index\controller\Flshop;
+use app\common\controller\Flshop;
 use think\Db;
 use think\Exception;
 use think\exception\PDOException;
@@ -13,7 +13,7 @@ use fast\Tree;
  * @icon fa fa-circle-o
  * @remark 拼团管理
  */
-class Groups extends flshop
+class Groups extends Flshop
 {
     protected $noNeedLogin = '';
     protected $noNeedRight = '*';

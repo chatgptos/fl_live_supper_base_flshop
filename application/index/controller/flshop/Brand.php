@@ -1,8 +1,8 @@
 <?php
 
-namespace app\index\controller\flshop;
+namespace app\index\controller\Flshop;
 
-use app\common\controller\flshop;
+use app\common\controller\Flshop;
 
 use think\Db;
 use think\Exception;
@@ -15,7 +15,7 @@ use fast\Tree;
  *
  * @icon fa fa-circle-o
  */
-class Brand extends flshop
+class Brand extends Flshop
 {
     protected $noNeedLogin = '';
     protected $noNeedRight = '*';

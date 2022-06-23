@@ -1,7 +1,7 @@
 <?php
-namespace app\index\controller\flshop;
+namespace app\index\controller\Flshop;
 
-use app\common\controller\flshop;
+use app\common\controller\Flshop;
 use addons\flshop\library\WanlChat\WanlChat;
 
 use think\Db;

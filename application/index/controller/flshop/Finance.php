@@ -1,7 +1,7 @@
 <?php
-namespace app\index\controller\flshop;
+namespace app\index\controller\Flshop;
 
-use app\common\controller\flshop;
+use app\common\controller\Flshop;
 use addons\flshop\library\WanlPay\WanlPay;
 use think\Db;
 use think\Exception;
@@ -13,7 +13,7 @@ use think\exception\ValidateException;
  *
  * @icon fa fa-circle-o
  */
-class Finance extends flshop
+class Finance extends Flshop
 {
     protected $noNeedLogin = '*';
     protected $noNeedRight = '*';

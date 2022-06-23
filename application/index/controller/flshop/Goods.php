@@ -1,8 +1,8 @@
 <?php
 // 2020年2月17日22:04:21
-namespace app\index\controller\flshop;
+namespace app\index\controller\Flshop;
 
-use app\common\controller\flshop;
+use app\common\controller\Flshop;
 use think\Db;
 use think\Exception;
 use think\exception\PDOException;
@@ -13,7 +13,7 @@ use fast\Tree;
  * 产品管理
  * @internal
  */
-class Goods extends flshop
+class Goods extends Flshop
 {
     protected $noNeedLogin = '';
     protected $noNeedRight = '*';

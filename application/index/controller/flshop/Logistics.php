@@ -1,15 +1,15 @@
 <?php
 // 2020年2月17日22:04:56
-namespace app\index\controller\flshop;
+namespace app\index\controller\Flshop;
 
-use app\common\controller\flshop;
+use app\common\controller\Flshop;
 
 /**
  * 物流管理
  *
  * @icon fa fa-circle-o
  */
-class Logistics extends flshop
+class Logistics extends Flshop
 {
     protected $noNeedLogin = '';
     protected $noNeedRight = '*';
