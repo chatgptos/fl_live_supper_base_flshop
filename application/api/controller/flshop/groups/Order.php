@@ -210,7 +210,7 @@ class Order extends Api
 						'user_id' => $this->auth->id,
 						'state' => 'ready'
 					])
-					->setField('deletetime', time());
+					->setField('deleted', time());
 			}
 		    $this->success('ok', $result ? true : false);
 		}

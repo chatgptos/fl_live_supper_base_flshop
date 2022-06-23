@@ -18,7 +18,7 @@ return [
     'Views'          => '点击',
     'created'     => '创建时间',
     'Updatetime'     => '更新时间',
-    'Deletetime'     => '删除时间',
+    'deleted'     => '删除时间',
     'Weigh'          => '权重',
 	'Article list'	 => '文章栏目',
 	'Article tips'	 => '点击指定栏目获取内容列表',

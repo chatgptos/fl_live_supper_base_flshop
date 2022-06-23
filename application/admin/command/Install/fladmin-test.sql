@@ -511,7 +511,7 @@ CREATE TABLE `fl_test` (
   `refresh_time` bigint(16) DEFAULT NULL COMMENT '刷新时间',
   `created` bigint(16) DEFAULT NULL COMMENT '创建时间',
   `modified` bigint(16) DEFAULT NULL COMMENT '更新时间',
-  `delete_time` bigint(16) DEFAULT NULL COMMENT '删除时间',
+  `deleted` bigint(16) DEFAULT NULL COMMENT '删除时间',
   `weigh` int(10) DEFAULT '0' COMMENT '权重',
   `switch` tinyint(1) DEFAULT '0' COMMENT '开关',
   `status` enum('normal','hidden') DEFAULT 'normal' COMMENT '状态',

@@ -40,7 +40,7 @@ return [
     'Refreshtime'        => '刷新时间(int)',
     'created'         => '创建时间',
     'Updatetime'         => '更新时间',
-    'Deletetime'         => '删除时间',
+    'deleted'         => '删除时间',
     'Weigh'              => '权重',
     'Switch'             => '开关',
     'Status'             => '状态',

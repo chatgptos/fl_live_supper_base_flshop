@@ -20,7 +20,7 @@ return [
     'Delivertime'           => '发货时间',
     'Dealtime'              => '成交时间',
     'Updatetime'            => '更新时间',
-    'Deletetime'            => '删除时间',
+    'deleted'            => '删除时间',
     'Status'                => '状态',
 	'Order_type'                => '业务类型',
 	'Order_type goods'          => '普通订单',

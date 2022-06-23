@@ -34,6 +34,6 @@ return [
     'Content'               => '卡券使用说明',
     'created'            => '创建时间',
     'Updatetime'            => '更新时间',
-    'Deletetime'            => '删除时间',
+    'deleted'            => '删除时间',
     'Weigh'                 => '权重'
 ];

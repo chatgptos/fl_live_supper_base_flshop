@@ -235,7 +235,7 @@ class Crud extends Command
      * 软删除时间字段
      * @var string
      */
-    protected $deleteTimeField = 'deletetime';
+    protected $deletedField = 'deleted';
 
     /**
      * 编辑器的Class
@@ -415,7 +415,7 @@ class Crud extends Command
             $this->headingFilterField = $headingfilterfield;
         }
 
-        $this->reservedField = array_merge($this->reservedField, [$this->createdField, $this->updateTimeField, $this->deleteTimeField]);
+        $this->reservedField = array_merge($this->reservedField, [$this->createdField, $this->updateTimeField, $this->deletedField]);
 
         $dbconnect = Db::connect($db);
         $dbname = Config::get($db . '.database');
@@ -981,7 +981,7 @@ class Crud extends Command
                         $priDefined = true;
                         $javascriptList[] = "{checkbox: true}";
                     }
-                    if ($this->deleteTimeField == $field) {
+                    if ($this->deletedField == $field) {
                         $recyclebinHtml = $this->getReplacedStub('html/recyclebin-html', ['controllerUrl' => $controllerUrl]);
                         continue;
                     }
@@ -1101,12 +1101,12 @@ class Crud extends Command
                 'editList'                => $editList,
                 'javascriptList'          => $javascriptList,
                 'langList'                => $langList,
-                'softDeleteClassPath'     => in_array($this->deleteTimeField, $fieldArr) ? "use traits\model\SoftDelete;" : '',
-                'softDelete'              => in_array($this->deleteTimeField, $fieldArr) ? "use SoftDelete;" : '',
+                'softDeleteClassPath'     => in_array($this->deletedField, $fieldArr) ? "use traits\model\SoftDelete;" : '',
+                'softDelete'              => in_array($this->deletedField, $fieldArr) ? "use SoftDelete;" : '',
                 'modelAutoWriteTimestamp' => in_array($this->createdField, $fieldArr) || in_array($this->updateTimeField, $fieldArr) ? "'integer'" : 'false',
                 'created'              => in_array($this->createdField, $fieldArr) ? "'{$this->createdField}'" : 'false',
                 'updateTime'              => in_array($this->updateTimeField, $fieldArr) ? "'{$this->updateTimeField}'" : 'false',
-                'deleteTime'              => in_array($this->deleteTimeField, $fieldArr) ? "'{$this->deleteTimeField}'" : 'false',
+                'deleted'              => in_array($this->deletedField, $fieldArr) ? "'{$this->deletedField}'" : 'false',
                 'relationSearch'          => $relations ? 'true' : 'false',
                 'relationWithList'        => '',
                 'relationMethodList'      => '',
@@ -1200,7 +1200,7 @@ class Crud extends Command
                 $this->writeToFile('recyclebin', $data, $recyclebinFile);
                 $recyclebinTitle = in_array('title', $fieldArr) ? 'title' : (in_array('name', $fieldArr) ? 'name' : '');
                 $recyclebinTitleJs = $recyclebinTitle ? "\n                        {field: '{$recyclebinTitle}', title: __('" . (ucfirst($recyclebinTitle)) . "'), align: 'left'}," : '';
-                $data['recyclebinJs'] = $this->getReplacedStub('mixins/recyclebinjs', ['deleteTimeField' => $this->deleteTimeField, 'recyclebinTitleJs' => $recyclebinTitleJs, 'controllerUrl' => $controllerUrl]);
+                $data['recyclebinJs'] = $this->getReplacedStub('mixins/recyclebinjs', ['deletedField' => $this->deletedField, 'recyclebinTitleJs' => $recyclebinTitleJs, 'controllerUrl' => $controllerUrl]);
             }
             // 生成JS文件
             $this->writeToFile('javascript', $data, $javascriptFile);

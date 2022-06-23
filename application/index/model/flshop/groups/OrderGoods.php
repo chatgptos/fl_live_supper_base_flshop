@@ -17,7 +17,7 @@ class OrderGoods extends Model
     // 定义时间戳字段名
     protected $created = 'created';
     protected $updateTime = 'updatetime';
-    protected $deleteTime = 'deletetime';
+    protected $deleted = 'deleted';
 	
 	public function user()
 	{

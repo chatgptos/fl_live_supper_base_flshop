@@ -19,8 +19,8 @@
                         {checkbox: true},
                         {field: 'id', title: __('Id')},{%recyclebinTitleJs%}
                         {
-                            field: '{%deleteTimeField%}',
-                            title: __('Deletetime'),
+                            field: '{%deletedField%}',
+                            title: __('deleted'),
                             operate: 'RANGE',
                             addclass: 'datetimerange',
                             formatter: Table.api.formatter.datetime

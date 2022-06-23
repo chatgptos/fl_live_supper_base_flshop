@@ -31,7 +31,7 @@ return [
     'Receipt'               => '处理回执',
     'created'            => '创建时间',
     'Updatetime'            => '更新时间',
-    'Deletetime'            => '删除时间',
+    'deleted'            => '删除时间',
     'State'                 => '状态',
     'State normal'          => '未受理',
     'State hidden'          => '已受理',

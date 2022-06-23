@@ -39,7 +39,7 @@ return [
 	'Order_type seckill'        => '秒杀订单',
     'created'               => '创建时间',
     'Updatetime'               => '更新时间',
-    'Deletetime'               => '删除时间',
+    'deleted'               => '删除时间',
     'Status'                   => '状态',
     'flshoporder.id'         => 'ID',
     'flshopordergoods.title' => '产品标题',

@@ -34,7 +34,7 @@ return [
     'Pricedata'             => '快递价格',
     'created'            => '创建时间',
     'Updatetime'            => '更新时间',
-    'Deletetime'            => '删除时间',
+    'deleted'            => '删除时间',
     'Status'                => '状态',
     'shop.shopname'         => '所属店铺'
 ];

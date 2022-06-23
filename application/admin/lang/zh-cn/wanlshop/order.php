@@ -20,7 +20,7 @@ return [
     'Delivertime'           => '发货时间',
     'Dealtime'              => '成交时间',
     'Updatetime'            => '更新时间',
-    'Deletetime'            => '删除时间',
+    'deleted'            => '删除时间',
     'Status'                => '状态',
     'User.username'         => '用户名',
 	'User.nickname'         => '用户昵称',

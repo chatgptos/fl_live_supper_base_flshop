@@ -30,7 +30,7 @@ return [
     'Comments'          => '评论',
     'created'        => '创建时间',
     'Updatetime'        => '更新时间',
-    'Deletetime'        => '删除时间',
+    'deleted'        => '删除时间',
     'User.id'           => 'ID',
     'User.username'     => '用户名',
     'User.nickname'     => '昵称',

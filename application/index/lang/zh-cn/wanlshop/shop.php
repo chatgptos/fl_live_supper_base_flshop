@@ -16,7 +16,7 @@ return [
     'Weigh'           => '权重',
     'created'      => '创建时间',
     'Updatetime'      => '更新时间',
-    'Deletetime'      => '删除时间',
+    'deleted'      => '删除时间',
 	'Upload'          => '上传中',
 	'Click to edit'   => '替换店铺头像',
 	// 类目管理
