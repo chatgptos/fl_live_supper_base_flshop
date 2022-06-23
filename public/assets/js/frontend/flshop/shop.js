@@ -119,7 +119,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		                {field: 'url', title: __('Url'), formatter: Controller.api.formatter.url},
 		                {field: 'imagewidth', title: __('Imagewidth'), sortable: true},
 		                {field: 'imageheight', title: __('Imageheight'), sortable: true},
-		                {field: 'imagetype', title: __('Imagetype'), formatter: Table.api.formatter.search},
+		                {field: 'image_type', title: __('image_type'), formatter: Table.api.formatter.search},
 		                {field: 'storage', title: __('Storage'), formatter: Table.api.formatter.search},
 		                {
 		                    field: 'filesize', title: __('Filesize'), operate: 'BETWEEN', sortable: true, formatter: function (value, row, index) {
@@ -163,7 +163,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 				        var style = row.storage == 'upyun' ? '!/fwfh/120x90' : '';
 				        return '<a href="' + row.fullurl + '" target="_blank"><img src="' + row.fullurl + style + '" alt="" style="max-height:90px;max-width:120px"></a>';
 				    } else {
-				        return '<a href="' + row.fullurl + '" target="_blank"><img src="https://tool.fastadmin.net/icon/' + row.imagetype + '.png" alt=""></a>';
+				        return '<a href="' + row.fullurl + '" target="_blank"><img src="https://tool.fastadmin.net/icon/' + row.image_type + '.png" alt=""></a>';
 				    }
 				},
 				url: function (value, row, index) {

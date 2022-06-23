@@ -67,7 +67,7 @@ return [
     'Url'                                        => '物理路径',
     'Imagewidth'                                 => '宽度',
     'Imageheight'                                => '高度',
-    'Imagetype'                                  => '图片类型',
+    'image_type'                                  => '图片类型',
     'Imageframes'                                => '图片帧数',
     'Preview'                                    => '预览',
     'Filename'                                   => '文件名',

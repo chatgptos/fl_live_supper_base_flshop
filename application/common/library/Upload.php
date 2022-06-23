@@ -400,7 +400,7 @@ class Upload
             'filesize'    => $this->fileInfo['size'],
             'imagewidth'  => $this->fileInfo['imagewidth'],
             'imageheight' => $this->fileInfo['imageheight'],
-            'imagetype'   => $this->fileInfo['suffix'],
+            'image_type'   => $this->fileInfo['suffix'],
             'imageframes' => 0,
             'mimetype'    => $this->fileInfo['type'],
             'url'         => $uploadDir . $file->getSaveName(),
