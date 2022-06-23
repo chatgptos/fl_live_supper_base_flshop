@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/comment/index' + location.search,
-                    add_url: 'wanlshop/comment/add',
-                    edit_url: 'wanlshop/comment/edit',
-                    del_url: 'wanlshop/comment/del',
-                    multi_url: 'wanlshop/comment/multi',
-                    table: 'wanlshop_goods_comment',
+                    index_url: 'flshop/comment/index' + location.search,
+                    add_url: 'flshop/comment/add',
+                    edit_url: 'flshop/comment/edit',
+                    del_url: 'flshop/comment/del',
+                    multi_url: 'flshop/comment/multi',
+                    table: 'flshop_goods_comment',
                 }
             });
 
@@ -42,7 +42,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'status', title: __('Status'), searchList: {"normal":__('Normal'),"hidden":__('Hidden')}, formatter: Table.api.formatter.status},
-                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate,buttons: [{name: 'detail',title: __('查看评论'),classname: 'btn btn-xs btn-info btn-dialog',icon: 'fa fa-eye',url: 'wanlshop/comment/detail'}],formatter: Table.api.formatter.operate}
+                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate,buttons: [{name: 'detail',title: __('查看评论'),classname: 'btn btn-xs btn-info btn-dialog',icon: 'fa fa-eye',url: 'flshop/comment/detail'}],formatter: Table.api.formatter.operate}
                     ]
                 ]
             });
@@ -62,7 +62,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'wanlshop/comment/recyclebin' + location.search,
+                url: 'flshop/comment/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 fixedColumns: true,
@@ -90,7 +90,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'wanlshop/comment/restore',
+                                    url: 'flshop/comment/restore',
                                     refresh: true
                                 },
                                 {
@@ -98,7 +98,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'wanlshop/comment/destroy',
+                                    url: 'flshop/comment/destroy',
                                     refresh: true
                                 }
                             ],
@@ -114,11 +114,11 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 		detail: function () {
             //点击详情
             $(document).on("click", ".detail[data-id]", function () {
-				parent.window.Fast.api.open('wanlshop/order/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
+				parent.window.Fast.api.open('flshop/order/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
             });
 			
 			$(document).on("click", ".groups[data-id]", function () {
-				parent.window.Fast.api.open('wanlshop/groups/orderDetail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
+				parent.window.Fast.api.open('flshop/groups/orderDetail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
 			});
         },
         add: function () {

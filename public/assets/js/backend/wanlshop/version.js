@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/version/index' + location.search,
-                    add_url: 'wanlshop/version/add',
-                    edit_url: 'wanlshop/version/edit',
-                    del_url: 'wanlshop/version/del',
-                    multi_url: 'wanlshop/version/multi',
-                    import_url: 'wanlshop/version/import',
-                    table: 'wanlshop_version',
+                    index_url: 'flshop/version/index' + location.search,
+                    add_url: 'flshop/version/add',
+                    edit_url: 'flshop/version/edit',
+                    del_url: 'flshop/version/del',
+                    multi_url: 'flshop/version/multi',
+                    import_url: 'flshop/version/import',
+                    table: 'flshop_version',
                 }
             });
 

@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/category/index' + location.search,
-                    add_url: 'wanlshop/category/add',
-                    edit_url: 'wanlshop/category/edit',
-                    del_url: 'wanlshop/category/del',
-                    multi_url: 'wanlshop/category/multi',
-                    table: 'wanlshop_category',
+                    index_url: 'flshop/category/index' + location.search,
+                    add_url: 'flshop/category/add',
+                    edit_url: 'flshop/category/edit',
+                    del_url: 'flshop/category/del',
+                    multi_url: 'flshop/category/multi',
+                    table: 'flshop_category',
                 }
             });
             var table = $("#table");
@@ -85,12 +85,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'wanlshop/category/goods' + location.search,
-		            add_url: 'wanlshop/category/add?type=goods',
-		            edit_url: 'wanlshop/category/edit?type=goods',
-		            del_url: 'wanlshop/category/del',
-		            multi_url: 'wanlshop/category/multi',
-		            table: 'wanlshop_category',
+		            index_url: 'flshop/category/goods' + location.search,
+		            add_url: 'flshop/category/add?type=goods',
+		            edit_url: 'flshop/category/edit?type=goods',
+		            del_url: 'flshop/category/del',
+		            multi_url: 'flshop/category/multi',
+		            table: 'flshop_category',
 		        }
 		    });
 		    var table = $("#table");
@@ -128,7 +128,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-list-ol',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `wanlshop/attribute?category_id=${row.channel}`;
+										return `flshop/attribute?category_id=${row.channel}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -144,7 +144,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `wanlshop/goods?category_id=${row.channel}`;
+										return `flshop/goods?category_id=${row.channel}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -160,7 +160,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `wanlshop/groups/goods?category_id=${row.channel}`;
+										return `flshop/groups/goods?category_id=${row.channel}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -217,7 +217,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 			
 			//点击详情
 			$(document).on("click", ".btn-create", function () {
-			    Backend.api.open('wanlshop/category/create/', __('批量生成菜单'));
+			    Backend.api.open('flshop/category/create/', __('批量生成菜单'));
 			});
 			
 			
@@ -228,12 +228,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'wanlshop/category/article' + location.search,
-		            add_url: 'wanlshop/category/add?type=article',
-		            edit_url: 'wanlshop/category/edit?type=article',
-		            del_url: 'wanlshop/category/del',
-		            multi_url: 'wanlshop/category/multi',
-		            table: 'wanlshop_category',
+		            index_url: 'flshop/category/article' + location.search,
+		            add_url: 'flshop/category/add?type=article',
+		            edit_url: 'flshop/category/edit?type=article',
+		            del_url: 'flshop/category/del',
+		            multi_url: 'flshop/category/multi',
+		            table: 'flshop_category',
 		        }
 		    });
 		
@@ -309,7 +309,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/category/select',
+                    index_url: 'flshop/category/select',
                 }
             });
             var urlArr = [];

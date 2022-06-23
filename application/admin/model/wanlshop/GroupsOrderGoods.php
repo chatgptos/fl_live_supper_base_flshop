@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\model\wanlshop;
+namespace app\admin\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -9,7 +9,7 @@ class GroupsOrderGoods extends Model
 	use SoftDelete;
 	
     // 表名
-    protected $name = 'wanlshop_groups_order_goods';
+    protected $name = 'flshop_groups_order_goods';
 	
 	// 自动写入时间戳字段
 	protected $autoWriteTimestamp = 'int';

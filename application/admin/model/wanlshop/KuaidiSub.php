@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\model\wanlshop;
+namespace app\admin\model\flshop;
 
 use think\Model;
 
 class KuaidiSub extends Model
 {
     // 表名
-    protected $name = 'wanlshop_kuaidi_sub';
+    protected $name = 'flshop_kuaidi_sub';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

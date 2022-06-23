@@ -36,6 +36,6 @@ return [
     'State normal'          => '未受理',
     'State hidden'          => '已受理',
     'User.username'         => '用户名',
-    'Wanlshopgoods.title'   => '商品标题',
-    'Wanlshopshop.shopname' => '店铺名称'
+    'flshopgoods.title'   => '商品标题',
+    'flshopshop.shopname' => '店铺名称'
 ];

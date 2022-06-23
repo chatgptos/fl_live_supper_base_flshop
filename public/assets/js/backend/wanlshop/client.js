@@ -18,12 +18,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'clipboard', 'vue'], 
 				el: '#app',
 				data() {
 					return {
-						transTemplateSwitch: Config.wanlshop.live.transTemplateSwitch,
+						transTemplateSwitch: Config.flshop.live.transTemplateSwitch,
 						transTemplateList: {
 							Y:'启用转码模板，阿里直播需同步添加',
 							N:'不使用转码模板，原画输出'
 						},
-						authSwitch: Config.wanlshop.live.authSwitch,
+						authSwitch: Config.flshop.live.authSwitch,
 						authList: {
 							Y:'启用直播鉴权，阿里直播需开启鉴权且鉴权KEY需和后台保持一致',
 							N:'关闭直播鉴权，阿里直播需手动同步关闭鉴权'

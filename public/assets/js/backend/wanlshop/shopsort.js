@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/shopsort/index' + location.search,
-                    add_url: 'wanlshop/shopsort/add',
-                    edit_url: 'wanlshop/shopsort/edit',
-                    del_url: 'wanlshop/shopsort/del',
-                    multi_url: 'wanlshop/shopsort/multi',
-                    table: 'wanlshop_shop_sort',
+                    index_url: 'flshop/shopsort/index' + location.search,
+                    add_url: 'flshop/shopsort/add',
+                    edit_url: 'flshop/shopsort/edit',
+                    del_url: 'flshop/shopsort/del',
+                    multi_url: 'flshop/shopsort/multi',
+                    table: 'flshop_shop_sort',
                 }
             });
 

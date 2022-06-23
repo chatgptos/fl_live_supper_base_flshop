@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\validate\wanlshop;
+namespace app\admin\validate\flshop;
 
 use think\Validate;
 

@@ -1,5 +1,5 @@
-<link href="__CDN__/assets/addons/wanlshop/css/appUI.css?v={$site['version']}" rel="stylesheet">
-<link href="__CDN__/assets/addons/wanlshop/css/page.css?v={$site['version']}" rel="stylesheet">
+<link href="__CDN__/assets/addons/flshop/css/appUI.css?v={$site['version']}" rel="stylesheet">
+<link href="__CDN__/assets/addons/flshop/css/page.css?v={$site['version']}" rel="stylesheet">
 <link href="//at.alicdn.com/t/font_1394144_afdog2ap4uo.css?v={$site['version']}" rel="stylesheet">
 <div class="panel panel-default panel-intro" id="app" v-cloak>
 	<div class="panel-body" style="padding: 0;">
@@ -49,7 +49,7 @@
 											<li><a>使用教程</a></li>
 											<li role="separator" class="divider"></li>
 											<li><a>万联科技</a></li>
-											<li><a>WANLSHOP v1.0.1</a></li>
+											<li><a>flshop v1.0.1</a></li>
 										</ul>
 									</div> -->
 								</div>
@@ -95,7 +95,7 @@
 										</div>
 										<!-- 模块&拖动 -->
 										<wanldraggable class="draggable" v-model="pageData.item" v-bind="{animation:500}">
-											<div class="wanlshop" v-for="(item,index) in pageData.item" :key="index" @click="onType(index)" :class="{action: type == index}">
+											<div class="flshop" v-for="(item,index) in pageData.item" :key="index" @click="onType(index)" :class="{action: type == index}">
 												<!-- 轮播组件 -->
 												<div class="banner" v-if="item.type == 'banner'" :style="item.style">
 													<img :src="cdnurl(item.data[0].image)" :style="{height: item.params.height}">
@@ -107,7 +107,7 @@
 												</div>
 												<!-- 广告轮播组件 -->
 												<div class="advertBanner" v-if="item.type == 'advertBanner'" :style="item.style">
-													<img src="/assets/addons/wanlshop/img/page/advert-banner.png" :style="{height: item.params.height}">
+													<img src="/assets/addons/flshop/img/page/advert-banner.png" :style="{height: item.params.height}">
 													<div class="indicator">
 														<div class="item">
 															<span v-for="indic in item.data"></span>
@@ -122,7 +122,7 @@
 												</div>
 												<!-- 广告单图 -->
 												<div class="advertImage" v-if="item.type == 'advertImage'" :style="item.style">
-													<img src="/assets/addons/wanlshop/img/page/advert-image.png">
+													<img src="/assets/addons/flshop/img/page/advert-image.png">
 												</div>
 												<!-- 视频 -->
 												<div class="video" v-if="item.type == 'video'" :style="item.style">
@@ -215,7 +215,7 @@
 																<div v-if="act.describe" class="wanl-gray">{{act.describe}}</div>
 																<div class="goods margin-top-bj">
 																	<div v-for="image in getListNum('col-2-2_1', index)">
-																		<img src="/assets/addons/wanlshop/img/common/img_default3x.png">
+																		<img src="/assets/addons/flshop/img/common/img_default3x.png">
 																	</div>
 																</div>
 															</div>
@@ -236,7 +236,7 @@
 																<div v-if="cat.describe" class="wanl-gray">{{cat.describe}}</div>
 																<div class="goods margin-top-bj">
 																	<div v-for="image in getListNum(item.params.colStyle, index)">
-																		<img src="/assets/addons/wanlshop/img/common/img_default3x.png">
+																		<img src="/assets/addons/flshop/img/common/img_default3x.png">
 																	</div>
 																</div>
 															</div>
@@ -253,7 +253,7 @@
 												<div class="product" v-if="item.type == 'likes'" :style="item.style" :class="'col-'+ item.params.colthree +'-'+item.params.colmargin" >
 													<div class="item" v-for="pro in 4">
 														<div class="item_pic">
-															<img src="/assets/addons/wanlshop/img/common/img_default3x.png">
+															<img src="/assets/addons/flshop/img/common/img_default3x.png">
 														</div>
 														<div class="item_list padding-bj">
 															<div class="margin-bottom-xs">
@@ -272,7 +272,7 @@
 												<div class="product" v-if="item.type == 'goods'" :style="item.style" :class="'col-'+ item.params.colthree +'-'+item.params.colmargin" >
 													<div class="item" v-for="goods in item.data">
 														<div class="item_pic">
-															<img src="/assets/addons/wanlshop/img/common/img_default3x.png">
+															<img src="/assets/addons/flshop/img/common/img_default3x.png">
 														</div>
 														<div class="item_list padding-bj">
 															<div class="margin-bottom-xs">
@@ -306,7 +306,7 @@
 														<div class="main">
 															<div class="item" v-for="groups in 6">
 																<div class="item_pic">
-																	<img src="/assets/addons/wanlshop/img/common/img_default3x.png">
+																	<img src="/assets/addons/flshop/img/common/img_default3x.png">
 																</div>
 																<div class="list" style="width: 100%;">
 																	<div class="text-space text-sm">

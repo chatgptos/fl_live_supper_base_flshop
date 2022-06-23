@@ -9,7 +9,7 @@
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade active in" id="ini">
 				<div class="widget-body no-padding">
-					<form id="ini-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('wanlshop.client/edit')}">
+					<form id="ini-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('flshop.client/edit')}">
 					    {:token()}	
 						<table class="table table-striped">
 							<thead>
@@ -24,7 +24,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[mp_baidu][appid]', $wanlshop.mp_baidu.appid, ['data-rule'=>'required','data-tip'=>'请填写百度小程序AppID','placeholder'=>'请在百度开发者工具中申请获取AppID'])}
+												{:Form::text('row[mp_baidu][appid]', $flshop.mp_baidu.appid, ['data-rule'=>'required','data-tip'=>'请填写百度小程序AppID','placeholder'=>'请在百度开发者工具中申请获取AppID'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -35,7 +35,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[mp_baidu][appsecret]', $wanlshop.mp_baidu.appsecret, ['data-rule'=>'required','data-tip'=>'请填写百度小程序AppSecret','placeholder'=>'请在百度开发者工具中申请获取AppSecret'])}
+												{:Form::text('row[mp_baidu][appsecret]', $flshop.mp_baidu.appsecret, ['data-rule'=>'required','data-tip'=>'请填写百度小程序AppSecret','placeholder'=>'请在百度开发者工具中申请获取AppSecret'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>

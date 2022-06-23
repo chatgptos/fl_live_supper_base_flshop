@@ -14,16 +14,16 @@ return [
         ],
         'app_init' => [
             'epay',
-            'wanlshop',
+            'flshop',
         ],
         'upgrade' => [
             'mydemo',
-            'wanlshop',
+            'flshop',
         ],
         'user_sidenav_after' => [
             'mydemo',
             'signin',
-            'wanlshop',
+            'flshop',
         ],
         'user_delete_successed' => [
             'third',

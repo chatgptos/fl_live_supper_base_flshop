@@ -7,14 +7,14 @@
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         {:build_toolbar('refresh')}
-                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('wanlshop/brand/restore')?'':'hide'}" href="javascript:;" data-url="wanlshop/brand/restore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
-                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('wanlshop/brand/destroy')?'':'hide'}" href="javascript:;" data-url="wanlshop/brand/destroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
-                        <a class="btn btn-success btn-restoreall {:$auth->check('wanlshop/brand/restore')?'':'hide'}" href="javascript:;" data-url="wanlshop/brand/restore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
-                        <a class="btn btn-danger btn-destroyall {:$auth->check('wanlshop/brand/destroy')?'':'hide'}" href="javascript:;" data-url="wanlshop/brand/destroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
+                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('flshop/brand/restore')?'':'hide'}" href="javascript:;" data-url="flshop/brand/restore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
+                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('flshop/brand/destroy')?'':'hide'}" href="javascript:;" data-url="flshop/brand/destroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
+                        <a class="btn btn-success btn-restoreall {:$auth->check('flshop/brand/restore')?'':'hide'}" href="javascript:;" data-url="flshop/brand/restore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
+                        <a class="btn btn-danger btn-destroyall {:$auth->check('flshop/brand/destroy')?'':'hide'}" href="javascript:;" data-url="flshop/brand/destroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
                     </div>
                     <table id="table" class="table table-striped table-bordered table-hover"
-                           data-operate-restore="{:$auth->check('wanlshop/brand/restore')}"
-                           data-operate-destroy="{:$auth->check('wanlshop/brand/destroy')}"
+                           data-operate-restore="{:$auth->check('flshop/brand/restore')}"
+                           data-operate-destroy="{:$auth->check('flshop/brand/destroy')}"
                            width="100%">
                     </table>
                 </div>

@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/attribute/index' + location.search,
-                    add_url: 'wanlshop/attribute/add',
-                    edit_url: 'wanlshop/attribute/edit',
-                    del_url: 'wanlshop/attribute/del',
-                    multi_url: 'wanlshop/attribute/multi',
-                    table: 'wanlshop_category_attribute',
+                    index_url: 'flshop/attribute/index' + location.search,
+                    add_url: 'flshop/attribute/add',
+                    edit_url: 'flshop/attribute/edit',
+                    del_url: 'flshop/attribute/del',
+                    multi_url: 'flshop/attribute/multi',
+                    table: 'flshop_category_attribute',
                 }
             });
 
@@ -55,7 +55,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'wanlshop/attribute/recyclebin' + location.search,
+                url: 'flshop/attribute/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -82,7 +82,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'wanlshop/attribute/restore',
+                                    url: 'flshop/attribute/restore',
                                     refresh: true
                                 },
                                 {
@@ -90,7 +90,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'wanlshop/attribute/destroy',
+                                    url: 'flshop/attribute/destroy',
                                     refresh: true
                                 }
                             ],

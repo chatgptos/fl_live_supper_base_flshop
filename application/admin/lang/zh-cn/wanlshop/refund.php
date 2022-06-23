@@ -41,8 +41,8 @@ return [
     'Updatetime'               => '更新时间',
     'Deletetime'               => '删除时间',
     'Status'                   => '状态',
-    'Wanlshoporder.id'         => 'ID',
-    'Wanlshopordergoods.title' => '产品标题',
-    'Wanlshoppay.pay_no'       => '交易号',
-    'Wanlshopshop.shopname'    => '店铺名称'
+    'flshoporder.id'         => 'ID',
+    'flshopordergoods.title' => '产品标题',
+    'flshoppay.pay_no'       => '交易号',
+    'flshopshop.shopname'    => '店铺名称'
 ];

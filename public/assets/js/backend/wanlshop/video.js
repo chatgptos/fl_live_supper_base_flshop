@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/video/index' + location.search,
+                    index_url: 'flshop/video/index' + location.search,
                     add_url: '',
                     edit_url: '',
-                    del_url: 'wanlshop/video/del',
-                    multi_url: 'wanlshop/video/multi',
+                    del_url: 'flshop/video/del',
+                    multi_url: 'flshop/video/multi',
                     import_url: '',
-                    table: 'wanlshop_video',
+                    table: 'flshop_video',
                 }
             });
 
@@ -30,7 +30,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     [
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
-						{field: 'wanlshopfind.id', title: __('wanlshopfind.id')},
+						{field: 'flshopfind.id', title: __('flshopfind.id')},
 						{field: 'suggestion', title: __('Suggestion'), searchList: {"block":__('Suggestion block'),"review":__('Suggestion review'),"pass":__('Suggestion pass')}, formatter: Table.api.formatter.normal},
                         {field: 'video_id', title: __('Video_id'), operate: 'LIKE'},
                         {field: 'cover_url', title: __('Cover_url'), operate: false, events: Table.api.events.image, formatter: Table.api.formatter.images},
@@ -56,7 +56,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		    classname: 'btn btn-xs btn-success btn-dialog',
                         		    icon: 'fa fa-play',
                         		    extend: 'data-area=\'["380px", "720px"]\'',
-                        		    url: 'wanlshop/video/detail',
+                        		    url: 'flshop/video/detail',
                         		    visible: function (row) {
                         		        return row.state !== 'examine';
                         		    }
@@ -68,7 +68,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		    classname: 'btn btn-xs btn-info btn-dialog',
                         		    icon: 'fa fa-paper-plane',
                         		    url: function (row) {
-										return `wanlshop/find/detail?ids=${row.wanlshopfind.id}`;
+										return `flshop/find/detail?ids=${row.flshopfind.id}`;
 								    },
                         		    callback: function (data) {
                         				$(".btn-refresh").trigger("click"); //刷新数据
@@ -80,7 +80,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     classname: 'btn btn-xs btn-danger btn-magic btn-ajax',
                                     icon: 'fa fa-trash',
                                     confirm: '删除媒体时作品也将一并删除，确认删除？',
-                                    url: 'wanlshop/video/del',
+                                    url: 'flshop/video/del',
                                     success: function (data, ret) {
                                         $(".btn-refresh").trigger("click"); //刷新数据
                                     },
@@ -112,7 +112,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'wanlshop/video/recyclebin' + location.search,
+                url: 'flshop/video/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -138,7 +138,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'wanlshop/video/restore',
+                                    url: 'flshop/video/restore',
                                     refresh: true
                                 },
                                 {
@@ -146,7 +146,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'wanlshop/video/destroy',
+                                    url: 'flshop/video/destroy',
                                     refresh: true
                                 }
                             ],

@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\model\wanlshop;
+namespace app\admin\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class Shop extends Model
     
 
     // 表名
-    protected $name = 'wanlshop_shop';
+    protected $name = 'flshop_shop';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

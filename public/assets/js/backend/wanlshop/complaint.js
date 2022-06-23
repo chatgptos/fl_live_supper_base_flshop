@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/complaint/index' + location.search,
+                    index_url: 'flshop/complaint/index' + location.search,
                     add_url: '',
                     edit_url: '',
                     del_url: '',
-                    multi_url: 'wanlshop/complaint/multi',
-                    table: 'wanlshop_complaint',
+                    multi_url: 'flshop/complaint/multi',
+                    table: 'flshop_complaint',
                 }
             });
 
@@ -35,8 +35,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'state', title: __('State'), searchList: {"normal":__('State normal'),"hidden":__('State hidden')}, formatter: Table.api.formatter.normal},
-                        // {field: 'wanlshopgoods.title', title: __('Wanlshopgoods.title')},
-                        // {field: 'wanlshopshop.shopname', title: __('Wanlshopshop.shopname')},
+                        // {field: 'flshopgoods.title', title: __('flshopgoods.title')},
+                        // {field: 'flshopshop.shopname', title: __('flshopshop.shopname')},
 						{
 							field: 'operate',
 							title: __('Operate'),
@@ -48,7 +48,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 								classname: 'btn btn-xs btn-success btn-dialog',
 								icon: 'fa fa-pencil-square-o',
 								text: '处理',
-								url: 'wanlshop/complaint/detail',
+								url: 'flshop/complaint/detail',
 								visible: function(row) {
 									if (row.state == 'normal') {
 										return true;
@@ -61,7 +61,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 								classname: 'btn btn-xs btn-info btn-dialog',
 								icon: 'fa fa-eye',
 								text: '查看',
-								url: 'wanlshop/complaint/detail',
+								url: 'flshop/complaint/detail',
 								visible: function(row) {
 									if (row.state == 'hidden') {
 										return true;
@@ -89,7 +89,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'wanlshop/complaint/recyclebin' + location.search,
+                url: 'flshop/complaint/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -115,7 +115,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'wanlshop/complaint/restore',
+                                    url: 'flshop/complaint/restore',
                                     refresh: true
                                 },
                                 {
@@ -123,7 +123,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'wanlshop/complaint/destroy',
+                                    url: 'flshop/complaint/destroy',
                                     refresh: true
                                 }
                             ],

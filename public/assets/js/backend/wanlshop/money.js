@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/money/index' + location.search,
+                    index_url: 'flshop/money/index' + location.search,
                     add_url: '',
                     edit_url: '',
-                    del_url: 'wanlshop/money/del',
+                    del_url: 'flshop/money/del',
                     multi_url: '',
-                    import_url: 'wanlshop/money/import',
+                    import_url: 'flshop/money/import',
                     table: 'user_money_log',
                 }
             });
@@ -35,7 +35,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
                         {field: 'type', title: __('Type'), searchList: {"pay":__('Type pay'),"groups":__('Type groups'),"recharge":__('Type recharge'),"withdraw":__('Type withdraw'),"refund":__('Type refund'),"sys":__('Type sys')}, formatter: Table.api.formatter.normal},
                         {field: 'service_ids', title: __('Service_ids'), operate: 'LIKE'},
                         {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
-                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate,buttons: [{name: 'detail',title: __('资金详情'),classname: 'btn btn-xs btn-info btn-dialog',icon: 'fa fa-eye',url: 'wanlshop/money/detail'}],formatter: Table.api.formatter.operate}
+                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate,buttons: [{name: 'detail',title: __('资金详情'),classname: 'btn btn-xs btn-info btn-dialog',icon: 'fa fa-eye',url: 'flshop/money/detail'}],formatter: Table.api.formatter.operate}
                     ]
                 ]
             });

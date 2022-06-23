@@ -21,7 +21,7 @@ return [
     'created'            => '创建时间',
     'Updatetime'            => '更新时间',
     'Deletetime'            => '删除时间',
-    'Wanlshopfind.id'       => 'FIND_ID',
-    'Wanlshopfind.content'  => '内容',
-    'Wanlshopshop.shopname' => '店铺名称'
+    'flshopfind.id'       => 'FIND_ID',
+    'flshopfind.content'  => '内容',
+    'flshopshop.shopname' => '店铺名称'
 ];

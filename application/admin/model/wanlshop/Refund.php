@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\wanlshop;
+namespace app\admin\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class Refund extends Model
     
 
     // 表名
-    protected $name = 'wanlshop_refund';
+    protected $name = 'flshop_refund';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
@@ -106,32 +106,32 @@ class Refund extends Model
 	
 	public function goods()
 	{
-	    return $this->belongsTo('app\admin\model\wanlshop\OrderGoods', 'goods_ids', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flshop\OrderGoods', 'goods_ids', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
 	public function groupsgoods()
 	{
-	    return $this->belongsTo('app\admin\model\wanlshop\GroupsOrderGoods', 'goods_ids', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flshop\GroupsOrderGoods', 'goods_ids', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
 	
 	public function order()
 	{
-	    return $this->belongsTo('app\admin\model\wanlshop\Order', 'order_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flshop\Order', 'order_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
 	public function groupsorder()
 	{
-	    return $this->belongsTo('app\admin\model\wanlshop\GroupsOrder', 'order_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flshop\GroupsOrder', 'order_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
     public function pay()
     {
-        return $this->belongsTo('app\admin\model\wanlshop\Pay', 'order_pay_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flshop\Pay', 'order_pay_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 
     public function shop()
     {
-        return $this->belongsTo('app\admin\model\wanlshop\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flshop\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

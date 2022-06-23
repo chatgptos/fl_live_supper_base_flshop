@@ -12,7 +12,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 		
 		    // 初始化表格
 		    table.bootstrapTable({
-		        url: 'wanlshop/freight/recyclebin' + location.search,
+		        url: 'flshop/freight/recyclebin' + location.search,
 		        pk: 'id',
 		        sortName: 'id',
 		        columns: [
@@ -21,7 +21,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 		                {field: 'id', title: __('Id')},
 		                {field: 'name', title: __('Name'), align: 'left'},
 		                {field: 'deletetime',title: __('Deletetime'),operate: 'RANGE',addclass: 'datetimerange',formatter: Table.api.formatter.datetime},
-		                {field: 'operate',width: '130px',title: __('Operate'),table: table,events: Table.api.events.operate,buttons: [{name: 'Restore',text: __('Restore'),classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',icon: 'fa fa-rotate-left',url: 'wanlshop/freight/restore',refresh: true},{name: 'Destroy',text: __('Destroy'),classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',icon: 'fa fa-times',url: 'wanlshop/freight/destroy',refresh: true}],formatter: Table.api.formatter.operate}
+		                {field: 'operate',width: '130px',title: __('Operate'),table: table,events: Table.api.events.operate,buttons: [{name: 'Restore',text: __('Restore'),classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',icon: 'fa fa-rotate-left',url: 'flshop/freight/restore',refresh: true},{name: 'Destroy',text: __('Destroy'),classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',icon: 'fa fa-times',url: 'flshop/freight/destroy',refresh: true}],formatter: Table.api.formatter.operate}
 		            ]
 		        ]
 		    });

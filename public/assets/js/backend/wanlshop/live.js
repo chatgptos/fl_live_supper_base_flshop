@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/live/index' + location.search,
+                    index_url: 'flshop/live/index' + location.search,
                     add_url: '',
-                    edit_url: 'wanlshop/live/edit',
-                    del_url: 'wanlshop/live/del',
-                    multi_url: 'wanlshop/live/multi',
+                    edit_url: 'flshop/live/edit',
+                    del_url: 'flshop/live/del',
+                    multi_url: 'flshop/live/multi',
                     import_url: '',
-                    table: 'wanlshop_live',
+                    table: 'flshop_live',
                 }
             });
 
@@ -31,8 +31,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
 						{field: 'shop_id', title: __('Shop_id')},
-						{field: 'wanlshopshop.shopname', title: __('Wanlshopshop.shopname'), operate: 'LIKE'},
-						{field: 'wanlshopfind.id', title: __('Wanlshopfind.id')},
+						{field: 'flshopshop.shopname', title: __('flshopshop.shopname'), operate: 'LIKE'},
+						{field: 'flshopfind.id', title: __('flshopfind.id')},
 						{field: 'image', title: __('Image'), operate: false, events: Table.api.events.image, formatter: Table.api.formatter.image},
 						{field: 'state', title: __('State'), searchList: {"0":__('State 0'),"1":__('State 1'),"2":__('State 2'),"3":__('State 3')}, formatter: Table.api.formatter.normal},
                         {field: 'liveid', title: __('Liveid'), operate: 'LIKE'},
@@ -53,7 +53,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		    icon: 'fa fa-video-camera',
                         		    extend: 'data-area=\'["380px", "720px"]\'',
                         		    url: function (row) {
-                        		    	return `wanlshop/live/detail?live_id=${row.id}`;
+                        		    	return `flshop/live/detail?live_id=${row.id}`;
                         		    },
                         		    visible: function (row) {
                         		        return row.state !== 'examine';
@@ -66,7 +66,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		    classname: 'btn btn-xs btn-info btn-dialog',
                         		    icon: 'fa fa-paper-plane',
                         		    url: function (row) {
-										return `wanlshop/find/detail?ids=${row.wanlshopfind.id}`;
+										return `flshop/find/detail?ids=${row.flshopfind.id}`;
 								    },
                         		    callback: function (data) {
                         				$(".btn-refresh").trigger("click"); //刷新数据
@@ -77,7 +77,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		    title: __('编辑直播'),
                         		    classname: 'btn btn-xs btn-success btn-dialog',
                         		    icon: 'fa fa-pencil',
-                        		    url: 'wanlshop/live/edit',
+                        		    url: 'flshop/live/edit',
                         		    callback: function (data) {
                         				$(".btn-refresh").trigger("click"); //刷新数据
                         		    }
@@ -88,7 +88,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     classname: 'btn btn-xs btn-danger btn-magic btn-ajax',
                                     icon: 'fa fa-trash',
                                     confirm: '删除媒体时作品也将一并删除，确认删除？',
-                                    url: 'wanlshop/live/del',
+                                    url: 'flshop/live/del',
                                     success: function (data, ret) {
                                         $(".btn-refresh").trigger("click"); //刷新数据
                                     },
@@ -120,7 +120,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'wanlshop/live/recyclebin' + location.search,
+                url: 'flshop/live/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -146,7 +146,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'wanlshop/live/restore',
+                                    url: 'flshop/live/restore',
                                     refresh: true
                                 },
                                 {
@@ -154,7 +154,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'wanlshop/live/destroy',
+                                    url: 'flshop/live/destroy',
                                     refresh: true
                                 }
                             ],

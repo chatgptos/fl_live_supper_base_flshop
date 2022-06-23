@@ -104,7 +104,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'sortable'], function
 
             //更新菜单数据
             var menuUpdate = function () {
-                $.post("wanlshop/wechat/menu/edit", {menu: JSON.stringify(getMenuList())}, function (data) {
+                $.post("flshop/wechat/menu/edit", {menu: JSON.stringify(getMenuList())}, function (data) {
                     if (data['code'] == 1) {
                     } else {
                         Toastr.error(__('Operation failed'));
@@ -196,7 +196,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'sortable'], function
             //加载远程菜单
             $(document).on('click', "#menuRemote", function () {
                 Layer.confirm("确认加载远程微信服务端菜单？<br>本地菜单将会被覆盖!!!", {icon: 3}, function () {
-                    $.post("wanlshop/wechat/menu/remote", {}, function (ret) {
+                    $.post("flshop/wechat/menu/remote", {}, function (ret) {
                         var msg = ret.hasOwnProperty("msg") && ret.msg != "" ? ret.msg : "";
                         if (ret.code == 1) {
                             Layer.closeAll();
@@ -213,7 +213,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'sortable'], function
 
             //点击同步
             $(document).on('click', "#menuSyn", function () {
-                $.post("wanlshop/wechat/menu/sync", {}, function (ret) {
+                $.post("flshop/wechat/menu/sync", {}, function (ret) {
                     var msg = ret.hasOwnProperty("msg") && ret.msg != "" ? ret.msg : "";
                     if (ret.code == 1) {
                         Backend.api.toastr.success('菜单同步更新成功，生效时间请查看微信官网说明，或你重新关注公众号！');

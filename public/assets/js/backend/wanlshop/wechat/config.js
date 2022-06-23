@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/wechat/config/index',
-                    add_url: 'wanlshop/wechat/config/add',
-                    edit_url: 'wanlshop/wechat/config/edit',
-                    del_url: 'wanlshop/wechat/config/del',
-                    multi_url: 'wanlshop/wechat/config/multi',
-                    table: 'wanlshop_wechat_config',
+                    index_url: 'flshop/wechat/config/index',
+                    add_url: 'flshop/wechat/config/add',
+                    edit_url: 'flshop/wechat/config/edit',
+                    del_url: 'flshop/wechat/config/del',
+                    multi_url: 'flshop/wechat/config/multi',
+                    table: 'flshop_wechat_config',
                 }
             });
 

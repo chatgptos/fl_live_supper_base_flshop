@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'wanlshop/page/index' + location.search,
+		            index_url: 'flshop/page/index' + location.search,
 		            add_url: '',
-		            edit_url: 'wanlshop/page/edit',
-		            del_url: 'wanlshop/page/del',
+		            edit_url: 'flshop/page/edit',
+		            del_url: 'flshop/page/del',
 		            multi_url: '',
-		            table: 'wanlshop_page',
+		            table: 'flshop_page',
 		        }
 		    });
 			Fast.config.openArea = ['90%', '90%'];
@@ -40,14 +40,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 		    Table.api.bindevent(table);
 			// 新建页面
 			$(document).on("click", ".btn-addnew", function () {
-			    Backend.api.open('wanlshop/page/add/', __('新建页面'), {area:['800px', '400px']});
+			    Backend.api.open('flshop/page/add/', __('新建页面'), {area:['800px', '400px']});
 			});
 		},
 		history: function () {
 			// 初始化表格参数配置
 			Table.api.init({
 			    extend: {
-			        index_url: `wanlshop/page/history/token/${Fast.api.query('token')}`,
+			        index_url: `flshop/page/history/token/${Fast.api.query('token')}`,
 			    }
 			});
 			var table = $("#table");
@@ -92,7 +92,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 		
 		    // 初始化表格
 		    table.bootstrapTable({
-		        url: 'wanlshop/page/recyclebin' + location.search,
+		        url: 'flshop/page/recyclebin' + location.search,
 		        pk: 'id',
 		        sortName: 'id',
 		        columns: [
@@ -122,7 +122,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 										text: __('Restore'),
 										classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
 										icon: 'fa fa-rotate-left',
-										url: 'wanlshop/page/restore',
+										url: 'flshop/page/restore',
 										refresh: true
 									},
 									{
@@ -130,7 +130,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 										text: __('Destroy'),
 										classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
 										icon: 'fa fa-times',
-										url: 'wanlshop/page/destroy',
+										url: 'flshop/page/destroy',
 										refresh: true
 									}
 		                    ],
@@ -147,7 +147,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 			// 初始化表格参数配置
 			Table.api.init({
 			    extend: {
-			        index_url: 'wanlshop/page/link',
+			        index_url: 'flshop/page/link',
 			    }
 			});
 			var urlArr = [];
@@ -266,7 +266,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 										"banstyle": "圆形"
 									},
 									"data": [{
-										"image": "/assets/addons/wanlshop/img/page/banner-default.png",
+										"image": "/assets/addons/flshop/img/page/banner-default.png",
 										"tips": "尽量使用高像素素材，否则可能出现虚化",
 										"link": ""
 									}]
@@ -284,7 +284,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 										"padding": "12.5px"
 									},
 									"data": [{
-										"image": "/assets/addons/wanlshop/img/page/image-default.png",
+										"image": "/assets/addons/flshop/img/page/image-default.png",
 										"link": ""
 									}]
 								},
@@ -293,7 +293,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 									"type": "video",
 									"style": {},
 									"data": [{
-										"image": "/assets/addons/wanlshop/img/page/video-default.png",
+										"image": "/assets/addons/flshop/img/page/video-default.png",
 										"video": ""
 									}]
 								},
@@ -318,7 +318,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 										"text": "菜单一",
 										"icon": "wlIcon-leimu",
 										"iconClass": "wanl-text-white",
-										"iconImage": "/assets/addons/wanlshop/img/page/video-default.png",
+										"iconImage": "/assets/addons/flshop/img/page/video-default.png",
 										"bgClass": "wanl-bg-redorange",
 										"link": ""
 									}]
@@ -509,7 +509,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 					publish() {
 						let _this = this;
 						Fast.api.ajax({
-							url: "wanlshop/page/edit",
+							url: "flshop/page/edit",
 							data: this.pageData,
 						}, function(data, ret){
 							//刷新父级页面
@@ -519,7 +519,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 					// 还原历史页面
 					historyPage(){
 						let _this = this;
-						parent.Fast.api.open(`wanlshop/page/history/token/${_this.pageData.page_token}`, __('历史记录'), {
+						parent.Fast.api.open(`flshop/page/history/token/${_this.pageData.page_token}`, __('历史记录'), {
 							area: ['900px', '600px'],
 						    callback: function (id) {
 						    	_this.recover(id);
@@ -530,7 +530,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 					recover(id) {
 						let _this = this;
 						Fast.api.ajax({
-						    url: "wanlshop/page/recover", 
+						    url: "flshop/page/recover",
 						    data: {"id":id}
 						}, function(data, ret){
 							_this.pageData = data;
@@ -628,7 +628,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 					},
 					// 选择链接
 					obtainLink(key, num, type, multiple){
-						parent.Fast.api.open("wanlshop/page/link?multiple=" + multiple, __('选择链接'), {
+						parent.Fast.api.open("flshop/page/link?multiple=" + multiple, __('选择链接'), {
 							area: ['800px', '600px'],
 						    callback: function (data) {
 								Vue.set(vm.pageData.item[key].data[num], type, data.url);	
@@ -637,7 +637,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 					},
 					// 选择媒体
 					attachmentLink(key, num, type, multiple){
-						parent.Fast.api.open("wanlshop/attachment/select?mimetype=video/*&multiple=" + multiple, __('选择链接'), {
+						parent.Fast.api.open("flshop/attachment/select?mimetype=video/*&multiple=" + multiple, __('选择链接'), {
 							area: ['800px', '600px'],
 						    callback: function (data) {
 								console.log(data);
@@ -647,7 +647,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 					},
 					// 类目链接
 					categoryLink(key, num, multiple){
-						parent.Fast.api.open("wanlshop/shopsort/select?multiple=" + multiple, __('选择类目链接'), {
+						parent.Fast.api.open("flshop/shopsort/select?multiple=" + multiple, __('选择类目链接'), {
 							area: ['800px', '600px'],
 						    callback: function (data) {
 								Vue.set(vm.pageData.item[key].data[num], 'categoryLink', data.url);
@@ -657,7 +657,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 					},
 					// 商品链接
 					goodsLink(key, num, type, multiple){
-						parent.Fast.api.open("wanlshop/goods/select?multiple=" + multiple, __('选择商品链接'), {
+						parent.Fast.api.open("flshop/goods/select?multiple=" + multiple, __('选择商品链接'), {
 							area: ['800px', '600px'],
 						    callback: function (data) {
 								Vue.set(vm.pageData.item[key].data[num], type, data.url);	
@@ -666,7 +666,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'upload', 'vue', 'vue
 					},
 					// 选择图标
 					iconLink(key, num, type, multiple){
-						parent.Fast.api.open("wanlshop/icon/select?multiple=" + multiple, __('选择图标'), {
+						parent.Fast.api.open("flshop/icon/select?multiple=" + multiple, __('选择图标'), {
 							area: ['800px', '600px'],
 						    callback: function (data) {
 								Vue.set(vm.pageData.item[key].data[num], type, data.name);	

@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 			// 初始化表格参数配置
 			Table.api.init({
 				extend: {
-					index_url: 'wanlshop/comments/index' + location.search,
+					index_url: 'flshop/comments/index' + location.search,
 					add_url: '',
-					edit_url: 'wanlshop/comments/edit',
-					del_url: 'wanlshop/comments/del',
-					multi_url: 'wanlshop/comments/multi',
+					edit_url: 'flshop/comments/edit',
+					del_url: 'flshop/comments/del',
+					multi_url: 'flshop/comments/multi',
 					import_url: '',
-					table: 'wanlshop_find_comments',
+					table: 'flshop_find_comments',
 				}
 			});
 
@@ -82,7 +82,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 								classname: 'btn btn-xs btn-info btn-dialog',
 								icon: 'fa fa-paper-plane',
 								url: function(row) {
-									return `wanlshop/find/detail?ids=${row.find_id}`;
+									return `flshop/find/detail?ids=${row.find_id}`;
 								},
 								callback: function(data) {
 									$(".btn-refresh").trigger("click"); //刷新数据
@@ -107,7 +107,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 			var table = $("#table");
 			// 初始化表格
 			table.bootstrapTable({
-				url: 'wanlshop/comments/recyclebin' + location.search,
+				url: 'flshop/comments/recyclebin' + location.search,
 				pk: 'id',
 				sortName: 'id',
 				columns: [
@@ -136,7 +136,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 									text: __('Restore'),
 									classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
 									icon: 'fa fa-rotate-left',
-									url: 'wanlshop/comments/restore',
+									url: 'flshop/comments/restore',
 									refresh: true
 								},
 								{
@@ -144,7 +144,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 									text: __('Destroy'),
 									classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
 									icon: 'fa fa-times',
-									url: 'wanlshop/comments/destroy',
+									url: 'flshop/comments/destroy',
 									refresh: true
 								}
 							],
@@ -181,7 +181,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 						}
 						// 加载网络
 						Fast.api.ajax({
-							url: 'wanlshop/comments/del',
+							url: 'flshop/comments/del',
 							data: {
 								'ids': ids.toString()
 							}

@@ -2,17 +2,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
     var Controller = {
 		detail: function () {
 		   $(document).on("click", ".detail[data-id]", function () {
-			   parent.window.Fast.api.open('wanlshop/order/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
+			   parent.window.Fast.api.open('flshop/order/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
 		   });
 		   $(document).on("click", ".groups[data-id]", function () {
-		   		parent.window.Fast.api.open('wanlshop/groupsorder/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
+		   		parent.window.Fast.api.open('flshop/groupsorder/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
 		   });
 		},
 		select: function () {
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'wanlshop/comment/select',
+		            index_url: 'flshop/comment/select',
 		        }
 		    });
 		    var urlArr = [];

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\wanlshop;
+namespace app\admin\model\flshop;
 
 use think\Model;
 
@@ -8,7 +8,7 @@ use think\Model;
 class Version extends Model
 {
     // 表名
-    protected $name = 'wanlshop_version';
+    protected $name = 'flshop_version';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

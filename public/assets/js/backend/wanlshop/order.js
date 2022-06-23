@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/order/index' + location.search,
+                    index_url: 'flshop/order/index' + location.search,
                     add_url: '',
                     edit_url: '',
-                    del_url: 'wanlshop/order/del',
-                    multi_url: 'wanlshop/order/multi',
-                    table: 'wanlshop_order',
+                    del_url: 'flshop/order/del',
+                    multi_url: 'flshop/order/multi',
+                    table: 'flshop_order',
                 }
             });
 			
@@ -49,14 +49,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
             Table.api.bindevent(table);
 			//点击详情
 			$(document).on("click", ".detail[data-id]", function () {
-			    Backend.api.open('wanlshop/order/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
+			    Backend.api.open('flshop/order/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
 			});
 			//点击详情
 			$(document).on("click", ".comment[data-id]", function () {
-			    Backend.api.open('wanlshop/comment/detail/order_id/' + $(this).data('id'), __('查看详情'));
+			    Backend.api.open('flshop/comment/detail/order_id/' + $(this).data('id'), __('查看详情'));
 			});
 			$(document).on("click", ".kuaidisub[data-id]", function () {
-			    Backend.api.open('wanlshop/order/relative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
+			    Backend.api.open('flshop/order/relative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
 			});
         },
         recyclebin: function () {
@@ -71,7 +71,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'wanlshop/order/recyclebin' + location.search,
+                url: 'flshop/order/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -97,7 +97,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'wanlshop/order/restore',
+                                    url: 'flshop/order/restore',
                                     refresh: true
                                 },
                                 {
@@ -105,7 +105,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'wanlshop/order/destroy',
+                                    url: 'flshop/order/destroy',
                                     refresh: true
                                 }
                             ],
@@ -126,7 +126,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
 		detail: function () {
 			// 查询物流状态
 			$(document).on("click", ".kuaidisub[data-id]", function () {
-			    Backend.api.open('wanlshop/order/relative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
+			    Backend.api.open('flshop/order/relative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
 			});
 		},
         edit: function () {

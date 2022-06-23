@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'wanlshop/page/index' + location.search,
+		            index_url: 'flshop/page/index' + location.search,
 		            add_url: '',
-		            edit_url: 'wanlshop/page/edit',
-		            del_url: 'wanlshop/page/del',
+		            edit_url: 'flshop/page/edit',
+		            del_url: 'flshop/page/del',
 		            multi_url: '',
-		            table: 'wanlshop_page',
+		            table: 'flshop_page',
 		        }
 		    });
 			Fast.config.openArea = ['90%', '90%'];
@@ -39,7 +39,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		    Table.api.bindevent(table);
 			// 新建页面
 			$(document).on("click", ".btn-addnew", function () {
-			    Backend.api.open('wanlshop/page/add/', __('新建页面'), {area:['800px', '400px']});
+			    Backend.api.open('flshop/page/add/', __('新建页面'), {area:['800px', '400px']});
 			});
 		},
 		profile: function () {
@@ -54,13 +54,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/brand/index' + location.search,
-                    add_url: 'wanlshop/brand/add',
-                    edit_url: 'wanlshop/brand/edit',
-                    del_url: 'wanlshop/brand/del',
-                    multi_url: 'wanlshop/brand/multi',
+                    index_url: 'flshop/brand/index' + location.search,
+                    add_url: 'flshop/brand/add',
+                    edit_url: 'flshop/brand/edit',
+                    del_url: 'flshop/brand/del',
+                    multi_url: 'flshop/brand/multi',
 					dragsort_url: "",
-                    table: 'wanlshop_brand',
+                    table: 'flshop_brand',
                 }
             });
 
@@ -95,10 +95,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'wanlshop/attachment/index',
-		            add_url: 'wanlshop/attachment/add',
+		            index_url: 'flshop/attachment/index',
+		            add_url: 'flshop/attachment/add',
 		            edit_url: '',
-		            del_url: 'wanlshop/attachment/del',
+		            del_url: 'flshop/attachment/del',
 		            multi_url: '',
 		            table: 'attachment'
 		        }

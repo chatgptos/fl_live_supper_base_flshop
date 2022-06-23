@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/groups/index' + location.search,
+                    index_url: 'flshop/groups/index' + location.search,
                     add_url: '',
                     edit_url: '',
                     del_url: '',
-                    multi_url: 'wanlshop/groups/multi',
-                    import_url: 'wanlshop/groups/import',
-                    table: 'wanlshop_groups',
+                    multi_url: 'flshop/groups/multi',
+                    import_url: 'flshop/groups/import',
+                    table: 'flshop_groups',
                 }
             });
 
@@ -50,7 +50,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 								    classname: 'btn btn-xs btn-info btn-dialog',
 								    extend: 'data-area=\'["420px", "700px"]\'',
 								    icon: 'fa fa-users',
-								    url: 'wanlshop/groups/detail'
+								    url: 'flshop/groups/detail'
 								}
 						    ], 
 							formatter: Table.api.formatter.operate
@@ -69,13 +69,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 			// 初始化表格参数配置
 			Table.api.init({
 				extend: {
-					index_url: 'wanlshop/groups/goods' + location.search,
+					index_url: 'flshop/groups/goods' + location.search,
 					add_url: '',
 					edit_url: '',
-					del_url: 'wanlshop/groups/goodsDel',
+					del_url: 'flshop/groups/goodsDel',
 					multi_url: '',
 					dragsort_url: "",
-					table: 'wanlshop_groups',
+					table: 'flshop_groups',
 				}
 			});
 			var table = $("#table");
@@ -132,7 +132,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'wanlshop/groups/goodsRecyclebin' + location.search,
+                url: 'flshop/groups/goodsRecyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -158,7 +158,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'wanlshop/groups/goodsRestore',
+                                    url: 'flshop/groups/goodsRestore',
                                     refresh: true
                                 },
                                 {
@@ -166,7 +166,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'wanlshop/groups/goodsDestroy',
+                                    url: 'flshop/groups/goodsDestroy',
                                     refresh: true
                                 }
                             ],
@@ -183,12 +183,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/groups/order' + location.search,
+                    index_url: 'flshop/groups/order' + location.search,
                     add_url: '',
                     edit_url: '',
-                    del_url: 'wanlshop/groups/orderDel',
+                    del_url: 'flshop/groups/orderDel',
                     multi_url: '',
-                    table: 'wanlshop_order',
+                    table: 'flshop_order',
                 }
             });
 			
@@ -227,14 +227,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.bindevent(table);
             //点击详情
 			$(document).on("click", ".detail[data-id]", function () {
-			    Backend.api.open('wanlshop/groups/orderDetail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
+			    Backend.api.open('flshop/groups/orderDetail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
 			});
 			//点击详情
 			$(document).on("click", ".comment[data-id]", function () {
-			    Backend.api.open('wanlshop/comment/detail/order_id/' + $(this).data('id'), __('查看详情'));
+			    Backend.api.open('flshop/comment/detail/order_id/' + $(this).data('id'), __('查看详情'));
 			});
 			$(document).on("click", ".kuaidisub[data-id]", function () {
-			    Backend.api.open('wanlshop/groups/orderRelative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
+			    Backend.api.open('flshop/groups/orderRelative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
 			});
             
         },
@@ -250,7 +250,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'wanlshop/groups/orderRecyclebin' + location.search,
+                url: 'flshop/groups/orderRecyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -276,7 +276,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'wanlshop/groups/orderRestore',
+                                    url: 'flshop/groups/orderRestore',
                                     refresh: true
                                 },
                                 {
@@ -284,7 +284,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'wanlshop/groups/orderDestroy',
+                                    url: 'flshop/groups/orderDestroy',
                                     refresh: true
                                 }
                             ],

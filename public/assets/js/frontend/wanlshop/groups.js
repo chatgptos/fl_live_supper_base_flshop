@@ -4,13 +4,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			// 初始化表格参数配置
 			Table.api.init({
 				extend: {
-					index_url: 'wanlshop/groups/goods' + location.search,
-					add_url: 'wanlshop/groups/goodsAdd',
-					edit_url: 'wanlshop/groups/goodsEdit',
-					del_url: 'wanlshop/groups/goodsDel',
+					index_url: 'flshop/groups/goods' + location.search,
+					add_url: 'flshop/groups/goodsAdd',
+					edit_url: 'flshop/groups/goodsEdit',
+					del_url: 'flshop/groups/goodsDel',
 					multi_url: '',
 					dragsort_url: "",
-					table: 'wanlshop_groups',
+					table: 'flshop_groups',
 				}
 			});
 			var table = $("#table");
@@ -70,7 +70,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			var table = $("#table");
 			// 初始化表格
 			table.bootstrapTable({
-				url: 'wanlshop/groups/goodsRecyclebin' + location.search,
+				url: 'flshop/groups/goodsRecyclebin' + location.search,
 				pk: 'id',
 				sortName: 'id',
 				columns: [
@@ -104,7 +104,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 									text: __('Restore'),
 									classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
 									icon: 'fa fa-rotate-left',
-									url: 'wanlshop/groups/goodsRestore',
+									url: 'flshop/groups/goodsRestore',
 									refresh: true
 								},
 								{
@@ -112,7 +112,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 									text: __('Destroy'),
 									classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
 									icon: 'fa fa-times',
-									url: 'wanlshop/groups/goodsDestroy',
+									url: 'flshop/groups/goodsDestroy',
 									refresh: true
 								}
 							],
@@ -129,7 +129,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			// 初始化表格参数配置
 			Table.api.init({
 			    extend: {
-			        index_url: 'wanlshop/goods/select',
+			        index_url: 'flshop/goods/select',
 			    }
 			});
 			var table = $("#table");
@@ -152,7 +152,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 							events: {
 						        'click .btn-copy': function (e, value, row, index) {
 						            Fast.api.close();
-									parent.Fast.api.open(`wanlshop/groups/goodsEdit/type/copy/ids/${row.id}`, "编辑 复制商品", {area: ['90%', '80%']});
+									parent.Fast.api.open(`flshop/groups/goodsEdit/type/copy/ids/${row.id}`, "编辑 复制商品", {area: ['90%', '80%']});
 						        },
 						    }, formatter: function () {
 						        return '<a href="javascript:;" class="btn btn-danger btn-copy btn-xs"><i class="fa fa-clipboard"></i> ' + __('复制') + '</a>';
@@ -233,7 +233,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 							this.categoryId = this.categoryList[this.categoryOne].childlist[this.categoryTwo].childlist[this.categoryThree].childlist[this.categoryFour].childlist[this.categoryFive].id;
 						}
 						// 查询类目属性
-						Fast.api.ajax("wanlshop.goods/attribute?id=" + this.categoryId, (data, ret) =>{
+						Fast.api.ajax("flshop.goods/attribute?id=" + this.categoryId, (data, ret) =>{
 							this.attributeData = data;
 						    //返回false时将不再有右上角的操作成功的提示
 						    return false;
@@ -344,7 +344,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			}
 			// 完善寄件信息
 			$(document).on("click", ".btn-send", function () {
-				Backend.api.open('wanlshop/config/index/type/mailing/', __('完善寄件人信息'), {
+				Backend.api.open('flshop/config/index/type/mailing/', __('完善寄件人信息'), {
 					callback:function(value){
 						console.log(value);
 					}
@@ -352,7 +352,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			});
 			// 完善退件信息
 			$(document).on("click", ".btn-return", function () {
-				Backend.api.open('wanlshop/config/index/type/return/', __('完善退货信息'), {
+				Backend.api.open('flshop/config/index/type/return/', __('完善退货信息'), {
 					callback:function(value){
 						console.log(value);
 					}
@@ -360,7 +360,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			});
 			// 申请品牌
 			$(document).on("click", ".btn-brand", function () {
-				Backend.api.open('wanlshop/brand/add/', __('申请品牌'), {
+				Backend.api.open('flshop/brand/add/', __('申请品牌'), {
 					callback:function(value){
 						console.log(value);
 					}
@@ -368,7 +368,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			});
 			// 新建运费模板
 			$(document).on("click", ".btn-freight", function () {
-				Backend.api.open('wanlshop/freight/add', __('新建运费模板'), {
+				Backend.api.open('flshop/freight/add', __('新建运费模板'), {
 					callback:function(value){
 						console.log(value);
 					}
@@ -376,7 +376,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			});
 			// 新建店铺分类
 			$(document).on("click", ".btn-shopsort", function () {
-				Backend.api.open('wanlshop/shopsort/add', __('新建店铺分类'), {
+				Backend.api.open('flshop/shopsort/add', __('新建店铺分类'), {
 					callback:function(value){
 						console.log(value);
 					}
@@ -388,7 +388,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			}else{
 				Form.api.bindevent($("form[role=form]"), function (data, ret) {
 				    setTimeout(function () {
-				    	location.href = Fast.api.fixurl('wanlshop.goods/index.html');
+				    	location.href = Fast.api.fixurl('flshop.goods/index.html');
 				    }, 500);
 				});
 			}
@@ -456,7 +456,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 							});
 						}
 					});
-		            Fast.api.ajax("wanlshop.goods/attribute?id=" + this.categoryId, (data, ret) =>{
+		            Fast.api.ajax("flshop.goods/attribute?id=" + this.categoryId, (data, ret) =>{
 		            	this.attributeData = data;
 		                //返回false时将不再有右上角的操作成功的提示
 		                return false;
@@ -512,7 +512,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 							this.categoryId = this.categoryList[this.categoryOne].childlist[this.categoryTwo].childlist[this.categoryThree].childlist[this.categoryFour].childlist[this.categoryFive].id;
 						}
 						// 查询类目属性
-						Fast.api.ajax("wanlshop.goods/attribute?id=" + this.categoryId, (data, ret) =>{
+						Fast.api.ajax("flshop.goods/attribute?id=" + this.categoryId, (data, ret) =>{
 							this.attributeData = data;
 						    //返回false时将不再有右上角的操作成功的提示
 						    return false;
@@ -626,7 +626,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			}
 			// 申请品牌
 			$(document).on("click", ".btn-brand", function () {
-				Backend.api.open('wanlshop/brand/add/', __('申请品牌'), {
+				Backend.api.open('flshop/brand/add/', __('申请品牌'), {
 					callback:function(value){
 						console.log(value);
 					}
@@ -634,7 +634,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			});
 			// 新建运费模板
 			$(document).on("click", ".btn-freight", function () {
-				Backend.api.open('wanlshop/freight/add', __('新建运费模板'), {
+				Backend.api.open('flshop/freight/add', __('新建运费模板'), {
 					callback:function(value){
 						console.log(value);
 					}
@@ -642,7 +642,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 			});
 			// 新建店铺分类
 			$(document).on("click", ".btn-shopsort", function () {
-				Backend.api.open('wanlshop/shopsort/add', __('新建店铺分类'), {
+				Backend.api.open('flshop/shopsort/add', __('新建店铺分类'), {
 					callback:function(value){
 						console.log(value);
 					}
@@ -655,13 +655,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/groups/groups' + location.search,
+                    index_url: 'flshop/groups/groups' + location.search,
                     add_url: '',
                     edit_url: '',
                     del_url: '',
                     multi_url: '',
                     import_url: '',
-                    table: 'wanlshop_groups',
+                    table: 'flshop_groups',
                 }
             });
 
@@ -699,7 +699,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue', 'template', 'j
 								    classname: 'btn btn-xs btn-info btn-dialog',
 								    extend: 'data-area=\'["420px", "700px"]\'',
 								    icon: 'fa fa-users',
-								    url: 'wanlshop/groups/groupsDetail'
+								    url: 'flshop/groups/groupsDetail'
 								}
 						    ], 
 							formatter: Table.api.formatter.operate

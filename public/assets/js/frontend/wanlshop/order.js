@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'jquery-j
 			// return chatFun; 1.0.8升级 注释不明使用方式
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/order/index' + location.search,
+                    index_url: 'flshop/order/index' + location.search,
                     add_url: '',
                     edit_url: '',
-                    del_url: 'wanlshop/order/del',
-                    multi_url: 'wanlshop/order/multi',
-                    table: 'wanlshop_order',
+                    del_url: 'flshop/order/del',
+                    multi_url: 'flshop/order/multi',
+                    table: 'flshop_order',
                 }
             });
             var table = $("#table");
@@ -44,19 +44,19 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'jquery-j
             Table.api.bindevent(table);
 			//点击详情
 			$(document).on("click", ".detail[data-id]", function () {
-			    Backend.api.open('wanlshop/order/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
+			    Backend.api.open('flshop/order/detail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
 			});
 			//查看退款
 			$(document).on("click", ".refund[data-id]", function () {
-			    Backend.api.open('wanlshop/refund/detail/ids/' + $(this).data('id'), __('查看退款'));
+			    Backend.api.open('flshop/refund/detail/ids/' + $(this).data('id'), __('查看退款'));
 			});
 			// 查看评论
 			$(document).on("click", ".comment[data-id]", function () {
-			    Backend.api.open('wanlshop/comment/detail/order_id/' + $(this).data('id'), __('查看评论'));
+			    Backend.api.open('flshop/comment/detail/order_id/' + $(this).data('id'), __('查看评论'));
 			});
 			// 查看退款
 			$(document).on("click", ".btn-selected", function () {
-			    Backend.api.open('wanlshop/refund/detail/order_id/' + $(this).data('id'), __('查看退款'));
+			    Backend.api.open('flshop/refund/detail/order_id/' + $(this).data('id'), __('查看退款'));
 			});
 			// 即时沟通
 			$(document).on("click", ".btn-delone", function () {
@@ -71,22 +71,22 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'jquery-j
 			// 发货 & 批量发货
 			$(document).on("click", ".btn-delivery", function () {
 				if($(this).data('id')){
-					Backend.api.open('wanlshop/order/delivery/ids/' + $(this).data('id'), __('发货'),{area:['1000px', '700px']});
+					Backend.api.open('flshop/order/delivery/ids/' + $(this).data('id'), __('发货'),{area:['1000px', '700px']});
 				}else{
-					Backend.api.open('wanlshop/order/delivery/ids/' + Table.api.selectedids(table), __('批量发货'),{area:['1000px', '700px']});
+					Backend.api.open('flshop/order/delivery/ids/' + Table.api.selectedids(table), __('批量发货'),{area:['1000px', '700px']});
 				}
 			});
 			// 打印 & 批量打印订单 自动关闭窗口parent.Layer.closeAll();
 			$(document).on("click", ".btn-invoice", function () {
 				if($(this).data('id')){
-					Backend.api.open('wanlshop/order/invoice/ids/' + $(this).data('id'), __('查看发货单'),{area:['1100px', '750px']});
+					Backend.api.open('flshop/order/invoice/ids/' + $(this).data('id'), __('查看发货单'),{area:['1100px', '750px']});
 				}else{
-					Backend.api.open('wanlshop/order/invoice/ids/' + Table.api.selectedids(table), __('批量查看发货单'),{area:['1100px', '750px']});
+					Backend.api.open('flshop/order/invoice/ids/' + Table.api.selectedids(table), __('批量查看发货单'),{area:['1100px', '750px']});
 				}
 			});
 			// 查询物流状态
 			$(document).on("click", ".kuaidisub[data-id]", function () {
-			    Backend.api.open('wanlshop/order/relative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
+			    Backend.api.open('flshop/order/relative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
 			});
 			// 提交云面单
 			$(document).on("click", ".btn-express", function () {
@@ -97,12 +97,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'jquery-j
 			// 初始化表格参数配置
 			Table.api.init({
 			    extend: {
-			        index_url: 'wanlshop/comment/index' + location.search,
+			        index_url: 'flshop/comment/index' + location.search,
 			        add_url: '',
 			        edit_url: '',
 			        del_url: '',
 			        multi_url: '',
-			        table: 'wanlshop_goods_comment',
+			        table: 'flshop_goods_comment',
 			    }
 			});
 			
@@ -142,7 +142,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'jquery-j
 									},
 									classname: 'btn btn-xs btn-info btn-dialog',
 									icon: 'fa fa-eye',
-									url: 'wanlshop/comment/detail'
+									url: 'flshop/comment/detail'
 								},
 							],formatter: Table.api.formatter.operate,
 						}
@@ -168,7 +168,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'jquery-j
 		detail: function () {
 			// 查询物流状态
 			$(document).on("click", ".kuaidisub[data-id]", function () {
-			    Backend.api.open('wanlshop/order/relative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
+			    Backend.api.open('flshop/order/relative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
 			});
 		},
         delivery: function () {

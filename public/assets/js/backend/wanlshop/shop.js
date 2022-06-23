@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/shop/index' + location.search,
-                    add_url: 'wanlshop/shop/add',
-                    edit_url: 'wanlshop/shop/edit',
-                    del_url: 'wanlshop/shop/del',
-                    multi_url: 'wanlshop/shop/multi',
-                    table: 'wanlshop_shop',
+                    index_url: 'flshop/shop/index' + location.search,
+                    add_url: 'flshop/shop/add',
+                    edit_url: 'flshop/shop/edit',
+                    del_url: 'flshop/shop/del',
+                    multi_url: 'flshop/shop/multi',
+                    table: 'flshop_shop',
                 }
             });
 
@@ -56,7 +56,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `wanlshop/goods?shop_id=${row.id}`;
+										return `flshop/goods?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -72,7 +72,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `wanlshop/groups/goods?shop_id=${row.id}`;
+										return `flshop/groups/goods?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -88,7 +88,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-star',
                                     extend: 'data-area=\'["80%", "70%"]\'',
                                     url: function (row) {
-										return `wanlshop/brand?shop_id=${row.id}`;
+										return `flshop/brand?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -103,7 +103,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-truck',
                                     extend: 'data-area=\'["80%", "70%"]\'',
                                     url: function (row) {
-										return `wanlshop/freight?shop_id=${row.id}`;
+										return `flshop/freight?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -118,7 +118,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-envira',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `wanlshop/find?user_no=${row.user_no}`;
+										return `flshop/find?user_no=${row.user_no}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -133,7 +133,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-list-ol',
                                     extend: 'data-area=\'["80%", "70%"]\'',
                                     url: function (row) {
-										return `wanlshop/shopsort?shop_id=${row.id}`;
+										return `flshop/shopsort?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -161,7 +161,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'wanlshop/shop/recyclebin' + location.search,
+                url: 'flshop/shop/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -187,7 +187,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'wanlshop/shop/restore',
+                                    url: 'flshop/shop/restore',
                                     refresh: true
                                 },
                                 {
@@ -195,7 +195,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'wanlshop/shop/destroy',
+                                    url: 'flshop/shop/destroy',
                                     refresh: true
                                 }
                             ],

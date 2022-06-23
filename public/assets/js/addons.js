@@ -18,15 +18,15 @@ if (Config.modulename === 'index' && Config.controllername === 'user' && ['login
 
 require.config({
     paths: {
-        'jquery-colorpicker': '../addons/wanlshop/js/jquery.colorpicker.min',
-        'jquery-autocomplete': '../addons/wanlshop/js/jquery.autocomplete',
-        'jquery-jqprint': '../addons/wanlshop/js/jquery.jqprint-0.3.min',
-		'jquery-migrate': '../addons/wanlshop/js/jquery.migrate-1.2.1.min',
-		'vue': '../addons/wanlshop/js/vue.min',
-		'chat': '../addons/wanlshop/js/vue.min',
-		'sortablejs': '../addons/wanlshop/js/Sortable.min',
-		'vuedraggable': '../addons/wanlshop/js/vuedraggable.umd.min',
-		'clipboard': '../addons/wanlshop/js/clipboard.min'
+        'jquery-colorpicker': '../addons/flshop/js/jquery.colorpicker.min',
+        'jquery-autocomplete': '../addons/flshop/js/jquery.autocomplete',
+        'jquery-jqprint': '../addons/flshop/js/jquery.jqprint-0.3.min',
+		'jquery-migrate': '../addons/flshop/js/jquery.migrate-1.2.1.min',
+		'vue': '../addons/flshop/js/vue.min',
+		'chat': '../addons/flshop/js/vue.min',
+		'sortablejs': '../addons/flshop/js/Sortable.min',
+		'vuedraggable': '../addons/flshop/js/vuedraggable.umd.min',
+		'clipboard': '../addons/flshop/js/clipboard.min'
     },
     shim: {
         'jquery-colorpicker': {
@@ -50,7 +50,7 @@ require.config({
             exports: '$.fn.extend'
         },
 		'chat': {
-		    deps: ['css!../addons/wanlshop/css/chat.css'],
+		    deps: ['css!../addons/flshop/css/chat.css'],
 		    exports: '$.fn.extend'
 		},
         'sortablejs': {
@@ -70,7 +70,7 @@ require.config({
 // 后台全局添加 IM即时通讯
 if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.actionname == 'index') {
 	require(['chat'], function(Vue){
-		var html = `<!-- 加载WanlChat 即时通讯 --> <div class="wanl-chat-service" id="wanl-chat" v-cloak> <!-- 消息提示 --> <div class="wanl-chat-mini-msg" v-if="isMsg"><span>{{msgData.name}}：</span> {{msgData.text}}</div> <!-- 全局按钮 --> <div class="wanl-chat-mini" @click="onList" v-if="isList"> <div class="label label-success" v-if="count > 0" v-cloak>{{count}}</div> <div class="water0" :style="{backgroundImage: 'url('+(isMsg ? msgData.avatar : '/assets/addons/wanlshop/img/common/chat_mini.png')+')'}"></div> <div class="water1"></div> <div class="water2"></div> <div class="water3"></div> </div> <!-- IM 右侧列表 --> <div class="wanl-chat-list" v-else> <div class="head"> <div class="title"> <div> <h3>客服：{{service.nickname}}</h3><span v-if="shopOnline == 1"><i class="fa fa-circle text-success margin-r-5"></i> H5在线</span><span v-else><i class="fa fa-circle text-gray margin-r-5"></i> IM连接异常</span> </div> <div style="font-size: 14px;"><span class="active" @click="onAudio" v-if="isAudio"><i class="fa fa-volume-up text-red"></i></span><span v-else @click="onAudio"><i class="fa fa-volume-off link-black"></i></span><span style="margin-left: 10px; font-size: 16px;" @click="onList"><i class="fa fa-close link-black"></i></span></div> </div> </div> <div class="list"> <div class="empty" v-if="chatlist.length == 0"> <div class="main"><img :src="cdnurl('/assets/addons/wanlshop/img/default/find_default3x.png')"> <p>没有找到任何联系人</p> </div> </div> <div class="item" v-for="(item, index) in chatlist" :key="index" @click="otChat(index, 'main')"> <div class="portrait"><img :src="cdnurl(item.avatar)"><span class="online"><i class="fa fa-circle text-success" v-if="item.isOnline == 1"></i><i class="fa fa-circle text-gray" v-else></i></span></div> <div class="main"> <div class="user"><span class="username text-cut">{{item.nickname}}</span><span class="time">{{timefriendly(item.created)}}</span></div> <div class="info text-cut"><span v-if="item.count > 0">[未读{{item.count}}条]</span><span v-html="item.content"></span></div> </div> </div> </div> </div><!-- 聊天窗口 --> <div class="wanl-chat" :class="{full: onFull}" :style="{left:screenWidth+'px', top:screenHeight+'px',}" ref="moveBtn" v-show="chatWindow" v-cloak> <div class="list"> <ul> <li v-for="(item, index) in wanlchat" :key="index" :class="{checked: chatSelect == index}" @click="onChat(index)"> <div class="portrait"><img :src="cdnurl(item.avatar)"><span class="badge bg-red" v-if="item.count > 0">{{item.count}}</span></div> <div class="user-msg"> <p>{{item.nickname}}</p> <div class="text-cut" v-html="item.content"></div> </div> <div class="list-close" @click.stop="delChat(index)"> <div class="hover"><span class="fa fa-times-circle"></span></div> </div> </li> </ul> </div> <div class="main" v-if="chatSelect != null"> <div class="msgHead" @mousedown="down" @touchstart="down" @mousemove="move" @touchmove="move" @mouseup="end" @touchend="end" @touchcancel="end"><img :src="cdnurl(wanlchat[chatSelect].avatar)"> <div><span class="name">{{wanlchat[chatSelect].nickname}}</span> <p v-if="wanlchat[chatSelect].isOnline == 1"><i class="fa fa-circle text-success"></i> 在线</p> <p v-else><i class="fa fa-circle text-gray"></i> 离线</p> </div><!-- 窗口操作 --><span class="layui-layer-setwin"> <block v-if="onFull"><a class="layui-layer-ico layui-layer-max layui-layer-maxmin" href="javascript:;" @click="full"></a></block> <block v-else><a class="layui-layer-min" href="javascript:;" @click="miniChat"><cite></cite></a><a class="layui-layer-ico layui-layer-max" href="javascript:;" @click="full"></a></block><a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;" @click="closeChat"></a> </span> </div> <div class="msgList" id="talk"> <ul> <li :class="{my: item.form.id == service.id}" v-for="(item, index) in chatContent" :key="index"> <div class="chat-user"><img :src="cdnurl(item.form.id == service.id ? service.avatar : item.form.avatar)"><cite><span>{{timefriendly(item.created)}}</span></cite></div><!-- 文字消息 --> <div class="chat-text" v-if="item.message.type == 'text'" v-html="item.message.content.text"></div><!-- 语音消息 --> <div class="chat-voice" v-if="item.message.type == 'voice'" @click="playVoice(item.message.content.url)"><span :style="{marginRight: item.message.content.length * 8 +'px'}"></span>{{item.message.content.length}} ”</div><!-- 图片消息 --> <div class="chat-img" v-if="item.message.type == 'img'"><a :href="item.message.content.url" target="_blank"><img :src="cdnurl(item.message.content.url)" data-tips-image></a></div> </li> </ul> </div> <form class="inputBox" id="form"> <div class="tool"><span class="fa fa-smile-o" @click="toggleBox"></span><label for="upImage" class="fa fa-picture-o upImage"></label><input type="file" id="upImage" @change="chatImage" style="display:none"></div> <div class="input"><textarea id="content" placeholder="请输入消息" v-model="textarea" @keyup.ctrl.enter="submit" autofocus></textarea></div> <div class="operation"><button type="button" class="btn btn-danger" @click="submit">发送 Ctrl+Enter</button></div> </form> <div class="box-container" v-if="showBox" @click.self="toggleBox"> </div> <div class="wanl-emoji" v-if="showBox"> <div class="title"> <div> {{TabCur}} </div> </div> <div class="subject" v-for="(emoji, groups) in emojiList.groups" :key="groups" v-if="TabCur == groups"> <div class="item"><span v-for="(item, index) in emoji" :key="index" @click="addEmoji(item.value)"><img :src="item.url"></span></div> </div> <div class="emojiNav"> <div :class="item == TabCur ? 'emojibg' : ''" class="item" v-for="(item, index) in emojiList.categories" :key="index" :data-id="item" @click="tabSelect"><img :src="emojiList.groups[item][0].url"></div> </div> </div> </div> </div> </div>`;
+		var html = `<!-- 加载WanlChat 即时通讯 --> <div class="wanl-chat-service" id="wanl-chat" v-cloak> <!-- 消息提示 --> <div class="wanl-chat-mini-msg" v-if="isMsg"><span>{{msgData.name}}：</span> {{msgData.text}}</div> <!-- 全局按钮 --> <div class="wanl-chat-mini" @click="onList" v-if="isList"> <div class="label label-success" v-if="count > 0" v-cloak>{{count}}</div> <div class="water0" :style="{backgroundImage: 'url('+(isMsg ? msgData.avatar : '/assets/addons/flshop/img/common/chat_mini.png')+')'}"></div> <div class="water1"></div> <div class="water2"></div> <div class="water3"></div> </div> <!-- IM 右侧列表 --> <div class="wanl-chat-list" v-else> <div class="head"> <div class="title"> <div> <h3>客服：{{service.nickname}}</h3><span v-if="shopOnline == 1"><i class="fa fa-circle text-success margin-r-5"></i> H5在线</span><span v-else><i class="fa fa-circle text-gray margin-r-5"></i> IM连接异常</span> </div> <div style="font-size: 14px;"><span class="active" @click="onAudio" v-if="isAudio"><i class="fa fa-volume-up text-red"></i></span><span v-else @click="onAudio"><i class="fa fa-volume-off link-black"></i></span><span style="margin-left: 10px; font-size: 16px;" @click="onList"><i class="fa fa-close link-black"></i></span></div> </div> </div> <div class="list"> <div class="empty" v-if="chatlist.length == 0"> <div class="main"><img :src="cdnurl('/assets/addons/flshop/img/default/find_default3x.png')"> <p>没有找到任何联系人</p> </div> </div> <div class="item" v-for="(item, index) in chatlist" :key="index" @click="otChat(index, 'main')"> <div class="portrait"><img :src="cdnurl(item.avatar)"><span class="online"><i class="fa fa-circle text-success" v-if="item.isOnline == 1"></i><i class="fa fa-circle text-gray" v-else></i></span></div> <div class="main"> <div class="user"><span class="username text-cut">{{item.nickname}}</span><span class="time">{{timefriendly(item.created)}}</span></div> <div class="info text-cut"><span v-if="item.count > 0">[未读{{item.count}}条]</span><span v-html="item.content"></span></div> </div> </div> </div> </div><!-- 聊天窗口 --> <div class="wanl-chat" :class="{full: onFull}" :style="{left:screenWidth+'px', top:screenHeight+'px',}" ref="moveBtn" v-show="chatWindow" v-cloak> <div class="list"> <ul> <li v-for="(item, index) in wanlchat" :key="index" :class="{checked: chatSelect == index}" @click="onChat(index)"> <div class="portrait"><img :src="cdnurl(item.avatar)"><span class="badge bg-red" v-if="item.count > 0">{{item.count}}</span></div> <div class="user-msg"> <p>{{item.nickname}}</p> <div class="text-cut" v-html="item.content"></div> </div> <div class="list-close" @click.stop="delChat(index)"> <div class="hover"><span class="fa fa-times-circle"></span></div> </div> </li> </ul> </div> <div class="main" v-if="chatSelect != null"> <div class="msgHead" @mousedown="down" @touchstart="down" @mousemove="move" @touchmove="move" @mouseup="end" @touchend="end" @touchcancel="end"><img :src="cdnurl(wanlchat[chatSelect].avatar)"> <div><span class="name">{{wanlchat[chatSelect].nickname}}</span> <p v-if="wanlchat[chatSelect].isOnline == 1"><i class="fa fa-circle text-success"></i> 在线</p> <p v-else><i class="fa fa-circle text-gray"></i> 离线</p> </div><!-- 窗口操作 --><span class="layui-layer-setwin"> <block v-if="onFull"><a class="layui-layer-ico layui-layer-max layui-layer-maxmin" href="javascript:;" @click="full"></a></block> <block v-else><a class="layui-layer-min" href="javascript:;" @click="miniChat"><cite></cite></a><a class="layui-layer-ico layui-layer-max" href="javascript:;" @click="full"></a></block><a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;" @click="closeChat"></a> </span> </div> <div class="msgList" id="talk"> <ul> <li :class="{my: item.form.id == service.id}" v-for="(item, index) in chatContent" :key="index"> <div class="chat-user"><img :src="cdnurl(item.form.id == service.id ? service.avatar : item.form.avatar)"><cite><span>{{timefriendly(item.created)}}</span></cite></div><!-- 文字消息 --> <div class="chat-text" v-if="item.message.type == 'text'" v-html="item.message.content.text"></div><!-- 语音消息 --> <div class="chat-voice" v-if="item.message.type == 'voice'" @click="playVoice(item.message.content.url)"><span :style="{marginRight: item.message.content.length * 8 +'px'}"></span>{{item.message.content.length}} ”</div><!-- 图片消息 --> <div class="chat-img" v-if="item.message.type == 'img'"><a :href="item.message.content.url" target="_blank"><img :src="cdnurl(item.message.content.url)" data-tips-image></a></div> </li> </ul> </div> <form class="inputBox" id="form"> <div class="tool"><span class="fa fa-smile-o" @click="toggleBox"></span><label for="upImage" class="fa fa-picture-o upImage"></label><input type="file" id="upImage" @change="chatImage" style="display:none"></div> <div class="input"><textarea id="content" placeholder="请输入消息" v-model="textarea" @keyup.ctrl.enter="submit" autofocus></textarea></div> <div class="operation"><button type="button" class="btn btn-danger" @click="submit">发送 Ctrl+Enter</button></div> </form> <div class="box-container" v-if="showBox" @click.self="toggleBox"> </div> <div class="wanl-emoji" v-if="showBox"> <div class="title"> <div> {{TabCur}} </div> </div> <div class="subject" v-for="(emoji, groups) in emojiList.groups" :key="groups" v-if="TabCur == groups"> <div class="item"><span v-for="(item, index) in emoji" :key="index" @click="addEmoji(item.value)"><img :src="item.url"></span></div> </div> <div class="emojiNav"> <div :class="item == TabCur ? 'emojibg' : ''" class="item" v-for="(item, index) in emojiList.categories" :key="index" :data-id="item" @click="tabSelect"><img :src="emojiList.groups[item][0].url"></div> </div> </div> </div> </div> </div>`;
 		$("body").append(html);
 		var wanlchat =  new Vue({
 			el:"#wanl-chat",
@@ -129,7 +129,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 			methods: {
 				loadUpdate(){
 					Fast.api.ajax({
-						url: "wanlshop/client/update.html",
+						url: "flshop/client/update.html",
 					}, (data, ret) => {
 						if(data === 0){
 							Layer.open({
@@ -138,26 +138,26 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 								closeBtn: false,
 								area: '400px;',
 								shade: 0,
-								id: 'wanlshop_v1.1.1', //设定一个id，防止重复弹出
+								id: 'flshop_v1.1.1', //设定一个id，防止重复弹出
 								resize: false,
 								btn: ['确认', '关闭'],
 								btnAlign: 'c',
 								moveType: 1, //拖拽模式，0或者1
 								content: `<div style="padding: 50px 40px; line-height: 22px; background-color: #222d32; color: #fff; font-weight: 300;">
 									<span style="width: 22px;display: inline-block;"></span>
-									恭喜你，已经升级到 WanlShop V1.1.1 版本，现需要对原有数据进行升级，
+									恭喜你，已经升级到 flshop V1.1.1 版本，现需要对原有数据进行升级，
 									此操作可能会占用大量内存，点击确认升级数据，升级完成后此窗口不再弹出！
 								</div>`,
 								yes: index => {
 								    Fast.api.ajax({
-								    	url: "wanlshop/client/repairSql.html",
+								    	url: "flshop/client/repairSql.html",
 								    }, (data, ret) => {
 								    	Layer.close(index);
 								    })
 								}
 							});
 							var sound = new Audio();
-							sound.src = Fast.api.cdnurl('/assets/addons/wanlshop/voice/open.mp3');
+							sound.src = Fast.api.cdnurl('/assets/addons/flshop/voice/open.mp3');
 							sound.play();
 						}
 						return false;
@@ -166,7 +166,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 				loadData() {
 					let app = this;
 					Fast.api.ajax({
-						url: "wanlshop/service/lists.html",
+						url: "flshop/service/lists.html",
 					}, (data, ret) => {
 						app.chatlist = data.chat;
 						app.service = data.service;
@@ -194,7 +194,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 							if (data.type == 'init') {
 								console.log('@message_client_id：' + data.client_id);
 								Fast.api.ajax({
-									url: "wanlshop/service/bind.html",
+									url: "flshop/service/bind.html",
 									data: {client_id: data.client_id}
 								}, function(data, ret){
 									app.shopOnline = data;
@@ -239,7 +239,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 				// 发送到服务器
 				send(data) {
 					Fast.api.ajax({
-						url: "wanlshop/service/send.html",
+						url: "flshop/service/send.html",
 						data: data
 					}, function(data, ret){
 						return false;
@@ -282,7 +282,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 					let chat = this.wanlchat[index];
 					let app = this;
 					Fast.api.ajax({
-						url: "wanlshop/service/history.html",
+						url: "flshop/service/history.html",
 						data: {
 							id: chat.user_id
 						}
@@ -331,7 +331,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 							wanlchat.content = content;
 							// 设置已读
 							Fast.api.ajax({
-								url: "wanlshop/service/read.html",
+								url: "flshop/service/read.html",
 								data: {
 									id: wanlchat.user_id
 								}
@@ -384,7 +384,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 					}
 					return key;
 				},
-				// 判断wanlshop列表是否存在
+				// 判断flshop列表是否存在
 				addWanlChatList(data, type){
 					let chat = {};
 					if(type == 'msg'){
@@ -563,9 +563,9 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 					if(type == 'main'){
 						url = str ? ('https://api.oick.cn/txt/apiz.php?spd=3&text=' + encodeURI(str)):''; // 1.1.3升级 替换失效百度语音
 					}else if(type == 'openinto'){
-						url = this.cdnurl('/assets/addons/wanlshop/voice/open.mp3');
+						url = this.cdnurl('/assets/addons/flshop/voice/open.mp3');
 					}else if(type == 'open'){
-						url = this.cdnurl('/assets/addons/wanlshop/voice/chat.mp3');
+						url = this.cdnurl('/assets/addons/flshop/voice/chat.mp3');
 					}
 				    sound.src = url;
 				    sound.play();
@@ -640,7 +640,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 					}else if(type == 'show'){
 						name = '发布 买家秀'
 					}
-					Fast.api.open('/index/wanlshop.find/add.html?type='+type, name);
+					Fast.api.open('/index/flshop.find/add.html?type='+type, name);
 				},
 				full(){
 					this.onFull = !this.onFull;

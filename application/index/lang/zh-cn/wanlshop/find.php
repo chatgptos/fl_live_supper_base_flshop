@@ -27,7 +27,7 @@ return [
     'created'            => '创建时间',
     'Updatetime'            => '更新时间',
     'Deletetime'            => '删除时间',
-    'Wanlshopshop.shopname' => '店铺名称',
+    'flshopshop.shopname' => '店铺名称',
 	
 	// 追加
 	'All'                 => '全部',

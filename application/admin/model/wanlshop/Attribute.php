@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\wanlshop;
+namespace app\admin\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class Attribute extends Model
     
 
     // 表名
-    protected $name = 'wanlshop_category_attribute';
+    protected $name = 'flshop_category_attribute';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
@@ -56,6 +56,6 @@ class Attribute extends Model
 
     public function category()
     {
-        return $this->belongsTo('app\admin\model\wanlshop\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flshop\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

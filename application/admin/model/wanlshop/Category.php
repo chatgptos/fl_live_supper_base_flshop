@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\wanlshop;
+namespace app\admin\model\flshop;
 
 use think\Model;
 
@@ -13,7 +13,7 @@ class Category extends Model
     
 
     // 表名
-    protected $name = 'wanlshop_category';
+    protected $name = 'flshop_category';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

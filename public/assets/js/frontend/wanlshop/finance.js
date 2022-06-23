@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'wanlshop/finance/bill' + location.search,
+		            index_url: 'flshop/finance/bill' + location.search,
 		            add_url: '',
 		            edit_url: '',
 		            del_url: '',
 		            multi_url: '',
-		            table: 'wanlshop_page',
+		            table: 'flshop_page',
 		        }
 		    });
 		    var table = $("#table");
@@ -32,7 +32,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
                         {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate,buttons: [
 							{name: 'detail',title: __('查看'),text: __('查看'),classname: 'btn btn-xs btn-info btn-dialog',
-							icon: 'fa fa-eye',url: 'wanlshop/finance/billDetail'},
+							icon: 'fa fa-eye',url: 'flshop/finance/billDetail'},
 							{
 								name: 'type',
 								title: function (row) {
@@ -47,10 +47,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 								url: function (row) {
 									var url = '链接异常';
 									switch(row.type) {
-									    case "pay": url = 'wanlshop/order/detail/order_no'; break; // 商品交易
-										case "groups": url = 'wanlshop/groupsorder/detail/order_no'; break; // 拼团交易
-										case "withdraw": url = 'wanlshop/finance/withdrawDetail/ids'; break; // 提现
-										case "refund": url = 'wanlshop/refund/detail/order_no'; break; // 退款 1.1.3升级
+									    case "pay": url = 'flshop/order/detail/order_no'; break; // 商品交易
+										case "groups": url = 'flshop/groupsorder/detail/order_no'; break; // 拼团交易
+										case "withdraw": url = 'flshop/finance/withdrawDetail/ids'; break; // 提现
+										case "refund": url = 'flshop/refund/detail/order_no'; break; // 退款 1.1.3升级
 									}
 									return `${url}/${row.service_ids}`;
 								},
@@ -65,7 +65,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		    // 为表格绑定事件
 		    Table.api.bindevent(table);
 			$(".btn-paypal").click(function() {
-				Fast.api.open(`wanlshop/finance/payment`, `提现`, {
+				Fast.api.open(`flshop/finance/payment`, `提现`, {
 					area: ["420px", "720px"],
 					callback: res =>{
 						table.bootstrapTable('refresh', {});
@@ -78,7 +78,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		    // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'wanlshop/finance/withdraw' + location.search,
+                    index_url: 'flshop/finance/withdraw' + location.search,
                     add_url: '',
                     edit_url: '',
                     del_url: '',
@@ -112,7 +112,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 						// {field: 'transfertime', title: __('Transfertime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 						{field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate,buttons: [
 							{name: 'detail',title: __('提现详情'),text: __('提现详情'),
-							classname: 'btn btn-xs btn-info btn-dialog',icon: 'fa fa-eye',url: 'wanlshop/finance/withdrawDetail'}
+							classname: 'btn btn-xs btn-info btn-dialog',icon: 'fa fa-eye',url: 'flshop/finance/withdrawDetail'}
 						],formatter: Table.api.formatter.operate}
                     ]
                 ]
@@ -120,14 +120,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
             // 为表格绑定事件
             Table.api.bindevent(table);
 			$(".btn-bankuser").click(function() {
-				Fast.api.open(`wanlshop/finance/user`, `提现账户`, {
+				Fast.api.open(`flshop/finance/user`, `提现账户`, {
 					callback: res =>{
 						table.bootstrapTable('refresh', {});
 					}
 				});
 			});
 			$(".btn-paypal").click(function() {
-				Fast.api.open(`wanlshop/finance/payment`, `提现`, {
+				Fast.api.open(`flshop/finance/payment`, `提现`, {
 					area: ["420px", "720px"],
 					callback: res =>{
 						table.bootstrapTable('refresh', {});
@@ -153,7 +153,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 				},
 				methods: {
 					choiceUser(){
-						parent.Fast.api.open("wanlshop/finance/user?multiple=true", __("提现账户"), {
+						parent.Fast.api.open("flshop/finance/user?multiple=true", __("提现账户"), {
 							callback: res => {
 								this.bankData = res;
 							}
@@ -202,7 +202,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 						}
 						this.loading = true;
 						Fast.api.ajax({
-						    url: "wanlshop/finance/payment", 
+						    url: "flshop/finance/payment",
 							data: {
 								money: money,
 								account_id: this.bankData.id
@@ -219,12 +219,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 			// 初始化表格参数配置
 			Table.api.init({
 			    extend: {
-			        index_url: 'wanlshop/finance/user' + location.search,
-			        add_url: 'wanlshop/finance/userAdd',
-			        edit_url: 'wanlshop/finance/userEdit',
-			        del_url: 'wanlshop/finance/userDel',
+			        index_url: 'flshop/finance/user' + location.search,
+			        add_url: 'flshop/finance/userAdd',
+			        edit_url: 'flshop/finance/userEdit',
+			        del_url: 'flshop/finance/userDel',
 			        multi_url: '',
-			        table: 'wanlshop_page',
+			        table: 'flshop_page',
 			    }
 			});
 			var table = $("#table");
@@ -262,7 +262,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 								       content: '确认删除',
 								       yes:function(index){
 								            Fast.api.ajax({
-                                                url: "wanlshop/finance/userDel",
+                                                url: "flshop/finance/userDel",
                                                 data: {ids: row.id},
                                             }, function (data, ret) {
                                                  parent.Layer.close(parent.Layer.getFrameIndex(window.name));                        

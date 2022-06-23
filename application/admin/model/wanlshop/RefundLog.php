@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\wanlshop;
+namespace app\admin\model\flshop;
 
 use think\Model;
 
@@ -8,7 +8,7 @@ class RefundLog extends Model
 {
 
     // 表名
-    protected $name = 'wanlshop_refund_log';
+    protected $name = 'flshop_refund_log';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
