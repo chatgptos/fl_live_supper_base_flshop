@@ -21,14 +21,14 @@ class Third extends Model
 
     // 追加属性
     protected $append = [
-        'logintime_text',
+        'login_time_text',
         'expiretime_text'
     ];
 
 
-    public function getLogintimeTextAttr($value, $data)
+    public function getlogin_timeTextAttr($value, $data)
     {
-        $value = $value ? $value : (isset($data['logintime']) ? $data['logintime'] : '');
+        $value = $value ? $value : (isset($data['login_time']) ? $data['login_time'] : '');
         return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
     }
 
@@ -39,7 +39,7 @@ class Third extends Model
         return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
     }
 
-    protected function setLogintimeAttr($value)
+    protected function setlogin_timeAttr($value)
     {
         return $value === '' ? null : ($value && !is_numeric($value) ? strtotime($value) : $value);
     }

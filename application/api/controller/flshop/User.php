@@ -438,7 +438,7 @@ class User extends Api
                             $third->save([
                                 'access_token' => $json['session_key'],
                                 'expires_in' => 7776000,
-                                'logintime' => $time,
+                                'login_time' => $time,
                                 'expiretime' => $time + 7776000
                             ]);
                             $ret = $this->auth->direct($user->id);
@@ -461,7 +461,7 @@ class User extends Api
 							}
                             $third->access_token  = $json['session_key'];
                             $third->expires_in  = 7776000;
-                            $third->logintime  = $time;
+                            $third->login_time  = $time;
                             $third->expiretime  = $time + 7776000;
                             // 判断当前是否登录
                             if($this->auth->isLogin()){
@@ -509,7 +509,7 @@ class User extends Api
                                 'access_token' => $post['loginData']['authResult']['access_token'],
                                 'refresh_token' => $post['loginData']['authResult']['refresh_token'],
                                 'expires_in' => $post['loginData']['authResult']['expires_in'],
-                                'logintime' => $time,
+                                'login_time' => $time,
                                 'expiretime' => $time + $post['loginData']['authResult']['expires_in']
                             ]);
                             $ret = $this->auth->direct($third['user_id']);
@@ -533,7 +533,7 @@ class User extends Api
                             $third->access_token  = $post['loginData']['authResult']['access_token'];
                             $third->refresh_token  = $post['loginData']['authResult']['refresh_token'];
                             $third->expires_in  = $post['loginData']['authResult']['expires_in'];
-                            $third->logintime  = $time;
+                            $third->login_time  = $time;
                             $third->expiretime  = $time + $post['loginData']['authResult']['expires_in'];
                             // 判断当前是否登录,否则注册
                             if($this->auth->isLogin()){
@@ -626,7 +626,7 @@ class User extends Api
 							        'access_token' => $access['access_token'],
 							        'refresh_token' => $access['refresh_token'],
 							        'expires_in' => $access['expires_in'],
-							        'logintime' => $time,
+							        'login_time' => $time,
 							        'expiretime' => $time + $access['expires_in']
 							    ]);
 								// 登录客户端
@@ -653,7 +653,7 @@ class User extends Api
 							    $third->access_token  = $access['access_token'];
 							    $third->refresh_token  = $access['refresh_token'];
 							    $third->expires_in  = $access['expires_in'];
-							    $third->logintime  = $time;
+							    $third->login_time  = $time;
 							    $third->expiretime  = $time + $access['expires_in'];
 							    // 获取到的用户信息
 							    $username = $json['nickname'];
@@ -737,7 +737,7 @@ class User extends Api
                             $third->save([
                                 'access_token' => $json['session_key'],
                                 'expires_in' => 7776000,
-                                'logintime' => $time,
+                                'login_time' => $time,
                                 'expiretime' => $time + 7776000
                             ]);
                             $ret = $this->auth->direct($user->id);
@@ -760,7 +760,7 @@ class User extends Api
 							}
                             $third->access_token  = $json['session_key'];
                             $third->expires_in  = 7776000;
-                            $third->logintime  = $time;
+                            $third->login_time  = $time;
                             $third->expiretime  = $time + 7776000;
                             // 判断当前是否登录
                             if($this->auth->isLogin()){
@@ -815,7 +815,7 @@ class User extends Api
     				            $third->save([
                                     'access_token' => $post['loginData']['authResult']['access_token'],
                                     'expires_in' => $post['loginData']['authResult']['expires_in'],
-                                    'logintime' => $time,
+                                    'login_time' => $time,
                                     'expiretime' => $time + $post['loginData']['authResult']['expires_in']
                                 ]);
                                 $ret = $this->auth->direct($third['user_id']);
@@ -834,7 +834,7 @@ class User extends Api
                                 $third->openid  = $json['openid'];
                                 $third->access_token  = $post['loginData']['authResult']['access_token'];
                                 $third->expires_in  = $post['loginData']['authResult']['expires_in'];
-                                $third->logintime  = $time;
+                                $third->login_time  = $time;
                                 $third->expiretime  = $time + $post['loginData']['authResult']['expires_in'];
                                 // 判断当前是否登录
                                 if($this->auth->isLogin()){
@@ -895,7 +895,7 @@ class User extends Api
 				            $third->save([
                                 'access_token' => $post['loginData']['authResult']['access_token'],
                                 'expires_in' => $json['expire_in'],
-                                'logintime' => $json['create_at'],
+                                'login_time' => $json['create_at'],
                                 'expiretime' => $json['create_at'] + $json['expire_in']
                             ]);
                             $ret = $this->auth->direct($third['user_id']);
@@ -914,7 +914,7 @@ class User extends Api
                             $third->openid  = $json['uid'];
                             $third->access_token  = $post['loginData']['authResult']['access_token'];
                             $third->expires_in  = $json['expire_in'];
-                            $third->logintime  = $json['create_at'];
+                            $third->login_time  = $json['create_at'];
                             $third->expiretime  = $json['create_at'] + $json['expire_in'];
                             // 判断当前是否登录
                             if($this->auth->isLogin()){

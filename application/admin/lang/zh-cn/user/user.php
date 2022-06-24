@@ -20,7 +20,7 @@ return [
     'Successions'    => '连续登录天数',
     'Maxsuccessions' => '最大连续登录天数',
     'Prevtime'       => '上次登录时间',
-    'Logintime'      => '登录时间',
+    'login_time'      => '登录时间',
     'Loginip'        => '登录IP',
     'Loginfailure'   => '失败次数',
     'Joinip'         => '加入IP',

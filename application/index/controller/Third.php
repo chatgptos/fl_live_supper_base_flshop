@@ -85,7 +85,7 @@ class Third extends Frontend
             'access_token'  => $userinfo['access_token'],
             'refresh_token' => $userinfo['refresh_token'],
             'expires_in'    => $userinfo['expires_in'],
-            'logintime'     => $time,
+            'login_time'     => $time,
             'expiretime'    => $time + $userinfo['expires_in'],
         ];
         $third = \addons\third\model\Third::create($values);

@@ -19,7 +19,7 @@ class User extends Model
     // 追加属性
     protected $append = [
         'prevtime_text',
-        'logintime_text',
+        'login_time_text',
         'jointime_text'
     ];
 
@@ -74,7 +74,7 @@ class User extends Model
         return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
     }
 
-    public function getLogintimeTextAttr($value, $data)
+    public function getlogin_timeTextAttr($value, $data)
     {
         $value = $value ? $value : ($data['login_time'] ?? "");
         return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
@@ -91,7 +91,7 @@ class User extends Model
         return $value && !is_numeric($value) ? strtotime($value) : $value;
     }
 
-    protected function setLogintimeAttr($value)
+    protected function setlogin_timeAttr($value)
     {
         return $value && !is_numeric($value) ? strtotime($value) : $value;
     }

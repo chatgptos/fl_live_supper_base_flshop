@@ -14,7 +14,7 @@ return [
     'Intro'                                      => '个人介绍',
     'Successions'                                => '连续登录',
     'Maxsuccessions'                             => '最长连续登录',
-    'Logintime'                                  => '登录时间',
+    'login_time'                                  => '登录时间',
     'Prevtime'                                   => '最后登录',
     'Change'                                     => '修改',
     'Click to edit'                              => '点击编辑',
