@@ -1,0 +1,76 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('User_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-user_id" data-rule="required" data-source="user/user/index" data-field="nickname" class="form-control selectpage" name="row[user_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Exhibition_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-exhibition_id" data-rule="required" data-source="exhibition/index" class="form-control selectpage" name="row[exhibition_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ticket_qr_code_img_url')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ticket_qr_code_img_url" class="form-control" name="row[ticket_qr_code_img_url]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ticket_desc')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ticket_desc" data-rule="required" class="form-control" name="row[ticket_desc]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Apply_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-apply_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[apply_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Enable_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-enable_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[enable_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Address')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-address" class="form-control" name="row[address]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ticket_fee')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ticket_fee" data-rule="required" min="0" class="form-control" step="0.01" name="row[ticket_fee]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ticket_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ticket_name" data-rule="required" class="form-control" name="row[ticket_name]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ticket_img')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ticket_img" data-rule="required" class="form-control" name="row[ticket_img]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Free_money')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-free_money" data-rule="required" min="0" class="form-control" step="0.01" name="row[free_money]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

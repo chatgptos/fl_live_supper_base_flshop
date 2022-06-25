@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'booth/exhibition/index' + location.search,
-                    add_url: 'booth/exhibition/add',
-                    edit_url: 'booth/exhibition/edit',
-                    del_url: 'booth/exhibition/del',
-                    multi_url: 'booth/exhibition/multi',
-                    import_url: 'booth/exhibition/import',
+                    index_url: 'booth.exhibition/index' + location.search,
+                    add_url: 'booth.exhibition/add',
+                    edit_url: 'booth.exhibition/edit',
+                    del_url: 'booth.exhibition/del',
+                    multi_url: 'booth.exhibition/multi',
+                    import_url: 'booth.exhibition/import',
                     table: 'booth_exhibition',
                 }
             });
@@ -53,7 +53,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'booth/exhibition/recyclebin' + location.search,
+                url: 'booth.exhibition/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -79,7 +79,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'booth/exhibition/restore',
+                                    url: 'booth.exhibition/restore',
                                     refresh: true
                                 },
                                 {
@@ -87,7 +87,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'booth/exhibition/destroy',
+                                    url: 'booth.exhibition/destroy',
                                     refresh: true
                                 }
                             ],

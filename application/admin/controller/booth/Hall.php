@@ -5,7 +5,7 @@ namespace app\admin\controller\booth;
 use app\common\controller\Backend;
 
 /**
- * 
+ * 展厅展区维护管理
  *
  * @icon fa fa-circle-o
  */

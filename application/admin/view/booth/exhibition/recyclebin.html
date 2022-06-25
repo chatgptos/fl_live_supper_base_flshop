@@ -7,14 +7,14 @@
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         {:build_toolbar('refresh')}
-                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('booth/exhibition/restore')?'':'hide'}" href="javascript:;" data-url="booth/exhibition/restore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
-                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('booth/exhibition/destroy')?'':'hide'}" href="javascript:;" data-url="booth/exhibition/destroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
-                        <a class="btn btn-success btn-restoreall {:$auth->check('booth/exhibition/restore')?'':'hide'}" href="javascript:;" data-url="booth/exhibition/restore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
-                        <a class="btn btn-danger btn-destroyall {:$auth->check('booth/exhibition/destroy')?'':'hide'}" href="javascript:;" data-url="booth/exhibition/destroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
+                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('booth.exhibition/restore')?'':'hide'}" href="javascript:;" data-url="booth.exhibition/restore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
+                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('booth.exhibition/destroy')?'':'hide'}" href="javascript:;" data-url="booth.exhibition/destroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
+                        <a class="btn btn-success btn-restoreall {:$auth->check('booth.exhibition/restore')?'':'hide'}" href="javascript:;" data-url="booth.exhibition/restore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
+                        <a class="btn btn-danger btn-destroyall {:$auth->check('booth.exhibition/destroy')?'':'hide'}" href="javascript:;" data-url="booth.exhibition/destroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
                     </div>
                     <table id="table" class="table table-striped table-bordered table-hover"
-                           data-operate-restore="{:$auth->check('booth/exhibition/restore')}"
-                           data-operate-destroy="{:$auth->check('booth/exhibition/destroy')}"
+                           data-operate-restore="{:$auth->check('booth.exhibition/restore')}"
+                           data-operate-destroy="{:$auth->check('booth.exhibition/destroy')}"
                            width="100%">
                     </table>
                 </div>

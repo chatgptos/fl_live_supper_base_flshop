@@ -3,12 +3,12 @@
 namespace app\admin\model;
 
 use think\Model;
-
+use traits\model\SoftDelete;
 
 class Booth extends Model
 {
 
-    
+    use SoftDelete;
 
     
 
@@ -20,8 +20,8 @@ class Booth extends Model
 
     // 定义时间戳字段名
     protected $created = 'created';
-    protected $modified = false;
-    protected $deleted = false;
+    protected $modified = 'modified';
+    protected $deleted = 'deleted';
 
     // 追加属性
     protected $append = [

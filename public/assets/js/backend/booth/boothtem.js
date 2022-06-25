@@ -20,12 +20,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
-                pk: 'temid',
-                sortName: 'temid',
+                pk: 'id',
+                sortName: 'id',
                 columns: [
                     [
                         {checkbox: true},
-                        {field: 'temid', title: __('Temid')},
+                        {field: 'id', title: __('Id')},
                         {field: 'stand', title: __('Stand'), operate: 'LIKE'},
                         {field: 'area', title: __('Area'), operate: 'LIKE'},
                         {field: 'booth_height', title: __('Booth_height')},

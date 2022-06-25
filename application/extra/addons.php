@@ -17,13 +17,13 @@ return [
             'flshop',
         ],
         'upgrade' => [
-            'mydemo',
             'flshop',
+            'mydemo',
         ],
         'user_sidenav_after' => [
+            'flshop',
             'mydemo',
             'signin',
-            'flshop',
         ],
         'user_delete_successed' => [
             'third',
