@@ -2,7 +2,7 @@
 
 return [
     'Id'          => '峰会id',
-    'Title'       => '峰会标题',
+    'Name'        => '峰会标题',
     'Hall_id'     => '展厅编号',
     'Intro'       => '峰会介绍',
     'Start_time'  => '峰会开始时间',
