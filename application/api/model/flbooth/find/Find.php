@@ -11,7 +11,7 @@ class Find extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_find';
+    protected $name = 'booth_find';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

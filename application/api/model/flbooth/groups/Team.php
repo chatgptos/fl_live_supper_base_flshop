@@ -10,7 +10,7 @@ class Team extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_groups_team';
+    protected $name = 'booth_groups_team';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

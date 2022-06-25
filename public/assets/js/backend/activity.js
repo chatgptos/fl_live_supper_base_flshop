@@ -28,7 +28,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     [
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
-                        {field: 'act_name', title: __('Act_name'), operate: 'LIKE'},
+                        {field: 'name', title: __('Name'), operate: 'LIKE'},
                         {field: 'act_add', title: __('Act_add'), operate: 'LIKE'},
                         {field: 'act_date', title: __('Act_date')},
                         {field: 'act_time', title: __('Act_time'), operate: 'LIKE'},

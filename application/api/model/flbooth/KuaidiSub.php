@@ -6,7 +6,7 @@ use think\Model;
 class KuaidiSub extends Model
 {
     // 表名
-    protected $name = 'flbooth_kuaidi_sub';
+    protected $name = 'booth_kuaidi_sub';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

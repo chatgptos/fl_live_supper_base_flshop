@@ -9,7 +9,7 @@ class Page extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_page';
+    protected $name = 'booth_page';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

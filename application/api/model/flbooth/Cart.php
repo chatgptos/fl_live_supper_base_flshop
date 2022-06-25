@@ -8,7 +8,7 @@ class Cart extends Model
 
 
     // 表名
-    protected $name = 'flbooth_cart';
+    protected $name = 'booth_cart';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

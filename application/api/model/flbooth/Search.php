@@ -6,7 +6,7 @@ use think\Model;
 class Search extends Model
 {
     // 表名
-    protected $name = 'flbooth_search';
+    protected $name = 'booth_search';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

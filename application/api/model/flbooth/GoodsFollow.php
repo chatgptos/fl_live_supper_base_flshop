@@ -13,7 +13,7 @@ class GoodsFollow extends Model
     
 
     // 表名
-    protected $name = 'flbooth_goods_follow';
+    protected $name = 'booth_goods_follow';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

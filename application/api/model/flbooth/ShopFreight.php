@@ -13,7 +13,7 @@ class ShopFreight extends Model
     
 
     // 表名
-    protected $name = 'flbooth_shop_freight';
+    protected $name = 'booth_shop_freight';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

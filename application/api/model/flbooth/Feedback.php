@@ -13,7 +13,7 @@ class Feedback extends Model
     
 
     // 表名
-    protected $name = 'flbooth_feedback';
+    protected $name = 'booth_feedback';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

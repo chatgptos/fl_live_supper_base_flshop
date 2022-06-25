@@ -8,7 +8,7 @@ class Live extends Model
 
 
     // 表名
-    protected $name = 'flbooth_live';
+    protected $name = 'booth_live';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

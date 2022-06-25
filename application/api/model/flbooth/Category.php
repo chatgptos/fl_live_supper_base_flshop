@@ -7,7 +7,7 @@ class Category extends Model
 {
 
     // 表名
-    protected $name = 'flbooth_category';
+    protected $name = 'booth_category';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

@@ -8,7 +8,7 @@ class Order extends Model
 {
     use SoftDelete;
     // 表名
-    protected $name = 'flbooth_groups_order';
+    protected $name = 'booth_groups_order';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

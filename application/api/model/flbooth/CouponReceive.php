@@ -13,7 +13,7 @@ class CouponReceive extends Model
     
 
     // 表名
-    protected $name = 'flbooth_coupon_receive';
+    protected $name = 'booth_coupon_receive';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

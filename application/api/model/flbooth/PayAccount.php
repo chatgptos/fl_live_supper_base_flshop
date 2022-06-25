@@ -10,7 +10,7 @@ class PayAccount extends Model
 
     use SoftDelete;
     // 表名
-    protected $name = 'flbooth_pay_account';
+    protected $name = 'booth_pay_account';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

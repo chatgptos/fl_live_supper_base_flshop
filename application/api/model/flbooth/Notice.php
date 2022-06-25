@@ -13,7 +13,7 @@ class Notice extends Model
     
 
     // 表名
-    protected $name = 'flbooth_notice';
+    protected $name = 'booth_notice';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

@@ -13,7 +13,7 @@ class ShopService extends Model
     
 
     // 表名
-    protected $name = 'flbooth_shop_service';
+    protected $name = 'booth_shop_service';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

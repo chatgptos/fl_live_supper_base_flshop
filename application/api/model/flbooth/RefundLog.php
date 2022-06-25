@@ -8,7 +8,7 @@ class RefundLog extends Model
 {
 
     // 表名
-    protected $name = 'flbooth_refund_log';
+    protected $name = 'booth_refund_log';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

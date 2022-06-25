@@ -10,7 +10,7 @@ class Kuaidi extends Model
 
     use SoftDelete;
     // 表名
-    protected $name = 'flbooth_kuaidi';
+    protected $name = 'booth_kuaidi';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

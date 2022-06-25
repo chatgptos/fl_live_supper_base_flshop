@@ -10,7 +10,7 @@ class Ladder extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_groups_ladder';
+    protected $name = 'booth_groups_ladder';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

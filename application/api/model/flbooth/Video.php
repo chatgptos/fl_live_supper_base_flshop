@@ -8,7 +8,7 @@ class Video extends Model
 
 
     // 表名
-    protected $name = 'flbooth_video';
+    protected $name = 'booth_video';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

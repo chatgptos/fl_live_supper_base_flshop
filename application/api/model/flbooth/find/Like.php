@@ -8,7 +8,7 @@ class Like extends Model
 {
     use SoftDelete;
     // 表名
-    protected $name = 'flbooth_find_like';
+    protected $name = 'booth_find_like';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

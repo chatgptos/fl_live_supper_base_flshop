@@ -71,13 +71,26 @@ class Shop extends Api
 			->find();
 		$this->success('返回成功', $row);
 	}
-	
-	/**
-	 * 展商入驻
-	 *
-	 * @ApiSummary  (flbooth 店铺接口商家入驻)
-	 * @ApiMethod   (POST)
-	 */
+
+
+    /**
+     * 展商报名参展信息
+     *
+     * @ApiTitle    (展商报名参展信息)
+     * @ApiSummary  (展商报名参展信息)
+     * @ApiMethod   (POST)
+     * @ApiParams   (name="name", type="integer", required=true, description="展商名称")
+     * @ApiParams   (name="number", type="integer", required=true, description="展商名称")
+     * @ApiParams   (name="image", type="integer", required=true, description="展商名称")
+     * @ApiParams   (name="trademark", type="integer", required=true, description="展商名称")
+     * @ApiParams   (name="wechat", type="integer", required=true, description="展商名称")
+     * @ApiParams   (name="mobile", type="integer", required=true, description="展商名称")
+     * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")
+     * @ApiReturnParams   (name="msg", type="string", required=true, sample="返回成功")
+     * @ApiReturnParams   (name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}", description="扩展数据返回")
+     * @ApiReturn   ({"code":1,"msg":"","time":"1655882282","data":{"id":1,"title":"111","intro":"北海道崛起带来的后世界","start_time":1111,"end_time":0,"data":"11","template":"11","css":"11","topic_img":"11","title_pic":"11","base_style":"1","htmls":"1","keywords":"11","description":"11","start_time_text":"1970-01-01 08:18:31","end_time_text":"1970-01-01 08:00:00"}})
+
+     */
 	public function apply()
 	{
 		//设置过滤方法
@@ -87,6 +100,9 @@ class Shop extends Api
 			->find();
 		if ($this->request->isPost()) {
 			$params = $this->request->post();
+            var_dump($this->auth);
+            var_dump($params);
+            die;
 			$data = [
 				'name' => $params['name'],
 				'user_id' => $this->auth->id,
@@ -97,6 +113,7 @@ class Shop extends Api
 				'mobile' => $params['mobile'],
 				'state' => 1
 			];
+
 			if($row){
 				$row->save($data);
 			}else{

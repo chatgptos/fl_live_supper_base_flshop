@@ -347,7 +347,7 @@ class Common extends Api
 	{
 		header('Content-type: image/svg+xml');
 	    $icon = <<<EOT
-		<svg style="background-color: #E1F5FF;" viewBox="0 0 200 200" version="1.1" id="flbooth_com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+		<svg style="background-color: #E1F5FF;" viewBox="0 0 200 200" version="1.1" id="booth_com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
 			<path fill="#313FA0" d="M157.5,115.9v-4.7l-28.8-28.8c-3.2-3.2-8.4-3.2-11.5,0L76.5,123h73.8C154.3,123,157.5,119.8,157.5,115.9z"/>
 			<path fill="#8C9EFF" d="M50.4,123H136L86.3,73.4c-3.2-3.2-8.4-3.2-11.5,0l-31.5,31.3v11.2C43.2,119.8,46.4,123,50.4,123z"/>
 			<path fill="#FFD600" d="M117.8,58.5c0,4.5,3.7,8.2,8.2,8.2s8.2-3.7,8.2-8.2s-3.7-8.2-8.2-8.2S117.8,54,117.8,58.5z"/>

@@ -13,7 +13,7 @@ class Article extends Model
     
 
     // 表名
-    protected $name = 'flbooth_article';
+    protected $name = 'booth_article';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

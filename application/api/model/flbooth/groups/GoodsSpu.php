@@ -12,7 +12,7 @@ class GoodsSpu extends Model
     
 
     // 表名
-    protected $name = 'flbooth_groups_goods_spu';
+    protected $name = 'booth_groups_goods_spu';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

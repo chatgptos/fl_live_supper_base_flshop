@@ -9,7 +9,7 @@ class OrderGoods extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_groups_order_goods';
+    protected $name = 'booth_groups_order_goods';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

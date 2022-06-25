@@ -11,7 +11,7 @@ class PayOutTrade extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_pay_out_trade';
+    protected $name = 'booth_pay_out_trade';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

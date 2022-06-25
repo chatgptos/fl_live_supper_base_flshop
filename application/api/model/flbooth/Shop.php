@@ -8,7 +8,7 @@ class Shop extends Model
 {
 
     // 表名
-    protected $name = 'flbooth_shop';
+    protected $name = 'booth_shop';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

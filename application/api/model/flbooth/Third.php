@@ -9,7 +9,7 @@ class Third extends Model
 {
 
     // 表名
-    protected $name = 'flbooth_third';
+    protected $name = 'booth_third';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

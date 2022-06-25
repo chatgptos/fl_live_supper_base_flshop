@@ -10,7 +10,7 @@ class Groups extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_groups';
+    protected $name = 'booth_groups';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

@@ -11,7 +11,7 @@ class GoodsSku extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_goods_sku';
+    protected $name = 'booth_goods_sku';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

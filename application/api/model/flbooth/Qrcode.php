@@ -9,7 +9,7 @@ class Qrcode extends Model
 {
 	use SoftDelete;
     // 表名
-    protected $name = 'flbooth_qrcode';
+    protected $name = 'booth_qrcode';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

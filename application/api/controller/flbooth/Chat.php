@@ -149,7 +149,7 @@ class Chat extends Api
 			->order('created', 'desc')
 		    ->field('to_id as uid, message, isread, type, created')
 		    ->where('form_uid ='.$user_id)
-		    ->union('SELECT form_uid as uid, message, isread, type, created FROM '.config('database.prefix').'flbooth_chat WHERE to_id = '.$user_id)
+		    ->union('SELECT form_uid as uid, message, isread, type, created FROM '.config('database.prefix').'booth_chat WHERE to_id = '.$user_id)
 			->buildSql();
 		$query = Db::table($sub)
 			->alias('temp')

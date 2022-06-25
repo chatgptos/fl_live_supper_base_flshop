@@ -13,7 +13,7 @@ class Auth extends Model
     
 
     // 表名
-    protected $name = 'flbooth_auth';
+    protected $name = 'booth_auth';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

@@ -10,7 +10,7 @@ class Theme extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_theme';
+    protected $name = 'booth_theme';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

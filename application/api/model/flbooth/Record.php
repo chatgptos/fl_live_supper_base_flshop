@@ -13,7 +13,7 @@ class Record extends Model
     
 
     // 表名
-    protected $name = 'flbooth_record';
+    protected $name = 'booth_record';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

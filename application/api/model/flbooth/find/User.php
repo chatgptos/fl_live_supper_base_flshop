@@ -11,7 +11,7 @@ class User extends Model
     use SoftDelete;
 
     // 表名
-    protected $name = 'flbooth_find_user';
+    protected $name = 'booth_find_user';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

@@ -6,7 +6,7 @@ use think\Model;
 class Address extends Model
 {
     // 表名
-    protected $name = 'flbooth_address';
+    protected $name = 'booth_address';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

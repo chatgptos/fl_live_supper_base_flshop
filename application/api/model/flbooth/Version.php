@@ -8,7 +8,7 @@ use think\Model;
 class Version extends Model
 {
     // 表名
-    protected $name = 'flbooth_version';
+    protected $name = 'booth_version';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

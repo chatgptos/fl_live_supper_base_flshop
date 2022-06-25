@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Act_name'        => '活动名称',
+    'Name'            => '活动名称',
     'Act_add'         => '活动添加人',
     'Act_date'        => '活动日期',
     'Act_time'        => '开始时间',

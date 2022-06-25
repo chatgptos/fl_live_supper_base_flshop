@@ -13,7 +13,7 @@ class Complaint extends Model
     
 
     // 表名
-    protected $name = 'flbooth_complaint';
+    protected $name = 'booth_complaint';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

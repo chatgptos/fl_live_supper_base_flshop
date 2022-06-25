@@ -13,7 +13,7 @@ class Order extends Model
     
 
     // 表名
-    protected $name = 'flbooth_order';
+    protected $name = 'booth_order';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
