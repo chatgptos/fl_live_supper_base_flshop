@@ -1,6 +1,6 @@
 <?php
 
-namespace app\api\controller;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 
