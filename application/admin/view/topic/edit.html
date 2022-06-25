@@ -7,6 +7,12 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Hall_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-hall_id" data-rule="required" data-source="hall/index" class="form-control selectpage" name="row[hall_id]" type="text" value="{$row.hall_id|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Intro')}:</label>
         <div class="col-xs-12 col-sm-8">
             <textarea id="c-intro" data-rule="required" class="form-control " rows="5" name="row[intro]" cols="50">{$row.intro|htmlentities}</textarea>
@@ -45,13 +51,29 @@
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Topic_img')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-topic_img" class="form-control" name="row[topic_img]" type="text" value="{$row.topic_img|htmlentities}">
+            <div class="input-group">
+                <input id="c-topic_img" class="form-control" size="50" name="row[topic_img]" type="text" value="{$row.topic_img|htmlentities}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-topic_img" class="btn btn-danger faupload" data-input-id="c-topic_img" data-mime_type="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-topic_img"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-topic_img" class="btn btn-primary fachoose" data-input-id="c-topic_img" data-mime_type="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-topic_img"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-topic_img"></ul>
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Title_pic')}:</label>
+        <label class="control-label col-xs-12 col-sm-2">{:__('Title_img')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-title_pic" class="form-control" name="row[title_pic]" type="text" value="{$row.title_pic|htmlentities}">
+            <div class="input-group">
+                <input id="c-title_img" class="form-control" size="50" name="row[title_img]" type="text" value="{$row.title_img|htmlentities}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-title_img" class="btn btn-danger faupload" data-input-id="c-title_img" data-mime_type="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-title_img"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-title_img" class="btn btn-primary fachoose" data-input-id="c-title_img" data-mime_type="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-title_img"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-title_img"></ul>
         </div>
     </div>
     <div class="form-group">

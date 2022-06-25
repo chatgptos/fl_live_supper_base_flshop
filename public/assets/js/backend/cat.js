@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'boothtype/index' + location.search,
-                    add_url: 'boothtype/add',
-                    edit_url: 'boothtype/edit',
-                    del_url: 'boothtype/del',
-                    multi_url: 'boothtype/multi',
-                    import_url: 'boothtype/import',
-                    table: 'booth_boothtype',
+                    index_url: 'cat/index' + location.search,
+                    add_url: 'cat/add',
+                    edit_url: 'cat/edit',
+                    del_url: 'cat/del',
+                    multi_url: 'cat/multi',
+                    import_url: 'cat/import',
+                    table: 'booth_article_cat',
                 }
             });
 
@@ -20,14 +20,19 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
-                pk: 'id',
-                sortName: 'id',
+                pk: 'cat_id',
+                sortName: 'cat_id',
                 columns: [
                     [
                         {checkbox: true},
-                        {field: 'id', title: __('Id')},
+                        {field: 'cat_id', title: __('Cat_id')},
                         {field: 'name', title: __('Name'), operate: 'LIKE'},
-                        {field: 'type_name', title: __('Type_name'), operate: 'LIKE'},
+                        {field: 'cat_type', title: __('Cat_type')},
+                        {field: 'keywords', title: __('Keywords'), operate: 'LIKE'},
+                        {field: 'cat_desc', title: __('Cat_desc'), operate: 'LIKE'},
+                        {field: 'sort_order', title: __('Sort_order')},
+                        {field: 'show_in_nav', title: __('Show_in_nav')},
+                        {field: 'parent_id', title: __('Parent_id')},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
                 ]

@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'boothtype/index' + location.search,
-                    add_url: 'boothtype/add',
-                    edit_url: 'boothtype/edit',
-                    del_url: 'boothtype/del',
-                    multi_url: 'boothtype/multi',
-                    import_url: 'boothtype/import',
-                    table: 'booth_boothtype',
+                    index_url: 'collect/index' + location.search,
+                    add_url: 'collect/add',
+                    edit_url: 'collect/edit',
+                    del_url: 'collect/del',
+                    multi_url: 'collect/multi',
+                    import_url: 'collect/import',
+                    table: 'booth_user_collect',
                 }
             });
 
@@ -26,8 +26,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     [
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
-                        {field: 'name', title: __('Name'), operate: 'LIKE'},
-                        {field: 'type_name', title: __('Type_name'), operate: 'LIKE'},
+                        {field: 'user_id', title: __('User_id')},
+                        {field: 'exhibitor_id', title: __('Exhibitor_id')},
+                        {field: 'activity_id', title: __('Activity_id')},
+                        {field: 'goods_id', title: __('Goods_id')},
+                        {field: 'add_time', title: __('Add_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
+                        {field: 'topic_id', title: __('Topic_id')},
+                        {field: 'is_attention', title: __('Is_attention')},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
                 ]

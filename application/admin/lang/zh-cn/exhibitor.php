@@ -2,6 +2,7 @@
 
 return [
     'Company_name'        => '公司名称',
+    'Name'                => '展商名称',
     'Company_name_en'     => '公司名称英文',
     'Contact_address'     => '公司地址',
     'Contact_address_en'  => '公司地址英文',

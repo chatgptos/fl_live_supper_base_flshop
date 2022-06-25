@@ -43,9 +43,27 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Boothtem_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-boothtem_id" data-rule="required" data-source="boothtem/index" class="form-control selectpage" name="row[boothtem_id]" type="text" value="{$row.boothtem_id|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Boothtype_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-boothtype_id" data-rule="required" data-source="boothtype/index" class="form-control selectpage" name="row[boothtype_id]" type="text" value="{$row.boothtype_id|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Booth_standard')}:</label>
         <div class="col-xs-12 col-sm-8">
             <input id="c-booth_standard" class="form-control" name="row[booth_standard]" type="text" value="{$row.booth_standard|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Booth_type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-booth_type" class="form-control" name="row[booth_type]" type="text" value="{$row.booth_type|htmlentities}">
         </div>
     </div>
     <div class="form-group">
@@ -142,12 +160,6 @@
         <label class="control-label col-xs-12 col-sm-2">{:__('Position')}:</label>
         <div class="col-xs-12 col-sm-8">
             <input id="c-position" class="form-control" name="row[position]" type="text" value="{$row.position|htmlentities}">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Booth_type')}:</label>
-        <div class="col-xs-12 col-sm-8">
-            <input id="c-booth_type" class="form-control" name="row[booth_type]" type="text" value="{$row.booth_type|htmlentities}">
         </div>
     </div>
     <div class="form-group">

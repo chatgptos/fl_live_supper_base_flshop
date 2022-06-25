@@ -5,7 +5,7 @@ namespace app\admin\controller;
 use app\common\controller\Backend;
 
 /**
- * 展会峰会管理
+ * 峰会
  *
  * @icon fa fa-circle-o
  */

@@ -5,7 +5,7 @@ namespace app\admin\controller;
 use app\common\controller\Backend;
 
 /**
- * 展位信息管理
+ * 展商信息登记
  *
  * @icon fa fa-circle-o
  */

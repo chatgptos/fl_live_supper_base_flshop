@@ -5,23 +5,23 @@ namespace app\admin\controller;
 use app\common\controller\Backend;
 
 /**
- * 展位信息
+ * 文章分类
  *
  * @icon fa fa-circle-o
  */
-class Boothinfo extends Backend
+class Cat extends Backend
 {
 
     /**
-     * Boothinfo模型对象
-     * @var \app\admin\model\Boothinfo
+     * Cat模型对象
+     * @var \app\admin\model\Cat
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\Boothinfo;
+        $this->model = new \app\admin\model\Cat;
 
     }
 

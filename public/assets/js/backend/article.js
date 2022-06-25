@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'topic/index' + location.search,
-                    add_url: 'topic/add',
-                    edit_url: 'topic/edit',
-                    del_url: 'topic/del',
-                    multi_url: 'topic/multi',
-                    import_url: 'topic/import',
-                    table: 'booth_topic',
+                    index_url: 'article/index' + location.search,
+                    add_url: 'article/add',
+                    edit_url: 'article/edit',
+                    del_url: 'article/del',
+                    multi_url: 'article/multi',
+                    import_url: 'article/import',
+                    table: 'booth_article',
                 }
             });
 
@@ -20,25 +20,28 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
-                pk: 'id',
-                sortName: 'id',
+                pk: 'article_id',
+                sortName: 'article_id',
                 fixedColumns: true,
                 fixedRightNumber: 1,
                 columns: [
                     [
                         {checkbox: true},
-                        {field: 'id', title: __('Id')},
+                        {field: 'article_id', title: __('Article_id')},
+                        {field: 'cat_id', title: __('Cat_id')},
                         {field: 'title', title: __('Title'), operate: 'LIKE'},
-                        {field: 'hall_id', title: __('Hall_id')},
-                        {field: 'start_time', title: __('Start_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
-                        {field: 'end_time', title: __('End_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
-                        {field: 'template', title: __('Template'), operate: 'LIKE'},
-                        {field: 'topic_img', title: __('Topic_img'), operate: 'LIKE'},
-                        {field: 'title_img', title: __('Title_img'), operate: 'LIKE'},
-                        {field: 'base_style', title: __('Base_style')},
-                        {field: 'htmls', title: __('Htmls')},
+                        {field: 'content', title: __('Content')},
+                        {field: 'author', title: __('Author'), operate: 'LIKE'},
+                        {field: 'author_email', title: __('Author_email'), operate: 'LIKE'},
                         {field: 'keywords', title: __('Keywords'), operate: 'LIKE'},
+                        {field: 'article_type', title: __('Article_type')},
+                        {field: 'is_open', title: __('Is_open')},
+                        {field: 'add_time', title: __('Add_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
+                        {field: 'file_url', title: __('File_url'), operate: 'LIKE', formatter: Table.api.formatter.url},
+                        {field: 'open_type', title: __('Open_type')},
+                        {field: 'link', title: __('Link'), operate: 'LIKE'},
                         {field: 'description', title: __('Description'), operate: 'LIKE'},
+                        {field: 'order_num', title: __('Order_num')},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
                 ]
