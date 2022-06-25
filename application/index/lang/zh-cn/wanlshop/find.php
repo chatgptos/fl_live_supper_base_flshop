@@ -25,7 +25,7 @@ return [
     'Likes'                 => '点赞',
     'Comments'              => '评论',
     'created'            => '创建时间',
-    'Updatetime'            => '更新时间',
+    'modified'            => '更新时间',
     'deleted'            => '删除时间',
     'flshopshop.shopname' => '店铺名称',
 	

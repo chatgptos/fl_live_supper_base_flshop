@@ -108,7 +108,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
                         {field: 'account', title: __('Account')},
 						{field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 						{field: 'status', title: __('提现状态'), searchList: {"created":__('Status created'),"successed":__('Status successed'),"rejected":__('Status rejected')}, formatter: Table.api.formatter.status},
-                        // {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+                        // {field: 'modified', title: __('modified'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 						// {field: 'transfertime', title: __('Transfertime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 						{field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate,buttons: [
 							{name: 'detail',title: __('提现详情'),text: __('提现详情'),

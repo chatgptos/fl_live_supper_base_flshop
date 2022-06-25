@@ -17,5 +17,5 @@ return [
     'Packgesize'   => '包大小MB',
     'Enforce'      => '强制更新',
     'created'   => '创建时间',
-    'Updatetime'   => '更新时间'
+    'modified'   => '更新时间'
 ];

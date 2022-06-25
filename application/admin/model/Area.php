@@ -11,5 +11,5 @@ class Area extends Model
     protected $autoWriteTimestamp = false;
     // 定义时间戳字段名
     protected $created = false;
-    protected $updateTime = false;
+    protected $modified = false;
 }

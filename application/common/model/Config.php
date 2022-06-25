@@ -16,7 +16,7 @@ class Config extends Model
     protected $autoWriteTimestamp = false;
     // 定义时间戳字段名
     protected $create_time = false;
-    protected $updateTime = false;
+    protected $modified = false;
     // 追加属性
     protected $append = [
         'extend_html'

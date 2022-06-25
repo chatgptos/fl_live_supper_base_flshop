@@ -34,7 +34,7 @@ return [
     'State 4'                  => '成功退款',
     'State 5'                  => '退款已关闭',
     'created'               => '创建时间',
-    'Updatetime'               => '更新时间',
+    'modified'               => '更新时间',
     'deleted'               => '删除时间',
     'Status'                   => '状态',
     'flshoporder.id'         => 'ID',

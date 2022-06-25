@@ -18,7 +18,7 @@ class PayOutTrade extends Model
 
     // 定义时间戳字段名
     protected $created = 'created';
-    protected $updateTime = 'updatetime';
+    protected $modified = 'modified';
     protected $deleted = 'deleted';
 	
 	protected function setPayIdAttr($value)

@@ -10,7 +10,7 @@ return [
     'Score'         => '评分',
     'Receipt'       => '处理回执',
     'created'    => '创建时间',
-    'Updatetime'    => '更新时间',
+    'modified'    => '更新时间',
     'deleted'    => '删除时间',
     'Status'        => '状态',
     'Status normal' => '未受理',

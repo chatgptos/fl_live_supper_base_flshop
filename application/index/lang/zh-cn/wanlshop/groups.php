@@ -37,7 +37,7 @@ return [
     'Like'               => '收藏',
     'Weigh'              => '权重',
     'created'         => '创建时间',
-    'Updatetime'         => '更新时间',
+    'modified'         => '更新时间',
     'deleted'         => '删除时间',
     'Status'             => '上架状态',
 	
@@ -64,7 +64,7 @@ return [
 	'State auto'                => '自动成团',
 	'Grouptime'                 => '成团时间',
 	'Validitytime'              => '有效时间',
-	'Updatetime'                => '更新时间',
+	'modified'                => '更新时间',
 	
 	// 追加数据
 	'All'                                                   => '全部宝贝',

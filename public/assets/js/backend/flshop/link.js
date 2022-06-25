@@ -30,7 +30,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'title', title: __('Title')},
                         {field: 'route', title: __('Route')},
                         {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
-                        {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'modified', title: __('modified'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'weigh', title: __('Weigh')},
                         {field: 'status', title: __('Status'), searchList: {"normal":__('Normal'),"hidden":__('Hidden')}, formatter: Table.api.formatter.status},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
@@ -131,8 +131,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'id', title: __('Id')},
                         {field: 'title', title: __('Title'), align: 'left'},
                         {
-                            field: 'deletetime',
-                            title: __('Deletetime'),
+                            field: 'deleted',
+                            title: __('deleted'),
                             operate: 'RANGE',
                             addclass: 'datetimerange',
                             formatter: Table.api.formatter.datetime

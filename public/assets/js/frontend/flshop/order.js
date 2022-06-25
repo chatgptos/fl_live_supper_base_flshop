@@ -131,7 +131,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'jquery-j
 			            {field: 'score_deliver', title: __('Score_deliver'), operate:'BETWEEN'},
 			            {field: 'score_logistics', title: __('Score_logistics'), operate:'BETWEEN'},
 			            {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
-			            {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+			            {field: 'modified', title: __('modified'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 			            {field: 'status', title: __('Status'), searchList: {"normal":__('Normal'),"hidden":__('Hidden')}, formatter: Table.api.formatter.status},
 			            {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate,
 							buttons: [

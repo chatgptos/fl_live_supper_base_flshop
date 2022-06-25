@@ -68,7 +68,7 @@ class Live extends Backend
                     ->paginate($limit);
 
             foreach ($list as $row) {
-                $row->visible(['id','shop_id','image','content','liveid','liveurl','pushurl','recordurl','views','like ','state','updatetime']);
+                $row->visible(['id','shop_id','image','content','liveid','liveurl','pushurl','recordurl','views','like ','state','modified']);
                 $row->visible(['flshopfind']);
 				$row->getRelation('flshopfind')->visible(['id','content']);
 				$row->visible(['flshopshop']);

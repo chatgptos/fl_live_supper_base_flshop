@@ -42,7 +42,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 						// {field: 'activity',title: __('Activity'),searchList: {"true": __('Activity true'),"false": __('Activity false')},formatter: Table.api.formatter.normal},
 						{field: 'views',title: __('Views')},{field: 'sales',title: __('Sales')},{field: 'comment',title: __('Comment')},{field: 'praise',title: __('Praise')},
 						{field: 'like',title: __('Like')},{field: 'created',title: __('created'),operate: 'RANGE',addclass: 'datetimerange',formatter: Table.api.formatter.datetime},
-						{field: 'updatetime',title: __('Updatetime'),operate: 'RANGE',addclass: 'datetimerange',formatter: Table.api.formatter.datetime},
+						{field: 'modified',title: __('modified'),operate: 'RANGE',addclass: 'datetimerange',formatter: Table.api.formatter.datetime},
 						{field: 'status',title: __('Status'),searchList: {"normal": __('Normal'),"hidden": __('Hidden')},formatter: Table.api.formatter.status},
 						{field: 'operate',title: __('Operate'),table: table, events: Table.api.events.operate,formatter: Table.api.formatter.operate}
 					]
@@ -96,7 +96,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 						// {field: 'activity',title: __('Activity'),searchList: {"true": __('Activity true'),"false": __('Activity false')},formatter: Table.api.formatter.normal},
 						{field: 'views',title: __('Views')},{field: 'sales',title: __('Sales')},{field: 'comment',title: __('Comment')},{field: 'praise',title: __('Praise')},
 						{field: 'like',title: __('Like')},{field: 'created',title: __('created'),operate: 'RANGE',addclass: 'datetimerange',formatter: Table.api.formatter.datetime},
-						{field: 'updatetime',title: __('Updatetime'),operate: 'RANGE',addclass: 'datetimerange',formatter: Table.api.formatter.datetime},
+						{field: 'modified',title: __('modified'),operate: 'RANGE',addclass: 'datetimerange',formatter: Table.api.formatter.datetime},
 						{field: 'status',title: __('Status'),searchList: {"normal": __('Normal'),"hidden": __('Hidden')},formatter: Table.api.formatter.status},
 						{field: 'operate',title: __('Operate'),table: table,events: Table.api.events.operate,formatter: Table.api.formatter.operate}
 					]
@@ -132,8 +132,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 							align: 'left'
 						},
 						{
-							field: 'deletetime',
-							title: __('Deletetime'),
+							field: 'deleted',
+							title: __('deleted'),
 							operate: 'RANGE',
 							addclass: 'datetimerange',
 							formatter: Table.api.formatter.datetime
@@ -225,7 +225,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 						{field: 'id', title: __('Id')},
 						{field: 'image', title: __('Image'), events: Table.api.events.image, formatter: Table.api.formatter.image},
 						{field: 'title', title: __('Title')},
-						{field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+						{field: 'modified', title: __('modified'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 		                {
 		                    field: 'operate', title: __('Operate'), events: {
 		                        'click .btn-chooseone': function (e, value, row, index) {

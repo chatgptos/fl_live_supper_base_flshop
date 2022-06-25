@@ -82,8 +82,8 @@ define(['jquery', 'bootstrap', 'table', 'backend', 'form', 'vue'], function($, u
 							formatter: Table.api.formatter.normal
 						},
 						{
-							field: 'updatetime',
-							title: __('Updatetime'),
+							field: 'modified',
+							title: __('modified'),
 							operate: 'RANGE',
 							addclass: 'datetimerange',
 							autocomplete: false,
@@ -229,8 +229,8 @@ define(['jquery', 'bootstrap', 'table', 'backend', 'form', 'vue'], function($, u
 							title: __('Id')
 						},
 						{
-							field: 'deletetime',
-							title: __('Deletetime'),
+							field: 'deleted',
+							title: __('deleted'),
 							operate: 'RANGE',
 							addclass: 'datetimerange',
 							formatter: Table.api.formatter.datetime

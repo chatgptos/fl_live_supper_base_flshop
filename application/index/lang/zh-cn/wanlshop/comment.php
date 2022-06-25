@@ -20,7 +20,7 @@ return [
     'Score_logistics'       => '物流相符',
     'Switch'                => '匿名评论',
     'created'            => '创建时间',
-    'Updatetime'            => '更新时间',
+    'modified'            => '更新时间',
     'deleted'            => '删除时间',
     'Status'                => '状态',
     'User.username'         => '用户名',

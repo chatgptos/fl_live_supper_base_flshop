@@ -28,7 +28,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		                {field: 'name', title: __('Name')},
 						{field: 'type', title: __('Type'), searchList: {"page":__('Page'),"shop":__('Shop'),"index":__('Index')}, formatter: Table.api.formatter.normal},
 		                {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
-		                {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+		                {field: 'modified', title: __('modified'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
 		                {field: 'status', title: __('Status'), searchList: {"normal":__('Normal'),"hidden":__('Hidden')}, formatter: Table.api.formatter.status},
 		                {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
 		            ]
@@ -79,7 +79,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 						{field: 'image', title: __('Image'), events: Table.api.events.image, formatter: Table.api.formatter.image},
 						{field: 'category.name', title: __('Category.name'), formatter: Table.api.formatter.search},
                         {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
-                        {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'modified', title: __('modified'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'state', title: __('State'), searchList: {"0":__('State 0'),"1":__('State 1')}, formatter: Table.api.formatter.status},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]

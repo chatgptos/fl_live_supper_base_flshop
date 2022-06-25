@@ -26,7 +26,7 @@ return [
     'Joinip'         => '加入IP',
     'Jointime'       => '加入时间',
     'created'     => '创建时间',
-    'Updatetime'     => '更新时间',
+    'modified'     => '更新时间',
     'Token'          => 'Token',
     'Status'         => '状态',
     'Leave password blank if dont want to change' => '不修改密码请留空',

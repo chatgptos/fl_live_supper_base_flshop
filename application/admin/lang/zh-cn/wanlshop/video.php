@@ -20,7 +20,7 @@ return [
     'Size'                 => '视频大小',
     'Fit'                  => '视频的表现形式 ',
     'created'           => '创建时间',
-    'Updatetime'           => '更新时间',
+    'modified'           => '更新时间',
     'deleted'           => '删除时间',
     'flshopfind.id'      => 'FIND_ID',
     'flshopfind.content' => '内容'

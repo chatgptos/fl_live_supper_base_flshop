@@ -40,7 +40,7 @@ class Order extends Api
 		$list = model('app\api\model\flshop\groups\Order')
 			->where($where)
 			->field('id,shop_id,state')
-			->order('updatetime desc')
+			->order('modified desc')
 			->paginate()
 			->each(function($order, $key){
 				$order['goods'] = model('app\api\model\flshop\groups\OrderGoods')
@@ -76,7 +76,7 @@ class Order extends Api
 			$list = model('app\api\model\flshop\Order')
 				->where(['shop_id' => $shop_id, 'user_id' => $this->auth->id, 'status' => 'normal'])
 				->field('id,shop_id,order_no,state')
-				->order('updatetime desc')
+				->order('modified desc')
 				->select();
 			// 订单状态:1=待支付,2=待发货,3=待收货,4=待评论,5=售后订单(已弃用),6=已完成,7=已取消
 			foreach ($list as $row) {

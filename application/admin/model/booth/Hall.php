@@ -20,7 +20,7 @@ class Hall extends Model
 
     // 定义时间戳字段名
     protected $created = false;
-    protected $updateTime = false;
+    protected $modified = false;
     protected $deleted = false;
 
     // 追加属性

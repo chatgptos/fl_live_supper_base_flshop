@@ -38,7 +38,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'liveid', title: __('Liveid'), operate: 'LIKE'},
                         {field: 'liveurl', title: __('Liveurl'), operate: 'LIKE', formatter: Table.api.formatter.url},
                         {field: 'views', title: __('Views')},
-                        {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
+                        {field: 'modified', title: __('modified'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                         {
                         	field: 'operate', 
                         	title: __('Operate'), 
@@ -128,8 +128,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
                         {
-                            field: 'deletetime',
-                            title: __('Deletetime'),
+                            field: 'deleted',
+                            title: __('deleted'),
                             operate: 'RANGE',
                             addclass: 'datetimerange',
                             formatter: Table.api.formatter.datetime

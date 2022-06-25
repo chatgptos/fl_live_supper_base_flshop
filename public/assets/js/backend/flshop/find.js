@@ -37,7 +37,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'likes', title: __('Likes')},
 						{field: 'comments', title: __('Comments')},
                         {field: 'state', title: __('State'), searchList: {"publish":__('State publish'),"examine":__('State examine'),"hazard":__('State hazard'),"transcoding":__('State transcoding'),"screenshot":__('State screenshot'),"normal":__('State normal')}, formatter: Table.api.formatter.normal},
-                        {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
+                        {field: 'modified', title: __('modified'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                         {
 							field: 'operate', 
 							title: __('Operate'), 
@@ -162,8 +162,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
                         {
-                            field: 'deletetime',
-                            title: __('Deletetime'),
+                            field: 'deleted',
+                            title: __('deleted'),
                             operate: 'RANGE',
                             addclass: 'datetimerange',
                             formatter: Table.api.formatter.datetime

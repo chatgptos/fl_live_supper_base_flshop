@@ -36,8 +36,8 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 						addclass: "datetimerange",
 						formatter: a.api.formatter.datetime
 					}, {
-						field: "updatetime",
-						title: __("Updatetime"),
+						field: "modified",
+						title: __("modified"),
 						operate: "RANGE",
 						addclass: "datetimerange",
 						formatter: a.api.formatter.datetime
@@ -2198,8 +2198,8 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 						title: __("Name"),
 						align: "left"
 					}, {
-						field: "deletetime",
-						title: __("Deletetime"),
+						field: "deleted",
+						title: __("deleted"),
 						operate: "RANGE",
 						addclass: "datetimerange",
 						formatter: a.api.formatter.datetime

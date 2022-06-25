@@ -14,14 +14,14 @@ class Withdraw extends Model
 
     // 定义时间戳字段名
     protected $created = 'created';
-    protected $updateTime = 'updatetime';
+    protected $modified = 'modified';
     protected $deleted = false;
 
     // 追加属性
     protected $append = [
         'status_text',
 		'created_text',
-		'updatetime_text',
+		'modified_text',
         'transfertime_text'
     ];
     
@@ -66,9 +66,9 @@ class Withdraw extends Model
 	    $value = $value ? $value : (isset($data['created']) ? $data['created'] : '');
 	    return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
 	}
-	public function getUpdatetimeTextAttr($value, $data)
+	public function getmodifiedTextAttr($value, $data)
 	{
-	    $value = $value ? $value : (isset($data['updatetime']) ? $data['updatetime'] : '');
+	    $value = $value ? $value : (isset($data['modified']) ? $data['modified'] : '');
 	    return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
 	}
 	

@@ -11,7 +11,7 @@ return [
     'Switch'                => '开关',
     'Weigh'                 => '权重',
     'created'            => '创建时间',
-    'Updatetime'            => '更新时间',
+    'modified'            => '更新时间',
     'deleted'            => '删除时间',
     'Status'                => '状态',
     'Category.name' 		=> '类目名称'

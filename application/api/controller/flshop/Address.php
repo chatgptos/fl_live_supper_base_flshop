@@ -25,7 +25,7 @@ class Address extends Api
 		$list = model('app\api\model\flshop\Address')
 			->where('user_id', $this->auth->id)
 			->field('id,user_id,adcode,address,address_name,city,citycode,country,default,district,formatted_address,location,mobile,name,province')
-			->order('updatetime desc')
+			->order('modified desc')
 			->paginate();
 		$this->success('返回成功', $list);
     }

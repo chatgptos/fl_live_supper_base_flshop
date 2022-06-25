@@ -23,7 +23,7 @@ return [
     'created'                => '开团时间',
     'Grouptime'                 => '成团时间',
     'Validitytime'              => '有效时间',
-    'Updatetime'                => '更新时间',
+    'modified'                => '更新时间',
     'deleted'                => '删除时间',
     'Status'                    => '状态',
     'State'                 => '订单状态',

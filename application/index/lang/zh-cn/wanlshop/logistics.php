@@ -33,7 +33,7 @@ return [
     'Valuation 2'           => '按体积',
     'Pricedata'             => '快递价格',
     'created'            => '创建时间',
-    'Updatetime'            => '更新时间',
+    'modified'            => '更新时间',
     'deleted'            => '删除时间',
     'Status'                => '状态',
 	// 追加
@@ -53,7 +53,7 @@ return [
 	'Paymenttime'           => '付款时间',
 	'Delivertime'           => '发货时间',
 	'Dealtime'              => '成交时间',
-	'Updatetime'            => '更新时间',
+	'modified'            => '更新时间',
 	'deleted'            => '删除时间',
 	'Order_no'              => '订单号',
 	'Address_id'            => '地址ID',

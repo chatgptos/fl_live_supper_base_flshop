@@ -11,7 +11,7 @@ return [
     'Weigh'        => '权重',
     'Switch'       => '是否启用',
     'created'   => '创建时间',
-    'Updatetime'   => '更新时间',
+    'modified'   => '更新时间',
     'deleted'   => '删除时间',
     'Status'       => '状态',
     'State'        => '状态值',

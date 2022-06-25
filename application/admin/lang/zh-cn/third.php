@@ -10,7 +10,7 @@ return [
     'Access_token' => 'AccessToken',
     'Expires_in'   => '有效期',
     'created'   => '创建时间',
-    'Updatetime'   => '更新时间',
+    'modified'   => '更新时间',
     'login_time'    => '登录时间',
     'Expiretime'   => '过期时间'
 ];

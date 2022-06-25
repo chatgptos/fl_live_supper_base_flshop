@@ -10,7 +10,7 @@ return [
     'Flag'       => '标志',
     'Isnav'      => '是否导航显示',
     'created' => '创建时间',
-    'Updatetime' => '更新时间',
+    'modified' => '更新时间',
     'Weigh'      => '权重',
     'Status'     => '状态',
 	'Toggle menu visible'                        => '点击切换菜单显示',

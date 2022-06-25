@@ -39,7 +39,7 @@ return [
 	'Order_type groups'        => '拼团订单',
 	'Order_type seckill'       => '秒杀订单',
     'created'               => '创建时间',
-    'Updatetime'               => '更新时间',
+    'modified'               => '更新时间',
     'deleted'               => '删除时间',
     'Status'                   => '状态',
 	'Click to search %s'	   => '点击搜索 %s',

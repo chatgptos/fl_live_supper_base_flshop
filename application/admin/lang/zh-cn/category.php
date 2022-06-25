@@ -10,7 +10,7 @@ return [
     'Description'                        => '描述',
     'Diyname'                            => '自定义名称',
     'created'                         => '创建时间',
-    'Updatetime'                         => '更新时间',
+    'modified'                         => '更新时间',
     'Weigh'                              => '权重',
     'Category warmtips'                  => '温馨提示：栏目类型请前往<b>常规管理</b>-><b>系统配置</b>-><b>字典配置</b>中进行管理',
     'Can not change the parent to child or itself' => '父组别不能是它的子组别或它自己',

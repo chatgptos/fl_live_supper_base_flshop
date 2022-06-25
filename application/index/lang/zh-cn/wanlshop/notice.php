@@ -16,7 +16,7 @@ return [
     'Modules new'           => '商家上新',
     'Modules_id'            => '所属ID',
     'created'            => '创建时间',
-    'Updatetime'            => '更新时间',
+    'modified'            => '更新时间',
     'deleted'            => '删除时间',
     'Status'                => '状态'
 ];

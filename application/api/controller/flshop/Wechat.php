@@ -68,7 +68,7 @@ class Wechat extends Api
 	{
 	    try {
             $this->wechat->jssdk->setUrl(urldecode($url));
-    		$row = $this->wechat->jssdk->buildConfig(['updateAppMessageShareData','updateTimelineShareData','editAddress','chooseImage','onMenuShareAppMessage','onMenuShareTimeline','chooseImage','previewImage','uploadImage','downloadImage','chooseWXPay'], false, false, false);
+    		$row = $this->wechat->jssdk->buildConfig(['updateAppMessageShareData','modifiedlineShareData','editAddress','chooseImage','onMenuShareAppMessage','onMenuShareTimeline','chooseImage','previewImage','uploadImage','downloadImage','chooseWXPay'], false, false, false);
         } catch (\Exception $e) {
             if($e->formattedResponse['errcode'] === 40164){
                 $this->error('未在公众平台[设置与开发]添加IP白名单');

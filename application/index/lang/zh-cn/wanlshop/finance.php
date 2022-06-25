@@ -37,5 +37,5 @@ return [
 	'Are you sure you want to delete the %s selected item?' => '确定删除选中的 %s 项?',
 	'Are you sure you want to delete this item?'            => '确定删除此项?',
 	'Are you sure you want to delete or turncate?'          => '确定删除或清空?',
-    'Updatetime'       => '更新时间'
+    'modified'       => '更新时间'
 ];

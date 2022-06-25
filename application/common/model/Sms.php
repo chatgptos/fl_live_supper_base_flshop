@@ -14,7 +14,7 @@ class Sms Extends Model
     protected $autoWriteTimestamp = 'int';
     // 定义时间戳字段名
     protected $create_time = 'created';
-    protected $updateTime = false;
+    protected $modified = false;
     // 追加属性
     protected $append = [
     ];

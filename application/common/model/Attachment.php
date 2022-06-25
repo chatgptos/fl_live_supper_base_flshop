@@ -11,7 +11,7 @@ class Attachment extends Model
     protected $autoWriteTimestamp = 'int';
     // 定义时间戳字段名
     protected $create_time = 'created';
-    protected $updateTime = 'modified';
+    protected $modified = 'modified';
     // 定义字段类型
     protected $type = [
     ];

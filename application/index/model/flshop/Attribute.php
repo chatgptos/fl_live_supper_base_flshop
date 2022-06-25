@@ -14,7 +14,7 @@ class Attribute extends Model
 
     // 定义时间戳字段名
     protected $created = 'created';
-    protected $updateTime = 'updatetime';
+    protected $modified = 'modified';
 	
 	/**
 	 * 将value字段转换数组

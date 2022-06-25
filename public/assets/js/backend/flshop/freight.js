@@ -32,7 +32,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'isdelivery', title: __('Isdelivery'), searchList: {"0":__('Isdelivery 0'),"1":__('Isdelivery 1')}, formatter: Table.api.formatter.normal},
                         {field: 'valuation', title: __('Valuation'), searchList: {"0":__('Valuation 0'),"1":__('Valuation 1'),"2":__('Valuation 2')}, formatter: Table.api.formatter.normal},
                         {field: 'created', title: __('created'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
-                        {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'modified', title: __('modified'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'status', title: __('Status'), searchList: {"normal":__('Normal'),"hidden":__('Hidden')}, formatter: Table.api.formatter.status}
                     ]
                 ]
@@ -62,8 +62,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'id', title: __('Id')},
                         {field: 'name', title: __('Name'), align: 'left'},
                         {
-                            field: 'deletetime',
-                            title: __('Deletetime'),
+                            field: 'deleted',
+                            title: __('deleted'),
                             operate: 'RANGE',
                             addclass: 'datetimerange',
                             formatter: Table.api.formatter.datetime

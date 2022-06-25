@@ -119,8 +119,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function($, u
 							title: __('Id')
 						},
 						{
-							field: 'deletetime',
-							title: __('Deletetime'),
+							field: 'deleted',
+							title: __('deleted'),
 							operate: 'RANGE',
 							addclass: 'datetimerange',
 							formatter: Table.api.formatter.datetime

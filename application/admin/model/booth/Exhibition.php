@@ -3,12 +3,12 @@
 namespace app\admin\model\booth;
 
 use think\Model;
-
+use traits\model\SoftDelete;
 
 class Exhibition extends Model
 {
 
-    
+    use SoftDelete;
 
     
 
@@ -16,12 +16,12 @@ class Exhibition extends Model
     protected $name = 'booth_exhibition';
     
     // 自动写入时间戳字段
-    protected $autoWriteTimestamp = false;
+    protected $autoWriteTimestamp = 'integer';
 
     // 定义时间戳字段名
-    protected $created = false;
-    protected $updateTime = false;
-    protected $deleted = false;
+    protected $created = 'created';
+    protected $modified = 'modified';
+    protected $deleted = 'deleted';
 
     // 追加属性
     protected $append = [
