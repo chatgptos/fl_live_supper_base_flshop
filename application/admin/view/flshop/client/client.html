@@ -21,7 +21,7 @@
 			<div class="tab-pane fade active in" id="ini">
 				<div class="widget-body no-padding">
 					<form id="ini-form" class="edit-form form-horizontal" role="form" data-toggle="validator"
-						method="POST" action="{:url('flshop.client/edit')}">
+						method="POST" action="{:url('flbooth.client/edit')}">
 						{:token()}
 						<table class="table table-striped">
 							<thead>
@@ -36,7 +36,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[ini][name]', $flshop.ini.name,
+												{:Form::text('row[ini][name]', $flbooth.ini.name,
 												['data-rule'=>'required','data-tip'=>'请填写应用名称','placeholder'=>'应用名称，同等于app名称'])}
 											</div>
 											<div class="col-sm-4"></div>
@@ -48,7 +48,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::image('row[ini][logo]', $flshop.ini.logo,
+												{:Form::image('row[ini][logo]', $flbooth.ini.logo,
 												['data-rule'=>'required','data-tip'=>'请上传应用图标','placeholder'=>'请上传应用图标'])}
 											</div>
 											<div class="col-sm-4"></div>
@@ -60,7 +60,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::image('row[ini][guide_logo]', $flshop.ini.guide_logo,
+												{:Form::image('row[ini][guide_logo]', $flbooth.ini.guide_logo,
 												['data-rule'=>'required','data-tip'=>'请上传横幅应用图标','placeholder'=>'请上传横幅应用图标'])}
 												<div style="margin-top:5px;">
 													<a href="javascript:" data-toggle="tooltip" data-title="当前仅用于广告页启动页左上角logo管理"> <i class="fa fa-info-circle"></i> 横幅应用图标使用说明</a>
@@ -75,7 +75,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[ini][copyright]', $flshop.ini.copyright,
+												{:Form::text('row[ini][copyright]', $flbooth.ini.copyright,
 												['data-rule'=>'required','data-tip'=>'请填写应用版权信息','placeholder'=>'应用版权信息，用于关于软件展示信息'])}
 											</div>
 											<div class="col-sm-4"></div>
@@ -88,7 +88,7 @@
 								    <td>
 								        <div class="row">
 								            <div class="col-sm-8 col-xs-12">
-								                {:Form::text('row[ini][appid]', $flshop.ini.appid,
+								                {:Form::text('row[ini][appid]', $flbooth.ini.appid,
 								                ['data-rule'=>'required','data-tip'=>'请填写UNI-APP应用标识','placeholder'=>'UNI-APP应用标识，UNI-APP应用唯一标识'])}
 								                <div style="margin-top:5px;"><a href="javascript:" data-toggle="tooltip" data-title="生成客户端源码导入HBuilder X后，打开manifest.json文件，点击第一行重新获取，填写到此处，以便下次生成源码依然是此项目应用标识"> <i class="fa fa-info-circle"></i> 此处应该如何配置？</a> <a href="https://ask.dcloud.net.cn/article/35907" target="_blank"><i class="fa fa-question-circle"></i> DCloud appid 用途/作用/使用说明?</a></div>
 								            </div>
@@ -105,9 +105,9 @@
 													<input data-rule="required" class="form-control"
 														name="row[ini][package_name]" data-tip="包名一般域名倒序，如com.def.abc"
 														placeholder="请填写应用包名" type="text"
-														value="{$flshop.ini.package_name|htmlentities}">
+														value="{$flbooth.ini.package_name|htmlentities}">
 													<span class="input-group-btn"> <span class="btn btn-info btn-copy"
-															data-clipboard-text="{$flshop.ini.package_name|htmlentities}">
+															data-clipboard-text="{$flbooth.ini.package_name|htmlentities}">
 															<i class="fa fa-clipboard"></i></span> </span>
 												</div>
 											</div>
@@ -120,10 +120,10 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[ini][cdnurl]', $flshop.ini.cdnurl,
+												{:Form::text('row[ini][cdnurl]', $flbooth.ini.cdnurl,
 												['data-rule'=>'required','data-tip'=>'请填写应用CDN地址','placeholder'=>'建议https://你的域名或使用OSS地址，因为即时通讯使用wss'])}
 												<div style="margin-top:5px;">
-													<a href="https://doc.fastadmin.net/flshop/296.html#toc-7" target="_blank">
+													<a href="https://doc.fastadmin.net/flbooth/296.html#toc-7" target="_blank">
 														<i class="fa fa-question-circle"></i> 如何配置应用CDN地址?
 													</a>
 												</div>
@@ -137,10 +137,10 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[ini][appurl]', $flshop.ini.appurl,
+												{:Form::text('row[ini][appurl]', $flbooth.ini.appurl,
 												['data-rule'=>'required','data-tip'=>'请填写应用API服务器地址','placeholder'=>'你的域名/api
 												或者 https://api.abc.com'])}
-												<div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flshop/296.html" target="_blank"><i class="fa fa-question-circle"></i> 如何配置API二级域名?</a></div>
+												<div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flbooth/296.html" target="_blank"><i class="fa fa-question-circle"></i> 如何配置API二级域名?</a></div>
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -151,10 +151,10 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[ini][socketurl]', $flshop.ini.socketurl,
+												{:Form::text('row[ini][socketurl]', $flbooth.ini.socketurl,
 												['data-tip'=>'请填写IM服务器地址','placeholder'=>'你的ws://服务器ip:7272 或者
 												wss://服务器'])}
-												<div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flshop/293.html" target="_blank"><i class="fa fa-question-circle"></i> 如何配置wss?</a></div>
+												<div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flbooth/293.html" target="_blank"><i class="fa fa-question-circle"></i> 如何配置wss?</a></div>
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -165,7 +165,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::switcher('row[ini][debug]', $flshop.ini.debug,
+												{:Form::switcher('row[ini][debug]', $flbooth.ini.debug,
 												['color'=>'danger', 'yes'=>'Y', 'no'=>'N'])}
 											</div>
 											<div class="col-sm-4"></div>
@@ -178,7 +178,7 @@
 									<th></th>
 									<th>
 										<button type="submit" class="btn btn-success btn-embossed">{:__('更新')}</button>
-										<a href="{:url('flshop.client/download')}"
+										<a href="{:url('flbooth.client/download')}"
 											class="btn btn-default btn-embossed packing">生成源码</a>
 										<button type="reset" class="btn btn-default btn-embossed">重置</button>
 									</th>
@@ -191,7 +191,7 @@
 			<div class="tab-pane fade" id="sdk_amap">
 				<div class="widget-body no-padding">
 					<form id="chat-form" class="edit-form form-horizontal" role="form" data-toggle="validator"
-						method="POST" action="{:url('flshop.client/edit')}">
+						method="POST" action="{:url('flbooth.client/edit')}">
 						{:token()}
 						<table class="table table-striped">
 							<thead>
@@ -207,11 +207,11 @@
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
 												{:Form::text('row[sdk_amap][amapkey_web]',
-												$flshop.sdk_amap.amapkey_web,
+												$flbooth.sdk_amap.amapkey_web,
 												['data-rule'=>'required','data-tip'=>'请填写高德网页秘钥','placeholder'=>'请填写高德网页
 												amapkey'])}
 												<div style="margin-top:5px;">
-													<a href="https://doc.fastadmin.net/flshop/314.html" target="_blank">
+													<a href="https://doc.fastadmin.net/flbooth/314.html" target="_blank">
 														<i class="fa fa-question-circle"></i> 如何配置高德秘钥?
 													</a>
 												</div>
@@ -226,7 +226,7 @@
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
 												{:Form::text('row[sdk_amap][amapkey_ios]',
-												$flshop.sdk_amap.amapkey_ios,
+												$flbooth.sdk_amap.amapkey_ios,
 												['data-rule'=>'required','data-tip'=>'请填写高德IOS秘钥','placeholder'=>'请填写高德IOS
 												amapkey'])}
 											</div>
@@ -240,7 +240,7 @@
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
 												{:Form::text('row[sdk_amap][amapkey_android]',
-												$flshop.sdk_amap.amapkey_android,
+												$flbooth.sdk_amap.amapkey_android,
 												['data-rule'=>'required','data-tip'=>'请填写高德安卓秘钥','placeholder'=>'请填写高德安卓秘钥'])}
 											</div>
 											<div class="col-sm-4"></div>
@@ -253,7 +253,7 @@
 									<th></th>
 									<th>
 										<button type="submit" class="btn btn-success btn-embossed">{:__('更新')}</button>
-										<a href="{:url('flshop.client/download')}"
+										<a href="{:url('flbooth.client/download')}"
 											class="btn btn-default btn-embossed packing">生成源码</a>
 										<button type="reset" class="btn btn-default btn-embossed">重置</button>
 									</th>
@@ -267,7 +267,7 @@
 			<div class="tab-pane fade" id="sdk_wx_open">
 				<div class="widget-body no-padding">
 					<form id="chat-form" class="edit-form form-horizontal" role="form" data-toggle="validator"
-						method="POST" action="{:url('flshop.client/edit')}">
+						method="POST" action="{:url('flbooth.client/edit')}">
 						{:token()}
 						<table class="table table-striped">
 							<thead>
@@ -282,11 +282,11 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_qq][wx_appid]', $flshop.sdk_qq.wx_appid,
+												{:Form::text('row[sdk_qq][wx_appid]', $flbooth.sdk_qq.wx_appid,
 												['data-rule'=>'required','data-tip'=>'开放平台 / 管理中心 / 应用详情 ->
 												获取AppID','placeholder'=>'请填写微信开放平台 appid'])}
 												<div style="margin-top:5px;">
-													<a href="https://doc.fastadmin.net/flshop/310.html#toc-5" target="_blank">
+													<a href="https://doc.fastadmin.net/flbooth/310.html#toc-5" target="_blank">
 														<i class="fa fa-question-circle"></i> 如何配置微信开放平台appid?
 													</a>
 												</div>
@@ -300,11 +300,11 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_qq][wx_appsecret]', $flshop.sdk_qq.wx_appsecret,
+												{:Form::text('row[sdk_qq][wx_appsecret]', $flbooth.sdk_qq.wx_appsecret,
 												['data-rule'=>'required','data-tip'=>'开放平台 / 管理中心 / 应用详情 -> 获取
 												AppSecret','placeholder'=>'请填写微信开放平台 appsecret'])}
 												<div style="margin-top:5px;">
-													<a href="https://doc.fastadmin.net/flshop/310.html#toc-5" target="_blank">
+													<a href="https://doc.fastadmin.net/flbooth/310.html#toc-5" target="_blank">
 														<i class="fa fa-question-circle"></i> 如何配置微信开放平台appsecret?
 													</a>
 												</div>
@@ -319,7 +319,7 @@
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
 												{:Form::text('row[sdk_qq][wx_universal_links]',
-												$flshop.sdk_qq.wx_universal_links,
+												$flbooth.sdk_qq.wx_universal_links,
 												['data-rule'=>'required','data-tip'=>'请填写微信开放平台通用链接','placeholder'=>'请填写微信开放平台通用链接'])}
 											</div>
 											<div class="col-sm-4"></div>
@@ -332,7 +332,7 @@
 									<th></th>
 									<th>
 										<button type="submit" class="btn btn-success btn-embossed">{:__('更新')}</button>
-										<a href="{:url('flshop.client/download')}"
+										<a href="{:url('flbooth.client/download')}"
 											class="btn btn-default btn-embossed packing">生成源码</a>
 										<button type="reset" class="btn btn-default btn-embossed">重置</button>
 									</th>
@@ -346,7 +346,7 @@
 			<div class="tab-pane fade" id="sdk_wx_mp">
 				<div class="widget-body no-padding">
 					<form id="chat-form" class="edit-form form-horizontal" role="form" data-toggle="validator"
-						method="POST" action="{:url('flshop.client/edit')}">
+						method="POST" action="{:url('flbooth.client/edit')}">
 						{:token()}
 						<table class="table table-striped">
 							<thead>
@@ -361,7 +361,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_qq][gz_appid]', $flshop.sdk_qq.gz_appid,
+												{:Form::text('row[sdk_qq][gz_appid]', $flbooth.sdk_qq.gz_appid,
 												['data-rule'=>'required','data-tip'=>'公众平台 / 设置与开发 / 基础配置 ->
 												获取开发者ID(AppID)','placeholder'=>'请填写微信公众平台 AppId'])}
 											</div>
@@ -376,10 +376,10 @@
 											<div class="col-sm-8 col-xs-12">
 												<div class="input-group url">
 													<input class="form-control" type="text"
-														value="{$flshop.ini.appurl|htmlentities}/flshop/wechat"
+														value="{$flbooth.ini.appurl|htmlentities}/flbooth/wechat"
 														disabled>
 													<span class="input-group-btn"> <span class="btn btn-info btn-copy"
-															data-clipboard-text="{$flshop.ini.appurl|htmlentities}/flshop/wechat">
+															data-clipboard-text="{$flbooth.ini.appurl|htmlentities}/flbooth/wechat">
 															<i class="fa fa-clipboard"></i></span> </span>
 												</div>
 											</div>
@@ -392,7 +392,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_qq][gz_secret]', $flshop.sdk_qq.gz_secret,
+												{:Form::text('row[sdk_qq][gz_secret]', $flbooth.sdk_qq.gz_secret,
 												['data-rule'=>'required','data-tip'=>'公众平台 / 设置与开发 / 基础配置 ->
 												获取开发者密码(AppSecret)','placeholder'=>'请填写微信公众平台 Secret'])}
 											</div>
@@ -405,7 +405,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_qq][gz_token]', $flshop.sdk_qq.gz_token,
+												{:Form::text('row[sdk_qq][gz_token]', $flbooth.sdk_qq.gz_token,
 												['data-rule'=>'required','data-tip'=>'公众平台 / 设置与开发 / 基础配置 ->
 												获取令牌(Token)','placeholder'=>'请填写微信公众平台 Token'])}
 											</div>
@@ -418,7 +418,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_qq][gz_aeskey]', $flshop.sdk_qq.gz_aeskey,
+												{:Form::text('row[sdk_qq][gz_aeskey]', $flbooth.sdk_qq.gz_aeskey,
 												['data-rule'=>'required','data-tip'=>'公众平台 / 设置与开发 / 基础配置 ->
 												获取消息加解密密钥(EncodingAESKey)','placeholder'=>'请填写微信公众平台 AesKey'])}
 											</div>
@@ -431,7 +431,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::switcher('row[sdk_qq][gz_debug]', $flshop.sdk_qq.gz_debug,
+												{:Form::switcher('row[sdk_qq][gz_debug]', $flbooth.sdk_qq.gz_debug,
 												['color'=>'danger', 'yes'=>'0', 'no'=>'1'])}
 											</div>
 											<div class="col-sm-4"></div>
@@ -446,7 +446,7 @@
 												{:Form::select('row[sdk_qq][gz_loglevel]', [ 'debug' => 'debug', 'info'
 												=> 'info', 'notice' => 'notice', 'warning' => 'warning', 'error' =>
 												'error', 'critical' => 'critical', 'alert' => 'alert', 'emergency' =>
-												'emergency'], $flshop.sdk_qq.gz_loglevel, ['data-rule'=>'required'])}
+												'emergency'], $flbooth.sdk_qq.gz_loglevel, ['data-rule'=>'required'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -459,12 +459,12 @@
 											<div class="col-sm-8 col-xs-12">
 												<div class="input-group url">
 													<span
-														class="input-group-addon">{$flshop.ini.appurl|htmlentities}</span>
+														class="input-group-addon">{$flbooth.ini.appurl|htmlentities}</span>
 													<input data-rule="required" class="form-control"
 														name="row[sdk_qq][gz_callback]" data-tip="未二次开发不建议修改默认回调"
-														type="text" value="{$flshop.sdk_qq.gz_callback|htmlentities}">
+														type="text" value="{$flbooth.sdk_qq.gz_callback|htmlentities}">
 													<span class="input-group-btn"> <span class="btn btn-info btn-copy"
-															data-clipboard-text="{$flshop.ini.appurl|htmlentities}{$flshop.sdk_qq.gz_callback|htmlentities}">
+															data-clipboard-text="{$flbooth.ini.appurl|htmlentities}{$flbooth.sdk_qq.gz_callback|htmlentities}">
 															<i class="fa fa-clipboard"></i></span> </span>
 												</div>
 											</div>
@@ -479,12 +479,12 @@
 											<div class="col-sm-8 col-xs-12">
 												<div class="input-group url">
 													<span
-														class="input-group-addon">{$flshop.ini.appurl|htmlentities}</span>
+														class="input-group-addon">{$flbooth.ini.appurl|htmlentities}</span>
 													<input data-rule="required" class="form-control"
 														name="row[sdk_qq][gz_notify_url]" data-tip="未二次开发不建议修改默认回调"
-														type="text" value="{$flshop.sdk_qq.gz_notify_url|htmlentities}">
+														type="text" value="{$flbooth.sdk_qq.gz_notify_url|htmlentities}">
 													<span class="input-group-btn"> <span class="btn btn-info btn-copy"
-															data-clipboard-text="{$flshop.ini.appurl|htmlentities}{$flshop.sdk_qq.gz_notify_url|htmlentities}">
+															data-clipboard-text="{$flbooth.ini.appurl|htmlentities}{$flbooth.sdk_qq.gz_notify_url|htmlentities}">
 															<i class="fa fa-clipboard"></i></span> </span>
 												</div>
 											</div>
@@ -498,7 +498,7 @@
 									<th></th>
 									<th>
 										<button type="submit" class="btn btn-success btn-embossed">{:__('更新')}</button>
-										<a href="{:url('flshop.client/download')}"
+										<a href="{:url('flbooth.client/download')}"
 											class="btn btn-default btn-embossed packing">生成源码</a>
 										<button type="reset" class="btn btn-default btn-embossed">重置</button>
 									</th>
@@ -512,7 +512,7 @@
 			<div class="tab-pane fade" id="sdk_wx_pay">
 				<div class="widget-body no-padding">
 					<form id="chat-form" class="edit-form form-horizontal" role="form" data-toggle="validator"
-						method="POST" action="{:url('flshop.client/edit')}">
+						method="POST" action="{:url('flbooth.client/edit')}">
 						{:token()}
 						<table class="table table-striped">
 							<thead>
@@ -527,7 +527,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_qq][mch_id]', $flshop.sdk_qq.mch_id,
+												{:Form::text('row[sdk_qq][mch_id]', $flbooth.sdk_qq.mch_id,
 												['data-rule'=>'required','data-tip'=>'微信支付顶部深色导航条你好，后面数组为商户号','placeholder'=>'微信支付商户ID'])}
 											</div>
 											<div class="col-sm-4"></div>
@@ -539,7 +539,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_qq][key]', $flshop.sdk_qq.key,
+												{:Form::text('row[sdk_qq][key]', $flbooth.sdk_qq.key,
 												['data-rule'=>'required','data-tip'=>'微信支付 / API安全 ->
 												API密钥','placeholder'=>'请填写微信支付-API安全-API密钥'])}
 											</div>
@@ -554,12 +554,12 @@
 											<div class="col-sm-8 col-xs-12">
 												<div class="input-group url">
 													<span
-														class="input-group-addon">{$flshop.ini.appurl|htmlentities}</span>
+														class="input-group-addon">{$flbooth.ini.appurl|htmlentities}</span>
 													<input data-rule="required" class="form-control"
 														name="row[sdk_qq][notify_url]" data-tip="未二次开发不建议修改默认回调"
-														type="text" value="{$flshop.sdk_qq.notify_url|htmlentities}">
+														type="text" value="{$flbooth.sdk_qq.notify_url|htmlentities}">
 													<span class="input-group-btn"> <span class="btn btn-info btn-copy"
-															data-clipboard-text="{$flshop.ini.appurl|htmlentities}{$flshop.sdk_qq.notify_url|htmlentities}">
+															data-clipboard-text="{$flbooth.ini.appurl|htmlentities}{$flbooth.sdk_qq.notify_url|htmlentities}">
 															<i class="fa fa-clipboard"></i></span> </span>
 												</div>
 											</div>
@@ -573,13 +573,13 @@
 								        <div class="row">
 								            <div class="col-sm-8 col-xs-12">
 								                <div class="input-group">
-								                    <input id="c-cert_client" class="form-control" size="50" name="row[sdk_qq][cert_client]" type="text" value="{$flshop.sdk_qq.cert_client|htmlentities}" data-tip="可选, 仅在退款、红包等情况时需要用到">
+								                    <input id="c-cert_client" class="form-control" size="50" name="row[sdk_qq][cert_client]" type="text" value="{$flbooth.sdk_qq.cert_client|htmlentities}" data-tip="可选, 仅在退款、红包等情况时需要用到">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-cert_client" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"cert_client"}' data-mime_type="pem" data-input-id="c-cert_client" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-cert_client" class="btn btn-danger faupload" data-url="flbooth/client/upload" data-multipart='{"certname":"cert_client"}' data-mime_type="pem" data-input-id="c-cert_client" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-cert_client"></span>
 								                </div>
-								                <div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flshop/310.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取微信支付API证书?</a></div>
+								                <div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flbooth/310.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取微信支付API证书?</a></div>
 								            </div>
 								            <div class="col-sm-4"></div>
 								        </div>
@@ -591,13 +591,13 @@
 								        <div class="row">
 								            <div class="col-sm-8 col-xs-12">
 								                <div class="input-group">
-								                    <input id="c-cert_key" class="form-control" size="50" name="row[sdk_qq][cert_key]" type="text" value="{$flshop.sdk_qq.cert_key|htmlentities}" data-tip="可选, 仅在退款、红包等情况时需要用到">
+								                    <input id="c-cert_key" class="form-control" size="50" name="row[sdk_qq][cert_key]" type="text" value="{$flbooth.sdk_qq.cert_key|htmlentities}" data-tip="可选, 仅在退款、红包等情况时需要用到">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-cert_key" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"cert_key"}' data-mime_type="pem" data-input-id="c-cert_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-cert_key" class="btn btn-danger faupload" data-url="flbooth/client/upload" data-multipart='{"certname":"cert_key"}' data-mime_type="pem" data-input-id="c-cert_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-cert_key"></span>
 								                </div>
-								                <div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flshop/310.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取微信支付API证书?</a></div>
+								                <div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flbooth/310.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取微信支付API证书?</a></div>
 								            </div>
 								            <div class="col-sm-4"></div>
 								        </div>
@@ -609,7 +609,7 @@
 									<th></th>
 									<th>
 										<button type="submit" class="btn btn-success btn-embossed">{:__('更新')}</button>
-										<a href="{:url('flshop.client/download')}"
+										<a href="{:url('flbooth.client/download')}"
 											class="btn btn-default btn-embossed packing">生成源码</a>
 										<button type="reset" class="btn btn-default btn-embossed">重置</button>
 									</th>
@@ -622,7 +622,7 @@
 			<div class="tab-pane fade" id="sdk_alipay">
 				<div class="widget-body no-padding">
 					<form id="chat-form" class="edit-form form-horizontal" role="form" data-toggle="validator"
-						method="POST" action="{:url('flshop.client/edit')}">
+						method="POST" action="{:url('flbooth.client/edit')}">
 						{:token()}
 						<table class="table table-striped">
 							<thead>
@@ -637,7 +637,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_alipay][app_id]', $flshop.sdk_alipay.app_id,
+												{:Form::text('row[sdk_alipay][app_id]', $flbooth.sdk_alipay.app_id,
 												['data-rule'=>'required','data-tip'=>'支付宝开放平台 / 网页移动应用 ->
 												APPID','placeholder'=>'请填写 支付宝开放平台-网页移动应用-APPID'])}
 											</div>
@@ -652,13 +652,13 @@
 											<div class="col-sm-8 col-xs-12">
 												<div class="input-group url">
 													<span
-														class="input-group-addon">{$flshop.ini.appurl|htmlentities}</span>
+														class="input-group-addon">{$flbooth.ini.appurl|htmlentities}</span>
 													<input data-rule="required" class="form-control"
 														name="row[sdk_alipay][notify_url]" data-tip="未二次开发不建议修改默认回调"
 														type="text"
-														value="{$flshop.sdk_alipay.notify_url|htmlentities}">
+														value="{$flbooth.sdk_alipay.notify_url|htmlentities}">
 													<span class="input-group-btn"> <span class="btn btn-info btn-copy"
-															data-clipboard-text="{$flshop.ini.appurl|htmlentities}{$flshop.sdk_alipay.notify_url|htmlentities}">
+															data-clipboard-text="{$flbooth.ini.appurl|htmlentities}{$flbooth.sdk_alipay.notify_url|htmlentities}">
 															<i class="fa fa-clipboard"></i></span> </span>
 												</div>
 											</div>
@@ -673,13 +673,13 @@
 											<div class="col-sm-8 col-xs-12">
 												<div class="input-group url">
 													<span
-														class="input-group-addon">{$flshop.ini.appurl|htmlentities}</span>
+														class="input-group-addon">{$flbooth.ini.appurl|htmlentities}</span>
 													<input data-rule="required" class="form-control"
 														name="row[sdk_alipay][return_url]" data-tip="未二次开发不建议修改默认接口"
 														type="text"
-														value="{$flshop.sdk_alipay.return_url|htmlentities}">
+														value="{$flbooth.sdk_alipay.return_url|htmlentities}">
 													<span class="input-group-btn"> <span class="btn btn-info btn-copy"
-															data-clipboard-text="{$flshop.ini.appurl|htmlentities}{$flshop.sdk_alipay.return_url|htmlentities}">
+															data-clipboard-text="{$flbooth.ini.appurl|htmlentities}{$flbooth.sdk_alipay.return_url|htmlentities}">
 															<i class="fa fa-clipboard"></i></span> </span>
 												</div>
 											</div>
@@ -693,10 +693,10 @@
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
 												{:Form::textarea('row[sdk_alipay][private_key]',
-												$flshop.sdk_alipay.private_key,
+												$flbooth.sdk_alipay.private_key,
 												['data-rule'=>'required','data-tip'=>'支付宝开放平台开发助手[软件] ->
 												应用私钥','placeholder'=>'请填写支付宝开放平台开发助手-应用私钥'])}
-												<div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flshop/313.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取应用公钥证书?</a></div>
+												<div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flbooth/313.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取应用公钥证书?</a></div>
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -708,13 +708,13 @@
 								        <div class="row">
 								            <div class="col-sm-8 col-xs-12">
 								                <div class="input-group">
-								                    <input id="c-app_cert_public_key" class="form-control" size="50" name="row[sdk_alipay][app_cert_public_key]" type="text" value="{$flshop.sdk_alipay.app_cert_public_key|default=''|htmlentities}">
+								                    <input id="c-app_cert_public_key" class="form-control" size="50" name="row[sdk_alipay][app_cert_public_key]" type="text" value="{$flbooth.sdk_alipay.app_cert_public_key|default=''|htmlentities}">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-app_cert_public_key" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"app_cert_public_key"}' data-mime_type="crt" data-input-id="c-app_cert_public_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-app_cert_public_key" class="btn btn-danger faupload" data-url="flbooth/client/upload" data-multipart='{"certname":"app_cert_public_key"}' data-mime_type="crt" data-input-id="c-app_cert_public_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-app_cert_public_key"></span>
 								                </div>
-								                <div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flshop/313.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取应用公钥证书?</a></div>
+								                <div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flbooth/313.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取应用公钥证书?</a></div>
 								            </div>
 								            <div class="col-sm-4"></div>
 								        </div>
@@ -726,13 +726,13 @@
 								        <div class="row">
 								            <div class="col-sm-8 col-xs-12">
 								                <div class="input-group">
-								                    <input id="c-ali_public_key" class="form-control" size="50" name="row[sdk_alipay][ali_public_key]" type="text" value="{$flshop.sdk_alipay.ali_public_key|default=''|htmlentities}" placeholder="公钥请直接粘贴，公钥证书请点击右侧的上传">
+								                    <input id="c-ali_public_key" class="form-control" size="50" name="row[sdk_alipay][ali_public_key]" type="text" value="{$flbooth.sdk_alipay.ali_public_key|default=''|htmlentities}" placeholder="公钥请直接粘贴，公钥证书请点击右侧的上传">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-ali_public_key" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"ali_public_key"}' data-mime_type="crt" data-input-id="c-ali_public_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-ali_public_key" class="btn btn-danger faupload" data-url="flbooth/client/upload" data-multipart='{"certname":"ali_public_key"}' data-mime_type="crt" data-input-id="c-ali_public_key" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-ali_public_key"></span>
 								                </div>
-								                <div style="margin-top:5px;"><a href="javascript:" data-toggle="tooltip" data-title="如果要使用转账、提现功能，则必须使用公钥证书"> <i class="fa fa-info-circle"></i> 公钥和公钥证书说明</a> <a href="https://doc.fastadmin.net/flshop/313.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取支付宝公钥证书?</a></div>
+								                <div style="margin-top:5px;"><a href="javascript:" data-toggle="tooltip" data-title="如果要使用转账、提现功能，则必须使用公钥证书"> <i class="fa fa-info-circle"></i> 公钥和公钥证书说明</a> <a href="https://doc.fastadmin.net/flbooth/313.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取支付宝公钥证书?</a></div>
 								            </div>
 								            <div class="col-sm-4"></div>
 								        </div>
@@ -744,13 +744,13 @@
 								        <div class="row">
 								            <div class="col-sm-8 col-xs-12">
 								                <div class="input-group">
-								                    <input id="c-alipay_root_cert" class="form-control" size="50" name="row[sdk_alipay][alipay_root_cert]" type="text" value="{$flshop.sdk_alipay.alipay_root_cert|default=''|htmlentities}">
+								                    <input id="c-alipay_root_cert" class="form-control" size="50" name="row[sdk_alipay][alipay_root_cert]" type="text" value="{$flbooth.sdk_alipay.alipay_root_cert|default=''|htmlentities}">
 								                    <div class="input-group-addon no-border no-padding">
-								                        <span><button type="button" id="faupload-alipay_root_cert" class="btn btn-danger faupload" data-url="flshop/client/upload" data-multipart='{"certname":"alipay_root_cert"}' data-mime_type="crt" data-input-id="c-alipay_root_cert" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+								                        <span><button type="button" id="faupload-alipay_root_cert" class="btn btn-danger faupload" data-url="flbooth/client/upload" data-multipart='{"certname":"alipay_root_cert"}' data-mime_type="crt" data-input-id="c-alipay_root_cert" data-multiple="false"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
 								                    </div>
 								                    <span class="msg-box n-right" for="c-alipay_root_cert"></span>
 								                </div>
-								                <div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flshop/313.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取支付宝证书?</a></div>
+								                <div style="margin-top:5px;"><a href="https://doc.fastadmin.net/flbooth/313.html" target="_blank"><i class="fa fa-question-circle"></i> 如何获取支付宝证书?</a></div>
 								            </div>
 								            <div class="col-sm-4"></div>
 								        </div>
@@ -762,7 +762,7 @@
 									<th></th>
 									<th>
 										<button type="submit" class="btn btn-success btn-embossed">{:__('更新')}</button>
-										<a href="{:url('flshop.client/download')}"
+										<a href="{:url('flbooth.client/download')}"
 											class="btn btn-default btn-embossed packing">生成源码</a>
 										<button type="reset" class="btn btn-default btn-embossed">重置</button>
 									</th>
@@ -776,7 +776,7 @@
 			<div class="tab-pane fade" id="sdk_qq_open">
 				<div class="widget-body no-padding">
 					<form id="chat-form" class="edit-form form-horizontal" role="form" data-toggle="validator"
-						method="POST" action="{:url('flshop.client/edit')}">
+						method="POST" action="{:url('flbooth.client/edit')}">
 						{:token()}
 						<table class="table table-striped">
 							<thead>
@@ -791,11 +791,11 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_qq][qq_appid]', $flshop.sdk_qq.qq_appid,
+												{:Form::text('row[sdk_qq][qq_appid]', $flbooth.sdk_qq.qq_appid,
 												['data-rule'=>'required','data-tip'=>'请填写QQ开放平台
 												AppID','placeholder'=>'请填写QQ开放平台 AppID'])}
 												<div style="margin-top:5px;">
-													<a href="https://doc.fastadmin.net/flshop/311.html" target="_blank">
+													<a href="https://doc.fastadmin.net/flbooth/311.html" target="_blank">
 														<i class="fa fa-question-circle"></i> 如何配置QQ互联APPID?
 													</a>
 												</div>
@@ -810,7 +810,7 @@
 									<th></th>
 									<th>
 										<button type="submit" class="btn btn-success btn-embossed">{:__('更新')}</button>
-										<a href="{:url('flshop.client/download')}"
+										<a href="{:url('flbooth.client/download')}"
 											class="btn btn-default btn-embossed packing">生成源码</a>
 										<button type="reset" class="btn btn-default btn-embossed">重置</button>
 									</th>
@@ -823,7 +823,7 @@
 			<div class="tab-pane fade" id="sdk_weibo">
 				<div class="widget-body no-padding">
 					<form id="chat-form" class="edit-form form-horizontal" role="form" data-toggle="validator"
-						method="POST" action="{:url('flshop.client/edit')}">
+						method="POST" action="{:url('flbooth.client/edit')}">
 						{:token()}
 						<table class="table table-striped">
 							<thead>
@@ -839,10 +839,10 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_weibo][appkey]', $flshop.sdk_weibo.appkey,
+												{:Form::text('row[sdk_weibo][appkey]', $flbooth.sdk_weibo.appkey,
 												['data-rule'=>'required','data-tip'=>'请填写微博AppKey','placeholder'=>'请填写微博AppKey'])}
 												<div style="margin-top:5px;">
-													<a href="https://doc.fastadmin.net/flshop/312.html" target="_blank">
+													<a href="https://doc.fastadmin.net/flbooth/312.html" target="_blank">
 														<i class="fa fa-question-circle"></i> 如何配置微博AppKey?
 													</a>
 												</div>
@@ -856,10 +856,10 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[sdk_weibo][appsecret]', $flshop.sdk_weibo.appsecret,
+												{:Form::text('row[sdk_weibo][appsecret]', $flbooth.sdk_weibo.appsecret,
 												['data-rule'=>'required','data-tip'=>'请填写微博AppSecret','placeholder'=>'请填写微博AppSecret'])}
 												<div style="margin-top:5px;">
-													<a href="https://doc.fastadmin.net/flshop/312.html" target="_blank">
+													<a href="https://doc.fastadmin.net/flbooth/312.html" target="_blank">
 														<i class="fa fa-question-circle"></i> 如何配置微博AppSecret?
 													</a>
 												</div>
@@ -875,13 +875,13 @@
 											<div class="col-sm-8 col-xs-12">
 												<div class="input-group url">
 													<span
-														class="input-group-addon">{$flshop.ini.appurl|htmlentities}</span>
+														class="input-group-addon">{$flbooth.ini.appurl|htmlentities}</span>
 													<input data-rule="required" class="form-control"
 														name="row[sdk_weibo][redirect_uri]" data-tip="未二次开发不建议修改默认回调"
 														type="text"
-														value="{$flshop.sdk_weibo.redirect_uri|htmlentities}">
+														value="{$flbooth.sdk_weibo.redirect_uri|htmlentities}">
 													<span class="input-group-btn"> <span class="btn btn-info btn-copy"
-															data-clipboard-text="{$flshop.ini.appurl|htmlentities}{$flshop.sdk_weibo.redirect_uri|htmlentities}">
+															data-clipboard-text="{$flbooth.ini.appurl|htmlentities}{$flbooth.sdk_weibo.redirect_uri|htmlentities}">
 															<i class="fa fa-clipboard"></i></span> </span>
 												</div>
 											</div>
@@ -896,7 +896,7 @@
 									<th></th>
 									<th>
 										<button type="submit" class="btn btn-success btn-embossed">{:__('更新')}</button>
-										<a href="{:url('flshop.client/download')}"
+										<a href="{:url('flbooth.client/download')}"
 											class="btn btn-default btn-embossed packing">生成源码</a>
 										<button type="reset" class="btn btn-default btn-embossed">重置</button>
 									</th>

@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/shopsort/index' + location.search,
-                    add_url: 'flshop/shopsort/add',
-                    edit_url: 'flshop/shopsort/edit',
-                    del_url: 'flshop/shopsort/del',
-                    multi_url: 'flshop/shopsort/multi',
-                    table: 'flshop_shop_sort',
+                    index_url: 'flbooth/shopsort/index' + location.search,
+                    add_url: 'flbooth/shopsort/add',
+                    edit_url: 'flbooth/shopsort/edit',
+                    del_url: 'flbooth/shopsort/del',
+                    multi_url: 'flbooth/shopsort/multi',
+                    table: 'flbooth_shop_sort',
                 }
             });
 
@@ -50,7 +50,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `flshop/goods?shop_category_id=${row.id}`;
+										return `flbooth/goods?shop_category_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -66,7 +66,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `flshop/groups/goods?shop_category_id=${row.id}`;
+										return `flbooth/groups/goods?shop_category_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -128,7 +128,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/shopsort/select',
+                    index_url: 'flbooth/shopsort/select',
                 }
             });
             var urlArr = [];

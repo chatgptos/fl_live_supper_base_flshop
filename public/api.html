@@ -168,7 +168,7 @@
                                                 <a href="javascript:;" data-id="166" class="list-group-item">一次性获取展商相关数据 1.0.0升级                            <span class="tag">
                                                             </span>
                         </a>
-                                                <a href="javascript:;" data-id="167" class="list-group-item">展商入驻                            <span class="tag">
+                                                <a href="javascript:;" data-id="167" class="list-group-item">展商报名参展信息                            <span class="tag">
                                                                     <span class="label label-success pull-right noneedlogin">登</span>
                                                             </span>
                         </a>
@@ -1485,7 +1485,7 @@
                     <div class="panel-heading" id="heading-167">
                         <h4 class="panel-title">
                             <span class="label label-primary">POST</span>
-                            <a data-toggle="collapse" data-parent="#accordion167" href="#collapseOne167"> 展商入驻 <span class="text-muted">/api/flbooth.shop/apply</span></a>
+                            <a data-toggle="collapse" data-parent="#accordion167" href="#collapseOne167"> 展商报名参展信息 <span class="text-muted">/api/flbooth.shop/apply</span></a>
                         </h4>
                     </div>
                     <div id="collapseOne167" class="panel-collapse collapse">
@@ -1503,7 +1503,7 @@
 
                                 <div class="tab-pane active" id="info167">
                                     <div class="well">
-                                        flbooth 店铺接口商家入驻                                    </div>
+                                        展商报名参展信息                                    </div>
                                     <div class="panel panel-default">
                                         <div class="panel-heading"><strong>权限</strong></div>
                                         <div class="panel-body">
@@ -1530,7 +1530,54 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading"><strong>参数</strong></div>
                                         <div class="panel-body">
-                                                                                        无
+                                                                                        <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>名称</th>
+                                                        <th>类型</th>
+                                                        <th>必选</th>
+                                                        <th>描述</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                        <tr>
+                                                        <td>name</td>
+                                                        <td>integer</td>
+                                                        <td>是</td>
+                                                        <td>展商名称</td>
+                                                    </tr>
+                                                                                                        <tr>
+                                                        <td>number</td>
+                                                        <td>integer</td>
+                                                        <td>是</td>
+                                                        <td>展商名称</td>
+                                                    </tr>
+                                                                                                        <tr>
+                                                        <td>image</td>
+                                                        <td>integer</td>
+                                                        <td>是</td>
+                                                        <td>展商名称</td>
+                                                    </tr>
+                                                                                                        <tr>
+                                                        <td>trademark</td>
+                                                        <td>integer</td>
+                                                        <td>是</td>
+                                                        <td>展商名称</td>
+                                                    </tr>
+                                                                                                        <tr>
+                                                        <td>wechat</td>
+                                                        <td>integer</td>
+                                                        <td>是</td>
+                                                        <td>展商名称</td>
+                                                    </tr>
+                                                                                                        <tr>
+                                                        <td>mobile</td>
+                                                        <td>integer</td>
+                                                        <td>是</td>
+                                                        <td>展商名称</td>
+                                                    </tr>
+                                                                                                    </tbody>
+                                            </table>
                                                                                     </div>
                                     </div>
                                     <div class="panel panel-default">
@@ -1552,7 +1599,28 @@
                                                 <div class="panel-body">
                                                     <form enctype="application/x-www-form-urlencoded" role="form" action="/api/flbooth.shop/apply" method="POST" name="form167" id="form167">
                                                                                                                 <div class="form-group">
-                                                            无
+                                                            <label class="control-label" for="name">name</label>
+                                                            <input type="integer" class="form-control input-sm" id="name" required placeholder="展商名称" name="name">
+                                                        </div>
+                                                                                                                <div class="form-group">
+                                                            <label class="control-label" for="number">number</label>
+                                                            <input type="integer" class="form-control input-sm" id="number" required placeholder="展商名称" name="number">
+                                                        </div>
+                                                                                                                <div class="form-group">
+                                                            <label class="control-label" for="image">image</label>
+                                                            <input type="integer" class="form-control input-sm" id="image" required placeholder="展商名称" name="image">
+                                                        </div>
+                                                                                                                <div class="form-group">
+                                                            <label class="control-label" for="trademark">trademark</label>
+                                                            <input type="integer" class="form-control input-sm" id="trademark" required placeholder="展商名称" name="trademark">
+                                                        </div>
+                                                                                                                <div class="form-group">
+                                                            <label class="control-label" for="wechat">wechat</label>
+                                                            <input type="integer" class="form-control input-sm" id="wechat" required placeholder="展商名称" name="wechat">
+                                                        </div>
+                                                                                                                <div class="form-group">
+                                                            <label class="control-label" for="mobile">mobile</label>
+                                                            <input type="integer" class="form-control input-sm" id="mobile" required placeholder="展商名称" name="mobile">
                                                         </div>
                                                                                                                 <div class="form-group form-group-submit">
                                                             <button type="submit" class="btn btn-success send" rel="167">提交</button>
@@ -1575,7 +1643,32 @@
                                             <div class="panel panel-default">
                                                 <div class="panel-heading"><strong>返回参数</strong></div>
                                                 <div class="panel-body">
-                                                                                                        无
+                                                                                                        <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>名称</th>
+                                                                <th>类型</th>
+                                                                <th>描述</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                                                                        <tr>
+                                                                <td>code</td>
+                                                                <td>integer</td>
+                                                                <td></td>
+                                                            </tr>
+                                                                                                                        <tr>
+                                                                <td>msg</td>
+                                                                <td>string</td>
+                                                                <td></td>
+                                                            </tr>
+                                                                                                                        <tr>
+                                                                <td>data</td>
+                                                                <td>object</td>
+                                                                <td>扩展数据返回</td>
+                                                            </tr>
+                                                                                                                    </tbody>
+                                                    </table>
                                                                                                     </div>
                                             </div>
                                         </div>
@@ -1585,7 +1678,7 @@
                                 <div class="tab-pane" id="sample167">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <pre id="sample_response167">无</pre>
+                                            <pre id="sample_response167">{"code":1,"msg":"","time":"1655882282","data":{"id":1,"title":"111","intro":"北海道崛起带来的后世界","start_time":1111,"end_time":0,"data":"11","template":"11","css":"11","topic_img":"11","title_pic":"11","base_style":"1","htmls":"1","keywords":"11","description":"11","start_time_text":"1970-01-01 08:18:31","end_time_text":"1970-01-01 08:00:00"}}</pre>
                                         </div>
                                     </div>
                                 </div><!-- #sample -->
@@ -29400,7 +29493,7 @@
 
                 </div>
                 <div class="col-md-6" align="right">
-                    Generated on 2022-06-25 18:41:27 <a href="./" target="_blank">蜂雷直播基地平台</a>
+                    Generated on 2022-06-25 20:08:35 <a href="./" target="_blank">蜂雷直播基地平台</a>
                 </div>
             </div>
 

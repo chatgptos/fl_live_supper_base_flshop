@@ -37,8 +37,8 @@ return [
     'modified'               => '更新时间',
     'deleted'               => '删除时间',
     'Status'                   => '状态',
-    'flshoporder.id'         => 'ID',
-    'flshopordergoods.title' => '产品标题',
-    'flshoppay.pay_no'       => '交易号',
-    'flshopshop.shopname'    => '店铺名称'
+    'flboothorder.id'         => 'ID',
+    'flboothordergoods.title' => '产品标题',
+    'flboothpay.pay_no'       => '交易号',
+    'flboothshop.shopname'    => '店铺名称'
 ];

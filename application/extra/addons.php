@@ -14,14 +14,14 @@ return [
         ],
         'app_init' => [
             'epay',
-            'flshop',
+            'flbooth',
         ],
         'upgrade' => [
-            'flshop',
+            'flbooth',
             'mydemo',
         ],
         'user_sidenav_after' => [
-            'flshop',
+            'flbooth',
             'mydemo',
             'signin',
         ],

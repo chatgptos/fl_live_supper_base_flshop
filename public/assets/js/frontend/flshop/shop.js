@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'flshop/page/index' + location.search,
+		            index_url: 'flbooth/page/index' + location.search,
 		            add_url: '',
-		            edit_url: 'flshop/page/edit',
-		            del_url: 'flshop/page/del',
+		            edit_url: 'flbooth/page/edit',
+		            del_url: 'flbooth/page/del',
 		            multi_url: '',
-		            table: 'flshop_page',
+		            table: 'flbooth_page',
 		        }
 		    });
 			Fast.config.openArea = ['90%', '90%'];
@@ -39,7 +39,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		    Table.api.bindevent(table);
 			// 新建页面
 			$(document).on("click", ".btn-addnew", function () {
-			    Backend.api.open('flshop/page/add/', __('新建页面'), {area:['800px', '400px']});
+			    Backend.api.open('flbooth/page/add/', __('新建页面'), {area:['800px', '400px']});
 			});
 		},
 		profile: function () {
@@ -54,13 +54,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/brand/index' + location.search,
-                    add_url: 'flshop/brand/add',
-                    edit_url: 'flshop/brand/edit',
-                    del_url: 'flshop/brand/del',
-                    multi_url: 'flshop/brand/multi',
+                    index_url: 'flbooth/brand/index' + location.search,
+                    add_url: 'flbooth/brand/add',
+                    edit_url: 'flbooth/brand/edit',
+                    del_url: 'flbooth/brand/del',
+                    multi_url: 'flbooth/brand/multi',
 					dragsort_url: "",
-                    table: 'flshop_brand',
+                    table: 'flbooth_brand',
                 }
             });
 
@@ -95,10 +95,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'flshop/attachment/index',
-		            add_url: 'flshop/attachment/add',
+		            index_url: 'flbooth/attachment/index',
+		            add_url: 'flbooth/attachment/add',
 		            edit_url: '',
-		            del_url: 'flshop/attachment/del',
+		            del_url: 'flbooth/attachment/del',
 		            multi_url: '',
 		            table: 'attachment'
 		        }

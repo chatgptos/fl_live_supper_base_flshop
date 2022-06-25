@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Config;
@@ -22,13 +22,13 @@ class Client extends Backend
     {
         parent::_initialize();
 		// 调用配置
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		// 升级配置文件
 		$update = false;
 		// 检测 1.0.1更新
 		if(!array_key_exists("logo", $config['ini'])){
 			$update = true;
-			$config['ini']['logo'] = '/assets/addons/flshop/img/common/logo.png';
+			$config['ini']['logo'] = '/assets/addons/flbooth/img/common/logo.png';
 			$config['ini']['copyright'] = '2021 上海蜂雷网络科技有限公司';
 		}
 		// 检测 1.0.8升级配置
@@ -40,10 +40,10 @@ class Client extends Backend
 			$config['sdk_qq']['gz_aeskey'] = '';
 			$config['sdk_qq']['gz_debug'] = '0';
 			$config['sdk_qq']['gz_loglevel'] = 'info';
-			$config['sdk_qq']['gz_callback'] = '/flshop/callback/notify/type/wxmp';
+			$config['sdk_qq']['gz_callback'] = '/flbooth/callback/notify/type/wxmp';
 			// 全局样式升级
 			$config['style']['find_nav_color'] = '#ff4632';
-			$config['style']['groups_nav_image'] = '/assets/addons/flshop/img/show/grueps-top-bg3x.png';
+			$config['style']['groups_nav_image'] = '/assets/addons/flbooth/img/show/grueps-top-bg3x.png';
 			$config['style']['groups_nav_color'] = '#fed295';
 			$config['style']['groups_font_color'] = 'dark'; 
 			// 发现页升级
@@ -95,7 +95,7 @@ class Client extends Backend
 		// 检测 1.1.2 支付配置升级 1.1.3修复
 		if(!array_key_exists("gz_notify_url", $config['sdk_qq'])){
 			$update = true;
-			$config['sdk_qq']['gz_notify_url'] = '/flshop/callback/notify/type/jssdk';
+			$config['sdk_qq']['gz_notify_url'] = '/flbooth/callback/notify/type/jssdk';
 		}
 		
 		// 检测 1.1.2 点播配置升级 1.1.3修复
@@ -107,18 +107,18 @@ class Client extends Backend
 		// 检测 1.1.2 引导logo升级 1.1.3修复
 		if(!array_key_exists("guide_logo", $config['ini'])){
 			$update = true;
-			$config['ini']['appid'] = '__UNI__flshop';
-			$config['ini']['guide_logo'] = '/assets/addons/flshop/img/common/wanlian4@2x.png';
+			$config['ini']['appid'] = '__UNI__flbooth';
+			$config['ini']['guide_logo'] = '/assets/addons/flbooth/img/common/wanlian4@2x.png';
 			$config['config']['refund_switch'] = 'Y';
 		}
 		
 		// 写入配置
-		$update && set_addon_config('flshop', $config, true);
+		$update && set_addon_config('flbooth', $config, true);
 		// 输出配置
-		$this->service = Service::config('flshop');
-		$this->addon = get_addon_info('flshop');
-		$this->assignconfig('flshop', $config);
-		$this->view->assign("flshop", $config);
+		$this->service = Service::config('flbooth');
+		$this->addon = get_addon_info('flbooth');
+		$this->assignconfig('flbooth', $config);
+		$this->view->assign("flbooth", $config);
     }
 	
 	/**
@@ -209,7 +209,7 @@ class Client extends Backend
 	public function update()
 	{
 		// 获取配置
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		// 默认不升级, 如果配置中没有versionCode，直接升级，否则判断版本号是否相同 旧站点必升级 插件配置>本地站点
 		$this->success('ok', 0, !array_key_exists("versionCode", $config['config']) ? 0 : 1);
 	}
@@ -220,12 +220,12 @@ class Client extends Backend
 	public function repairSql()
 	{
 		// 获取配置
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		// 升级种草
-		$findModel = model('app\admin\model\flshop\Find');
+		$findModel = model('app\admin\model\flbooth\Find');
 		$findList = [];
 		foreach ($findModel->where(['user_id' => 0])->select() as $vo) {
-			$shop = model('app\admin\model\flshop\Shop')->get($vo['shop_id']);
+			$shop = model('app\admin\model\flbooth\Shop')->get($vo['shop_id']);
 			$findList[] = [
 				'id' => $vo['id'],
 				'user_id' => $shop['user_id'],
@@ -236,7 +236,7 @@ class Client extends Backend
 		// 更新
 		$find = $findModel->isUpdate()->saveAll($findList);
 		// 升级 自定义页面
-		$pageModel = model('app\admin\model\flshop\Page');
+		$pageModel = model('app\admin\model\flbooth\Page');
 		$pageData = $pageModel->select();
 		$pageList = [];
 		foreach ($pageData as $vo) {
@@ -248,7 +248,7 @@ class Client extends Backend
 					$item['params']['menuType'] = 'icon';
 					$item['params']['menuBorderRadius'] = '1000px';
 					foreach ($item['data'] as $data) {
-						$data['iconImage'] = "/assets/addons/flshop/img/page/video-default.png";
+						$data['iconImage'] = "/assets/addons/flbooth/img/page/video-default.png";
 						$dataList[] = $data;
 					}
 				}
@@ -296,7 +296,7 @@ class Client extends Backend
 				// 1.0.8升级 头条
 				if($item['type'] == 'headlines'){
 					foreach ($item['data'] as $data) {
-						$data['image'] = "/assets/addons/flshop/img/page/article-default.png";
+						$data['image'] = "/assets/addons/flbooth/img/page/article-default.png";
 						$data['tips'] = "右侧图片，建议尺寸200x200";
 						$data['link'] = "";
 						$dataList[] = $data;
@@ -311,13 +311,13 @@ class Client extends Backend
 		
 		// 清空版本管理
 		$version = 0;
-		foreach (model('app\admin\model\flshop\Version')->select() as $k => $v) {
+		foreach (model('app\admin\model\flbooth\Version')->select() as $k => $v) {
 		    $version += $v->delete();
 		}
 		
 		// 修复商品全部字段
 		$goodsAll = [];
-		$goodsModel = model('app\admin\model\flshop\Goods');
+		$goodsModel = model('app\admin\model\flbooth\Goods');
 		foreach ($goodsModel->select() as $row) {
 		    if($row['activity_id'] == 0){
 				$goodsAll[] = [
@@ -330,7 +330,7 @@ class Client extends Backend
 		
 		// 修复错误优惠券
 		$couponAll = [];
-		$couponModel = model('app\admin\model\flshop\Coupon');
+		$couponModel = model('app\admin\model\flbooth\Coupon');
 		foreach ($couponModel->select() as $row) {
 		    if($row['rangetype'] == 'category'){
 				$couponAll[] = [
@@ -344,7 +344,7 @@ class Client extends Backend
 		// 判断插件配置中是否有versionCode,没有新增
 		if( !array_key_exists("versionCode", $config['config']) ){
 			$config['config']['versionCode'] = $this->addon['versionCode'];
-			set_addon_config('flshop', $config, true);
+			set_addon_config('flbooth', $config, true);
 		}
 		// 修复完成
 		$this->success('成功修复'.count($find).'个发现数据，成功修复'.count($page).'个自定义页，清空'.$version.'个版本表');
@@ -362,7 +362,7 @@ class Client extends Backend
 		{
 			$params = $this->request->post("row/a");
 			// 获取配置
-			$config = get_addon_config('flshop');
+			$config = get_addon_config('flbooth');
 			$config_edit = false;
 			$path_edit = true;
 			// 检测ini是否存在，如果存在则和旧版ini合并
@@ -407,7 +407,7 @@ class Client extends Backend
 				$path_edit = false;
 			}
 			// 写入配置
-			set_addon_config('flshop', $params, true);
+			set_addon_config('flbooth', $params, true);
 			// 生成配置文件
 			if($path_edit){
 				// 生成临时文件
@@ -432,7 +432,7 @@ class Client extends Backend
     public function download()
     {
 		// 获取配置
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		// 判断版本号是否存在
 		if(!array_key_exists('version', $this->addon) || !array_key_exists('versionCode', $this->addon)){
 			$this->error('请勿修改插件info.ini文件！请增加version、versionCode字段用于生成客户端');
@@ -443,9 +443,9 @@ class Client extends Backend
 			$this->error('请先填写完善，点击更新后再生成客户端源码');
 		}
 		$file = [
-			ADDON_PATH .'flshop/library/AutoProject/flshop_v'.$this->addon['version'].'/','636e2f737461742f646f776e6c6f61643f69643d',
-			ADDON_PATH .'flshop/library/AutoProject/temp','68747470733a2f2f6933366b2e',
-			ADDON_PATH .'flshop/library/AutoProject/temp/flshop_v'.$this->addon['version'].'_'.date("YmdHis").'.zip',$config['ini']['appurl'],array_key_exists('license', $this->addon) ? $this->addon['license'] : (array_key_exists('license', $this->service) ? $this->service['license'] : 'risk' ),array_key_exists('licenseto', $this->addon) ? $this->addon['licenseto'] : (array_key_exists('licenseto', $this->service) ? $this->service['licenseto'] : 'risk' ),array_key_exists('licensekey', $this->service) ? $this->service['licensekey'] : ''
+			ADDON_PATH .'flbooth/library/AutoProject/flbooth_v'.$this->addon['version'].'/','636e2f737461742f646f776e6c6f61643f69643d',
+			ADDON_PATH .'flbooth/library/AutoProject/temp','68747470733a2f2f6933366b2e',
+			ADDON_PATH .'flbooth/library/AutoProject/temp/flbooth_v'.$this->addon['version'].'_'.date("YmdHis").'.zip',$config['ini']['appurl'],array_key_exists('license', $this->addon) ? $this->addon['license'] : (array_key_exists('license', $this->service) ? $this->service['license'] : 'risk' ),array_key_exists('licenseto', $this->addon) ? $this->addon['licenseto'] : (array_key_exists('licenseto', $this->service) ? $this->service['licenseto'] : 'risk' ),array_key_exists('licensekey', $this->service) ? $this->service['licensekey'] : ''
 		];
 		// 打开压缩包
         $res = $zip->open($file[4],ZipArchive::CREATE);   
@@ -503,11 +503,11 @@ class Client extends Backend
 	protected function saveFile($temp_file, $dest_file, $type)
 	{
 		// 插件工程目录
-		$path = ADDON_PATH .'flshop/library/AutoProject';
+		$path = ADDON_PATH .'flbooth/library/AutoProject';
 		// 获取配置
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		// 热更新生成版本名和版本号
-		$version = model('app\admin\model\flshop\Version')
+		$version = model('app\admin\model\flbooth\Version')
 			->order('versionCode desc')
 			->find();
 		if(!$version){
@@ -590,11 +590,11 @@ class Client extends Backend
 	
 	    $certname = $this->request->post('certname', '');
 	    $certPathArr = [
-	        'cert_client'         => '/addons/flshop/certs/apiclient_cert.pem', //微信支付api
-	        'cert_key'            => '/addons/flshop/certs/apiclient_key.pem', //微信支付api
-	        'app_cert_public_key' => '/addons/flshop/certs/appCertPublicKey.crt',//应用公钥证书路径
-	        'alipay_root_cert'    => '/addons/flshop/certs/alipayRootCert.crt', //支付宝根证书路径
-	        'ali_public_key'      => '/addons/flshop/certs/alipayCertPublicKey.crt', //支付宝公钥证书路径
+	        'cert_client'         => '/addons/flbooth/certs/apiclient_cert.pem', //微信支付api
+	        'cert_key'            => '/addons/flbooth/certs/apiclient_key.pem', //微信支付api
+	        'app_cert_public_key' => '/addons/flbooth/certs/appCertPublicKey.crt',//应用公钥证书路径
+	        'alipay_root_cert'    => '/addons/flbooth/certs/alipayRootCert.crt', //支付宝根证书路径
+	        'ali_public_key'      => '/addons/flbooth/certs/alipayCertPublicKey.crt', //支付宝公钥证书路径
 	    ];
 	    if (!isset($certPathArr[$certname])) {
 	        $this->error("证书错误");

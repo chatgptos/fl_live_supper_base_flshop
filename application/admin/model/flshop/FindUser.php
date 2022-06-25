@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -11,7 +11,7 @@ class FindUser extends Model
     
 
     // 表名
-    protected $name = 'flshop_find_user';
+    protected $name = 'flbooth_find_user';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/freight/index' + location.search,
-                    add_url: 'flshop/freight/add',
-                    edit_url: 'flshop/freight/edit',
-                    del_url: 'flshop/freight/del',
-                    multi_url: 'flshop/freight/multi',
-                    table: 'flshop_shop_freight',
+                    index_url: 'flbooth/freight/index' + location.search,
+                    add_url: 'flbooth/freight/add',
+                    edit_url: 'flbooth/freight/edit',
+                    del_url: 'flbooth/freight/del',
+                    multi_url: 'flbooth/freight/multi',
+                    table: 'flbooth_shop_freight',
                 }
             });
 
@@ -53,7 +53,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'flshop/freight/recyclebin' + location.search,
+                url: 'flbooth/freight/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -80,7 +80,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'flshop/freight/restore',
+                                    url: 'flbooth/freight/restore',
                                     refresh: true
                                 },
                                 {
@@ -88,7 +88,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'flshop/freight/destroy',
+                                    url: 'flbooth/freight/destroy',
                                     refresh: true
                                 }
                             ],

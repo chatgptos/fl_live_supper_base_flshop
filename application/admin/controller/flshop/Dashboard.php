@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Config;
@@ -20,14 +20,14 @@ class Dashboard extends Backend
     public function index()
     {
 		$user = model('app\common\model\User');
-		$order = model('app\admin\model\flshop\Order');
-		$goods = model('app\admin\model\flshop\Goods');
-		$sku = model('app\api\model\flshop\GoodsSku');
-		$shop = model('app\admin\model\flshop\Shop');
-		$shopauth = model('app\admin\model\flshop\Auth');
-		$comment = model('app\admin\model\flshop\Comment');
-		$refund = model('app\admin\model\flshop\Refund');
-		$withdraw = model('app\api\model\flshop\Withdraw');
+		$order = model('app\admin\model\flbooth\Order');
+		$goods = model('app\admin\model\flbooth\Goods');
+		$sku = model('app\api\model\flbooth\GoodsSku');
+		$shop = model('app\admin\model\flbooth\Shop');
+		$shopauth = model('app\admin\model\flbooth\Auth');
+		$comment = model('app\admin\model\flbooth\Comment');
+		$refund = model('app\admin\model\flbooth\Refund');
+		$withdraw = model('app\api\model\flbooth\Withdraw');
 		$moneylog = model('app\common\model\MoneyLog');
 		// 处理POST
 		if ($this->request->isPost()) {
@@ -95,7 +95,7 @@ class Dashboard extends Backend
 		// 介入退款
 		$servicesRefundList = $refund->where('state','3')->field('id,order_pay_id,price,state')->select();
 		foreach ($servicesRefundList as $vo) {
-			$vo['pay'] = model('app\admin\model\flshop\Pay')
+			$vo['pay'] = model('app\admin\model\flbooth\Pay')
 				->where('id', $vo['order_pay_id'])
 				->field('order_no')
 				->find();
@@ -127,9 +127,9 @@ class Dashboard extends Backend
 	    $format = '%H:00';
 		// 1.0.3修复 自动获取表前缀
 		$prefix = Config::get('database.prefix');
-		$list = model('app\admin\model\flshop\Order')
-			->alias([$prefix.'flshop_order'=>'order', $prefix.'flshop_pay'=>'pay'])
-			->join($prefix.'flshop_pay','pay.order_id = order.id')
+		$list = model('app\admin\model\flbooth\Order')
+			->alias([$prefix.'flbooth_order'=>'order', $prefix.'flbooth_pay'=>'pay'])
+			->join($prefix.'flbooth_pay','pay.order_id = order.id')
 			->where('order.created', 'between time', [$starttime, $endtime])
 			->field('order.created, order.status,COUNT(*) AS nums,SUM(pay.price) AS amount,MIN(order.created) AS min_paytime,MAX(order.created) AS max_paytime,DATE_FORMAT(FROM_UNIXTIME(order.created), "' . $format . '") AS paydata')
 			->group('paydata')

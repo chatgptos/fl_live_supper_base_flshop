@@ -17,11 +17,11 @@
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         <a href="javascript:;" class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
-                        <a href="javascript:;" class="btn btn-success btn-add {:$auth->check('flshop/attribute/add')?'':'hide'}" title="{:__('Add')}" ><i class="fa fa-plus"></i> {:__('Add')}</a>
-                        <a href="javascript:;" class="btn btn-success btn-edit btn-disabled disabled {:$auth->check('flshop/attribute/edit')?'':'hide'}" title="{:__('Edit')}" ><i class="fa fa-pencil"></i> {:__('Edit')}</a>
-                        <a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled {:$auth->check('flshop/attribute/del')?'':'hide'}" title="{:__('Delete')}" ><i class="fa fa-trash"></i> {:__('Delete')}</a>
+                        <a href="javascript:;" class="btn btn-success btn-add {:$auth->check('flbooth/attribute/add')?'':'hide'}" title="{:__('Add')}" ><i class="fa fa-plus"></i> {:__('Add')}</a>
+                        <a href="javascript:;" class="btn btn-success btn-edit btn-disabled disabled {:$auth->check('flbooth/attribute/edit')?'':'hide'}" title="{:__('Edit')}" ><i class="fa fa-pencil"></i> {:__('Edit')}</a>
+                        <a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled {:$auth->check('flbooth/attribute/del')?'':'hide'}" title="{:__('Delete')}" ><i class="fa fa-trash"></i> {:__('Delete')}</a>
 
-                        <div class="dropdown btn-group {:$auth->check('flshop/attribute/multi')?'':'hide'}">
+                        <div class="dropdown btn-group {:$auth->check('flbooth/attribute/multi')?'':'hide'}">
                             <a class="btn btn-primary btn-more dropdown-toggle btn-disabled disabled" data-toggle="dropdown"><i class="fa fa-cog"></i> {:__('More')}</a>
                             <ul class="dropdown-menu text-left" role="menu">
                                 <li><a class="btn btn-link btn-multi btn-disabled disabled" href="javascript:;" data-params="status=normal"><i class="fa fa-eye"></i> {:__('Set to normal')}</a></li>
@@ -29,11 +29,11 @@
                             </ul>
                         </div>
 
-                        <a class="btn btn-success btn-recyclebin btn-dialog {:$auth->check('flshop/attribute/recyclebin')?'':'hide'}" href="flshop/attribute/recyclebin" title="{:__('Recycle bin')}"><i class="fa fa-recycle"></i> {:__('Recycle bin')}</a>
+                        <a class="btn btn-success btn-recyclebin btn-dialog {:$auth->check('flbooth/attribute/recyclebin')?'':'hide'}" href="flbooth/attribute/recyclebin" title="{:__('Recycle bin')}"><i class="fa fa-recycle"></i> {:__('Recycle bin')}</a>
                     </div>
                     <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
-                           data-operate-edit="{:$auth->check('flshop/attribute/edit')}"
-                           data-operate-del="{:$auth->check('flshop/attribute/del')}"
+                           data-operate-edit="{:$auth->check('flbooth/attribute/edit')}"
+                           data-operate-del="{:$auth->check('flbooth/attribute/del')}"
                            width="100%">
                     </table>
                 </div>

@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/goods/index' + location.search,
+                    index_url: 'flbooth/goods/index' + location.search,
                     add_url: '',
                     edit_url: '',
-                    del_url: 'flshop/goods/del',
-                    multi_url: 'flshop/goods/multi',
-                    table: 'flshop_goods',
+                    del_url: 'flbooth/goods/del',
+                    multi_url: 'flbooth/goods/multi',
+                    table: 'flbooth_goods',
                 }
             });
 
@@ -71,7 +71,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'flshop/goods/recyclebin' + location.search,
+                url: 'flbooth/goods/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -98,7 +98,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'flshop/goods/restore',
+                                    url: 'flbooth/goods/restore',
                                     refresh: true
                                 },
                                 {
@@ -106,7 +106,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'flshop/goods/destroy',
+                                    url: 'flbooth/goods/destroy',
                                     refresh: true
                                 }
                             ],
@@ -123,7 +123,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'flshop/goods/select',
+		            index_url: 'flbooth/goods/select',
 		        }
 		    });
 		    var urlArr = [];

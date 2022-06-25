@@ -1,8 +1,8 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
-use addons\flshop\library\WanlSdk\QRcode;
+use addons\flbooth\library\WanlSdk\QRcode;
 use app\common\controller\Backend;
 use think\Db;
 use think\Exception;
@@ -26,11 +26,11 @@ class Page extends Backend
 	public function _initialize()
 	{
 	    parent::_initialize();
-	    $this->model = new \app\admin\model\flshop\Page;
+	    $this->model = new \app\admin\model\flbooth\Page;
 		$this->view->assign("typeList", $this->model->getTypeList());
 		$this->view->assign("statusList", $this->model->getStatusList());
 		$tree = Tree::instance();
-		$category = new \app\admin\model\flshop\Category;// 类目
+		$category = new \app\admin\model\flbooth\Category;// 类目
 		$tree->init(collection($category->where(['type' => 'goods'])->order('weigh desc,id desc')->field('id,pid,type,name,name_spacer')->select())->toArray(), 'pid');
 		$this->assignconfig('pageCategory', $tree->getTreeList($tree->getTreeArray(0), 'name_spacer'));
 	}
@@ -82,7 +82,7 @@ class Page extends Backend
 		        ->order($sort, $order)
 		        ->paginate($limit);
 			
-			$config = get_addon_config('flshop');
+			$config = get_addon_config('flbooth');
 			foreach($list as $row){
 				$row['url'] = urlencode($config['h5']['domain'].($config['h5']['router_mode'] == 'hash' ? '/#':''). '/pages/page/index?id=' .$row['id']);
 			}
@@ -288,7 +288,7 @@ class Page extends Backend
 	 * 分类样式
 	 */
 	public function style(){
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		$this->view->assign("row", $config['style']);
 		$this->assignconfig('category_style', $config['style']['category_style']);
 		return $this->view->fetch();

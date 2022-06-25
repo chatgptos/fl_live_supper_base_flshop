@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Money extends Backend
     
     /**
      * Money模型对象
-     * @var \app\admin\model\flshop\Money
+     * @var \app\admin\model\flbooth\Money
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Money;
+        $this->model = new \app\admin\model\flbooth\Money;
         $this->view->assign("typeList", $this->model->getTypeList());
     }
 
@@ -77,7 +77,7 @@ class Money extends Backend
 		$service = [];
 		if($money['type'] && $money['type'] != 'sys'){
 			if($money['type'] == 'pay'){
-				$order = model('app\admin\model\flshop\Order')
+				$order = model('app\admin\model\flbooth\Order')
 					->where('order_no', 'in', $money['service_ids'])
 					->field('id,shop_id,created,paymenttime')
 					->select();
@@ -85,18 +85,18 @@ class Money extends Backend
 					$this->error(__('订单异常'));
 				}
 				foreach($order as $vo){
-					$vo->pay = model('app\admin\model\flshop\Pay')
+					$vo->pay = model('app\admin\model\flbooth\Pay')
 						->where(['order_id' => $vo['id'], 'type' => 'goods'])
 						->find();
 					$vo->shop->visible(['shopname']);
-					$vo->goods = model('app\admin\model\flshop\OrderGoods')
+					$vo->goods = model('app\admin\model\flbooth\OrderGoods')
 						->where(['order_id' => $vo['id']])
 						->field('id,title,difference,image,price,number')
 						->select();
 				}
 				$service = $order;
 			}else if($money['type'] == 'groups'){
-				$order = model('app\admin\model\flshop\GroupsOrder')
+				$order = model('app\admin\model\flbooth\GroupsOrder')
 					->where('order_no', 'in', $money['service_ids'])
 					->field('id,shop_id,created,paymenttime')
 					->select();
@@ -104,11 +104,11 @@ class Money extends Backend
 					$this->error(__('订单异常'));
 				}
 				foreach($order as $vo){
-					$vo->pay = model('app\admin\model\flshop\Pay')
+					$vo->pay = model('app\admin\model\flbooth\Pay')
 						->where(['order_id' => $vo['id'], 'type' => $money['type']])
 						->find();
 					$vo->shop->visible(['shopname']);
-					$vo->goods = model('app\admin\model\flshop\GroupsOrderGoods')
+					$vo->goods = model('app\admin\model\flbooth\GroupsOrderGoods')
 						->where(['order_id' => $vo['id']])
 						->field('id,title,difference,image,price,number')
 						->select();
@@ -116,10 +116,10 @@ class Money extends Backend
 				$service = $order;
 			}else if($money['type'] == 'recharge' || $money['type'] == 'withdraw'){ // 用户充值
 				if($money['type'] == 'recharge'){
-					$model = model('app\api\model\flshop\RechargeOrder');
+					$model = model('app\api\model\flbooth\RechargeOrder');
 					$field = 'id,paytype,orderid,memo';
 				}else{
-					$model = model('app\api\model\flshop\Withdraw');
+					$model = model('app\api\model\flbooth\Withdraw');
 					$field = 'id,money,handingfee,status,type,account,orderid,memo,transfertime';
 				}
 				$row = $model
@@ -128,7 +128,7 @@ class Money extends Backend
 					->find();
 				$service = $row;
 			}else if($money['type'] == 'refund'){
-				$order = model('app\api\model\flshop\Order')
+				$order = model('app\api\model\flbooth\Order')
 					->where('order_no', $money['service_ids'])
 					->field('id,shop_id,order_no,created,paymenttime')
 					->find();
@@ -136,7 +136,7 @@ class Money extends Backend
 					$this->error(__('订单异常'));
 				}
 				$order->shop->visible(['shopname']);
-				$order['refund'] = model('app\api\model\flshop\Refund')
+				$order['refund'] = model('app\api\model\flbooth\Refund')
 					->where(['order_id' => $order['id']])
 					->field('id,price,type,reason,created,completetime')
 					->find();

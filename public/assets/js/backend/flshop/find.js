@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/find/index' + location.search,
+                    index_url: 'flbooth/find/index' + location.search,
                     add_url: '',
                     edit_url: '',
-                    del_url: 'flshop/find/del',
-                    multi_url: 'flshop/find/multi',
+                    del_url: 'flbooth/find/del',
+                    multi_url: 'flbooth/find/multi',
                     import_url: '',
-                    table: 'flshop_find',
+                    table: 'flbooth_find',
                 }
             });
 
@@ -50,7 +50,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     title: __('审核当前作品'),
                                     classname: 'btn btn-xs btn-warning btn-dialog',
                                     icon: 'fa fa-leaf',
-                                    url: 'flshop/find/examine',
+                                    url: 'flbooth/find/examine',
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
                                     },
@@ -64,7 +64,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 								    title: __('查看作品'),
 								    classname: 'btn btn-xs btn-info btn-dialog',
 								    icon: 'fa fa-paper-plane',
-								    url: 'flshop/find/detail',
+								    url: 'flbooth/find/detail',
 								    callback: function (data) {
 										$(".btn-refresh").trigger("click");
 								    },
@@ -80,7 +80,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		    icon: 'fa fa-video-camera',
                         		    extend: 'data-area=\'["380px", "720px"]\'',
                                     url: function (row) {
-										return `flshop/live/detail?live_id=${row.live_id}`;
+										return `flbooth/live/detail?live_id=${row.live_id}`;
 								    },
 						            visible: function (row) {
 						                return row.type === 'live';
@@ -94,7 +94,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		    icon: 'fa fa-play',
                         		    extend: 'data-area=\'["380px", "720px"]\'',
                                     url: function (row) {
-										return `flshop/video/detail?video_id=${row.video_id}`;
+										return `flbooth/video/detail?video_id=${row.video_id}`;
 								    },
 						            visible: function (row) {
 						                return row.type === 'video';
@@ -107,7 +107,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 								    classname: 'btn btn-xs btn-success btn-dialog',
 								    icon: 'fa fa-comments',
 								    url: function (row) {
-										return `flshop/comments/detail?find_id=${row.id}`;
+										return `flbooth/comments/detail?find_id=${row.id}`;
 								    },
 								    callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -122,7 +122,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     classname: 'btn btn-xs btn-danger btn-magic btn-ajax',
                                     icon: 'fa fa-trash',
                                     confirm: '删除作品时关联媒体也将同时删除，确认删除？',
-                                    url: 'flshop/find/del',
+                                    url: 'flbooth/find/del',
                                     success: function (data, ret) {
                                         $(".btn-refresh").trigger("click"); //刷新数据
                                     },
@@ -154,7 +154,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'flshop/find/recyclebin' + location.search,
+                url: 'flbooth/find/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -180,7 +180,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'flshop/find/restore',
+                                    url: 'flbooth/find/restore',
                                     refresh: true
                                 },
                                 {
@@ -188,7 +188,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'flshop/find/destroy',
+                                    url: 'flbooth/find/destroy',
                                     refresh: true
                                 }
                             ],
@@ -205,7 +205,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             $(".play").click(function(){
                 let id = $(".play").data("id"),
                     type = $(".play").data("type");
-                parent.Fast.api.open(`flshop/${type}/detail?${type}_id=${id}`, `${type === 'live' ? '播放直播':'播放视频'}`, {area:["380px", "720px"]});
+                parent.Fast.api.open(`flbooth/${type}/detail?${type}_id=${id}`, `${type === 'live' ? '播放直播':'播放视频'}`, {area:["380px", "720px"]});
             });
             Controller.api.bindevent();
         },

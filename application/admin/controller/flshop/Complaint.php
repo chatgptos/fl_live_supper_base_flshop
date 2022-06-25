@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -18,7 +18,7 @@ class Complaint extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Complaint;
+        $this->model = new \app\admin\model\flbooth\Complaint;
         $this->view->assign("typeList", $this->model->getTypeList());
         $this->view->assign("reasonList", $this->model->getReasonList());
         $this->view->assign("stateList", $this->model->getStateList());

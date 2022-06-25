@@ -7,14 +7,14 @@
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         {:build_toolbar('refresh')}
-                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('flshop/shop/restore')?'':'hide'}" href="javascript:;" data-url="flshop/shop/restore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
-                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('flshop/shop/destroy')?'':'hide'}" href="javascript:;" data-url="flshop/shop/destroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
-                        <a class="btn btn-success btn-restoreall {:$auth->check('flshop/shop/restore')?'':'hide'}" href="javascript:;" data-url="flshop/shop/restore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
-                        <a class="btn btn-danger btn-destroyall {:$auth->check('flshop/shop/destroy')?'':'hide'}" href="javascript:;" data-url="flshop/shop/destroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
+                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('flbooth/shop/restore')?'':'hide'}" href="javascript:;" data-url="flbooth/shop/restore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
+                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('flbooth/shop/destroy')?'':'hide'}" href="javascript:;" data-url="flbooth/shop/destroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
+                        <a class="btn btn-success btn-restoreall {:$auth->check('flbooth/shop/restore')?'':'hide'}" href="javascript:;" data-url="flbooth/shop/restore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
+                        <a class="btn btn-danger btn-destroyall {:$auth->check('flbooth/shop/destroy')?'':'hide'}" href="javascript:;" data-url="flbooth/shop/destroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
                     </div>
                     <table id="table" class="table table-striped table-bordered table-hover"
-                           data-operate-restore="{:$auth->check('flshop/shop/restore')}"
-                           data-operate-destroy="{:$auth->check('flshop/shop/destroy')}"
+                           data-operate-restore="{:$auth->check('flbooth/shop/restore')}"
+                           data-operate-destroy="{:$auth->check('flbooth/shop/destroy')}"
                            width="100%">
                     </table>
                 </div>

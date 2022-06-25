@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class Live extends Model
     
 
     // 表名
-    protected $name = 'flshop_live';
+    protected $name = 'flbooth_live';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
@@ -46,14 +46,14 @@ class Live extends Model
 
 
 
-    public function flshopfind()
+    public function flboothfind()
     {
-        return $this->belongsTo('app\admin\model\flshop\Find', 'id', 'live_id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flbooth\Find', 'id', 'live_id', [], 'LEFT')->setEagerlyType(0);
     }
 
 
-    public function flshopshop()
+    public function flboothshop()
     {
-        return $this->belongsTo('app\admin\model\flshop\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flbooth\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/shop/index' + location.search,
-                    add_url: 'flshop/shop/add',
-                    edit_url: 'flshop/shop/edit',
-                    del_url: 'flshop/shop/del',
-                    multi_url: 'flshop/shop/multi',
-                    table: 'flshop_shop',
+                    index_url: 'flbooth/shop/index' + location.search,
+                    add_url: 'flbooth/shop/add',
+                    edit_url: 'flbooth/shop/edit',
+                    del_url: 'flbooth/shop/del',
+                    multi_url: 'flbooth/shop/multi',
+                    table: 'flbooth_shop',
                 }
             });
 
@@ -56,7 +56,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `flshop/goods?shop_id=${row.id}`;
+										return `flbooth/goods?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -72,7 +72,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `flshop/groups/goods?shop_id=${row.id}`;
+										return `flbooth/groups/goods?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -88,7 +88,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-star',
                                     extend: 'data-area=\'["80%", "70%"]\'',
                                     url: function (row) {
-										return `flshop/brand?shop_id=${row.id}`;
+										return `flbooth/brand?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -103,7 +103,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-truck',
                                     extend: 'data-area=\'["80%", "70%"]\'',
                                     url: function (row) {
-										return `flshop/freight?shop_id=${row.id}`;
+										return `flbooth/freight?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -118,7 +118,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-envira',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `flshop/find?user_no=${row.user_no}`;
+										return `flbooth/find?user_no=${row.user_no}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -133,7 +133,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-list-ol',
                                     extend: 'data-area=\'["80%", "70%"]\'',
                                     url: function (row) {
-										return `flshop/shopsort?shop_id=${row.id}`;
+										return `flbooth/shopsort?shop_id=${row.id}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -161,7 +161,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'flshop/shop/recyclebin' + location.search,
+                url: 'flbooth/shop/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -187,7 +187,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'flshop/shop/restore',
+                                    url: 'flbooth/shop/restore',
                                     refresh: true
                                 },
                                 {
@@ -195,7 +195,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'flshop/shop/destroy',
+                                    url: 'flbooth/shop/destroy',
                                     refresh: true
                                 }
                             ],

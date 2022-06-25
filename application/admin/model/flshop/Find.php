@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -12,7 +12,7 @@ class Find extends Model
     
 
     // 表名
-    protected $name = 'flshop_find';
+    protected $name = 'flbooth_find';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

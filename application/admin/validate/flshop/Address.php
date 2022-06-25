@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\validate\flshop;
+namespace app\admin\validate\flbooth;
 
 use think\Validate;
 

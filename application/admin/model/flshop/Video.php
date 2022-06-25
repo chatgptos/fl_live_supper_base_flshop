@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class Video extends Model
     
 
     // 表名
-    protected $name = 'flshop_video';
+    protected $name = 'flbooth_video';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
@@ -46,8 +46,8 @@ class Video extends Model
 
 
 
-    public function flshopfind()
+    public function flboothfind()
     {
-        return $this->belongsTo('app\admin\model\flshop\Find', 'video_id', 'video_id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flbooth\Find', 'video_id', 'video_id', [], 'LEFT')->setEagerlyType(0);
     }
 }

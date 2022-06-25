@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 
@@ -8,7 +8,7 @@ class WechatConfig extends Model
 {
 
     // 表名,不含前缀
-    public $name = 'flshop_wechat_config';
+    public $name = 'flbooth_wechat_config';
 	
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

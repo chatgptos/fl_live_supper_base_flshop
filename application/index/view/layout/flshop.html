@@ -9,7 +9,7 @@
 		<link rel="shortcut icon" href="__CDN__/assets/img/favicon.ico" />
 		<link href="__CDN__/assets/css/backend{$Think.config.app_debug?'':'.min'}.css?v={$Think.config.site.version}" rel="stylesheet">
 		<link rel="stylesheet" href="__CDN__/assets/css/skins/skin-red-light.css" type="text/css">
-		<link rel="stylesheet" href="__CDN__/assets/addons/flshop/css/chat.css" type="text/css">
+		<link rel="stylesheet" href="__CDN__/assets/addons/flbooth/css/chat.css" type="text/css">
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 		<!--[if lt IE 9]>
 		  <script src="__CDN__/assets/js/html5shiv.js"></script>
@@ -76,13 +76,13 @@
 							</a>
 							<div class="navbar-custom-menu">
 								<ul class="nav navbar-nav">
-									<!-- <li> <a href="{:url('index/flshop.console/index')}"><i class="fa fa-home" style="font-size:14px;"></i></a> </li> -->
+									<!-- <li> <a href="{:url('index/flbooth.console/index')}"><i class="fa fa-home" style="font-size:14px;"></i></a> </li> -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 											<i class="fa fa-paper-plane margin-r-5"></i>
 										</a>
 										<ul class="dropdown-menu wipecache">
-											<li><a href="{:url('index/flshop.goods/add')}"><i class="fa fa-circle-o"></i> 发布宝贝</a></li>
+											<li><a href="{:url('index/flbooth.goods/add')}"><i class="fa fa-circle-o"></i> 发布宝贝</a></li>
 											<li class="divider"></li>
 											<li><a href="javascript:;" @click="toFind('video')"><i class="fa fa-video-camera"></i> 发布 短视频</a></li>
 											<li><a href="javascript:;" @click="toFind('new')"><i class="fa fa-hacker-news"></i> 发布 宝贝上新</a></li>
@@ -113,7 +113,7 @@
 											<div class="list">
 												<div class="empty" v-if="chatlist.length == 0">
 													<div class="main">
-														<img src="/assets/addons/flshop/img/default/find_default3x.png">
+														<img src="/assets/addons/flbooth/img/default/find_default3x.png">
 														<p>没有找到任何联系人</p>
 													</div>
 												</div>
@@ -171,7 +171,7 @@
 													<a href="{:url('index/user/profile')}" class="btn btn-primary"><i class="fa fa-user"></i> {:__('Profile')}</a>
 												</div>
 												<div class="pull-left" style="margin-left: 10px;">
-													<a href="{:url('index/flshop.shop/profile')}" class="btn btn-primary"><i class="fa fa-user"></i>
+													<a href="{:url('index/flbooth.shop/profile')}" class="btn btn-primary"><i class="fa fa-user"></i>
 														{:__('店铺资料')}</a>
 												</div>
 												<div class="pull-right">
@@ -338,7 +338,7 @@
 							<!-- 管理员信息 -->
 							<div class="user-panel hidden-xs">
 								<div class="pull-left image">
-									<a href="{:url('index/flshop.shop/profile')}"><img src="{$shop.avatar|cdnurl|htmlentities}" class="img-circle"></a>
+									<a href="{:url('index/flbooth.shop/profile')}"><img src="{$shop.avatar|cdnurl|htmlentities}" class="img-circle"></a>
 								</div>
 								<div class="pull-left info">
 									<p>{$shop.shopname}</p>
@@ -364,174 +364,174 @@
 							<div class="mobilenav visible-xs"> </div>
 							<!--如果想始终显示子菜单,则给ul加上show-submenu类即可,当multiplenav开启的情况下默认为展开-->
 							<ul class="sidebar-menu ">
-								<li class="treeview {:in_array($config.controllername,['flshop.console'])?'active':''}">
-									<a href="{:url('index/flshop.console/index')}">
+								<li class="treeview {:in_array($config.controllername,['flbooth.console'])?'active':''}">
+									<a href="{:url('index/flbooth.console/index')}">
 										<i class="fa fa-dashboard fa-fw"></i> <span>控制台</span>
 										<span class="pull-right-container"><small class="label pull-right bg-blue">hot</small></span>
 									</a>
 								</li>
-								<li class="treeview {:in_array($config.controllername,['flshop.order','flshop.refund','flshop.groupsorder'])?'active':''}">
+								<li class="treeview {:in_array($config.controllername,['flbooth.order','flbooth.refund','flbooth.groupsorder'])?'active':''}">
 									<a href="javascript:;">
 										<i class="fa fa-leaf fa-fw"></i> <span>交易管理</span>
 										<span class="pull-right-container"><i class="fa fa-angle-left"></i></span>
 									</a>
-									<ul class="treeview-menu {:in_array($config.controllername,['flshop.order','flshop.refund','flshop.groupsorder'])?'menu-open':''}"
-									 style="display: {:in_array($config.controllername,['flshop.order','flshop.refund','flshop.groupsorder'])?'block':'none'};">
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.order.index'?'active':''}">
-											<a href="{:url('index/flshop.order/index')}">
+									<ul class="treeview-menu {:in_array($config.controllername,['flbooth.order','flbooth.refund','flbooth.groupsorder'])?'menu-open':''}"
+									 style="display: {:in_array($config.controllername,['flbooth.order','flbooth.refund','flbooth.groupsorder'])?'block':'none'};">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.order.index'?'active':''}">
+											<a href="{:url('index/flbooth.order/index')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>商品订单</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.groupsorder.index'?'active':''}">
-											<a href="{:url('index/flshop.groupsorder/index')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.groupsorder.index'?'active':''}">
+											<a href="{:url('index/flbooth.groupsorder/index')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>拼团订单</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.order.comment'?'active':''}">
-											<a href="{:url('index/flshop.order/comment')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.order.comment'?'active':''}">
+											<a href="{:url('index/flbooth.order/comment')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>评论管理</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.refund.index'?'active':''}">
-											<a href="{:url('index/flshop.refund/index')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.refund.index'?'active':''}">
+											<a href="{:url('index/flbooth.refund/index')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>退款管理</span>
 											</a>
 										</li>
 									</ul>
 								</li>
-								<li class="treeview {:in_array($config.controllername,['flshop.goods'])?'active':''}">
+								<li class="treeview {:in_array($config.controllername,['flbooth.goods'])?'active':''}">
 									<a href="javascript:;">
 										<i class="fa fa-shopping-bag fa-fw"></i> <span>宝贝管理</span>
 										<span class="pull-right-container"><i class="fa fa-angle-left"></i> </span>
 									</a>
-									<ul class="treeview-menu {:in_array($config.controllername,['flshop.goods'])?'menu-open':''}" style="display: {:in_array($config.controllername,['flshop.goods'])?'block':'none'};">
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.goods.add'?'active':''}">
-											<a href="{:url('index/flshop.goods/add')}">
+									<ul class="treeview-menu {:in_array($config.controllername,['flbooth.goods'])?'menu-open':''}" style="display: {:in_array($config.controllername,['flbooth.goods'])?'block':'none'};">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.goods.add'?'active':''}">
+											<a href="{:url('index/flbooth.goods/add')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>发布宝贝</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.goods.index'?'active':''}">
-											<a href="{:url('index/flshop.goods/index')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.goods.index'?'active':''}">
+											<a href="{:url('index/flbooth.goods/index')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>出售中的宝贝</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.goods.stock'?'active':''}">
-											<a href="{:url('index/flshop.goods/stock')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.goods.stock'?'active':''}">
+											<a href="{:url('index/flbooth.goods/stock')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>仓库中的宝贝</span>
 											</a>
 										</li>
 									</ul>
 								</li>
-								<li class="treeview {$config.controllername === 'flshop.shopsort' ? 'active':''}">
-									<a href="{:url('index/flshop/shopsort')}">
+								<li class="treeview {$config.controllername === 'flbooth.shopsort' ? 'active':''}">
+									<a href="{:url('index/flbooth/shopsort')}">
 										<i class="fa fa-th-list fa-fw"></i> <span>类目管理</span> 
 										<span class="pull-right-container"> </span>
 									</a> 
 								</li>
-								<li class="treeview {$config.controllername === 'flshop.shop' ? 'active':''}">
+								<li class="treeview {$config.controllername === 'flbooth.shop' ? 'active':''}">
 									<a href="javascript:;">
 										<i class="fa fa-archive fa-fw"></i> <span>店铺管理</span>
 										<span class="pull-right-container"><i class="fa fa-angle-left"></i> </span>
 									</a>
-									<ul class="treeview-menu {$config.controllername === 'flshop.shop' ? 'menu-open' : ''}"
-									 style="display: {$config.controllername === 'flshop.shop' ? 'block' : 'none'};">
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.shop.index'?'active':''}">
-											<a href="{:url('index/flshop.shop/index')}">
+									<ul class="treeview-menu {$config.controllername === 'flbooth.shop' ? 'menu-open' : ''}"
+									 style="display: {$config.controllername === 'flbooth.shop' ? 'block' : 'none'};">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.shop.index'?'active':''}">
+											<a href="{:url('index/flbooth.shop/index')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>装修店铺</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.shop.attachment'?'active':''}">
-											<a href="{:url('index/flshop.shop/attachment')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.shop.attachment'?'active':''}">
+											<a href="{:url('index/flbooth.shop/attachment')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>图片空间</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.shop.brand'?'active':''}">
-											<a href="{:url('index/flshop.shop/brand')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.shop.brand'?'active':''}">
+											<a href="{:url('index/flbooth.shop/brand')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>品牌管理</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.shop.profile'?'active':''}">
-											<a href="{:url('index/flshop.shop/profile')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.shop.profile'?'active':''}">
+											<a href="{:url('index/flbooth.shop/profile')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>店铺资料</span>
 											</a>
 										</li>
 									</ul>
 								</li>
-								<li class="treeview {$config.controllername === 'flshop.groups' ? 'active':''}">
+								<li class="treeview {$config.controllername === 'flbooth.groups' ? 'active':''}">
 									<a href="javascript:;">
 										<i class="fa fa-users fa-fw"></i> <span>阶梯拼团</span> 
 										<span class="pull-right-container"><i class="fa fa-angle-left"></i> </span>
 									</a>
-									<ul class="treeview-menu {$config.controllername === 'flshop.groups' ? 'menu-open' : ''}" style="display: {$config.controllername === 'flshop.groups' ? 'block' : 'none'};">
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.groups.goods'?'active':''}">
-											<a href="{:url('index/flshop.groups/goods')}">
+									<ul class="treeview-menu {$config.controllername === 'flbooth.groups' ? 'menu-open' : ''}" style="display: {$config.controllername === 'flbooth.groups' ? 'block' : 'none'};">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.groups.goods'?'active':''}">
+											<a href="{:url('index/flbooth.groups/goods')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>商品列表</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.groups.groups'?'active':''}">
-											<a href="{:url('index/flshop.groups/groups')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.groups.groups'?'active':''}">
+											<a href="{:url('index/flbooth.groups/groups')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>拼团管理</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.groupsorder.index'?'active':''}">
-											<a href="{:url('index/flshop.groupsorder/index')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.groupsorder.index'?'active':''}">
+											<a href="{:url('index/flbooth.groupsorder/index')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>订单管理</span>
 											</a>
 										</li>
 									</ul>
 								</li>
-								<li class="treeview {$config.controllername === 'flshop.find' ? 'active':''}">
-									<a href="{:url('index/flshop/find')}">
+								<li class="treeview {$config.controllername === 'flbooth.find' ? 'active':''}">
+									<a href="{:url('index/flbooth/find')}">
 										<i class="fa fa-video-camera fa-fw"></i> <span>种草短视频</span> 
 										<span class="pull-right-container"><small class="label pull-right bg-red">new</small></span>
 									</a> 
 								</li>
-								<li class="treeview {$config.controllername === 'flshop.coupon' ? 'active':''}">
+								<li class="treeview {$config.controllername === 'flbooth.coupon' ? 'active':''}">
 									<a href="javascript:;">
 										<i class="fa fa-cloud fa-fw"></i> <span>营销活动</span> 
 										<span class="pull-right-container"><i class="fa fa-angle-left"></i> </span>
 									</a>
-									<ul class="treeview-menu {$config.controllername === 'flshop.coupon' ? 'menu-open' : ''}"
-									style="display: {$config.controllername === 'flshop.coupon' ? 'block' : 'none'};">
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.coupon.index'?'active':''}">
-											<a href="{:url('index/flshop/coupon')}">
+									<ul class="treeview-menu {$config.controllername === 'flbooth.coupon' ? 'menu-open' : ''}"
+									style="display: {$config.controllername === 'flbooth.coupon' ? 'block' : 'none'};">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.coupon.index'?'active':''}">
+											<a href="{:url('index/flbooth/coupon')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>满折减包邮券</span>
 											</a>
 										</li>
 									</ul>
 								</li>
-								<li class="treeview {:in_array($config.controllername,['flshop.logistics']) ?'active':''}">
+								<li class="treeview {:in_array($config.controllername,['flbooth.logistics']) ?'active':''}">
 									<a href="javascript:;">
 										<i class="fa fa-truck fa-fw"></i> <span>物流运费</span>
 										<span class="pull-right-container"><i class="fa fa-angle-left"></i> </span>
 									</a>
-									<ul class="treeview-menu {:in_array($config.controllername,['flshop.logistics']) ?'menu-open':''}" style="display: {:in_array($config.controllername,['flshop.logistics']) ?'block':'none'};">
-										<!-- <li class="{$config.controllername.'.'.$config.actionname == 'flshop.logistics.deliver'?'active':''}">
-											<a href="{:url('index/flshop.logistics/deliver')}">
+									<ul class="treeview-menu {:in_array($config.controllername,['flbooth.logistics']) ?'menu-open':''}" style="display: {:in_array($config.controllername,['flbooth.logistics']) ?'block':'none'};">
+										<!-- <li class="{$config.controllername.'.'.$config.actionname == 'flbooth.logistics.deliver'?'active':''}">
+											<a href="{:url('index/flbooth.logistics/deliver')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>发货</span>
 											</a>
 										</li> -->
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.logistics.template'?'active':''}">
-											<a href="{:url('index/flshop.logistics/template')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.logistics.template'?'active':''}">
+											<a href="{:url('index/flbooth.logistics/template')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>运费模板</span>
 											</a>
 										</li>
 									</ul>
 								</li>
 								
-								<li class="treeview {:in_array($config.controllername,['flshop.finance']) ?'active':''}">
+								<li class="treeview {:in_array($config.controllername,['flbooth.finance']) ?'active':''}">
 									<a href="javascript:;">
 										<i class="fa fa-paypal fa-fw"></i> <span>财务管理</span>
 										<span class="pull-right-container"><i class="fa fa-angle-left"></i> </span>
 									</a>
-									<ul class="treeview-menu {:in_array($config.controllername,['flshop.finance']) ?'menu-open':''}" style="display: {:in_array($config.controllername,['flshop.finance']) ?'block':'none'};">
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.finance.bill'?'active':''}">
-											<a href="{:url('index/flshop.finance/bill')}">
+									<ul class="treeview-menu {:in_array($config.controllername,['flbooth.finance']) ?'menu-open':''}" style="display: {:in_array($config.controllername,['flbooth.finance']) ?'block':'none'};">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.finance.bill'?'active':''}">
+											<a href="{:url('index/flbooth.finance/bill')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>商家对账单</span>
 											</a>
 										</li>
-										<li class="{$config.controllername.'.'.$config.actionname == 'flshop.finance.withdraw'?'active':''}">
-											<a href="{:url('index/flshop.finance/withdraw')}">
+										<li class="{$config.controllername.'.'.$config.actionname == 'flbooth.finance.withdraw'?'active':''}">
+											<a href="{:url('index/flbooth.finance/withdraw')}">
 												<i class="fa fa-circle-o fa-fw"></i><span>商家提现</span>
 											</a>
 										</li>
@@ -539,8 +539,8 @@
 								</li>
 								
 								
-								<li class="treeview {$config.controllername === 'flshop.config' ? 'active':''}">
-									<a href="{:url('index/flshop/config')}">
+								<li class="treeview {$config.controllername === 'flbooth.config' ? 'active':''}">
+									<a href="{:url('index/flbooth/config')}">
 										<i class="fa fa-cog fa-fw"></i> <span>店铺配置</span> 
 										<span class="pull-right-container"> </span>
 									</a> 
@@ -593,7 +593,7 @@
 				</div>
 			</div>
 		</div>
-		<script src="__CDN__/assets/js/require.min.js" data-main="__CDN__/assets/js/require-flshop.min.js?v={$site.version|htmlentities}"></script>
+		<script src="__CDN__/assets/js/require.min.js" data-main="__CDN__/assets/js/require-flbooth.min.js?v={$site.version|htmlentities}"></script>
 	</body>
 	{else}
 	<body class="inside-header inside-aside is-dialog">
@@ -610,7 +610,7 @@
 				</div>
 			</div>
 		</div>
-		<script src="__CDN__/assets/js/require.min.js" data-main="__CDN__/assets/js/require-flshop.min.js?v={$site.version|htmlentities}"></script>
+		<script src="__CDN__/assets/js/require.min.js" data-main="__CDN__/assets/js/require-flbooth.min.js?v={$site.version|htmlentities}"></script>
 	</body>
 	{/if}
 

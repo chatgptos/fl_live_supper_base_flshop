@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class Qrcode extends Model
     
 
     // 表名
-    protected $name = 'flshop_qrcode';
+    protected $name = 'flbooth_qrcode';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
@@ -41,7 +41,7 @@ class Qrcode extends Model
     
     public function getTemplateList()
     {
-        return ['flshopqrlist001' => __('Template flshopqrlist001'), 'flshopqr' => __('Template flshopqr')];
+        return ['flboothqrlist001' => __('Template flboothqrlist001'), 'flboothqr' => __('Template flboothqr')];
     }
 
     public function getStatusList()

@@ -1,9 +1,9 @@
 <?php
 
-namespace app\admin\controller\flshop\wechat;
+namespace app\admin\controller\flbooth\wechat;
 
 use app\common\controller\Backend;
-use addons\flshop\library\WeixinSdk\Mp;
+use addons\flbooth\library\WeixinSdk\Mp;
 
 /**
  * 资源管理
@@ -19,7 +19,7 @@ class Response extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('app\admin\model\flshop\WechatResponse');
+        $this->model = model('app\admin\model\flbooth\WechatResponse');
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Comment extends Backend
     
     /**
      * Comment模型对象
-     * @var \app\admin\model\flshop\Comment
+     * @var \app\admin\model\flbooth\Comment
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Comment;
+        $this->model = new \app\admin\model\flbooth\Comment;
         $this->view->assign("stateList", $this->model->getStateList());
         $this->view->assign("statusList", $this->model->getStatusList());
     }

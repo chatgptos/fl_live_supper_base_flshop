@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 
@@ -17,7 +17,7 @@ class Address extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Address;
+        $this->model = new \app\admin\model\flbooth\Address;
         $this->view->assign("defaultList", $this->model->getDefaultList());
         $this->view->assign("statusList", $this->model->getStatusList());
     }

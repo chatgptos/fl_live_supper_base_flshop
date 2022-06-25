@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -9,7 +9,7 @@ class GroupsGoods extends Model
     use SoftDelete;
 	
     // 表名
-    protected $name = 'flshop_groups_goods';
+    protected $name = 'flbooth_groups_goods';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
@@ -125,13 +125,13 @@ class GroupsGoods extends Model
 	
 	public function category()
 	{
-	    return $this->belongsTo('app\admin\model\flshop\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flbooth\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
 	
 	public function shopsort()
 	{
-	    return $this->belongsTo('app\admin\model\flshop\ShopSort', 'shop_category_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flbooth\ShopSort', 'shop_category_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
 }

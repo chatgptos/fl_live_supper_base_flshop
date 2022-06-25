@@ -4,12 +4,12 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 		index: function() {
 			a.api.init({
 				extend: {
-					index_url: "flshop/service/index" + location.search,
-					add_url: "flshop/service/add",
-					edit_url: "flshop/service/edit",
-					del_url: "flshop/service/del",
-					multi_url: "flshop/service/multi",
-					table: "flshop_shop_service"
+					index_url: "flbooth/service/index" + location.search,
+					add_url: "flbooth/service/add",
+					edit_url: "flbooth/service/edit",
+					del_url: "flbooth/service/del",
+					multi_url: "flbooth/service/multi",
+					table: "flbooth_shop_service"
 				}
 			});
 			var e = t("#table");
@@ -82,7 +82,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					}, n.onmessage = function(a) {
 						var p = JSON.parse(a.data);
 						if ("init" == p.type && Fast.api.ajax({
-								url: "flshop/service/bind.html",
+								url: "flbooth/service/bind.html",
 								data: {
 									client_id: p.client_id
 								}
@@ -104,7 +104,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					chatList: function() {
 						var t = this;
 						Fast.api.ajax({
-							url: "flshop/service/chatList.html"
+							url: "flbooth/service/chatList.html"
 						}, function(e, n) {
 							return t.msgList = e, !1
 						})
@@ -114,13 +114,13 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					},
 					publish: function(t) {
 						var e = this;
-						Fast.api.open("flshop/service/chat.html?to_id=" + t.id, "与 " + t.nickname + " 沟通", {
+						Fast.api.open("flbooth/service/chat.html?to_id=" + t.id, "与 " + t.nickname + " 沟通", {
 							area: ["750px", "600px"],
 							callback: function(t) {
 								e.isCount.forEach(function(n, a) {
 									n == t && e.isCount.splice(a, 1)
 								}), Fast.api.ajax({
-									url: "flshop/service/chatEnd.html",
+									url: "flbooth/service/chatEnd.html",
 									data: {
 										to_id: t
 									}
@@ -184,7 +184,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					}, ws.onmessage = function(e) {
 						var n = JSON.parse(e.data);
 						"init" == n.type && Fast.api.ajax({
-							url: "flshop/service/bind.html",
+							url: "flbooth/service/bind.html",
 							data: {
 								client_id: n.client_id
 							}
@@ -209,7 +209,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					history: function() {
 						var t = this;
 						Fast.api.ajax({
-							url: "flshop/service/history.html",
+							url: "flbooth/service/history.html",
 							data: {
 								id: this.to_id
 							}
@@ -249,7 +249,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					},
 					send: function(t) {
 						Fast.api.ajax({
-							url: "flshop/service/send.html",
+							url: "flbooth/service/send.html",
 							data: t
 						}, function(t, e) {
 							return !1
@@ -2184,7 +2184,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 			});
 			var e = t("#table");
 			e.bootstrapTable({
-				url: "flshop/service/recyclebin" + location.search,
+				url: "flbooth/service/recyclebin" + location.search,
 				pk: "id",
 				sortName: "id",
 				columns: [
@@ -2214,14 +2214,14 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 							text: __("Restore"),
 							classname: "btn btn-xs btn-info btn-ajax btn-restoreit",
 							icon: "fa fa-rotate-left",
-							url: "flshop/service/restore",
+							url: "flbooth/service/restore",
 							refresh: !0
 						}, {
 							name: "Destroy",
 							text: __("Destroy"),
 							classname: "btn btn-xs btn-danger btn-ajax btn-destroyit",
 							icon: "fa fa-times",
-							url: "flshop/service/destroy",
+							url: "flbooth/service/destroy",
 							refresh: !0
 						}],
 						formatter: a.api.formatter.operate

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Qrcode extends Backend
     
     /**
      * Qrcode模型对象
-     * @var \app\admin\model\flshop\Qrcode
+     * @var \app\admin\model\flbooth\Qrcode
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Qrcode;
+        $this->model = new \app\admin\model\flbooth\Qrcode;
         $this->view->assign("templateList", $this->model->getTemplateList());
         $this->view->assign("statusList", $this->model->getStatusList());
     }

@@ -9,7 +9,7 @@
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade active in" id="ini">
 				<div class="widget-body no-padding">
-					<form id="ini-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('flshop.client/edit')}">
+					<form id="ini-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('flbooth.client/edit')}">
 					    {:token()}	
 						<table class="table table-striped">
 							<thead>
@@ -24,7 +24,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[mp_alipay][appid]', $flshop.mp_alipay.appid, ['data-rule'=>'required','data-tip'=>'请填写支付宝小程序AppID','placeholder'=>'请在支付宝开发者工具中申请获取AppID'])}
+												{:Form::text('row[mp_alipay][appid]', $flbooth.mp_alipay.appid, ['data-rule'=>'required','data-tip'=>'请填写支付宝小程序AppID','placeholder'=>'请在支付宝开发者工具中申请获取AppID'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>

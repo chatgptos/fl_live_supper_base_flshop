@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -20,14 +20,14 @@ class Find extends Backend
     
     /**
      * Find模型对象
-     * @var \app\admin\model\flshop\Find
+     * @var \app\admin\model\flbooth\Find
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Find;
+        $this->model = new \app\admin\model\flbooth\Find;
         $this->view->assign("typeList", $this->model->getTypeList());
         $this->view->assign("stateList", $this->model->getStateList());
     }
@@ -169,10 +169,10 @@ class Find extends Backend
                 }
                 $count += $row->restore();
             }
-            foreach (model('app\admin\model\flshop\Live')->onlyTrashed()->where('id', 'in', $live)->select() as $k => $v) {
+            foreach (model('app\admin\model\flbooth\Live')->onlyTrashed()->where('id', 'in', $live)->select() as $k => $v) {
                 $v->restore();
             }
-            foreach (model('app\admin\model\flshop\Video')->onlyTrashed()->where('video_id', 'in', $video)->select() as $k => $v) {
+            foreach (model('app\admin\model\flbooth\Video')->onlyTrashed()->where('video_id', 'in', $video)->select() as $k => $v) {
                 $v->restore();
             }
             Db::commit();
@@ -219,10 +219,10 @@ class Find extends Backend
                     }
                     $count += $row->delete();
                 }
-                foreach (model('app\admin\model\flshop\Live')->where('id', 'in', $live)->select() as $k => $v) {
+                foreach (model('app\admin\model\flbooth\Live')->where('id', 'in', $live)->select() as $k => $v) {
                     $v->delete();
                 }
-                foreach (model('app\admin\model\flshop\Video')->where('video_id', 'in', $video)->select() as $k => $v) {
+                foreach (model('app\admin\model\flbooth\Video')->where('video_id', 'in', $video)->select() as $k => $v) {
                     $v->delete();
                 }
                 Db::commit();

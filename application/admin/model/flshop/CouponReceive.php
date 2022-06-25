@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class CouponReceive extends Model
     
 
     // 表名
-    protected $name = 'flshop_coupon_receive';
+    protected $name = 'flbooth_coupon_receive';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

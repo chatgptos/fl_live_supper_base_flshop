@@ -22,6 +22,6 @@ return [
     'created'           => '创建时间',
     'modified'           => '更新时间',
     'deleted'           => '删除时间',
-    'flshopfind.id'      => 'FIND_ID',
-    'flshopfind.content' => '内容'
+    'flboothfind.id'      => 'FIND_ID',
+    'flboothfind.content' => '内容'
 ];

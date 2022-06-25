@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Freight extends Backend
     
     /**
      * Freight模型对象
-     * @var \app\admin\model\flshop\Freight
+     * @var \app\admin\model\flbooth\Freight
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Freight;
+        $this->model = new \app\admin\model\flbooth\Freight;
         $this->view->assign("deliveryList", $this->model->getDeliveryList());
         $this->view->assign("isdeliveryList", $this->model->getIsdeliveryList());
         $this->view->assign("valuationList", $this->model->getValuationList());

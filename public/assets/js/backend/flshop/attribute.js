@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/attribute/index' + location.search,
-                    add_url: 'flshop/attribute/add',
-                    edit_url: 'flshop/attribute/edit',
-                    del_url: 'flshop/attribute/del',
-                    multi_url: 'flshop/attribute/multi',
-                    table: 'flshop_category_attribute',
+                    index_url: 'flbooth/attribute/index' + location.search,
+                    add_url: 'flbooth/attribute/add',
+                    edit_url: 'flbooth/attribute/edit',
+                    del_url: 'flbooth/attribute/del',
+                    multi_url: 'flbooth/attribute/multi',
+                    table: 'flbooth_category_attribute',
                 }
             });
 
@@ -55,7 +55,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'flshop/attribute/recyclebin' + location.search,
+                url: 'flbooth/attribute/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -82,7 +82,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'flshop/attribute/restore',
+                                    url: 'flbooth/attribute/restore',
                                     refresh: true
                                 },
                                 {
@@ -90,7 +90,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'flshop/attribute/destroy',
+                                    url: 'flbooth/attribute/destroy',
                                     refresh: true
                                 }
                             ],

@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/category/index' + location.search,
-                    add_url: 'flshop/category/add',
-                    edit_url: 'flshop/category/edit',
-                    del_url: 'flshop/category/del',
-                    multi_url: 'flshop/category/multi',
-                    table: 'flshop_category',
+                    index_url: 'flbooth/category/index' + location.search,
+                    add_url: 'flbooth/category/add',
+                    edit_url: 'flbooth/category/edit',
+                    del_url: 'flbooth/category/del',
+                    multi_url: 'flbooth/category/multi',
+                    table: 'flbooth_category',
                 }
             });
             var table = $("#table");
@@ -85,12 +85,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'flshop/category/goods' + location.search,
-		            add_url: 'flshop/category/add?type=goods',
-		            edit_url: 'flshop/category/edit?type=goods',
-		            del_url: 'flshop/category/del',
-		            multi_url: 'flshop/category/multi',
-		            table: 'flshop_category',
+		            index_url: 'flbooth/category/goods' + location.search,
+		            add_url: 'flbooth/category/add?type=goods',
+		            edit_url: 'flbooth/category/edit?type=goods',
+		            del_url: 'flbooth/category/del',
+		            multi_url: 'flbooth/category/multi',
+		            table: 'flbooth_category',
 		        }
 		    });
 		    var table = $("#table");
@@ -128,7 +128,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-list-ol',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `flshop/attribute?category_id=${row.channel}`;
+										return `flbooth/attribute?category_id=${row.channel}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -144,7 +144,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `flshop/goods?category_id=${row.channel}`;
+										return `flbooth/goods?category_id=${row.channel}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -160,7 +160,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-shopping-bag',
                                     extend: 'data-area=\'["90%", "80%"]\'',
                                     url: function (row) {
-										return `flshop/groups/goods?category_id=${row.channel}`;
+										return `flbooth/groups/goods?category_id=${row.channel}`;
 								    },
                                     callback: function (data) {
 										$(".btn-refresh").trigger("click"); //刷新数据
@@ -217,7 +217,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 			
 			//点击详情
 			$(document).on("click", ".btn-create", function () {
-			    Backend.api.open('flshop/category/create/', __('批量生成菜单'));
+			    Backend.api.open('flbooth/category/create/', __('批量生成菜单'));
 			});
 			
 			
@@ -228,12 +228,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 		    // 初始化表格参数配置
 		    Table.api.init({
 		        extend: {
-		            index_url: 'flshop/category/article' + location.search,
-		            add_url: 'flshop/category/add?type=article',
-		            edit_url: 'flshop/category/edit?type=article',
-		            del_url: 'flshop/category/del',
-		            multi_url: 'flshop/category/multi',
-		            table: 'flshop_category',
+		            index_url: 'flbooth/category/article' + location.search,
+		            add_url: 'flbooth/category/add?type=article',
+		            edit_url: 'flbooth/category/edit?type=article',
+		            del_url: 'flbooth/category/del',
+		            multi_url: 'flbooth/category/multi',
+		            table: 'flbooth_category',
 		        }
 		    });
 		
@@ -309,7 +309,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/category/select',
+                    index_url: 'flbooth/category/select',
                 }
             });
             var urlArr = [];

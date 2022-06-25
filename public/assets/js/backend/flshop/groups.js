@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/groups/index' + location.search,
+                    index_url: 'flbooth/groups/index' + location.search,
                     add_url: '',
                     edit_url: '',
                     del_url: '',
-                    multi_url: 'flshop/groups/multi',
-                    import_url: 'flshop/groups/import',
-                    table: 'flshop_groups',
+                    multi_url: 'flbooth/groups/multi',
+                    import_url: 'flbooth/groups/import',
+                    table: 'flbooth_groups',
                 }
             });
 
@@ -50,7 +50,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 								    classname: 'btn btn-xs btn-info btn-dialog',
 								    extend: 'data-area=\'["420px", "700px"]\'',
 								    icon: 'fa fa-users',
-								    url: 'flshop/groups/detail'
+								    url: 'flbooth/groups/detail'
 								}
 						    ], 
 							formatter: Table.api.formatter.operate
@@ -69,13 +69,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 			// 初始化表格参数配置
 			Table.api.init({
 				extend: {
-					index_url: 'flshop/groups/goods' + location.search,
+					index_url: 'flbooth/groups/goods' + location.search,
 					add_url: '',
 					edit_url: '',
-					del_url: 'flshop/groups/goodsDel',
+					del_url: 'flbooth/groups/goodsDel',
 					multi_url: '',
 					dragsort_url: "",
-					table: 'flshop_groups',
+					table: 'flbooth_groups',
 				}
 			});
 			var table = $("#table");
@@ -132,7 +132,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'flshop/groups/goodsRecyclebin' + location.search,
+                url: 'flbooth/groups/goodsRecyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -158,7 +158,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'flshop/groups/goodsRestore',
+                                    url: 'flbooth/groups/goodsRestore',
                                     refresh: true
                                 },
                                 {
@@ -166,7 +166,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'flshop/groups/goodsDestroy',
+                                    url: 'flbooth/groups/goodsDestroy',
                                     refresh: true
                                 }
                             ],
@@ -183,12 +183,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/groups/order' + location.search,
+                    index_url: 'flbooth/groups/order' + location.search,
                     add_url: '',
                     edit_url: '',
-                    del_url: 'flshop/groups/orderDel',
+                    del_url: 'flbooth/groups/orderDel',
                     multi_url: '',
-                    table: 'flshop_order',
+                    table: 'flbooth_order',
                 }
             });
 			
@@ -227,14 +227,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.bindevent(table);
             //点击详情
 			$(document).on("click", ".detail[data-id]", function () {
-			    Backend.api.open('flshop/groups/orderDetail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
+			    Backend.api.open('flbooth/groups/orderDetail/id/' + $(this).data('id'), __('查看详情'),{area:['1200px', '780px']});
 			});
 			//点击详情
 			$(document).on("click", ".comment[data-id]", function () {
-			    Backend.api.open('flshop/comment/detail/order_id/' + $(this).data('id'), __('查看详情'));
+			    Backend.api.open('flbooth/comment/detail/order_id/' + $(this).data('id'), __('查看详情'));
 			});
 			$(document).on("click", ".kuaidisub[data-id]", function () {
-			    Backend.api.open('flshop/groups/orderRelative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
+			    Backend.api.open('flbooth/groups/orderRelative/id/' + $(this).data('id'), __('快递查询'),{area:['800px', '600px']});
 			});
             
         },
@@ -250,7 +250,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'flshop/groups/orderRecyclebin' + location.search,
+                url: 'flbooth/groups/orderRecyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -276,7 +276,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'flshop/groups/orderRestore',
+                                    url: 'flbooth/groups/orderRestore',
                                     refresh: true
                                 },
                                 {
@@ -284,7 +284,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'flshop/groups/orderDestroy',
+                                    url: 'flbooth/groups/orderDestroy',
                                     refresh: true
                                 }
                             ],

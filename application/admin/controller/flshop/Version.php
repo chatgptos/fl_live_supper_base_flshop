@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -19,14 +19,14 @@ class Version extends Backend
     
     /**
      * Version模型对象
-     * @var \app\admin\model\flshop\Version
+     * @var \app\admin\model\flbooth\Version
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Version;
+        $this->model = new \app\admin\model\flbooth\Version;
         $this->view->assign("typeList", $this->model->getTypeList());
     }
 
@@ -42,7 +42,7 @@ class Version extends Backend
     {
         if ($this->request->isPost()) {
             $params = $this->request->post("row/a");
-			$addon = get_addon_info('flshop');
+			$addon = get_addon_info('flbooth');
             if ($params) {
                 $params = $this->preExcludeFields($params);
                 if ($this->dataLimit && $this->dataLimitFieldAutoFill) {

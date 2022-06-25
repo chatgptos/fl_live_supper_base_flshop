@@ -7,14 +7,14 @@
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         {:build_toolbar('refresh')}
-                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('flshop/comments/restore')?'':'hide'}" href="javascript:;" data-url="flshop/comments/restore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
-                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('flshop/comments/destroy')?'':'hide'}" href="javascript:;" data-url="flshop/comments/destroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
-                        <a class="btn btn-success btn-restoreall {:$auth->check('flshop/comments/restore')?'':'hide'}" href="javascript:;" data-url="flshop/comments/restore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
-                        <a class="btn btn-danger btn-destroyall {:$auth->check('flshop/comments/destroy')?'':'hide'}" href="javascript:;" data-url="flshop/comments/destroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
+                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('flbooth/comments/restore')?'':'hide'}" href="javascript:;" data-url="flbooth/comments/restore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
+                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('flbooth/comments/destroy')?'':'hide'}" href="javascript:;" data-url="flbooth/comments/destroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
+                        <a class="btn btn-success btn-restoreall {:$auth->check('flbooth/comments/restore')?'':'hide'}" href="javascript:;" data-url="flbooth/comments/restore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
+                        <a class="btn btn-danger btn-destroyall {:$auth->check('flbooth/comments/destroy')?'':'hide'}" href="javascript:;" data-url="flbooth/comments/destroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
                     </div>
                     <table id="table" class="table table-striped table-bordered table-hover"
-                           data-operate-restore="{:$auth->check('flshop/comments/restore')}"
-                           data-operate-destroy="{:$auth->check('flshop/comments/destroy')}"
+                           data-operate-restore="{:$auth->check('flbooth/comments/restore')}"
+                           data-operate-destroy="{:$auth->check('flbooth/comments/destroy')}"
                            width="100%">
                     </table>
                 </div>

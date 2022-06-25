@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class Comment extends Model
     
 
     // 表名
-    protected $name = 'flshop_goods_comment';
+    protected $name = 'flbooth_goods_comment';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
@@ -68,26 +68,26 @@ class Comment extends Model
 
     public function shop()
     {
-        return $this->belongsTo('app\admin\model\flshop\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flbooth\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
     
     public function goods()
     {
-        return $this->belongsTo('app\index\model\flshop\Goods', 'goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flbooth\Goods', 'goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
     
     public function groups()
     {
-        return $this->belongsTo('app\index\model\flshop\groups\Goods', 'goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flbooth\groups\Goods', 'goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
     
     public function ordergoods()
     {
-        return $this->belongsTo('app\index\model\flshop\OrderGoods', 'order_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flbooth\OrderGoods', 'order_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
     
     public function ordergroups()
     {
-        return $this->belongsTo('app\index\model\flshop\groups\OrderGoods', 'order_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flbooth\groups\OrderGoods', 'order_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

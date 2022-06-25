@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class Article extends Model
     
 
     // 表名
-    protected $name = 'flshop_article';
+    protected $name = 'flbooth_article';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
@@ -73,6 +73,6 @@ class Article extends Model
 
 	public function category()
 	{
-	    return $this->belongsTo('app\admin\model\flshop\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flbooth\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 }

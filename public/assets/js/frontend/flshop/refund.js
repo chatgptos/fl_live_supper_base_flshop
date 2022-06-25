@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
 			// 初始化表格参数配置
 			Table.api.init({
 				extend: {
-					index_url: 'flshop/refund/index' + location.search,
+					index_url: 'flbooth/refund/index' + location.search,
 					add_url: '',
 					edit_url: '',
 					del_url: '',
 					multi_url: '',
-					table: 'flshop_refund',
+					table: 'flbooth_refund',
 				}
 			});
 
@@ -46,7 +46,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
 									text: '查看退款',
 									classname: 'btn btn-xs btn-info btn-dialog',
 									icon: 'fa fa-eye',
-									url: 'flshop/refund/detail'
+									url: 'flbooth/refund/detail'
 								}, 
 								{
 									name: 'agreeGoods',
@@ -55,7 +55,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
 									classname: 'btn btn-xs btn-success btn-magic btn-ajax',
 									icon: 'fa fa-check',
 									confirm: '确认同意买家退款退货？',
-									url: 'flshop/refund/agree',
+									url: 'flbooth/refund/agree',
 									visible: function(row) {
 										if (row.state == 0) {
 											if (row.type == 1) {
@@ -79,7 +79,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
 									classname: 'btn btn-xs btn-success btn-magic btn-ajax',
 									icon: 'fa fa-check',
 									confirm: '确认同意买家退款，款项会直接转到用户余额？',
-									url: 'flshop/refund/agree',
+									url: 'flbooth/refund/agree',
 									visible: function(row) {
 										if (row.state == 0) {
 											if (row.type == 0) {
@@ -104,7 +104,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
 									classname: 'btn btn-xs btn-success btn-magic btn-ajax',
 									icon: 'fa fa-check',
 									confirm: '确定收到买家退货？确认后此退货订单自动完成退款！',
-									url: 'flshop/refund/receiving',
+									url: 'flbooth/refund/receiving',
 									visible: function(row) {
 										if (row.state == 6) {
 											return true;
@@ -126,7 +126,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function($, undefine
 									text: '拒绝退款',
 									classname: 'btn btn-xs btn-danger btn-dialog',
 									icon: 'fa fa-times',
-									url: 'flshop/refund/refuse',
+									url: 'flbooth/refund/refuse',
 									visible: function(row) {
 										if (row.state == 0) {
 											return true;

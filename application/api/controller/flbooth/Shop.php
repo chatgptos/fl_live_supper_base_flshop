@@ -100,9 +100,9 @@ class Shop extends Api
 			->find();
 		if ($this->request->isPost()) {
 			$params = $this->request->post();
-            var_dump($this->auth);
-            var_dump($params);
-            die;
+//            var_dump($this->auth);
+//            var_dump($params);
+//            die;
 			$data = [
 				'name' => $params['name'],
 				'user_id' => $this->auth->id,

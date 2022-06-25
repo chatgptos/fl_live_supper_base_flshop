@@ -5,13 +5,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/coupon/index' + location.search,
-                    add_url: 'flshop/coupon/add',
-                    edit_url: 'flshop/coupon/edit',
-                    del_url: 'flshop/coupon/del',
+                    index_url: 'flbooth/coupon/index' + location.search,
+                    add_url: 'flbooth/coupon/add',
+                    edit_url: 'flbooth/coupon/edit',
+                    del_url: 'flbooth/coupon/del',
                     multi_url: '',
                     import_url: '',
-                    table: 'flshop_coupon',
+                    table: 'flbooth_coupon',
                 }
             });
 
@@ -59,7 +59,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'flshop/coupon/recyclebin' + location.search,
+                url: 'flbooth/coupon/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -86,7 +86,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'flshop/coupon/restore',
+                                    url: 'flbooth/coupon/restore',
                                     refresh: true
                                 }
                             ],
@@ -120,7 +120,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 					},
 					// 类目链接
 					categoryLink(){
-						parent.Fast.api.open("flshop/shopsort/select?sort=true&multiple=false", __('选择类目链接'), {
+						parent.Fast.api.open("flbooth/shopsort/select?sort=true&multiple=false", __('选择类目链接'), {
 							area: ['800px', '600px'],
 						    callback: (data)=> {
 								this.range = data.url;
@@ -129,7 +129,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 					},
 					// 商品链接
 					goodsLink(){
-						parent.Fast.api.open("flshop/goods/select?multiple=true", __('选择商品链接'), {
+						parent.Fast.api.open("flbooth/goods/select?multiple=true", __('选择商品链接'), {
 							area: ['800px', '600px'],
 						    callback: (data)=> {
 								this.range = data.url;
@@ -161,7 +161,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 					},
 					// 类目链接
 					categoryLink(){
-						parent.Fast.api.open("flshop/shopsort/select?sort=true&multiple=false", __('选择类目链接'), {
+						parent.Fast.api.open("flbooth/shopsort/select?sort=true&multiple=false", __('选择类目链接'), {
 							area: ['800px', '600px'],
 						    callback: (data)=> {
 								this.range = data.url;
@@ -170,7 +170,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'vue'], function ($, 
 					},
 					// 商品链接
 					goodsLink(){
-						parent.Fast.api.open("flshop/goods/select?multiple=true", __('选择商品链接'), {
+						parent.Fast.api.open("flbooth/goods/select?multiple=true", __('选择商品链接'), {
 							area: ['800px', '600px'],
 						    callback: (data)=> {
 								this.range = data.url;

@@ -5,11 +5,11 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'adminlte'], function
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/wechat/response/index',
-                    add_url: 'flshop/wechat/response/add',
-                    edit_url: 'flshop/wechat/response/edit',
-                    del_url: 'flshop/wechat/response/del',
-                    multi_url: 'flshop/wechat/response/multi',
+                    index_url: 'flbooth/wechat/response/index',
+                    add_url: 'flbooth/wechat/response/add',
+                    edit_url: 'flbooth/wechat/response/edit',
+                    del_url: 'flbooth/wechat/response/del',
+                    multi_url: 'flbooth/wechat/response/multi',
                 }
             });
 
@@ -39,7 +39,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'adminlte'], function
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/wechat/response/index',
+                    index_url: 'flbooth/wechat/response/index',
                 }
             });
 

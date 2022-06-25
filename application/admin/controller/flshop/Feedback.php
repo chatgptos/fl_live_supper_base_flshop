@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -18,14 +18,14 @@ class Feedback extends Backend
     
     /**
      * Feedback模型对象
-     * @var \app\admin\model\flshop\Feedback
+     * @var \app\admin\model\flbooth\Feedback
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Feedback;
+        $this->model = new \app\admin\model\flbooth\Feedback;
         $this->view->assign("statusList", $this->model->getStatusList());
     }
     

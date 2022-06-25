@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Db;
 use think\Exception;
 
 use think\exception\PDOException;
-use addons\flshop\library\AliyunSdk\Alilive;
+use addons\flbooth\library\AliyunSdk\Alilive;
 
 /**
  * 直播管理
@@ -19,14 +19,14 @@ class Live extends Backend
     
     /**
      * Live模型对象
-     * @var \app\admin\model\flshop\Live
+     * @var \app\admin\model\flbooth\Live
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Live;
+        $this->model = new \app\admin\model\flbooth\Live;
         $this->view->assign("stateList", $this->model->getStateList());
     }
 
@@ -62,17 +62,17 @@ class Live extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
             $list = $this->model
-                    ->with(['flshopfind','flshopshop'])
+                    ->with(['flboothfind','flboothshop'])
                     ->where($where)
                     ->order($sort, $order)
                     ->paginate($limit);
 
             foreach ($list as $row) {
                 $row->visible(['id','shop_id','image','content','liveid','liveurl','pushurl','recordurl','views','like ','state','modified']);
-                $row->visible(['flshopfind']);
-				$row->getRelation('flshopfind')->visible(['id','content']);
-				$row->visible(['flshopshop']);
-				$row->getRelation('flshopshop')->visible(['shopname']);
+                $row->visible(['flboothfind']);
+				$row->getRelation('flboothfind')->visible(['id','content']);
+				$row->visible(['flboothshop']);
+				$row->getRelation('flboothshop')->visible(['shopname']);
             }
 
             $result = array("total" => $list->total(), "rows" => $list->items());
@@ -122,7 +122,7 @@ class Live extends Backend
                 $count += $row->restore();
             }
             if(isset($live)){
-                foreach (model('app\admin\model\flshop\Find')->onlyTrashed()->where('live_id', 'in', $live)->select() as $k => $v) {
+                foreach (model('app\admin\model\flbooth\Find')->onlyTrashed()->where('live_id', 'in', $live)->select() as $k => $v) {
                     $v->restore();
                 }
             }
@@ -166,7 +166,7 @@ class Live extends Backend
                     $count += $row->delete();
                 }
                 if(isset($live)){
-                    foreach (model('app\admin\model\flshop\Find')->where('live_id', 'in', $live)->select() as $k => $v) {
+                    foreach (model('app\admin\model\flbooth\Find')->where('live_id', 'in', $live)->select() as $k => $v) {
                         $v->delete();
                     }
                 }

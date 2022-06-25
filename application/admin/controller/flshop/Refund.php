@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -18,14 +18,14 @@ class Refund extends Backend
     
     /**
      * Refund模型对象
-     * @var \app\admin\model\flshop\Refund
+     * @var \app\admin\model\flbooth\Refund
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Refund;
+        $this->model = new \app\admin\model\flbooth\Refund;
         $this->view->assign("expresstypeList", $this->model->getExpresstypeList());
         $this->view->assign("typeList", $this->model->getTypeList());
         $this->view->assign("reasonList", $this->model->getReasonList());
@@ -94,16 +94,16 @@ class Refund extends Backend
 		$row['images'] = explode(',', $row['images']);
 		
 		if($row['order_type'] === 'groups'){
-			$row['ordergoods'] = model('app\admin\model\flshop\GroupsOrderGoods')
+			$row['ordergoods'] = model('app\admin\model\flbooth\GroupsOrderGoods')
 			->where('id', 'in', $row['goods_ids'])
 			->select();
 		}else{
-			$row['ordergoods'] = model('app\admin\model\flshop\OrderGoods')
+			$row['ordergoods'] = model('app\admin\model\flbooth\OrderGoods')
 			    ->where('id', 'in', $row['goods_ids'])
 			    ->select();
 		}	
 			
-		$row['log'] = model('app\admin\model\flshop\RefundLog')
+		$row['log'] = model('app\admin\model\flbooth\RefundLog')
 			->where(['refund_id' => $ids])
 			->order('created desc')
 			->select();
@@ -136,13 +136,13 @@ class Refund extends Backend
 				$state = 4;
 				$orderGoodsState = 3;
 				// 返还资金，并写入日志，未收货前资金等于冻结在平台无需处理卖家资金流向
-				controller('addons\flshop\library\WanlPay\WanlPay')->money(+$row['price'], $row['user_id'], '客服判定同意退款', 'refund', $row['order_no']);
+				controller('addons\flbooth\library\WanlPay\WanlPay')->money(+$row['price'], $row['user_id'], '客服判定同意退款', 'refund', $row['order_no']);
 				
 				// 1.1.3升级
-				$config = get_addon_config('flshop');
+				$config = get_addon_config('flbooth');
 				if($config['config']['refund_switch'] == 'Y'){
 					// 检查是否原路返还（不写到money防止自动任务时原路返回） 1.1.2升级
-					controller('addons\flshop\library\WanlPay\WanlPay')->refund($row['id'], $row['price'], $row['order_pay_id']);
+					controller('addons\flbooth\library\WanlPay\WanlPay')->refund($row['id'], $row['price'], $row['order_pay_id']);
 				}
 				//后续版本推送订购单
 				// ...
@@ -229,7 +229,7 @@ class Refund extends Backend
 	/**
 	 * 更新订单商品状态（方法内使用）1.0.5升级
 	 *
-	 * @ApiSummary  (flshop 更新订单商品状态)
+	 * @ApiSummary  (flbooth 更新订单商品状态)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $status 状态
@@ -238,9 +238,9 @@ class Refund extends Backend
 	private function setOrderGoodsState($status = 0, $goods_id = 0, $order_type = 'goods')
 	{
 		if($order_type === 'groups'){
-			$orderGoodsModel = model('app\admin\model\flshop\GroupsOrderGoods');
+			$orderGoodsModel = model('app\admin\model\flbooth\GroupsOrderGoods');
 		}else{
-			$orderGoodsModel = model('app\admin\model\flshop\OrderGoods');
+			$orderGoodsModel = model('app\admin\model\flbooth\OrderGoods');
 		}
 		return $orderGoodsModel->save(['refund_status' => $status],['id' => $goods_id]);
 	}
@@ -248,7 +248,7 @@ class Refund extends Backend
 	/**
 	 * 修改订单状态（方法内使用） 1.0.5升级
 	 *
-	 * @ApiSummary  (flshop 修改订单状态)
+	 * @ApiSummary  (flbooth 修改订单状态)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 订单ID
@@ -256,11 +256,11 @@ class Refund extends Backend
 	private function setRefundState($order_id = 0, $order_type = 'goods')
 	{
 		if($order_type === 'groups'){
-			$orderModel = model('app\admin\model\flshop\GroupsOrder');
-			$orderGoodsModel = model('app\admin\model\flshop\GroupsOrderGoods');
+			$orderModel = model('app\admin\model\flbooth\GroupsOrder');
+			$orderGoodsModel = model('app\admin\model\flbooth\GroupsOrderGoods');
 		}else{
-			$orderModel = model('app\admin\model\flshop\Order');
-			$orderGoodsModel = model('app\admin\model\flshop\OrderGoods');
+			$orderModel = model('app\admin\model\flbooth\Order');
+			$orderGoodsModel = model('app\admin\model\flbooth\OrderGoods');
 		}
 		$list = $orderGoodsModel
 			->where(['order_id' => $order_id])
@@ -282,7 +282,7 @@ class Refund extends Backend
 	/**
 	 * 退款日志（方法内使用）
 	 *
-	 * @ApiSummary  (flshop 退款日志)
+	 * @ApiSummary  (flbooth 退款日志)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $user_id 用户ID
@@ -291,7 +291,7 @@ class Refund extends Backend
 	 */
 	private function refundLog($user_id = 0, $refund_id = 0, $content = '')
 	{
-		return model('app\admin\model\flshop\RefundLog')->allowField(true)->save([
+		return model('app\admin\model\flbooth\RefundLog')->allowField(true)->save([
 			'user_id' => $user_id,
 			'refund_id' => $refund_id,
 			'type' => 2,

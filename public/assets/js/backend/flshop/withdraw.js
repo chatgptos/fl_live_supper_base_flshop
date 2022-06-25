@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/withdraw/index' + location.search,
+                    index_url: 'flbooth/withdraw/index' + location.search,
                     add_url: '',
                     edit_url: '',
-                    del_url: 'flshop/withdraw/del',
-                    multi_url: 'flshop/withdraw/multi',
-                    import_url: 'flshop/withdraw/import',
+                    del_url: 'flbooth/withdraw/del',
+                    multi_url: 'flbooth/withdraw/multi',
+                    import_url: 'flbooth/withdraw/import',
                     table: 'withdraw',
                 }
             });
@@ -53,7 +53,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		icon: 'fa fa-check',
                         		text: '同意',
                         		confirm: '确认点击同意，通过提现申请？',
-                        		url: 'flshop/withdraw/agree',
+                        		url: 'flbooth/withdraw/agree',
                         		visible: function(row) {
                         			// 审核:0=提交资质,1=提交店铺,2=提交审核,3=通过,4=未通过
                         			if (row.status == 'created') {
@@ -75,7 +75,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		classname: 'btn btn-xs btn-danger btn-dialog',
                         		icon: 'fa fa-times',
                         		text: '拒绝',
-                        		url: 'flshop/withdraw/refuse',
+                        		url: 'flbooth/withdraw/refuse',
                         		visible: function(row) {
                         			if (row.status == 'created') {
                         				return true;
@@ -88,7 +88,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         		text: '详情',
                         		classname: 'btn btn-xs btn-info btn-dialog',
                         		icon: 'fa fa-eye',
-                        		url: 'flshop/withdraw/detail'
+                        		url: 'flbooth/withdraw/detail'
                         	}],
                         	formatter: Table.api.formatter.operate,
                         }

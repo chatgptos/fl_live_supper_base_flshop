@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -19,14 +19,14 @@ class Withdraw extends Backend
     
     /**
      * Withdraw模型对象
-     * @var \app\admin\model\flshop\Withdraw
+     * @var \app\admin\model\flbooth\Withdraw
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Withdraw;
+        $this->model = new \app\admin\model\flbooth\Withdraw;
         $this->view->assign("statusList", $this->model->getStatusList());
     }
 
@@ -128,7 +128,7 @@ class Withdraw extends Backend
     				$params['status'] = 'rejected';
     	            $result = $row->allowField(true)->save($params);
 					// 更新用户金额
-					controller('addons\flshop\library\WanlPay\WanlPay')->money(+bcadd($row['money'], $row['handingfee'], 2), $row['user_id'], '提现失败返回余额', 'withdraw', $row['id']);
+					controller('addons\flbooth\library\WanlPay\WanlPay')->money(+bcadd($row['money'], $row['handingfee'], 2), $row['user_id'], '提现失败返回余额', 'withdraw', $row['id']);
     	            Db::commit();
     	        } catch (ValidateException $e) {
     	            Db::rollback();

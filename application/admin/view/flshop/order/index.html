@@ -1,5 +1,5 @@
 <div class="alert alert-success-light">
-	<i class="fa fa-warning"></i> 重要提示：后台订单列表仅供查看，如需发货、或修改订单信息请到商家后台操作！<a target="_blank" href="/index/flshop.console">进入商家后台</a>
+	<i class="fa fa-warning"></i> 重要提示：后台订单列表仅供查看，如需发货、或修改订单信息请到商家后台操作！<a target="_blank" href="/index/flbooth.console">进入商家后台</a>
 </div>
 <div class="panel panel-default panel-intro">
 	<div class="panel-heading">
@@ -20,7 +20,7 @@
 						<!-- <a class="btn btn-info btn-disabled disabled btn-selected" href="javascript:;"><i class="fa fa-leaf"></i> 批量 打印发货单</a>
 						<a class="btn btn-success btn-disabled disabled btn-selected" href="javascript:;"><i class="fa fa-leaf"></i> 批量 打印运单</a>
 						<a class="btn btn-info btn-disabled disabled btn-selected" href="javascript:;"><i class="fa fa-leaf"></i> 批量发货</a> -->
-						<a class="btn btn-warning btn-recyclebin btn-dialog {:$auth->check('flshop/order/recyclebin')?'':'hide'}" href="flshop/order/recyclebin" title="{:__('Recycle bin')}"><i class="fa fa-recycle"></i> {:__('Recycle bin')}</a>
+						<a class="btn btn-warning btn-recyclebin btn-dialog {:$auth->check('flbooth/order/recyclebin')?'':'hide'}" href="flbooth/order/recyclebin" title="{:__('Recycle bin')}"><i class="fa fa-recycle"></i> {:__('Recycle bin')}</a>
 					</div>
 					<table id="table" data-show-export="false" data-show-toggle="false" data-show-columns="false" class="table" width="100%"></table>
 				</div>

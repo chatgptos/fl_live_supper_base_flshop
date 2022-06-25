@@ -5,12 +5,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'flshop/brand/index' + location.search,
-                    add_url: 'flshop/brand/add',
-                    edit_url: 'flshop/brand/edit',
-                    del_url: 'flshop/brand/del',
+                    index_url: 'flbooth/brand/index' + location.search,
+                    add_url: 'flbooth/brand/add',
+                    edit_url: 'flbooth/brand/edit',
+                    del_url: 'flbooth/brand/del',
                     multi_url: '',
-                    table: 'flshop_brand',
+                    table: 'flbooth_brand',
                 }
             });
 
@@ -44,7 +44,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 								icon: 'fa fa-check',
 								text: '审核',
 								confirm: '确定同意来自商家申请的类目品牌？',
-								url: 'flshop/brand/examine',
+								url: 'flbooth/brand/examine',
 								visible: function(row) {
 									if (row.state == 0) {
 										return true;
@@ -81,7 +81,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url: 'flshop/brand/recyclebin' + location.search,
+                url: 'flbooth/brand/recyclebin' + location.search,
                 pk: 'id',
                 sortName: 'id',
                 columns: [
@@ -108,7 +108,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Restore'),
                                     classname: 'btn btn-xs btn-info btn-ajax btn-restoreit',
                                     icon: 'fa fa-rotate-left',
-                                    url: 'flshop/brand/restore',
+                                    url: 'flbooth/brand/restore',
                                     refresh: true
                                 },
                                 {
@@ -116,7 +116,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     text: __('Destroy'),
                                     classname: 'btn btn-xs btn-danger btn-ajax btn-destroyit',
                                     icon: 'fa fa-times',
-                                    url: 'flshop/brand/destroy',
+                                    url: 'flbooth/brand/destroy',
                                     refresh: true
                                 }
                             ],

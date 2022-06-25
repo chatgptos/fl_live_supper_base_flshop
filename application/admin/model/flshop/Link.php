@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flshop;
+namespace app\admin\model\flbooth;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -13,7 +13,7 @@ class Link extends Model
     
 
     // 表名
-    protected $name = 'flshop_link';
+    protected $name = 'flbooth_link';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';

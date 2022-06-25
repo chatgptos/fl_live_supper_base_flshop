@@ -9,7 +9,7 @@
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade active in" id="ini">
 				<div class="widget-body no-padding">
-					<form id="ini-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('flshop.client/edit')}">
+					<form id="ini-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('flbooth.client/edit')}">
 					    {:token()}	
 						<table class="table table-striped">
 							<thead>
@@ -24,7 +24,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[h5][domain]', $flshop.h5.domain, ['data-rule'=>'required','data-tip'=>'请填写H5站点域名','placeholder'=>'绑定子域名请使用https：如没有子域名请填写 根目录域名/基础路径'])}
+												{:Form::text('row[h5][domain]', $flbooth.h5.domain, ['data-rule'=>'required','data-tip'=>'请填写H5站点域名','placeholder'=>'绑定子域名请使用https：如没有子域名请填写 根目录域名/基础路径'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -35,7 +35,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[h5][title]', $flshop.h5.title, ['data-rule'=>'required','data-tip'=>'请填写H5网站标题','placeholder'=>'请填写H5网站标题'])}
+												{:Form::text('row[h5][title]', $flbooth.h5.title, ['data-rule'=>'required','data-tip'=>'请填写H5网站标题','placeholder'=>'请填写H5网站标题'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -46,7 +46,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												 {:Form::select('row[h5][router_mode]', ['history'=>'history', 'hash'=>'hash'], $flshop.h5.router_mode, ['data-rule'=>'required'])}
+												 {:Form::select('row[h5][router_mode]', ['history'=>'history', 'hash'=>'hash'], $flbooth.h5.router_mode, ['data-rule'=>'required'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -57,7 +57,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[h5][router_base]', $flshop.h5.router_base, ['data-rule'=>'required','data-tip'=>'请填写运行基础路径','placeholder'=>'例：/h5/，代表在域名的/h5目录下部署运行'])}
+												{:Form::text('row[h5][router_base]', $flbooth.h5.router_base, ['data-rule'=>'required','data-tip'=>'请填写运行基础路径','placeholder'=>'例：/h5/，代表在域名的/h5目录下部署运行'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -68,7 +68,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::switcher('row[h5][https]', $flshop.h5.https, ['color'=>'success', 'yes'=>'Y', 'no'=>'N'])}
+												{:Form::switcher('row[h5][https]', $flbooth.h5.https, ['color'=>'success', 'yes'=>'Y', 'no'=>'N'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -79,7 +79,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[h5][qqmap_key]', $flshop.h5.qqmap_key, ['data-rule'=>'required','data-tip'=>'请填写h5腾讯地图key','placeholder'=>'H5平台腾讯定位地图应用KEY'])}
+												{:Form::text('row[h5][qqmap_key]', $flbooth.h5.qqmap_key, ['data-rule'=>'required','data-tip'=>'请填写h5腾讯地图key','placeholder'=>'H5平台腾讯定位地图应用KEY'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>

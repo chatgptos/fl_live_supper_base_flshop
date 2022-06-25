@@ -7,14 +7,14 @@
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         {:build_toolbar('refresh')}
-                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('flshop/groups/orderRestore')?'':'hide'}" href="javascript:;" data-url="flshop/groups/orderRestore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
-                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('flshop/groups/orderDestroy')?'':'hide'}" href="javascript:;" data-url="flshop/groups/orderDestroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
-                        <a class="btn btn-success btn-restoreall {:$auth->check('flshop/groups/orderRestore')?'':'hide'}" href="javascript:;" data-url="flshop/groups/orderRestore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
-                        <a class="btn btn-danger btn-destroyall {:$auth->check('flshop/groups/orderDestroy')?'':'hide'}" href="javascript:;" data-url="flshop/groups/orderDestroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
+                        <a class="btn btn-info btn-multi btn-disabled disabled {:$auth->check('flbooth/groups/orderRestore')?'':'hide'}" href="javascript:;" data-url="flbooth/groups/orderRestore" data-action="restore"><i class="fa fa-rotate-left"></i> {:__('Restore')}</a>
+                        <a class="btn btn-danger btn-multi btn-disabled disabled {:$auth->check('flbooth/groups/orderDestroy')?'':'hide'}" href="javascript:;" data-url="flbooth/groups/orderDestroy" data-action="destroy"><i class="fa fa-times"></i> {:__('Destroy')}</a>
+                        <a class="btn btn-success btn-restoreall {:$auth->check('flbooth/groups/orderRestore')?'':'hide'}" href="javascript:;" data-url="flbooth/groups/orderRestore" title="{:__('Restore all')}"><i class="fa fa-rotate-left"></i> {:__('Restore all')}</a>
+                        <a class="btn btn-danger btn-destroyall {:$auth->check('flbooth/groups/orderDestroy')?'':'hide'}" href="javascript:;" data-url="flbooth/groups/orderDestroy" title="{:__('Destroy all')}"><i class="fa fa-times"></i> {:__('Destroy all')}</a>
                     </div>
                     <table id="table" class="table table-striped table-bordered table-hover"
-                           data-operate-restore="{:$auth->check('flshop/groups/orderRestore')}"
-                           data-operate-destroy="{:$auth->check('flshop/groups/orderDestroy')}"
+                           data-operate-restore="{:$auth->check('flbooth/groups/orderRestore')}"
+                           data-operate-destroy="{:$auth->check('flbooth/groups/orderDestroy')}"
                            width="100%">
                     </table>
                 </div>

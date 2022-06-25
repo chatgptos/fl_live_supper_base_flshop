@@ -25,7 +25,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'vue', 'echarts', 'echarts-th
 			});
 			// 载入Vue
 			new Vue({
-				el:'#flshop',
+				el:'#flbooth',
 				data: {
 					refundList: Config.servicesRefundList,
 					shopAuthList: Config.shopAuthList,
@@ -40,7 +40,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'vue', 'echarts', 'echarts-th
 							btn: ['确定','取消']
 						}, function(){
 							Fast.api.ajax({
-								url: "flshop/auth/agree",
+								url: "flbooth/auth/agree",
 								data: {
 									ids: app.shopAuthList[index].id
 								}
@@ -55,7 +55,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'vue', 'echarts', 'echarts-th
 						var app = this;
 						layer.prompt({title: '请输入拒绝入驻理由', formType: 2}, function(text, key){
 							Fast.api.ajax({
-								url: `flshop/auth/refuse/ids/${app.shopAuthList[index].id}`,
+								url: `flbooth/auth/refuse/ids/${app.shopAuthList[index].id}`,
 								data: {
 									row: {
 										refuse: text
@@ -75,7 +75,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'vue', 'echarts', 'echarts-th
 							btn: ['确定','取消']
 						}, function(){
 							Fast.api.ajax({
-								url: "flshop/refund/agree",
+								url: "flbooth/refund/agree",
 								data: {
 									ids: app.refundList[index].id
 								}
@@ -91,7 +91,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'vue', 'echarts', 'echarts-th
 						layer.prompt({title: '请输入拒绝退款理由', formType: 2}, function(text, key){
 							console.log(text);
 							Fast.api.ajax({
-								url: `flshop/refund/refuse/ids/${app.refundList[index].id}`,
+								url: `flbooth/refund/refuse/ids/${app.refundList[index].id}`,
 								data: {
 									row: {
 										refund_content: text
@@ -106,10 +106,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'vue', 'echarts', 'echarts-th
 						});
 					},
 					shopDetails(index) {
-						Fast.api.open(`flshop/auth/detail/ids/${this.shopAuthList[index].id}`, "查看入驻信息", {});
+						Fast.api.open(`flbooth/auth/detail/ids/${this.shopAuthList[index].id}`, "查看入驻信息", {});
 					},
 					refundDetails(index) {
-						Fast.api.open(`flshop/refund/detail/ids/${this.refundList[index].id}`, "查看退款", {});
+						Fast.api.open(`flbooth/refund/detail/ids/${this.refundList[index].id}`, "查看退款", {});
 					}
 				}
 			});

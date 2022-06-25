@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flshop;
+namespace app\admin\controller\flbooth;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -15,14 +15,14 @@ class Groups extends Backend
     
     /**
      * Groups模型对象
-     * @var \app\admin\model\flshop\Groups
+     * @var \app\admin\model\flbooth\Groups
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flshop\Groups;
+        $this->model = new \app\admin\model\flbooth\Groups;
         $this->view->assign("groupTypeList", $this->model->getGroupTypeList());
         $this->view->assign("stateList", $this->model->getStateList());
         $this->view->assign("statusList", $this->model->getStatusList());
@@ -94,10 +94,10 @@ class Groups extends Backend
         if (!$row) {
             $this->error(__('No Results were found'));
         }
-        $row->team = model('app\admin\model\flshop\GroupsTeam')
+        $row->team = model('app\admin\model\flbooth\GroupsTeam')
             ->where('group_no', $row->group_no)
             ->select();
-		$row->ordergoods = model('app\admin\model\flshop\GroupsOrderGoods')
+		$row->ordergoods = model('app\admin\model\flbooth\GroupsOrderGoods')
 		    ->where('group_no', $row->group_no)
 		    ->select();
         $this->view->assign("row", $row);
@@ -114,7 +114,7 @@ class Groups extends Backend
         $this->relationSearch = true;
         //设置过滤方法
         $this->request->filter(['strip_tags', 'trim']);
-        $this->model = model('app\admin\model\flshop\GroupsOrder');
+        $this->model = model('app\admin\model\flbooth\GroupsOrder');
         if ($this->request->isAjax())
         {
             //如果发送的来源是Selectpage，则转发到Selectpage
@@ -140,7 +140,7 @@ class Groups extends Backend
                 $row->getRelation('user')->visible(['username','nickname']);
                 $row->getRelation('shop')->visible(['shopname']);
 				
-				$row->pay = model('app\admin\model\flshop\Pay')
+				$row->pay = model('app\admin\model\flbooth\Pay')
 					->where(['order_id' => $row['id'], 'type' => 'groups'])
 					->field('pay_no, price, order_price, freight_price, discount_price, actual_payment')
 					->find();
@@ -160,19 +160,19 @@ class Groups extends Backend
 	 */
 	public function orderDetail($id = null)
 	{
-	    $this->model = model('app\admin\model\flshop\GroupsOrder');
+	    $this->model = model('app\admin\model\flbooth\GroupsOrder');
 		$row = $this->model->get($id);
 		if (!$row) {
 			$this->error(__('No Results were found'));
 		}
 		
-		$row['address'] = model('app\admin\model\flshop\GroupsOrderAddress')
+		$row['address'] = model('app\admin\model\flbooth\GroupsOrderAddress')
 			->where(['order_id' => $id])
 			->order('isaddress desc')
 			->field('id,name,mobile,address,address_name')
 			->find();
 		
-		$row['pay'] = model('app\admin\model\flshop\Pay')
+		$row['pay'] = model('app\admin\model\flbooth\Pay')
 			->where(['order_id' => $row['id'], 'type' => 'groups'])
 			->find();
 		
@@ -193,7 +193,7 @@ class Groups extends Backend
 				];
 				break;
 			default: // 获取物流
-				$eData = model('app\api\model\flshop\KuaidiSub')
+				$eData = model('app\api\model\flbooth\KuaidiSub')
 					->where(['express_no' => $row['express_no']])
 					->find();
 				$ybData = json_decode($eData['data'], true);
@@ -233,12 +233,12 @@ class Groups extends Backend
 	 */
 	public function orderRelative($id = null)
 	{
-	    $this->model = model('app\admin\model\flshop\GroupsOrder');
+	    $this->model = model('app\admin\model\flbooth\GroupsOrder');
 		$row = $this->model->get($id);
 		if (!$row) {
 			$this->error(__('No Results were found'));
 		}
-		$data = model('app\api\model\flshop\KuaidiSub')
+		$data = model('app\api\model\flbooth\KuaidiSub')
 			->where(['express_no' => $row['express_no']])
 			->find();
 		$data = json_decode($data['data'], true);
@@ -273,7 +273,7 @@ class Groups extends Backend
      */
     public function orderRecyclebin()
     {
-        $this->model = model('app\admin\model\flshop\GroupsOrder');
+        $this->model = model('app\admin\model\flbooth\GroupsOrder');
         return $this->recyclebin();
     }
     
@@ -282,7 +282,7 @@ class Groups extends Backend
      */
     public function orderDel($ids = "")
     {
-        $this->model = model('app\admin\model\flshop\GroupsOrder');
+        $this->model = model('app\admin\model\flbooth\GroupsOrder');
         return $this->del();
     }
 
@@ -291,7 +291,7 @@ class Groups extends Backend
      */
     public function orderDestroy($ids = "")
     {
-        $this->model = model('app\admin\model\flshop\GroupsOrder');
+        $this->model = model('app\admin\model\flbooth\GroupsOrder');
         return $this->destroy();
     }
 
@@ -300,7 +300,7 @@ class Groups extends Backend
      */
     public function orderRestore($ids = "")
     {
-        $this->model = model('app\admin\model\flshop\GroupsOrder');
+        $this->model = model('app\admin\model\flbooth\GroupsOrder');
         return $this->restore();
     }
     
@@ -313,7 +313,7 @@ class Groups extends Backend
 		$this->relationSearch = true;
 		//设置过滤方法
 		$this->request->filter(['strip_tags', 'trim']);
-		$this->model = model('app\admin\model\flshop\GroupsGoods');
+		$this->model = model('app\admin\model\flbooth\GroupsGoods');
 		if ($this->request->isAjax())
 		{
 		    //如果发送的来源是Selectpage，则转发到Selectpage
@@ -349,7 +349,7 @@ class Groups extends Backend
      */
     public function goodsRecyclebin()
     {
-        $this->model = model('app\admin\model\flshop\GroupsGoods');
+        $this->model = model('app\admin\model\flbooth\GroupsGoods');
         return $this->recyclebin();
     }
     
@@ -358,7 +358,7 @@ class Groups extends Backend
      */
     public function goodsDel($ids = "")
     {
-        $this->model = model('app\admin\model\flshop\GroupsGoods');
+        $this->model = model('app\admin\model\flbooth\GroupsGoods');
         return $this->del();
     }
 
@@ -367,7 +367,7 @@ class Groups extends Backend
      */
     public function goodsDestroy($ids = "")
     {
-        $this->model = model('app\admin\model\flshop\GroupsGoods');
+        $this->model = model('app\admin\model\flbooth\GroupsGoods');
         return $this->destroy();
     }
 
@@ -376,7 +376,7 @@ class Groups extends Backend
      */
     public function goodsRestore($ids = "")
     {
-        $this->model = model('app\admin\model\flshop\GroupsGoods');
+        $this->model = model('app\admin\model\flbooth\GroupsGoods');
         return $this->restore();
     }
 }
