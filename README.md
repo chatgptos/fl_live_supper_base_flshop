@@ -342,3 +342,27 @@ php think menu -c all-controller
 更多CRUD一键生成可使用的参数请使用php think menu --help查看。
 
 文档最后更新时间：2022-06-20 15:29:21 
+
+关联字段
+//生成fa_fltest表的CRUD
+php think crud -t fltest
+//生成fa_fltest表的CRUD且一键生成菜单
+php think crud -t fltest -u 1
+//删除fa_fltest表生成的CRUD
+php think crud -t fltest -d 1
+//生成fa_fltest表的CRUD且控制器生成在二级目录下
+php think crud -t fltest -c mydir/fltest
+//生成fa_fltest_log表的CRUD且生成对应的控制器为fltestlog
+php think crud -t fltest_log -c fltestlog
+//生成fa_fltest表的CRUD且对应的模型名为fltestmodel
+php think crud -t fltest -m fltestmodel
+//生成fa_fltest表的CRUD且生成关联模型category，外链为category_id，关联表主键为id
+php think crud -t fltest -r category -k category_id -p id
+//生成fa_fltest表的CRUD且所有以list或data结尾的字段都生成复选框
+php think crud -t fltest --setcheckboxsuffix=list --setcheckboxsuffix=data
+//生成fa_fltest表的CRUD且所有以image和img结尾的字段都生成图片上传组件
+php think crud -t fltest --imagefield=image --imagefield=img
+//关联多个表,参数传递时请按顺序依次传递，支持以下几个参数relation/relationmodel/relationforeignkey/relationprimarykey/relationfields/relationmode
+php think crud -t fltest --relation=category --relation=admin --relationforeignkey=category_id --relationforeignkey=admin_id
+//生成v_phealth_db2数据库下的fa_fltest表的CRUD
+php think crud -t fltest --db=v_phealth_db2

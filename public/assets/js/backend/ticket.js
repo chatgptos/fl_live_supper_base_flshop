@@ -30,7 +30,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'id', title: __('Id')},
                         {field: 'user_id', title: __('User_id')},
                         {field: 'exhibition_id', title: __('Exhibition_id')},
-                        {field: 'ticket_qr_code_img_url', title: __('Ticket_qr_code_img_url'), operate: 'LIKE', formatter: Table.api.formatter.url},
+                        {field: 'ticket_qr_code_url_img', title: __('Ticket_qr_code_url_img'), operate: 'LIKE'},
                         {field: 'ticket_desc', title: __('Ticket_desc'), operate: 'LIKE'},
                         {field: 'apply_time', title: __('Apply_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false},
                         {field: 'enable_time', title: __('Enable_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false},

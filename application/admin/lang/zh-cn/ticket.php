@@ -4,7 +4,7 @@ return [
     'Id'                     => '电子门票id',
     'User_id'                => '领取人用户id',
     'Exhibition_id'          => '展会id',
-    'Ticket_qr_code_img_url' => '电子门票二维码',
+    'Ticket_qr_code_url_img' => '电子门票二维码',
     'Ticket_desc'            => '门票介绍',
     'Apply_time'             => '申请时间',
     'Enable_time'            => '有效时间',

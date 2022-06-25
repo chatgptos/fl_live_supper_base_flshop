@@ -22,12 +22,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
                 pk: 'id',
                 sortName: 'id',
+                fixedColumns: true,
+                fixedRightNumber: 1,
                 columns: [
                     [
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
                         {field: 'exhibition_id', title: __('Exhibition_id')},
                         {field: 'hall_name', title: __('Hall_name'), operate: 'LIKE'},
+                        {field: 'name', title: __('Name'), operate: 'LIKE'},
                         {field: 'booths_num', title: __('Booths_num')},
                         {field: 'hall_map', title: __('Hall_map'), operate: 'LIKE'},
                         {field: 'hall_addr', title: __('Hall_addr'), operate: 'LIKE'},
