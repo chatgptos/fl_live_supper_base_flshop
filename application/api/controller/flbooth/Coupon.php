@@ -1,12 +1,12 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use fast\Random;
 use think\Db;
 
 /**
- * flshop优惠券接口
+ * flbooth优惠券接口
  */
 class Coupon extends Api
 {
@@ -16,7 +16,7 @@ class Coupon extends Api
 	/**
 	 * 获取优惠券列表
 	 *
-	 * @ApiSummary  (flshop 优惠券接口获取优惠券列表)
+	 * @ApiSummary  (flbooth 优惠券接口获取优惠券列表)
 	 * @ApiMethod   (GET)
 	 * 2020年9月15日17:44:57
 	 *
@@ -24,7 +24,7 @@ class Coupon extends Api
 	 */
 	public function getList($type = null)
 	{
-		$list = model('app\api\model\flshop\Coupon')
+		$list = model('app\api\model\flbooth\Coupon')
 			->where([
 				'type' => $type,
 				// 'rangetype' => 'all', 1.0.5升级 
@@ -42,7 +42,7 @@ class Coupon extends Api
 	/**
 	 * 查询我的优惠券
 	 *
-	 * @ApiSummary  (flshop 优惠券接口查询我的优惠券)
+	 * @ApiSummary  (flbooth 优惠券接口查询我的优惠券)
 	 * @ApiMethod   (GET)
 	 * 2020年9月16日03:32:43
 	 *
@@ -55,7 +55,7 @@ class Coupon extends Api
 	{
 		$user_coupon = [];
 		if ($this->auth->isLogin()) {
-			foreach (model('app\api\model\flshop\CouponReceive')->where([
+			foreach (model('app\api\model\flbooth\CouponReceive')->where([
 				'user_id' => $this->auth->id, 
 				'shop_id' => $shop_id,
 				'limit' => ['<=', intval($price)],
@@ -69,7 +69,7 @@ class Coupon extends Api
 		$goods_id = explode(",",$goods_id);
 		$shop_category_id = explode(",",$shop_category_id);
 		//要追加一个排序 选出一个性价比最高的
-		foreach (model('app\api\model\flshop\Coupon')->where([
+		foreach (model('app\api\model\flbooth\Coupon')->where([
 			'shop_id' => $shop_id,
 			'limit' => ['<=', intval($price)]
 		])->select() as $row) { 
@@ -107,7 +107,7 @@ class Coupon extends Api
 		// 开始查询 二
 		// $list = [];
 		// //要追加一个排序 选出一个性价比最高的
-		// foreach (model('app\api\model\flshop\Coupon')->where([
+		// foreach (model('app\api\model\flbooth\Coupon')->where([
 		// 	'shop_id' => $shop_id,
 		// 	'limit' => ['<=', intval($price)]
 		// ])->select() as $row) { 
@@ -160,7 +160,7 @@ class Coupon extends Api
 	/**
 	 * 获取我的优惠券列表
 	 *
-	 * @ApiSummary  (flshop 优惠券接口获取我的优惠券列表)
+	 * @ApiSummary  (flbooth 优惠券接口获取我的优惠券列表)
 	 * @ApiMethod   (GET)
 	 * 2020年9月16日08:09:17
 	 *
@@ -168,7 +168,7 @@ class Coupon extends Api
 	 */
 	public function getMyList($state = null)
 	{
-		$list = model('app\api\model\flshop\CouponReceive')
+		$list = model('app\api\model\flbooth\CouponReceive')
 			->where([
 				'state' => $state, 
 				'user_id' => $this->auth->id
@@ -185,7 +185,7 @@ class Coupon extends Api
 	/**
 	 * 领取优惠券
 	 *
-	 * @ApiSummary  (flshop 优惠券接口领取优惠券)
+	 * @ApiSummary  (flbooth 优惠券接口领取优惠券)
 	 * @ApiMethod   (POST)
 	 * 2020年9月16日03:32:43
 	 *
@@ -198,12 +198,12 @@ class Coupon extends Api
 		if ($this->request->isPost()) {
 			$id = $this->request->post('id');
 			$user_id = $this->auth->id;
-			$coupon = model('app\api\model\flshop\Coupon')->get($id);
+			$coupon = model('app\api\model\flbooth\Coupon')->get($id);
 			if(!$coupon){
 				$this->error(__('网络繁忙或优惠券不存在'));
 			}
 			// 查询此ID领取几张
-			$myCouponCount = model('app\api\model\flshop\CouponReceive')
+			$myCouponCount = model('app\api\model\flbooth\CouponReceive')
 				->where(['coupon_id' => $id, 'user_id' => $user_id])
 				->count();
 			// 判断是否发完
@@ -225,7 +225,7 @@ class Coupon extends Api
 				}
 			}
 			// 领取优惠券并保留备份
-			$result = model('app\api\model\flshop\CouponReceive');
+			$result = model('app\api\model\flbooth\CouponReceive');
 				$result->state = 1;
 				$result->coupon_id = $id;
 				$result->coupon_no = Random::alnum(16);
@@ -268,7 +268,7 @@ class Coupon extends Api
 	/**
 	 * 立即使用优惠券
 	 *
-	 * @ApiSummary  (flshop 优惠券接口立即使用优惠券)
+	 * @ApiSummary  (flbooth 优惠券接口立即使用优惠券)
 	 * @ApiMethod   (GET)
 	 * 2020年9月16日03:32:43
 	 * 2020年11月6日10:03:08 1.0.2升级
@@ -277,7 +277,7 @@ class Coupon extends Api
 	 */
 	public function apply($id = null)
 	{
-		$coupon = model('app\api\model\flshop\CouponReceive')->get($id);
+		$coupon = model('app\api\model\flbooth\CouponReceive')->get($id);
 		if($coupon){
 			$where['shop_id'] = $coupon['shop_id'];
 			$where['price'] = ['EGT', $coupon['limit']];
@@ -290,7 +290,7 @@ class Coupon extends Api
 			    // 1.1.2升级
 			    $where[] = ['EXP', Db::raw('FIND_IN_SET('.$coupon->range.', shop_category_id)')];
 			}
-			$list = model('app\api\model\flshop\Goods')
+			$list = model('app\api\model\flbooth\Goods')
 				->where($where)
 				->order('created desc')
 				->paginate();

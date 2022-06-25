@@ -1,10 +1,10 @@
 <?php
 
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
-use addons\flshop\library\Decrypt\weixin\wxBizDataCrypt;
-use addons\flshop\library\WanlChat\WanlChat;
-use addons\flshop\library\WeixinSdk\Security;
+use addons\flbooth\library\Decrypt\weixin\wxBizDataCrypt;
+use addons\flbooth\library\WanlChat\WanlChat;
+use addons\flbooth\library\WeixinSdk\Security;
 use app\common\controller\Api;
 use app\common\library\Ems;
 use app\common\library\Sms;
@@ -14,7 +14,7 @@ use fast\Http;
 use think\Validate;
 
 /**
- * flshop会员接口
+ * flbooth会员接口
  */
 class User extends Api
 {
@@ -128,7 +128,7 @@ class User extends Api
 		        $this->error(__('获取手机号异常'));
 		    }
 		    // 获取配置
-		    $config = get_addon_config('flshop');
+		    $config = get_addon_config('flbooth');
 		    // 微信小程序一键登录
 	        $params = [
 			    'appid'    => $config['mp_weixin']['appid'],
@@ -140,9 +140,9 @@ class User extends Api
 		    $json = (array)json_decode($result['msg'], true);
 		    // 判断third是否存在ID,存在快速登录
 			if(isset($json['unionid'])){
-				$third = model('app\api\model\flshop\Third')->get(['platform' => 'mp_weixin', 'unionid' => $json['unionid']]);
+				$third = model('app\api\model\flbooth\Third')->get(['platform' => 'mp_weixin', 'unionid' => $json['unionid']]);
 			}else{
-				$third = model('app\api\model\flshop\Third')->get(['platform' => 'mp_weixin', 'openid' => $json['openid']]);
+				$third = model('app\api\model\flbooth\Third')->get(['platform' => 'mp_weixin', 'openid' => $json['openid']]);
 			}
 			
 		    if ($third && $third['user_id'] != 0) {
@@ -251,7 +251,7 @@ class User extends Api
 				$nickname = $this->request->post('nickname');
 				$bio = $this->request->post('bio');
 				
-				$config = get_addon_config('flshop');
+				$config = get_addon_config('flbooth');
 				$security = new Security($config['mp_weixin']['appid'], $config['mp_weixin']['appsecret']);
 				if($bio){
     				$bioCheck = $security->check('msg_sec_check', ['content' => $bio]);
@@ -401,7 +401,7 @@ class User extends Api
 		$this->request->filter(['strip_tags']);
 		if ($this->request->isPost()) {
 		    // 获取登录配置
-			$config = get_addon_config('flshop');
+			$config = get_addon_config('flbooth');
 			// 获取前端参数
 			$post = $this->request->post();
 			// 登录项目
@@ -422,9 +422,9 @@ class User extends Api
 					if ($result['ret']) {
 					    $json = (array)json_decode($result['msg'], true);
 						if(isset($json['unionid'])){
-							$third = model('app\api\model\flshop\Third')->get(['platform' => 'weixin_open', 'unionid' => $json['unionid']]);
+							$third = model('app\api\model\flbooth\Third')->get(['platform' => 'weixin_open', 'unionid' => $json['unionid']]);
 						}else{
-							$third = model('app\api\model\flshop\Third')->get(['platform' => 'weixin_open', 'openid' => $json['openid']]);
+							$third = model('app\api\model\flbooth\Third')->get(['platform' => 'weixin_open', 'openid' => $json['openid']]);
 						}
                         // 成功登录
                         if ($third) {
@@ -452,7 +452,7 @@ class User extends Api
                 			}
                         } else {
                             // 新增$third
-                            $third = model('app\api\model\flshop\Third');
+                            $third = model('app\api\model\flbooth\Third');
                             $third->platform  = 'weixin_open';
 							if(isset($json['unionid'])){
 								$third->unionid  = $json['unionid'];
@@ -499,9 +499,9 @@ class User extends Api
 					if ($result['ret']) {
 					    $json = (array)json_decode($result['msg'], true);
 						if(isset($json['unionid'])){
-							$third = model('app\api\model\flshop\Third')->get(['platform' => 'weixin_open', 'unionid' => $json['unionid']]);
+							$third = model('app\api\model\flbooth\Third')->get(['platform' => 'weixin_open', 'unionid' => $json['unionid']]);
 						}else{
-							$third = model('app\api\model\flshop\Third')->get(['platform' => 'weixin_open', 'openid' => $json['openid']]);
+							$third = model('app\api\model\flbooth\Third')->get(['platform' => 'weixin_open', 'openid' => $json['openid']]);
 						}
 					    // 成功登录
                         if ($third) {
@@ -523,7 +523,7 @@ class User extends Api
                 			}
                         } else {
                             // 新增$third
-                            $third = model('app\api\model\flshop\Third');
+                            $third = model('app\api\model\flbooth\Third');
                             $third->platform  = 'weixin_open';
 							if(isset($json['unionid'])){
 								$third->unionid  = $json['unionid'];
@@ -555,7 +555,7 @@ class User extends Api
 								// 1.1.3升级
 								if(isset($json['unionid'])){
 									// 1.1.3升级 查询其他unionid的user_id进行登录
-									$unionid = model('app\api\model\flshop\Third')
+									$unionid = model('app\api\model\flbooth\Third')
 									    ->where('user_id','<>', 0)
 									    ->where('unionid','=', $json['unionid'])
 									    ->find();
@@ -615,9 +615,9 @@ class User extends Api
 						if ($ret['ret']) {
 							$json = (array)json_decode($ret['msg'], true);
 							if(isset($json['unionid'])){
-								$third = model('app\api\model\flshop\Third')->get(['platform' => 'weixin_h5', 'unionid' => $json['unionid']]);
+								$third = model('app\api\model\flbooth\Third')->get(['platform' => 'weixin_h5', 'unionid' => $json['unionid']]);
 							}else{
-								$third = model('app\api\model\flshop\Third')->get(['platform' => 'weixin_h5', 'openid' => $json['openid']]);
+								$third = model('app\api\model\flbooth\Third')->get(['platform' => 'weixin_h5', 'openid' => $json['openid']]);
 							}
 							// 成功登录
 							if ($third) {
@@ -641,7 +641,7 @@ class User extends Api
 								}
 							} else {
 							    // 新增$third
-							    $third = model('app\api\model\flshop\Third');
+							    $third = model('app\api\model\flbooth\Third');
 							    $third->platform  = 'weixin_h5';
 								// 1.1.2升级
 								if(isset($json['unionid'])){
@@ -665,7 +665,7 @@ class User extends Api
 								// 1.1.3升级
 								if(isset($json['unionid'])){
 									// 1.1.3升级 查询其他unionid的user_id进行登录
-									$unionid = model('app\api\model\flshop\Third')
+									$unionid = model('app\api\model\flbooth\Third')
 									    ->where('user_id','<>', 0)
 									    ->where('unionid','=', $json['unionid'])
 									    ->find();
@@ -721,9 +721,9 @@ class User extends Api
 					if ($result['ret']) {
 					    $json = (array)json_decode($result['msg'], true);
 						if(isset($json['unionid'])){
-							$third = model('app\api\model\flshop\Third')->get(['platform' => 'qq_open', 'unionid' => $json['unionid']]);
+							$third = model('app\api\model\flbooth\Third')->get(['platform' => 'qq_open', 'unionid' => $json['unionid']]);
 						}else{
-							$third = model('app\api\model\flshop\Third')->get(['platform' => 'qq_open', 'openid' => $json['openid']]);
+							$third = model('app\api\model\flbooth\Third')->get(['platform' => 'qq_open', 'openid' => $json['openid']]);
 						}
                         // 成功登录
                         if ($third) {
@@ -751,7 +751,7 @@ class User extends Api
                 			}
                         } else {
                             // 新增$third
-                            $third = model('app\api\model\flshop\Third');
+                            $third = model('app\api\model\flbooth\Third');
                             $third->platform  = 'qq_open';
 							if(isset($json['unionid'])){
 								$third->unionid  = $json['unionid'];
@@ -803,7 +803,7 @@ class User extends Api
 					if ($result['ret']) {
 					    $json = (array)json_decode(str_replace(" );","",str_replace("callback( ","",$result['msg'])), true);
 					    if ($json['openid'] == $post['loginData']['authResult']['openid']) {
-				            $third = model('app\api\model\flshop\Third')->get(['platform' => 'qq_open', 'openid' => $json['openid']]);
+				            $third = model('app\api\model\flbooth\Third')->get(['platform' => 'qq_open', 'openid' => $json['openid']]);
     				        if ($third) {
     				            $user = model('app\common\model\User')->get($third['user_id']);
                                 if (!$user) {
@@ -829,7 +829,7 @@ class User extends Api
                     			}
     				        } else {
     				            // 新增$third
-                                $third = model('app\api\model\flshop\Third');
+                                $third = model('app\api\model\flbooth\Third');
                                 $third->platform  = 'qq_open';
                                 $third->openid  = $json['openid'];
                                 $third->access_token  = $post['loginData']['authResult']['access_token'];
@@ -883,7 +883,7 @@ class User extends Api
 					$result = Http::post("https://api.weibo.com/oauth2/get_token_info", $params, $options);
 					$json = (array)json_decode($result, true);
 				    if($json['uid'] == $post['loginData']['authResult']['uid']){
-				        $third = model('app\api\model\flshop\Third')->get(['platform' => 'weibo_open', 'openid' => $json['uid']]);
+				        $third = model('app\api\model\flbooth\Third')->get(['platform' => 'weibo_open', 'openid' => $json['uid']]);
 				        if ($third) {
 				            $user = model('app\common\model\User')->get($third['user_id']);
                             if (!$user) {
@@ -909,7 +909,7 @@ class User extends Api
                 			}
 				        } else {
 				            // 新增$third
-                            $third = model('app\api\model\flshop\Third');
+                            $third = model('app\api\model\flbooth\Third');
                             $third->platform  = 'weibo_open';
                             $third->openid  = $json['uid'];
                             $third->access_token  = $post['loginData']['authResult']['access_token'];
@@ -970,7 +970,7 @@ class User extends Api
 		if ($this->request->isPost()) {
 		    $post = $this->request->post();
 		    // 判断token没有绑定 1.1.4升级
-		    $third = model('app\api\model\flshop\Third')
+		    $third = model('app\api\model\flbooth\Third')
 				->where('token', '=', $post['token'])
 				->find();
 		        // 当user_id 不为空可以绑定
@@ -983,7 +983,7 @@ class User extends Api
 					// 1.1.4升级
 					if($third['unionid']){
 						// 1.1.3升级 查询其他unionid的user_id进行登录
-						$unionid = model('app\api\model\flshop\Third')
+						$unionid = model('app\api\model\flbooth\Third')
 						    ->where('id','<>', $third['id'])
 						    ->where('unionid','=', $third['unionid'])
 						    ->find();
@@ -1045,7 +1045,7 @@ class User extends Api
 	{
 		$user_id = $this->auth->id;
 		// 查询订单
-		$order = model('app\api\model\flshop\Order')
+		$order = model('app\api\model\flbooth\Order')
 			->where('user_id', $user_id)
 			->select();
 		$orderCount = array_count_values(array_column($order,'state'));
@@ -1064,13 +1064,13 @@ class User extends Api
 		// 1.1.0升级
 		$footgoodsprint = [];
 		$footgroupsprint = [];
-		foreach (model('app\api\model\flshop\GoodsFollow')->where('user_id', $user_id)->select() as $row) {
+		foreach (model('app\api\model\flbooth\GoodsFollow')->where('user_id', $user_id)->select() as $row) {
 			if($row['goods_type'] === 'goods'){
-				if(model('app\api\model\flshop\Goods')->get($row['goods_id'])){
+				if(model('app\api\model\flbooth\Goods')->get($row['goods_id'])){
 					$collection[] = $row['id'];
 				}
 			}else if($row['goods_type'] === 'groups'){
-				if(model('app\api\model\flshop\groups\Goods')->get($row['goods_id'])){
+				if(model('app\api\model\flbooth\groups\Goods')->get($row['goods_id'])){
 					$collection[] = $row['id'];
 				}
 			}
@@ -1081,13 +1081,13 @@ class User extends Api
 			$charid = strtoupper(md5($this->request->header('user-agent').$this->request->ip()));
 			$uuid = substr($charid, 0, 8).chr(45).substr($charid, 8, 4).chr(45).substr($charid,12, 4).chr(45).substr($charid,16, 4).chr(45).substr($charid,20,12);
 		}
-		foreach (model('app\api\model\flshop\Record')->where('uuid', $uuid)->select() as $row) {
+		foreach (model('app\api\model\flbooth\Record')->where('uuid', $uuid)->select() as $row) {
 			if($row['goods_type'] === 'goods'){
-				if(model('app\api\model\flshop\Goods')->get($row['goods_id'])){
+				if(model('app\api\model\flbooth\Goods')->get($row['goods_id'])){
 					$footgoodsprint[] = $row['goods_id'];
 				}
 			}else if($row['goods_type'] === 'groups'){
-				if(model('app\api\model\flshop\groups\Goods')->get($row['goods_id'])){
+				if(model('app\api\model\flbooth\groups\Goods')->get($row['goods_id'])){
 					$footgroupsprint[] = $row['goods_id'];
 				}
 			}
@@ -1100,7 +1100,7 @@ class User extends Api
 		$receiving = isset($orderCount[3]) ? $orderCount[3] : 0;
 		$evaluate = isset($orderCount[4]) ? $orderCount[4] : 0;
 		// 订单状态:1=待支付,2=待成团,3=待发货,4=待收货,5=待评论,6=已完成,7=已取消
-		$groups = model('app\api\model\flshop\groups\Order')
+		$groups = model('app\api\model\flbooth\groups\Order')
 			->where('user_id', 'eq', $user_id)
 			->where('state', 'neq', 7)
 			->count();
@@ -1109,10 +1109,10 @@ class User extends Api
 			'statistics' => [
 				'dynamic' => [
 					'collection' => count($collection),
-					'concern' => model('app\api\model\flshop\find\Follow')->where('user_id', $user_id)->count(),
+					'concern' => model('app\api\model\flbooth\find\Follow')->where('user_id', $user_id)->count(),
 					'footprint' => count(array_flip($footgoodsprint)) + count(array_flip($footgroupsprint)),
-					'coupon' => model('app\api\model\flshop\CouponReceive')->where(['user_id' => $user_id, 'state' => '1'])->count(),
-					'accountbank' => model('app\api\model\flshop\PayAccount')->where('user_id', $user_id)->count()
+					'coupon' => model('app\api\model\flbooth\CouponReceive')->where(['user_id' => $user_id, 'state' => '1'])->count(),
+					'accountbank' => model('app\api\model\flbooth\PayAccount')->where('user_id', $user_id)->count()
 				],
 				'order' => [
 					'whole' => $finish + $pay + $delive + $receiving + $evaluate,
@@ -1121,7 +1121,7 @@ class User extends Api
 					'delive' => $delive,
 					'receiving' => $receiving,
 					'evaluate' => $evaluate,
-					'customer' => model('app\api\model\flshop\Refund')->where(['state' => ['in','1,2,3,6'], 'user_id' => $this->auth->id])->count()
+					'customer' => model('app\api\model\flbooth\Refund')->where(['state' => ['in','1,2,3,6'], 'user_id' => $this->auth->id])->count()
 				],
 				'logistics' => $logistics
 			]
@@ -1131,7 +1131,7 @@ class User extends Api
 	/**
 	 * 获取评论列表
 	 *
-	 * @ApiSummary  (flshop 获取我的所有评论)
+	 * @ApiSummary  (flbooth 获取我的所有评论)
 	 * @ApiMethod   (GET)
 	 * 
 	 * @param string $list_rows  每页数量
@@ -1139,7 +1139,7 @@ class User extends Api
 	 */
 	public function comment()
 	{
-		$list = model('app\api\model\flshop\GoodsComment')
+		$list = model('app\api\model\flbooth\GoodsComment')
 			->where('user_id', $this->auth->id)
 			->field('id,images,score,goods_id,order_goods_id,state,content,created')
 			->order('created desc')

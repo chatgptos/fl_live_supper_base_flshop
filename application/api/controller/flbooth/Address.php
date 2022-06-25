@@ -1,9 +1,9 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 /**
- * flshop地址接口
+ * flbooth地址接口
  */
 class Address extends Api
 {
@@ -14,7 +14,7 @@ class Address extends Api
     /**
      * 获取地址列表
      *
-     * @ApiSummary  (flshop 地址接口获取地址列表)
+     * @ApiSummary  (flbooth 地址接口获取地址列表)
      * @ApiMethod   (GET)
 	 * 
 	 */
@@ -22,7 +22,7 @@ class Address extends Api
     {
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
-		$list = model('app\api\model\flshop\Address')
+		$list = model('app\api\model\flbooth\Address')
 			->where('user_id', $this->auth->id)
 			->field('id,user_id,adcode,address,address_name,city,citycode,country,default,district,formatted_address,location,mobile,name,province')
 			->order('modified desc')
@@ -33,7 +33,7 @@ class Address extends Api
     /**
      * 修改/新增地址
      *
-     * @ApiSummary  (flshop 地址接口修改/新增地址)
+     * @ApiSummary  (flbooth 地址接口修改/新增地址)
      * @ApiMethod   (POST)
 	 * 
 	 * @param string $user_id 用户ID
@@ -44,7 +44,7 @@ class Address extends Api
 			//设置过滤方法
 			$this->request->filter(['strip_tags']);
         	$request = $this->request->post();
-        	$address = new \app\api\model\flshop\Address();
+        	$address = new \app\api\model\flbooth\Address();
         	$data = $request['data'];
         	$data['user_id'] = $this->auth->id;
         	$count = $address->where(['user_id'=>$data['user_id']])->count();
@@ -60,7 +60,7 @@ class Address extends Api
 						$address->allowField(true)->save($data,['id' => $data['id']]);
 						// 单独设置默认，避免非默认消耗资源
 						if($data['default'] == 1){
-							$list = \app\api\model\flshop\Address::all(['user_id'=>$data['user_id']]);
+							$list = \app\api\model\flbooth\Address::all(['user_id'=>$data['user_id']]);
 							$list = collection($list)->toArray();
 							$itemdata = [];
 							foreach($list as $item){
@@ -87,7 +87,7 @@ class Address extends Api
 						$address->data($data);
 						$address->save();
 						if($data['default'] == 1){
-							$list = \app\api\model\flshop\Address::all(['user_id'=>$data['user_id']]);
+							$list = \app\api\model\flbooth\Address::all(['user_id'=>$data['user_id']]);
 							$list = collection($list)->toArray();
 							$itemdata = [];
 							foreach($list as $item){
@@ -112,7 +112,7 @@ class Address extends Api
     /**
      * 删除地址
      *
-     * @ApiSummary  (flshop 地址接口删除地址)
+     * @ApiSummary  (flbooth 地址接口删除地址)
      * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 地址ID
@@ -126,7 +126,7 @@ class Address extends Api
         	if (!$id) {
 	            $this->error(__('Invalid parameters'));
 	        }
-        	if(model('app\api\model\flshop\Address')->where(['id'=>$id,'user_id'=>$this->auth->id])->delete()){
+        	if(model('app\api\model\flbooth\Address')->where(['id'=>$id,'user_id'=>$this->auth->id])->delete()){
         		$this->success(__('删除成功',[]));
         	}else{
         		$this->error(__('删除失败'));

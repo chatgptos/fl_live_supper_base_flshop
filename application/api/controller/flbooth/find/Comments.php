@@ -1,12 +1,12 @@
 <?php
-namespace app\api\controller\flshop\find;
+namespace app\api\controller\flbooth\find;
 
 use app\common\controller\Api;
-use addons\flshop\library\WeixinSdk\Security;
+use addons\flbooth\library\WeixinSdk\Security;
 use fast\Tree;
 
 /**
- * flshop 发现接口
+ * flbooth 发现接口
  */
 class Comments extends Api
 {
@@ -16,13 +16,13 @@ class Comments extends Api
 	public function _initialize()
 	{
 	    parent::_initialize();
-	    $this->model = new \app\api\model\flshop\find\Comments;
+	    $this->model = new \app\api\model\flbooth\find\Comments;
 	}
 	
 	/**
 	 * 获取发现评论列表
 	 *
-	 * @ApiSummary  (flshop 关注获取发现评论列表)
+	 * @ApiSummary  (flbooth 关注获取发现评论列表)
 	 * @ApiMethod   (GET)
 	 * 
 	 * @param string $id 发现ID
@@ -37,7 +37,7 @@ class Comments extends Api
 			// 是否可以删除评论
 			$row->owner = $row['user_id'] === $this->auth->id ? true : false; 
 			// 是否已经点赞
-			$row->hasLike = model('app\api\model\flshop\find\CommentsLike')
+			$row->hasLike = model('app\api\model\flbooth\find\CommentsLike')
 				->where([
 					'comments_id' => $row['id'], 
 					'user_id' => $this->auth->id
@@ -54,7 +54,7 @@ class Comments extends Api
 	/**
 	 * 发现页发表评论
 	 *
-	 * @ApiSummary  (flshop 发现页发表评论)
+	 * @ApiSummary  (flbooth 发现页发表评论)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 发现ID
@@ -69,7 +69,7 @@ class Comments extends Api
 			$content = $this->request->post('content');
 			$pid = $this->request->post('pid');
 			// 内容审核
-			$config = get_addon_config('flshop');
+			$config = get_addon_config('flbooth');
 			$security = new Security($config['mp_weixin']['appid'], $config['mp_weixin']['appsecret']);
 			$check = $security->check('msg_sec_check', ['content' => $content]);
 			if($check['code'] !== 0){
@@ -79,7 +79,7 @@ class Comments extends Api
 					$this->error(__($check['msg']));
 				}
 			}
-			$find = model('app\api\model\flshop\find\Find')
+			$find = model('app\api\model\flbooth\find\Find')
 				->where(['id' => $find_id])
 				->find();
 			if(!$find){
@@ -106,14 +106,14 @@ class Comments extends Api
 	/**
 	 * 点赞发现评论列表
 	 *
-	 * @ApiSummary  (flshop 发现点赞发现评论列表)
+	 * @ApiSummary  (flbooth 发现点赞发现评论列表)
 	 * @ApiMethod   (GET)
 	 * 
 	 * @param string $id 评论ID
 	 */
 	public function likeData($id = 0)
 	{
-		$model = model('app\api\model\flshop\find\CommentsLike');
+		$model = model('app\api\model\flbooth\find\CommentsLike');
 		if($model->where(['comments_id' => $id])->count() === 0){
 			$model->save([
 				'comments_id' => $id,
@@ -134,7 +134,7 @@ class Comments extends Api
 	/**
 	 * 删除评论
 	 *
-	 * @ApiSummary  (flshop 发现删除评论)
+	 * @ApiSummary  (flbooth 发现删除评论)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 评论ID
@@ -159,7 +159,7 @@ class Comments extends Api
 			if ($row) {
 				$destroy = $this->model->destroy($ids);
 				if($destroy){
-					model('app\api\model\flshop\find\Find')
+					model('app\api\model\flbooth\find\Find')
 						->where(['id' => $find_id])
 						->setDec('comments', count($ids));
 					$this->success('返回成功', ['count' => $this->model->where(['id' => $find_id])->count()]);

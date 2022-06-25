@@ -1,16 +1,16 @@
 <?php
-namespace app\api\controller\flshop\find;
+namespace app\api\controller\flbooth\find;
 
 use app\common\controller\Api;
 use think\Db;
 use think\Exception;
 use think\exception\PDOException;
 use fast\Random;
-use addons\flshop\library\WeixinSdk\Security;
-use addons\flshop\library\AliyunSdk\Video;
+use addons\flbooth\library\WeixinSdk\Security;
+use addons\flbooth\library\AliyunSdk\Video;
 
 /**
- * flshop 发现接口
+ * flbooth 发现接口
  */
 class Find extends Api
 {
@@ -20,13 +20,13 @@ class Find extends Api
 	public function _initialize()
 	{
 	    parent::_initialize();
-	    $this->model = new \app\api\model\flshop\find\Find;
+	    $this->model = new \app\api\model\flbooth\find\Find;
 	}
 	
 	/**
 	 * 获取发现顶部菜单
 	 *
-	 * @ApiSummary  (flshop 发现接口获取发现页、店铺、创作中心数据)
+	 * @ApiSummary  (flbooth 发现接口获取发现页、店铺、创作中心数据)
 	 * @ApiMethod   (GET)
 	 * 
 	 */
@@ -34,25 +34,25 @@ class Find extends Api
 	{
 		$video = true;
 		$live = true;
-		$shop = model('app\api\model\flshop\Shop')->get(['user_id'=> $this->auth->id]);
+		$shop = model('app\api\model\flbooth\Shop')->get(['user_id'=> $this->auth->id]);
 		$row['id'] = 'find';
 		$row['list'] = [['name' => '发现', 'type' => 'find']];
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		// 判断客户端类型
 		switch ($this->request->server('HTTP_APP_CLIENT')){
-			case 'app-flshop':
+			case 'app-flbooth':
 				$video = isset($config['find']['app_switch']['video']);
 				$live = isset($config['find']['app_switch']['live']);
 				break;  
-			case 'h5-flshop':
+			case 'h5-flbooth':
 				$video = isset($config['find']['h5_switch']['video']);
 				$live = isset($config['find']['h5_switch']['live']);
 				break;  
-			case 'mp-flshop':
+			case 'mp-flbooth':
 				$video = isset($config['find']['mp_switch']['video']);
 				$live = isset($config['find']['mp_switch']['live']);
 				break;
-			case 'wechat-flshop':
+			case 'wechat-flbooth':
 				$video = isset($config['find']['wechat_switch']['video']);
 				$live = isset($config['find']['wechat_switch']['live']);
 				break;  
@@ -70,7 +70,7 @@ class Find extends Api
 	/**
 	 * 获取发现数据
 	 *
-	 * @ApiSummary  (flshop 发现接口获取发现页、店铺、创作中心数据)
+	 * @ApiSummary  (flbooth 发现接口获取发现页、店铺、创作中心数据)
 	 * @ApiMethod   (GET)
 	 * follow、空 主栏目、video
 	 */
@@ -81,19 +81,19 @@ class Find extends Api
 		$where = [];
 		$client = [];
 		$exclude = [];
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		// 判断客户端类型
 		switch ($this->request->server('HTTP_APP_CLIENT')){
-			case 'app-flshop':
+			case 'app-flbooth':
 				$client['type'] = ['in', array_keys($config['find']['app_switch'])];
 				break;  
-			case 'h5-flshop':
+			case 'h5-flbooth':
 				$client['type'] = ['in', array_keys($config['find']['h5_switch'])];
 				break;  
-			case 'mp-flshop':
+			case 'mp-flbooth':
 				$client['type'] = ['in', array_keys($config['find']['mp_switch'])];
 				break;
-			case 'wechat-flshop':
+			case 'wechat-flbooth':
 				$client['type'] = ['in', array_keys($config['find']['wechat_switch'])];
 				break;  
 		}
@@ -108,7 +108,7 @@ class Find extends Api
 			if(!$user_no){
 				$this->error(__('未传入正确的USER_NO'));
 			}
-			$like = model('app\api\model\flshop\find\Like')
+			$like = model('app\api\model\flbooth\find\Like')
 				->where('user_id', self::getFindUser('user_no', $user_no)->user_id)
 				->select();
 			$where['id'] = ['in', array_column($like, 'find_id')];
@@ -120,7 +120,7 @@ class Find extends Api
 			$where['type'] = ['eq', $type];
 		// 主页关注
 		}else if($type === 'follow'){
-			$follow = model('app\api\model\flshop\find\Follow')
+			$follow = model('app\api\model\flbooth\find\Follow')
 				->where('user_id', $this->auth->id)
 				->select();
 			$where['user_no'] = ['in', array_column($follow, 'user_no')];
@@ -150,17 +150,17 @@ class Find extends Api
 			$user = model('app\api\model\User')
 				->where($where)
 				->select();
-			$list = model('app\api\model\flshop\find\User')
+			$list = model('app\api\model\flbooth\find\User')
 				->where('user_id', 'in', array_column($user, 'id'))
 				->field('id, user_id, user_no, fans, praised')
 				->order('created DESC')
 				->paginate();
 			foreach ($list as $row) {
-				$row->isFollow = model('app\api\model\flshop\find\Follow')
+				$row->isFollow = model('app\api\model\flbooth\find\Follow')
 					->where(['user_no' => $row['user_no'],'user_id' => $this->auth->id])
 					->count();
 				$row->user->visible(['id','username','nickname','avatar','bio']);
-				$row->shop = model('app\api\model\flshop\Shop')
+				$row->shop = model('app\api\model\flbooth\Shop')
 					->where('user_id', $row['user_id'])
 					->field('id, user_id, avatar, shopname, bio, isself')
 					->find();
@@ -176,14 +176,14 @@ class Find extends Api
 				if(!$type || $type === 'follow' || $type === 'find' || $row['type'] === 'video'){
 					if(!$user_no){
 						$row->shop = null;
-						$shop = model('app\api\model\flshop\Shop')
+						$shop = model('app\api\model\flbooth\Shop')
 							->where(['user_id' => $row['user_id']])
 							->field('id, user_id, avatar, shopname, isself')
 							->find();
 						if($shop){
 							$row->shop = $shop;
-							$row->isLive = model('app\api\model\flshop\Live')->where(['shop_id' => $shop['id'], 'state' => 1])->field('id')->find();
-							$row->newGoods = model('app\api\model\flshop\Goods')
+							$row->isLive = model('app\api\model\flbooth\Live')->where(['shop_id' => $shop['id'], 'state' => 1])->field('id')->find();
+							$row->newGoods = model('app\api\model\flbooth\Goods')
 								->where('shop_id', $shop['id'])
 								->whereTime('created', 'w') // 查询本周
 								->count();
@@ -192,11 +192,11 @@ class Find extends Api
 						}
 					}
 					// 查询关注
-					$row->isFollow = model('app\api\model\flshop\find\Follow')
+					$row->isFollow = model('app\api\model\flbooth\find\Follow')
 						->where(['user_no' => $row['user_no'],'user_id' => $this->auth->id])
 						->count();
 					// 关联商品
-					$row->goods = model('app\api\model\flshop\Goods')
+					$row->goods = model('app\api\model\flbooth\Goods')
 						->where('id', 'in', $row['goods_ids'])
 						->field('id,title,image,price')
 						->select();
@@ -209,7 +209,7 @@ class Find extends Api
 					$row->initialTime = 0;
 					$row->video;
 				}
-				$row->isLike = model('app\api\model\flshop\find\Like')->where(['find_id' => $row['id'], 'user_id' => $this->auth->id])->count(); 
+				$row->isLike = model('app\api\model\flbooth\find\Like')->where(['find_id' => $row['id'], 'user_id' => $this->auth->id])->count();
 			}
 		}
 		
@@ -219,7 +219,7 @@ class Find extends Api
 	/**
 	 * 获取发现详情&列表
 	 *
-	 * @ApiSummary  (flshop 关注或取消动态)
+	 * @ApiSummary  (flbooth 关注或取消动态)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 发现ID
@@ -233,14 +233,14 @@ class Find extends Api
 			$this->error(__('没有找到此作品，可能已经被删除'));
 		}
 		$row->shop = null;
-		$shop = model('app\api\model\flshop\Shop')
+		$shop = model('app\api\model\flbooth\Shop')
 			->where(['user_id' => $row['user_id']])
 			->field('id, user_id, avatar, shopname, isself')
 			->find();
 		if($shop){
 			$row->shop = $shop;
-			$row->isLive = model('app\api\model\flshop\Live')->where(['shop_id' => $shop['id'], 'state' => 1])->field('id')->find();
-			$row->newGoods = model('app\api\model\flshop\Goods')
+			$row->isLive = model('app\api\model\flbooth\Live')->where(['shop_id' => $shop['id'], 'state' => 1])->field('id')->find();
+			$row->newGoods = model('app\api\model\flbooth\Goods')
 				->where('shop_id', $shop['id'])
 				->whereTime('created', 'w') // 查询本周
 				->count();
@@ -248,15 +248,15 @@ class Find extends Api
 			// 1.1.4升级
 			$row->user->visible(['id','avatar','nickname','username']);
 		}
-		$row->isFollow = model('app\api\model\flshop\find\Follow')
+		$row->isFollow = model('app\api\model\flbooth\find\Follow')
 			->where(['user_no' => $row['user_no'],'user_id' => $this->auth->id])
 			->count();
-		$row->isLike = model('app\api\model\flshop\find\Like')
+		$row->isLike = model('app\api\model\flbooth\find\Like')
 			->where(['find_id' => $row['id'], 'user_id' => $this->auth->id])
 			->count();
 		$row->current = 0;
 		// 关联商品
-		$row->goods = model('app\api\model\flshop\Goods')
+		$row->goods = model('app\api\model\flbooth\Goods')
 			->where('id','in',$row['goods_ids'])
 			->field('id,title,image,price')
 			->select();
@@ -268,7 +268,7 @@ class Find extends Api
 	/**
 	 * 新增作品
 	 *
-	 * @ApiSummary  (flshop 发现新增作品)
+	 * @ApiSummary  (flbooth 发现新增作品)
 	 * @ApiMethod   (POST)
 	 * 
 	 */
@@ -279,7 +279,7 @@ class Find extends Api
 		if ($this->request->isPost()) 
 		{
 			$params = $this->request->post();
-			$config = get_addon_config('flshop');
+			$config = get_addon_config('flbooth');
 			// 内容审核
 			$security = new Security($config['mp_weixin']['appid'], $config['mp_weixin']['appsecret']);
 			$checkText = $security->check('msg_sec_check', [
@@ -299,14 +299,14 @@ class Find extends Api
 			// 判断是否审核
 			if($config['find']['allExamine_switch'] === 'Y'){
 			    if($params['type'] === 'video'){
-					$video = model('app\api\model\flshop\Video')->get(['video_id' => $params['video_id']]);
+					$video = model('app\api\model\flbooth\Video')->get(['video_id' => $params['video_id']]);
 					$params['images'] = $video ? $video['snapshots'] : '';
 				}
 				$params['state'] = 'examine';
 			}else if($config['find']['personalExamine_switch'] === 'Y'){
-				if(model('app\api\model\flshop\Shop')->where(['user_id' => $this->auth->id])->find()){
+				if(model('app\api\model\flbooth\Shop')->where(['user_id' => $this->auth->id])->find()){
 					if($params['type'] === 'video'){
-						$video = model('app\api\model\flshop\Video')->get(['video_id' => $params['video_id']]);
+						$video = model('app\api\model\flbooth\Video')->get(['video_id' => $params['video_id']]);
 						$params['images'] = $video ? $video['snapshots'] : '';
 						$params['state'] = $video ? $video['state'] : 'publish';
 					}else{
@@ -314,14 +314,14 @@ class Find extends Api
 					}
 				}else{
 				    if($params['type'] === 'video'){
-						$video = model('app\api\model\flshop\Video')->get(['video_id' => $params['video_id']]);
+						$video = model('app\api\model\flbooth\Video')->get(['video_id' => $params['video_id']]);
 						$params['images'] = $video ? $video['snapshots'] : '';
 					}
 					$params['state'] = 'examine';
 				}
 			}else{
 				if($params['type'] === 'video'){
-					$video = model('app\api\model\flshop\Video')->get(['video_id' => $params['video_id']]);
+					$video = model('app\api\model\flbooth\Video')->get(['video_id' => $params['video_id']]);
 					$params['images'] = $video ? $video['snapshots'] : '';
 					$params['state'] = $video ? $video['state'] : 'publish';
 				}else{
@@ -354,7 +354,7 @@ class Find extends Api
 	/**
 	 * 删除作品
 	 *
-	 * @ApiSummary  (flshop 发现删除作品)
+	 * @ApiSummary  (flbooth 发现删除作品)
 	 * @ApiMethod   (POST)
 	 * 
 	 */
@@ -370,7 +370,7 @@ class Find extends Api
 			if($row){
 				// 一并删除云端
 				if($row['type'] === 'video'){
-					$config = get_addon_config('flshop');
+					$config = get_addon_config('flbooth');
 					$vod = new Video($config['video']['regionId'], $config['video']['accessKeyId'], $config['video']['accessKeySecret']);
 					$vodDel = $vod->deleteVideo($row['video_id']);
 					if($vodDel){
@@ -392,7 +392,7 @@ class Find extends Api
 	 */
 	private function getFindUser($name = null, $id = null)
 	{
-		$row = model('app\api\model\flshop\find\User')
+		$row = model('app\api\model\flbooth\find\User')
 			->where($name, 'eq', $id)
 			->find();
 		return $row ? $row : self::addFindUser();
@@ -404,7 +404,7 @@ class Find extends Api
 	private function addFindUser()
 	{
 		// 新建用户并查询
-		$find_user = model('app\api\model\flshop\find\User');
+		$find_user = model('app\api\model\flbooth\find\User');
 		$find_user->user_id = $this->auth->id;
 		$find_user->user_no = Random::nozero(9);
 		$find_user->save();

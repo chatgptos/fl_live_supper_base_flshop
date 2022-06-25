@@ -1,13 +1,13 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 
 use EasyWeChat\Factory;
-use addons\flshop\library\WeixinSdk\Mp;
+use addons\flbooth\library\WeixinSdk\Mp;
 
 /**
- * flshop 微信接口 1.0.8已经为开发者引入，直接使用以下方法二次开发，后续完善
+ * flbooth 微信接口 1.0.8已经为开发者引入，直接使用以下方法二次开发，后续完善
  */
 class Wechat extends Api
 {

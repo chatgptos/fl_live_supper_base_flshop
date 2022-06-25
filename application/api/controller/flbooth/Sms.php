@@ -1,6 +1,6 @@
 <?php
 
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use app\common\library\Sms as Smslib;

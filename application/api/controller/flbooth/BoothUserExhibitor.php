@@ -37,7 +37,7 @@ class BoothUserExhibitor extends Api
     {
         $booth_id = $this->request->post("exhibitor_id");
 
-        $booth_info = \app\admin\model\booth\UserExhibitor::where('exhibitor_id', $booth_id)->find();
+        $booth_info = \app\admin\model\UserExhibitor::where('exhibitor_id', $booth_id)->find();
 
         $this->success('', $booth_info);
     }

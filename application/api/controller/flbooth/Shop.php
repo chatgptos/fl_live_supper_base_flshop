@@ -1,11 +1,11 @@
 <?php
 
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use fast\Tree;
 /**
- * flshop店铺接口
+ * flbooth展商接口
  */
 class Shop extends Api
 {
@@ -15,13 +15,13 @@ class Shop extends Api
 	public function _initialize()
 	{
 	    parent::_initialize();
-		$this->model = model('app\api\model\flshop\Shop');
+		$this->model = model('app\api\model\flbooth\Shop');
 	}
 	
 	/**
-	 * 一次性获取店铺相关数据 1.0.8升级
+	 * 一次性获取展商相关数据 1.0.0升级
 	 *
-	 * @ApiSummary  (flshop 一次性获取店铺相关数据)
+	 * @ApiSummary  (flbooth 一次性获取店铺相关数据)
 	 * @ApiMethod   (GET)
 	 *
 	 * @param string $id 页面ID
@@ -38,7 +38,7 @@ class Shop extends Api
 		// 获取商家类目
 		$tree = Tree::instance();
 		$tree->init(
-			model('app\api\model\flshop\ShopSort')
+			model('app\api\model\flbooth\ShopSort')
 				->where(['shop_id' => $row['id']])
 				->field('id, pid, name, image')
 				->order('weigh asc')
@@ -46,23 +46,23 @@ class Shop extends Api
 		);
 		$row['category'] = $tree->getTreeArray(0);
 		// 查看是否被关注
-		$row['isFollow'] = model('app\api\model\flshop\find\Follow')
+		$row['isFollow'] = model('app\api\model\flbooth\find\Follow')
 			->where([
 				'user_no' => $row['find_user']['user_no'], 
 				'user_id' => $this->auth->id
 			])
 			->count();
-		$row['isLive'] = model('app\api\model\flshop\Live')
+		$row['isLive'] = model('app\api\model\flbooth\Live')
 			->where(['shop_id' => $row['id'], 'state' => 1])
 			->field('id')
 			->find();
 		// 获取类目样式配置
-		$shopConfig = model('app\api\model\flshop\ShopConfig')
+		$shopConfig = model('app\api\model\flbooth\ShopConfig')
 			->where(['shop_id' => $row['id']])
 			->find();
 		$row['categoryStyle'] = (int)$shopConfig['category_style'];
 		// 获取商家自定义页面
-		$row['page'] = model('app\api\model\flshop\Page')
+		$row['page'] = model('app\api\model\flbooth\Page')
 			->where([
 				'shop_id' => $row['id'], 
 				'type' => 'shop'
@@ -73,16 +73,16 @@ class Shop extends Api
 	}
 	
 	/**
-	 * 商家入驻
+	 * 展商入驻
 	 *
-	 * @ApiSummary  (flshop 店铺接口商家入驻)
+	 * @ApiSummary  (flbooth 店铺接口商家入驻)
 	 * @ApiMethod   (POST)
 	 */
 	public function apply()
 	{
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
-		$row = model('app\api\model\flshop\Auth')
+		$row = model('app\api\model\flbooth\Auth')
 			->where(['user_id' => $this->auth->id])
 			->find();
 		if ($this->request->isPost()) {
@@ -100,7 +100,7 @@ class Shop extends Api
 			if($row){
 				$row->save($data);
 			}else{
-				model('app\api\model\flshop\Auth')->data($data)->save();
+				model('app\api\model\flbooth\Auth')->data($data)->save();
 			}
 			$this->success('返回成功', $params);
 		}

@@ -1,11 +1,11 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
-use addons\flshop\library\AliyunSdk\Video as Vod;
+use addons\flbooth\library\AliyunSdk\Video as Vod;
 
 /**
- * flshop验证接口
+ * flbooth验证接口
  */
 class Video extends Api
 {
@@ -15,7 +15,7 @@ class Video extends Api
     public function _initialize()
     {
         parent::_initialize();
-		$this->model = new \app\api\model\flshop\Video;
+		$this->model = new \app\api\model\flbooth\Video;
     }
 
     /**
@@ -24,7 +24,7 @@ class Video extends Api
      */
     public function getUploadProof($name)
     {
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
         $vod = new Vod($config['video']['regionId'], $config['video']['accessKeyId'], $config['video']['accessKeySecret']);
         $sts = $vod->createUploadVideo($name, $name, $config['video']['workflowId']);
 		if(!$sts){

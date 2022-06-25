@@ -1,6 +1,6 @@
 <?php
 
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use think\addons\Service;
@@ -11,7 +11,7 @@ use think\Db;
 use think\Hook;
 
 /**
- * flshop公共接口
+ * flbooth公共接口
  */
 class Common extends Api
 {
@@ -21,7 +21,7 @@ class Common extends Api
 	/**
 	 * 一次性加载App
 	 *
-	 * @ApiSummary  (flshop 获取首页、购物车、类目数据)
+	 * @ApiSummary  (flbooth 获取首页、购物车、类目数据)
 	 * @ApiMethod   (GET)
 	 *
 	 */
@@ -29,7 +29,7 @@ class Common extends Api
     {
 		$cacheTime = 60; // 1.1.2升级 查询缓存
 		// 首页
-		$homeList = model('app\api\model\flshop\Page')
+		$homeList = model('app\api\model\flbooth\Page')
 			->where('type','index')
 			->cache(true, $cacheTime)
 			->field('page, item')
@@ -39,21 +39,21 @@ class Common extends Api
 		}
 		// 类目
 		$tree = Tree::instance();
-		$tree->init(model('app\api\model\flshop\Category')
+		$tree->init(model('app\api\model\flbooth\Category')
 			->where(['type' => 'goods', 'isnav' => 1])
 			->cache(true, $cacheTime)
 			->field('id, pid, name, image')
 			->order('weigh asc')
 			->select());
 		// 搜索关键字
-		$searchList = model('app\api\model\flshop\Search')
+		$searchList = model('app\api\model\flbooth\Search')
 			->where(['flag' => 'index'])
 			->field('keywords')
 			->order('views desc')
 			->limit(10)
 		    ->select();
 		// 获取配置
-		$config = get_addon_config('flshop'); 
+		$config = get_addon_config('flbooth');
 		// 一次性获取模块
 		$modulesData  = [
 			"homeModules" => $homeList,
@@ -79,19 +79,19 @@ class Common extends Api
 	{
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
-		$category_id = implode(',', array_column(Tree::instance()->init(model('app\api\model\flshop\Category')->cache(true, 60)->select())->getChildren($this->request->get('id'), true), 'id'));
+		$category_id = implode(',', array_column(Tree::instance()->init(model('app\api\model\flbooth\Category')->cache(true, 60)->select())->getChildren($this->request->get('id'), true), 'id'));
 		// 商品
-		$goods = model('app\api\model\flshop\Goods')
+		$goods = model('app\api\model\flbooth\Goods')
 			->where('category_id', 'in', $category_id)
 			->where('status', 'normal')
 			->orderRaw('rand()')
 			->paginate();
 		foreach ($goods as $row) {
 			$row->shop->visible(['state','shopname']);
-			$row->isLive = model('app\api\model\flshop\Live')->where(['shop_id' => $row['shop_id'], 'state' => 1])->field('id')->find();
+			$row->isLive = model('app\api\model\flbooth\Live')->where(['shop_id' => $row['shop_id'], 'state' => 1])->field('id')->find();
 		}
 		// 拼团
-		$groups = model('app\api\model\flshop\groups\Goods')
+		$groups = model('app\api\model\flbooth\groups\Goods')
 			->where('category_id', 'in', $category_id)
 			->where('status', 'normal')
 			->orderRaw('rand()')
@@ -107,7 +107,7 @@ class Common extends Api
 	/**
 	 * APP热更新 1.0.3升级
 	 *
-	 * @ApiSummary  (flshop APP热更新)
+	 * @ApiSummary  (flbooth APP热更新)
 	 * @ApiMethod   (GET)
 	 *
 	 */
@@ -115,7 +115,7 @@ class Common extends Api
 	{
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
-		$row = model('app\api\model\flshop\Version')
+		$row = model('app\api\model\flbooth\Version')
 			->order('versionCode desc')
 			->find();
 		$this->success('返回成功', $row);	
@@ -124,7 +124,7 @@ class Common extends Api
 	/**
 	 * 获取后端地址 1.0.6升级
 	 *
-	 * @ApiSummary  (flshop APP热更新)
+	 * @ApiSummary  (flbooth APP热更新)
 	 * @ApiMethod   (GET)
 	 *
 	 */
@@ -154,7 +154,7 @@ class Common extends Api
 	/**
 	 * 加载广告
 	 *
-	 * @ApiSummary  (flshop 加载广告)
+	 * @ApiSummary  (flbooth 加载广告)
 	 * @ApiMethod   (GET)
 	 *
 	 */
@@ -169,7 +169,7 @@ class Common extends Api
 			'firstAdverts' => [],
 			'otherAdverts' => []
 		];
-		$list = model('app\api\model\flshop\Advert')
+		$list = model('app\api\model\flbooth\Advert')
 			->field('id,category_id,media,module,type,url')
 			->select();
 		foreach ($list as $value) {
@@ -202,7 +202,7 @@ class Common extends Api
 	/**
 	 * 热门搜索
 	 *
-	 * @ApiSummary  (flshop 搜索关键词列表)
+	 * @ApiSummary  (flbooth 搜索关键词列表)
 	 * @ApiMethod   (GET)
 	 * 
 	 */
@@ -210,7 +210,7 @@ class Common extends Api
 	{
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
-		$list = model('app\api\model\flshop\Search')
+		$list = model('app\api\model\flbooth\Search')
 			->field('id,keywords,flag')
 			->order('views desc')
 			->limit(20)
@@ -221,7 +221,7 @@ class Common extends Api
 	/**
 	 * 提交搜索关键字给系统
 	 *
-	 * @ApiSummary  (flshop 搜索关键词列表)
+	 * @ApiSummary  (flbooth 搜索关键词列表)
 	 * @ApiMethod   (GET)
 	 * 
 	 * @param string $keywords 关键字
@@ -231,7 +231,7 @@ class Common extends Api
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
 		$keywords = $this->request->request("keywords", '');
-		$model = model('app\api\model\flshop\Search');
+		$model = model('app\api\model\flbooth\Search');
 		if($model->where('keywords',$keywords)->count() > 0){
 			$model->where('keywords',$keywords)->setInc('views');
 		}else{
@@ -243,7 +243,7 @@ class Common extends Api
     /**
      * 实时搜索类目&相关类目
      *
-     * @ApiSummary  (flshop 搜索关键词列表)
+     * @ApiSummary  (flbooth 搜索关键词列表)
      * @ApiMethod   (GET)
      * 
 	 * @param string $search 搜索内容
@@ -255,14 +255,14 @@ class Common extends Api
 		$search = $this->request->request('search', '');
 		if($search){
 			// 查询相关类目
-			$categoryList = model('app\api\model\flshop\Category')
+			$categoryList = model('app\api\model\flbooth\Category')
 			    ->where('name','like','%'.$search.'%')
 				->field('id,name')
 				->limit(20)
 			    ->select();
 				
 			// 查询搜索数据
-			$searchList = model('app\api\model\flshop\Search')
+			$searchList = model('app\api\model\flbooth\Search')
 			    ->where('keywords','like','%'.$search.'%')
 				->field('keywords')
 				->limit(20)
@@ -277,7 +277,7 @@ class Common extends Api
 	/**
 	 * 二维码配置
 	 *
-	 * @ApiSummary  (flshop 查询二维码配置)
+	 * @ApiSummary  (flbooth 查询二维码配置)
 	 * @ApiMethod   (POST)
 	 *
 	 */
@@ -286,7 +286,7 @@ class Common extends Api
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
 		if ($this->request->isPost()) {
-			$list = model('app\api\model\flshop\Qrcode')
+			$list = model('app\api\model\flbooth\Qrcode')
 				->field('id,name,template,canvas_width,canvas_height,thumbnail_width,thumbnail_url,background_url,logo_src,checked,status')
 				->order('weigh desc')
 				->select();
@@ -298,13 +298,13 @@ class Common extends Api
 	/**
 	 * 关于系统
 	 *
-	 * @ApiSummary  (flshop 关于系统)
+	 * @ApiSummary  (flbooth 关于系统)
 	 * @ApiMethod   (GET)
 	 *
 	 */
 	public function about()
 	{
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		$this->success('返回成功', [
 			'name' => $config['ini']['name'],
 			'logo' => $config['ini']['logo'],
@@ -315,13 +315,13 @@ class Common extends Api
 	/**
 	 * 获取上传配置 1.0.2升级
 	 *
-	 * @ApiSummary  (flshop 上传配置)
+	 * @ApiSummary  (flbooth 上传配置)
 	 * @ApiMethod   (GET)
 	 *
 	 */
 	public function uploadData()
 	{
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		//配置信息
 		$upload = Config::get('upload');
 		//如果非服务端中转模式需要修改为中转
@@ -347,7 +347,7 @@ class Common extends Api
 	{
 		header('Content-type: image/svg+xml');
 	    $icon = <<<EOT
-		<svg style="background-color: #E1F5FF;" viewBox="0 0 200 200" version="1.1" id="flshop_com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+		<svg style="background-color: #E1F5FF;" viewBox="0 0 200 200" version="1.1" id="flbooth_com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
 			<path fill="#313FA0" d="M157.5,115.9v-4.7l-28.8-28.8c-3.2-3.2-8.4-3.2-11.5,0L76.5,123h73.8C154.3,123,157.5,119.8,157.5,115.9z"/>
 			<path fill="#8C9EFF" d="M50.4,123H136L86.3,73.4c-3.2-3.2-8.4-3.2-11.5,0l-31.5,31.3v11.2C43.2,119.8,46.4,123,50.4,123z"/>
 			<path fill="#FFD600" d="M117.8,58.5c0,4.5,3.7,8.2,8.2,8.2s8.2-3.7,8.2-8.2s-3.7-8.2-8.2-8.2S117.8,54,117.8,58.5z"/>

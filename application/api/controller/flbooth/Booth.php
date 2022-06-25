@@ -36,7 +36,7 @@ class Booth extends Api
     {
         $booth_id = $this->request->post("id");
 
-        $booth_info = \app\admin\model\booth\Boothinfo::where('id', $booth_id)->find();
+        $booth_info = \app\admin\model\Boothinfo::where('id', $booth_id)->find();
 
         $this->success('', $booth_info);
     }

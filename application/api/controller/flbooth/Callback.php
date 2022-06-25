@@ -1,15 +1,15 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
-use addons\flshop\library\WanlChat\WanlChat;
-use addons\flshop\library\WanlPay\WanlPay;
+use addons\flbooth\library\WanlChat\WanlChat;
+use addons\flbooth\library\WanlPay\WanlPay;
 
 use think\View;
 use think\Log;
 
 /**
- * flshop 回调接口
+ * flbooth 回调接口
  */
 class Callback extends Api
 {
@@ -25,7 +25,7 @@ class Callback extends Api
 	/**
 	 * 接收快递100推送消息
 	 *
-	 * @ApiSummary  (flshop 快递接口-接收快递100推送消息)
+	 * @ApiSummary  (flbooth 快递接口-接收快递100推送消息)
 	 * @ApiMethod   (POST)
 	 *
 	 * @param string $status 物流状态 polling:监控中，shutdown:结束，abort:中止，updateall：重新推送
@@ -36,7 +36,7 @@ class Callback extends Api
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
 		if ($this->request->isPost()) {
-		    $kuaidi = model('app\api\model\flshop\KuaidiSub');
+		    $kuaidi = model('app\api\model\flbooth\KuaidiSub');
 			$post = $this->request->post();
 			// 接收消息
 			try {
@@ -80,7 +80,7 @@ class Callback extends Api
 	/**
 	 * 推流状态回调
 	 *
-	 * @ApiSummary  (flshop 直播接口-推流状态回调)
+	 * @ApiSummary  (flbooth 直播接口-推流状态回调)
 	 * @ApiMethod   (POST)
 	 *
 	 * @param string $action 回调状态 publish / publish_done
@@ -94,8 +94,8 @@ class Callback extends Api
 	 */
 	public function push($id, $action)
 	{
-		$row = model('app\api\model\flshop\Live')->get(['liveid' => $id]);
-		$find = model('app\api\model\flshop\find\Find');
+		$row = model('app\api\model\flbooth\Live')->get(['liveid' => $id]);
+		$find = model('app\api\model\flbooth\find\Find');
 		if($row){
 			if($action == 'publish'){
 				$this->sendLiveGroup($id, ['type' => 'publish']);
@@ -105,7 +105,7 @@ class Callback extends Api
 				// 发布动态
 				if($count == 0){
 					// 关联商品
-					$goods = model('app\api\model\flshop\Goods')
+					$goods = model('app\api\model\flbooth\Goods')
 						->where('id', 'in', $row['goods_ids'])
 						->limit(2)
 						->select();
@@ -114,8 +114,8 @@ class Callback extends Api
 						$image[] = $vo['image'];
 					}
 					// 1.1.2升级
-					$shop = model('app\api\model\flshop\Shop')->get($row['shop_id']);
-					$user = model('app\api\model\flshop\find\User')->get([
+					$shop = model('app\api\model\flbooth\Shop')->get($row['shop_id']);
+					$user = model('app\api\model\flbooth\find\User')->get([
 						'user_id' => $shop['user_id']
 					]);
 					// 保存数据
@@ -143,7 +143,7 @@ class Callback extends Api
 	/**
 	 * 录制文件回调
 	 *
-	 * @ApiSummary  (flshop 直播接口-录制文件回调)
+	 * @ApiSummary  (flbooth 直播接口-录制文件回调)
 	 * @ApiMethod   (POST)
 	 *
 	 * @param string $domain 回调状态 publish / publish_done
@@ -173,14 +173,14 @@ class Callback extends Api
     		}else{
     			// 录制成功
     			if($uri && $stream){
-    				$config = get_addon_config('flshop');
-    				$live = model('app\api\model\flshop\Live')
+    				$config = get_addon_config('flbooth');
+    				$live = model('app\api\model\flbooth\Live')
 						->where('liveid', $stream)
 						->find();
 					// 修改CND拼接域名 1.1.2升级
 					$live->save(['recordurl' => ($config['live']['sslSwitch'] == 'Y' ? 'https://' : 'http://') . $config['live']['liveCnd'] . '/' . $uri]);
 					// 修改发现状态 1.1.4升级
-					$find = model('app\api\model\flshop\find\Find')
+					$find = model('app\api\model\flbooth\find\Find')
 						->where('live_id', $live['id'])
 						->find();
 					if($find){
@@ -193,12 +193,12 @@ class Callback extends Api
 		}
 		$this->error(__('非正常访问'));
 	}
-	//file:///C:/Users/flshop/Desktop/flshop-1.1.3/application/api/controller/flshop/Callback.php
+	//file:///C:/Users/flbooth/Desktop/flbooth-1.1.3/application/api/controller/flbooth/Callback.php
 	
 	/**
 	 * 安全审核
 	 *
-	 * @ApiSummary  (flshop 直播接口-安全审核)
+	 * @ApiSummary  (flbooth 直播接口-安全审核)
 	 * @ApiMethod   (POST)
 	 *
 	 * @param string $DomainName 用户域名
@@ -213,8 +213,8 @@ class Callback extends Api
 	{
 		$res = $Result[0]['Result'][0];
 		if($res['Suggestion'] == 'block'){ // 违规
-			$live = model('app\api\model\flshop\Live')->get(['liveid' => $StreamName]);
-			model('app\api\model\flshop\find\Find')->where(['live_id' => $live['id']])->delete();
+			$live = model('app\api\model\flbooth\Live')->get(['liveid' => $StreamName]);
+			model('app\api\model\flbooth\find\Find')->where(['live_id' => $live['id']])->delete();
 			$live->save(['gestion' => $res['Scene'], 'state' => 3]);
 			// 封禁直播间
 			$this->sendLiveGroup($StreamName, ['type' => 'ban']);
@@ -230,7 +230,7 @@ class Callback extends Api
 	/**
 	 * 视频点播回调
 	 *
-	 * @ApiSummary  (flshop 视频接口-视频点播回调)
+	 * @ApiSummary  (flbooth 视频接口-视频点播回调)
 	 * @ApiMethod   (POST)
 	 *
 	 * https://help.aliyun.com/document_detail/55627.html
@@ -240,20 +240,20 @@ class Callback extends Api
 		if ($this->request->isPost()) {
 			$server = $this->request->server();
 			$params = $this->request->post();
-			$config = get_addon_config('flshop');
+			$config = get_addon_config('flbooth');
 			if($server['HTTP_X_VOD_SIGNATURE'] == md5($this->request->url(true).'|'.$server['HTTP_X_VOD_TIMESTAMP'].'|'.$config['video']['privateKey']) && $params['Status'] == 'success'){
 				$data = [];
 				$videoId = $params['EventType'] == 'AIMediaAuditComplete' ? $params['MediaId'] : $params['VideoId'];
 				// 创建视频
 				if($params['EventType'] == 'FileUploadComplete'){
-					$video = model('app\api\model\flshop\Video');
+					$video = model('app\api\model\flbooth\Video');
 					$video->video_id = $videoId;
 					$video->state = 'screenshot';
 					$video->save();
 					// 发现更新条件
 					$data['state'] = 'screenshot';
 				}else{
-					$videoData = model('app\api\model\flshop\Video')
+					$videoData = model('app\api\model\flbooth\Video')
 						->where('video_id', $videoId)
 						->find();
 					// 视频截图完成
@@ -306,7 +306,7 @@ class Callback extends Api
 					}
 				}
 				// 查询FIND是否已存在
-				$find = model('app\api\model\flshop\find\Find')
+				$find = model('app\api\model\flbooth\find\Find')
 					->where('video_id', $videoId)
 					->find();
 				// 更新状态
@@ -325,7 +325,7 @@ class Callback extends Api
 	/**
 	 * 支付成功回调
 	 *
-	 * @ApiSummary  (flshop 支付接口-支付成功回调)
+	 * @ApiSummary  (flbooth 支付接口-支付成功回调)
 	 * @ApiMethod   (POST)
 	 *
 	 */
@@ -346,7 +346,7 @@ class Callback extends Api
     /**
 	 * 支付成功回调
 	 *
-	 * @ApiSummary  (flshop 支付接口-支付成功回调)
+	 * @ApiSummary  (flbooth 支付接口-支付成功回调)
 	 * @ApiMethod   (POST)
 	 *
 	 */
@@ -367,7 +367,7 @@ class Callback extends Api
 	/**
 	 * 支付成功返回
 	 *
-	 * @ApiSummary  (flshop 支付接口-支付成功返回)
+	 * @ApiSummary  (flbooth 支付接口-支付成功返回)
 	 * @ApiMethod   (POST)
 	 *
 	 */
@@ -378,10 +378,10 @@ class Callback extends Api
         }
         $view = new View();
         $wanlpay = new WanlPay($type);
-        $config = get_addon_config('flshop');
+        $config = get_addon_config('flbooth');
         $view->row = $wanlpay->return();
         $view->config = $config['h5'];
-        return $view->fetch('index@flshop/page/success');
+        return $view->fetch('index@flbooth/page/success');
 	}
 	
 	/**

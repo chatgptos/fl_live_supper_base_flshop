@@ -1,10 +1,10 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 
 /**
- * flshop 投诉举报接口
+ * flbooth 投诉举报接口
  */
 class Complaint extends Api
 {
@@ -14,7 +14,7 @@ class Complaint extends Api
 	public function _initialize()
 	{
 	    parent::_initialize();
-	    $this->model = new \app\api\model\flshop\Complaint;
+	    $this->model = new \app\api\model\flbooth\Complaint;
 	}
 	
 	/**

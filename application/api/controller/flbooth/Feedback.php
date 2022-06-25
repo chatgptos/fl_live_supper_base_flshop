@@ -1,10 +1,10 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 
 /**
- * flshop 反馈接口
+ * flbooth 反馈接口
  */
 class Feedback extends Api
 {
@@ -14,7 +14,7 @@ class Feedback extends Api
 	public function _initialize()
 	{
 	    parent::_initialize();
-	    $this->model = new \app\api\model\flshop\Feedback;
+	    $this->model = new \app\api\model\flbooth\Feedback;
 	}
 	
 	/**

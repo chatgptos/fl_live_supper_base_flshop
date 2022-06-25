@@ -1,7 +1,7 @@
 <?php
-namespace app\api\controller\flshop\groups;
+namespace app\api\controller\flbooth\groups;
 
-use addons\flshop\library\WanlSdk\Common;
+use addons\flbooth\library\WanlSdk\Common;
 use app\common\controller\Api;
 use think\Cache;
 
@@ -10,7 +10,7 @@ use think\Exception;
 use think\exception\PDOException;
 
 /**
- * flshop 拼团应用订单接口
+ * flbooth 拼团应用订单接口
  */
 class Order extends Api
 {
@@ -20,7 +20,7 @@ class Order extends Api
 	/**
      * 获取拼团订单列表 ---
      *
-     * @ApiSummary  (flshop 拼团订单接口获取拼团订单列表)
+     * @ApiSummary  (flbooth 拼团订单接口获取拼团订单列表)
      * @ApiMethod   (GET)
 	 * 2021年6月28日12:50:01
 	 *
@@ -37,18 +37,18 @@ class Order extends Api
         $where['status'] = 'normal';
         $where['user_id'] = $this->auth->id;
 		// 列表	
-		$list = model('app\api\model\flshop\groups\Order')
+		$list = model('app\api\model\flbooth\groups\Order')
 			->where($where)
 			->field('id,shop_id,state')
 			->order('modified desc')
 			->paginate()
 			->each(function($order, $key){
-				$order['goods'] = model('app\api\model\flshop\groups\OrderGoods')
+				$order['goods'] = model('app\api\model\flbooth\groups\OrderGoods')
 					->where(['order_id'=> $order->id])
 					->field('id,title,image,difference,price,market_price,group_price,group_type,group_no,people_num,is_ladder,ladder_id,number,refund_status')
 					->select();
 				// 获取支付 1.1.2升级
-				$order['pay'] = model('app\api\model\flshop\Pay')
+				$order['pay'] = model('app\api\model\flbooth\Pay')
 					->where(['order_id' => $order->id, 'type' => 'groups'])
 					->field('number, price, order_price, freight_price, discount_price, actual_payment')
 					->find();
@@ -73,14 +73,14 @@ class Order extends Api
 		if($this->request->isPost()){
 			$shop_id = $this->request->post('shop_id');
 			$shop_id ? '':($this->error(__('Invalid parameters')));
-			$list = model('app\api\model\flshop\Order')
+			$list = model('app\api\model\flbooth\Order')
 				->where(['shop_id' => $shop_id, 'user_id' => $this->auth->id, 'status' => 'normal'])
 				->field('id,shop_id,order_no,state')
 				->order('modified desc')
 				->select();
 			// 订单状态:1=待支付,2=待发货,3=待收货,4=待评论,5=售后订单(已弃用),6=已完成,7=已取消
 			foreach ($list as $row) {
-			    $row['goods'] = model('app\api\model\flshop\OrderGoods')
+			    $row['goods'] = model('app\api\model\flbooth\OrderGoods')
 			    	->where(['order_id'=> $row->id])
 			    	->field('id,title,image,difference,price,market_price,number,refund_status')
 			    	->select();
@@ -93,7 +93,7 @@ class Order extends Api
     /**
      * 获取订单详情 ----
      *
-     * @ApiSummary  (flshop 订单接口获取订单详情)
+     * @ApiSummary  (flbooth 订单接口获取订单详情)
      * @ApiMethod   (GET)
 	 * 
 	 * @param string $id 订单ID
@@ -104,14 +104,14 @@ class Order extends Api
 		$this->request->filter(['strip_tags']);
 		$id = $this->request->request('id');
 		$id ? $id : ($this->error(__('非法请求')));
-		$order = model('app\api\model\flshop\groups\Order')
+		$order = model('app\api\model\flbooth\groups\Order')
 			->where(['id' => $id, 'user_id' => $this->auth->id])
 			->field('id,shop_id,order_no,isaddress,express_no,express_name,
 			freight_type,state,created,paymenttime,delivertime,taketime,dealtime')
 			->find();
 		$order ? $order : ($this->error(__('网络繁忙')));
 		// 输出配置
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		$order['config'] = $config['order'];
 		switch ($order['state']) {
 			case 1:
@@ -136,7 +136,7 @@ class Order extends Api
 				];
 				break;
 			default: // 获取物流
-				$eData = model('app\api\model\flshop\KuaidiSub')
+				$eData = model('app\api\model\flbooth\KuaidiSub')
 					->where(['express_no' => $order['express_no']])
 					->find();
 				$ybData = json_decode($eData['data'], true);
@@ -153,7 +153,7 @@ class Order extends Api
 		// 获取物流
 		$order['logistics'] = $express;
 		// 获取地址
-		$order['address'] = model('app\api\model\flshop\groups\OrderAddress')
+		$order['address'] = model('app\api\model\flbooth\groups\OrderAddress')
 			->where(['order_id' => $id, 'user_id' => $this->auth->id])
 			->order('isaddress desc')
 			->field('id,name,mobile,address,address_name')
@@ -161,12 +161,12 @@ class Order extends Api
 		// 获取店铺
 		$order['shop'] = $order->shop?$order->shop->visible(['shopname']):[];
 		// 获取订单商品
-		$order['goods'] = model('app\api\model\flshop\groups\OrderGoods')
+		$order['goods'] = model('app\api\model\flbooth\groups\OrderGoods')
 			->where(['order_id'=> $id])
 			->field('id,goods_id,title,image,difference,price,market_price,actual_payment,discount_price,freight_price,group_type,group_no,is_alone,is_ladder,ladder_id,people_num,group_hour,group_price,number,refund_id,refund_status')
 			->select();
 		// 获取支付 1.1.2升级
-		$order['pay'] = model('app\api\model\flshop\Pay')
+		$order['pay'] = model('app\api\model\flbooth\Pay')
 			->where(['order_id' => $order->id, 'type' => 'groups'])
 			->field('id, pay_no, number, price, order_price, freight_price, discount_price, actual_payment')
 			->find();
@@ -176,7 +176,7 @@ class Order extends Api
 	/**
 	 * 取消订单 ----
 	 *
-	 * @ApiSummary  (flshop 订单接口取消订单)
+	 * @ApiSummary  (flbooth 订单接口取消订单)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 订单ID
@@ -190,21 +190,21 @@ class Order extends Api
 			$id ? $id : ($this->error(__('非法请求')));
 			// 判断权限
 			$this->getOrderState($id) != 1 ? ($this->error(__('订单异常'))):'';
-			$row = model('app\api\model\flshop\groups\Order')->get(['id' => $id, 'user_id' => $this->auth->id]);
+			$row = model('app\api\model\flbooth\groups\Order')->get(['id' => $id, 'user_id' => $this->auth->id]);
 			$result = $row->allowField(true)->save(['state' => 7]);
 			
 			// 还原优惠券
 			if($row['coupon_id'] != 0){
-				model('app\api\model\flshop\CouponReceive')->where(['id' => $row['coupon_id'], 'user_id' => $this->auth->id])->update(['state' => 1]);
+				model('app\api\model\flbooth\CouponReceive')->where(['id' => $row['coupon_id'], 'user_id' => $this->auth->id])->update(['state' => 1]);
 			}
 			// 释放库存
-			foreach(model('app\api\model\flshop\groups\OrderGoods')->all(['order_id' => $row['id']]) as $vo){
+			foreach(model('app\api\model\flbooth\groups\OrderGoods')->all(['order_id' => $row['id']]) as $vo){
 				// 查询商品是否需要释放库存
-				if(model('app\api\model\flshop\groups\Goods')->get($vo['goods_id'])['stock'] == 'porder'){
-					model('app\api\model\flshop\groups\GoodsSku')->where('id', $vo['goods_sku_id'])->setInc('stock', $vo['number']);
+				if(model('app\api\model\flbooth\groups\Goods')->get($vo['goods_id'])['stock'] == 'porder'){
+					model('app\api\model\flbooth\groups\GoodsSku')->where('id', $vo['goods_sku_id'])->setInc('stock', $vo['number']);
 				}
 				// 删除拼团-1.0.8临时方案
-				model('app\api\model\flshop\groups\Groups')
+				model('app\api\model\flbooth\groups\Groups')
 					->where([
 						'group_no' => $vo['group_no'], 
 						'user_id' => $this->auth->id,
@@ -220,7 +220,7 @@ class Order extends Api
     /**
      * 删除订单 -----
      *
-     * @ApiSummary  (flshop 订单接口删除订单)
+     * @ApiSummary  (flbooth 订单接口删除订单)
      * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 订单ID
@@ -235,7 +235,7 @@ class Order extends Api
 			// 判断权限
 			$state = $this->getOrderState($id);
 			$state == 6 || $state == 7 ? '' :($this->error(__('非法请求')));
-			$order = model('app\api\model\flshop\groups\Order')
+			$order = model('app\api\model\flbooth\groups\Order')
 				->save(['status' => 'hidden'],['id' => $id]);
 			$this->success('ok', $order ? true : false);
 		}
@@ -246,7 +246,7 @@ class Order extends Api
 	/**
 	 * 修改地址 ----
 	 *
-	 * @ApiSummary  (flshop 订单接口修改地址)
+	 * @ApiSummary  (flbooth 订单接口修改地址)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 订单ID
@@ -262,7 +262,7 @@ class Order extends Api
 			// 判断权限
 			$this->getOrderState($order_id) > 3 ? ($this->error(__('订单异常'))):'';
 			// 订单
-			$order = model('app\api\model\flshop\groups\Order')
+			$order = model('app\api\model\flbooth\groups\Order')
 				->where(['id' => $order_id, 'user_id' => $this->auth->id])
 				->find();
 			
@@ -271,11 +271,11 @@ class Order extends Api
 				$this->error(__('已经修改过一次了'));
 			}else{
 				// 获取地址
-				$address = model('app\api\model\flshop\Address')
+				$address = model('app\api\model\flbooth\Address')
 					->where(['id' => $address_id, 'user_id' => $this->auth->id])
 					->find();
 				// 修改地址
-				$data = model('app\api\model\flshop\groups\OrderAddress')->save([
+				$data = model('app\api\model\flbooth\groups\OrderAddress')->save([
 						'user_id' => $this->auth->id,
 						'shop_id' => $order->shop_id,
 						'order_id'  => $order_id,
@@ -287,7 +287,7 @@ class Order extends Api
 						'location' => $address['location']
 					]);
 				// 修改状态
-				model('app\api\model\flshop\groups\Order')->where(['id' => $order_id, 'user_id' => $this->auth->id])->update(['isaddress' => 1]);
+				model('app\api\model\flbooth\groups\Order')->where(['id' => $order_id, 'user_id' => $this->auth->id])->update(['isaddress' => 1]);
 				$this->success('ok',$data);
 			}
 		}
@@ -297,7 +297,7 @@ class Order extends Api
 	/**
 	 * 确认收货 ----
 	 *
-	 * @ApiSummary  (flshop 订单接口确认收货)
+	 * @ApiSummary  (flbooth 订单接口确认收货)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 订单ID                       ------ 后续版本优化 Db::startTrans();
@@ -310,24 +310,24 @@ class Order extends Api
 		    $id = $this->request->post('id');
 			$id ? $id : ($this->error(__('非法请求')));
 			// 判断权限
-			$order = model('app\api\model\flshop\groups\Order')
+			$order = model('app\api\model\flbooth\groups\Order')
 				->where(['id' => $id, 'state'=> 4, 'user_id' => $this->auth->id])
 				->find();
 			if(!$order){
 				$this->error(__('订单异常'));
 			}
 			// 获取支付 1.1.2升级
-			$pay = model('app\api\model\flshop\Pay')->get(['order_id' => $id, 'type' => 'groups']);
+			$pay = model('app\api\model\flbooth\Pay')->get(['order_id' => $id, 'type' => 'groups']);
 			// 平台转款给商家
-			controller('addons\flshop\library\WanlPay\WanlPay')->money(+$pay['price'], $order['shop']['user_id'], '买家确认收货', 'pay', $order['order_no']);
+			controller('addons\flbooth\library\WanlPay\WanlPay')->money(+$pay['price'], $order['shop']['user_id'], '买家确认收货', 'pay', $order['order_no']);
 			// 查询是否有退款 1.1.2升级
-			$refund = model('app\api\model\flshop\Refund')
+			$refund = model('app\api\model\flbooth\Refund')
 				->where(['order_id' => $id, 'state' => 4, 'order_type' => 'groups'])
 				->select();
 			// 退款存在
 			if($refund){
 				foreach($refund as $value){
-					controller('addons\flshop\library\WanlPay\WanlPay')->money(-$value['price'], $order['shop']['user_id'], '该订单存在的退款', 'pay', $order['order_no']);
+					controller('addons\flbooth\library\WanlPay\WanlPay')->money(-$value['price'], $order['shop']['user_id'], '该订单存在的退款', 'pay', $order['order_no']);
 				}
 			}
 			// 更新退款
@@ -342,7 +342,7 @@ class Order extends Api
 	/**
 	 * 评论订单
 	 *
-	 * @ApiSummary  (flshop 订单接口评论订单)
+	 * @ApiSummary  (flbooth 订单接口评论订单)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 订单ID
@@ -379,22 +379,22 @@ class Order extends Api
 					'switch' => 0
 				];
 				//评论暂不考虑并发，为列表提供好评付款率，减少并发只能写进商品中
-				model('app\api\model\flshop\groups\Goods')->where(['id' => $value['goods_id']])->setInc('comment');
+				model('app\api\model\flbooth\groups\Goods')->where(['id' => $value['goods_id']])->setInc('comment');
 				if($value['state'] == 0){
-					model('app\api\model\flshop\groups\Goods')->where(['id' => $value['goods_id']])->setInc('praise');
+					model('app\api\model\flbooth\groups\Goods')->where(['id' => $value['goods_id']])->setInc('praise');
 				}else if($value['state'] == 1){
-					model('app\api\model\flshop\groups\Goods')->where(['id' => $value['goods_id']])->setInc('moderate');
+					model('app\api\model\flbooth\groups\Goods')->where(['id' => $value['goods_id']])->setInc('moderate');
 				}else if($value['state'] == 2){
-					model('app\api\model\flshop\groups\Goods')->where(['id' => $value['goods_id']])->setInc('negative');
+					model('app\api\model\flbooth\groups\Goods')->where(['id' => $value['goods_id']])->setInc('negative');
 				}
 			}
-			if(model('app\api\model\flshop\GoodsComment')->saveAll($commentData)){
-				$order = model('app\api\model\flshop\groups\Order')
+			if(model('app\api\model\flbooth\GoodsComment')->saveAll($commentData)){
+				$order = model('app\api\model\flbooth\groups\Order')
 					->where(['id' => $post['order_id'], 'user_id' => $user_id])
 					->update(['state' => 6]);
 			}
 			//更新店铺评分
-			$score = model('app\api\model\flshop\GoodsComment')
+			$score = model('app\api\model\flbooth\GoodsComment')
 				->where(['user_id' => $user_id])
 				->select();
 			// 从数据集中取出
@@ -403,7 +403,7 @@ class Order extends Api
 			$deliver = array_column($score,'score_deliver');
 			$logistics = array_column($score,'score_logistics');
 			// 更新店铺评分
-			model('app\api\model\flshop\Shop')
+			model('app\api\model\flbooth\Shop')
 				->where(['id' => $post['shop']['id']])
 				->update([
 					'score_describe' => bcdiv(array_sum($describe), count($describe), 1),
@@ -419,7 +419,7 @@ class Order extends Api
 	/**
 	 * 获取订单物流状态 ----
 	 *
-	 * @ApiSummary  (flshop 订单接口获取订单物流状态)
+	 * @ApiSummary  (flbooth 订单接口获取订单物流状态)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 订单ID
@@ -432,7 +432,7 @@ class Order extends Api
 		    $id = $this->request->post('id');
 			$id ? $id : ($this->error(__('非法请求')));
 			//获取订单
-			$order = model('app\api\model\flshop\groups\Order')
+			$order = model('app\api\model\flbooth\groups\Order')
 				->where(['id' => $id, 'user_id' => $this->auth->id])
 				->field('id,shop_id,express_name,express_no,order_no,created,paymenttime,delivertime')
 				->find();
@@ -453,7 +453,7 @@ class Order extends Api
 					];
 					break;
 				default: // 获取物流
-					$express = model('app\api\model\flshop\KuaidiSub')
+					$express = model('app\api\model\flbooth\KuaidiSub')
 						->where(['express_no' => $order['express_no']])
 						->find();
 					if($express){
@@ -476,7 +476,7 @@ class Order extends Api
 	/**
 	 * 查询购买次数限制
 	 *
-	 * @ApiSummary  (flshop 拼团接口查询购买次数限制)
+	 * @ApiSummary  (flbooth 拼团接口查询购买次数限制)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $data 商品数据
@@ -485,12 +485,12 @@ class Order extends Api
 	{
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
-		$goods = model('app\api\model\flshop\groups\Goods')
+		$goods = model('app\api\model\flbooth\groups\Goods')
 			->where('id', $id)
 			->find();
 		if($goods){
 			if($goods['purchase_limit'] != 0){
-				$orderGoodsConunt = model('app\api\model\flshop\groups\OrderGoods')
+				$orderGoodsConunt = model('app\api\model\flbooth\groups\OrderGoods')
 					->where(['goods_id' => $id, 'user_id' => $this->auth->id])
 					->count();
 				if($orderGoodsConunt >= $goods['purchase_limit']){
@@ -506,7 +506,7 @@ class Order extends Api
     /**
      * 确认拼团订单
      *
-     * @ApiSummary  (flshop 拼团接口确认订单)
+     * @ApiSummary  (flbooth 拼团接口确认订单)
      * @ApiMethod   (POST)
 	 * 
 	 * @param string $data 商品数据
@@ -523,7 +523,7 @@ class Order extends Api
 			// 客户端地址更新
 			$where = !empty($request['address_id']) ? ['id' => $request['address_id'], 'user_id' => $this->auth->id] : ['user_id' => $this->auth->id, 'default' => 1];
 			// 地址
-			$address = model('app\api\model\flshop\Address')
+			$address = model('app\api\model\flbooth\Address')
 				->where($where)
 			    ->field('id,name,mobile,province,city,district,address')
 				->find();
@@ -535,14 +535,14 @@ class Order extends Api
 		    foreach ($request['data'] as $post) {
 				$redis = Common::redis();
 		    	// 商品详情
-		    	$goods = model('app\api\model\flshop\groups\Goods')
+		    	$goods = model('app\api\model\flbooth\groups\Goods')
 		    		->where('id', $post['goods_id'])
 		    	    ->field('id,shop_id,shop_category_id,title,image,
 						is_ladder,is_alone,is_discount,discount_type,discount,
 						stock,freight_id,sales')
 		    	    ->find();
 		    	// 获取SKU
-				$sku = model('app\api\model\flshop\groups\GoodsSku')
+				$sku = model('app\api\model\flbooth\groups\GoodsSku')
 		    		->where('id', $post['sku_id'])
 		    	    ->field('id,goods_id,difference,price,market_price,stock,weigh')
 		    	    ->find();
@@ -555,7 +555,7 @@ class Order extends Api
 				if($post['type'] === 'group'){
 					// 判断是否阶梯团
 					if($goods['is_ladder'] === 1){
-						$ladder = model('app\api\model\flshop\groups\Ladder')
+						$ladder = model('app\api\model\flbooth\groups\Ladder')
 							->where(['id' => $post['ladder_id']])
 							->field('id,people_num,discount')
 							->find();
@@ -614,7 +614,7 @@ class Order extends Api
 		    }
 			// 获取运费策略-店铺循环
 			foreach ($order as $key => $value) {
-				$config = model('app\api\model\flshop\ShopConfig')
+				$config = model('app\api\model\flbooth\ShopConfig')
 					->where('shop_id',$value['shop_id'])
 					->find();
 				if($config['freight'] == 0){
@@ -664,7 +664,7 @@ class Order extends Api
     /**
      * 提交订单
      *
-     * @ApiSummary  (flshop 订单接口提交订单)
+     * @ApiSummary  (flbooth 订单接口提交订单)
      * @ApiMethod   (POST)
      * 
      * @param string $data 数组
@@ -704,7 +704,7 @@ class Order extends Api
     			$this->error(__('订单繁忙ERR002：请返回商品详情重新提交订单'));
     		}
     		// 查询地址
-    		$address = model('app\api\model\flshop\Address')
+    		$address = model('app\api\model\flbooth\Address')
     			->where(['id' => $address_id,'user_id' =>$user_id])
     			->find();
     		if(!isset($address)){
@@ -725,7 +725,7 @@ class Order extends Api
 					// 获取店铺ID
 					$shop_id = $item['shop_id'];
 					// 查询店铺配置
-					$config = model('app\api\model\flshop\ShopConfig')
+					$config = model('app\api\model\flbooth\ShopConfig')
 						->where('shop_id', $shop_id)
 						->find();
 					// 如果不存在，按照累计运费
@@ -733,7 +733,7 @@ class Order extends Api
 						$config['freight'] = 0;
 					}
 					// 生成订单
-					$order = new \app\api\model\flshop\groups\Order;
+					$order = new \app\api\model\flbooth\groups\Order;
 					$order->freight_type = $config['freight'];
 					$order->user_id = $user_id;
 					$order->shop_id = $shop_id;
@@ -743,7 +743,7 @@ class Order extends Api
 					}
 					// 2020年9月19日 05:30:10 新增优惠券功能 
 					// 2021年3月04日 06:54:11 修改优惠券逻辑
-					$coupon = model('app\api\model\flshop\CouponReceive')
+					$coupon = model('app\api\model\flbooth\CouponReceive')
 						->where(['id' => $item['coupon_id'], 'user_id' => $user_id, 'shop_id' => $shop_id])
 						->find();
 					$order->coupon_id = $coupon ? $coupon['id'] : 0;
@@ -753,11 +753,11 @@ class Order extends Api
 						foreach ($item['products'] as $data){
 							$redis = Common::redis();
 							// 查询商品
-							$goods = model('app\api\model\flshop\groups\Goods')->get($data['goods_id']);
+							$goods = model('app\api\model\flbooth\groups\Goods')->get($data['goods_id']);
 							// 判断是否为阶梯拼团
 							$isLadder = false;
 							if($goods['is_ladder'] === 1 && $data['groupType'] === 'ladder'){
-								$ladder = model('app\api\model\flshop\groups\Ladder')->get($data['ladder_id']);
+								$ladder = model('app\api\model\flbooth\groups\Ladder')->get($data['ladder_id']);
 								if($ladder){
 									$isLadder = true;
 								}else{
@@ -765,7 +765,7 @@ class Order extends Api
 								}
 							}
 							// 获取sku
-							$sku = model('app\api\model\flshop\groups\GoodsSku')->get($data['sku_id']);
+							$sku = model('app\api\model\flbooth\groups\GoodsSku')->get($data['sku_id']);
 							// 1.1.2升级
 							$sku_key = 'groups_'.$sku['goods_id'].'_'.$sku['id'];
 							// 1.1.0升级
@@ -800,7 +800,7 @@ class Order extends Api
 							}else{
 								// 查询限制 1.1.0升级
 								if($goods['purchase_limit'] != 0){
-									$orderGoodsConunt = model('app\api\model\flshop\groups\OrderGoods')
+									$orderGoodsConunt = model('app\api\model\flbooth\groups\OrderGoods')
 										->where(['goods_id' => $data['goods_id'], 'user_id' => $this->auth->id])
 										->count();
 									if($orderGoodsConunt >= $goods['purchase_limit']){
@@ -810,10 +810,10 @@ class Order extends Api
 								// 判断参团权限 如果参团存
 								if((int)$data['groups_id'] !== 0){
 									// 判断权限
-									$joinGroups = model('app\api\model\flshop\groups\Groups')->get($data['groups_id']);
+									$joinGroups = model('app\api\model\flbooth\groups\Groups')->get($data['groups_id']);
 									// 获取其他团的拼团人数
 									if($joinGroups['group_type'] === 'ladder'){
-										$ladder = model('app\api\model\flshop\groups\Ladder')->get($joinGroups['ladder_id']);
+										$ladder = model('app\api\model\flbooth\groups\Ladder')->get($joinGroups['ladder_id']);
 										$data['groupType'] = 'ladder';
 										if(!$ladder){
 											throw new Exception('查询团购阶梯失败');
@@ -831,7 +831,7 @@ class Order extends Api
 										throw new Exception("参与拼单失败，不可拼自己的团");
 									}
 									// 判断是否超团
-									if(model('app\api\model\flshop\groups\Team')->where(['group_no' => $joinGroups['group_no']])->count() >= $joinGroups['people_num']){
+									if(model('app\api\model\flbooth\groups\Team')->where(['group_no' => $joinGroups['group_no']])->count() >= $joinGroups['people_num']){
 										throw new Exception("参与拼单失败，因拼团已完成");
 									}
 									$group_no = $joinGroups['group_no'];
@@ -956,10 +956,10 @@ class Order extends Api
 						throw new Exception("网络繁忙，创建订单失败！");
 					}
 				}
-    		    model('app\api\model\flshop\groups\OrderAddress')->saveAll($addressList);
-    		    model('app\api\model\flshop\groups\OrderGoods')->saveAll($goodsList);
-				model('app\api\model\flshop\groups\Groups')->saveAll($groupsList);
-    		    $result = model('app\api\model\flshop\Pay')->saveAll($payList);
+    		    model('app\api\model\flbooth\groups\OrderAddress')->saveAll($addressList);
+    		    model('app\api\model\flbooth\groups\OrderGoods')->saveAll($goodsList);
+				model('app\api\model\flbooth\groups\Groups')->saveAll($groupsList);
+    		    $result = model('app\api\model\flbooth\Pay')->saveAll($payList);
     		    Db::commit();
     		} catch (PDOException $e) {
     		    Db::rollback();
@@ -984,7 +984,7 @@ class Order extends Api
 	/**
 	 * 订单状态码（方法内使用）
 	 *
-	 * @ApiSummary  (flshop 返回订单状态码)
+	 * @ApiSummary  (flbooth 返回订单状态码)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 订单ID
@@ -993,7 +993,7 @@ class Order extends Api
 	{
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
-	    $order = model('app\api\model\flshop\groups\Order')
+	    $order = model('app\api\model\flbooth\groups\Order')
 	    	->where(['id' => $id, 'user_id' => $this->auth->id])
 	    	->find();
 		return $order['state'];
@@ -1047,7 +1047,7 @@ class Order extends Api
 				$newGoodsList[] = $row;
 			}
 			// 更新已使用数量
-			model('app\api\model\flshop\Coupon')
+			model('app\api\model\flbooth\Coupon')
 				->where(['id' => $coupon['coupon_id']])
 				->setInc('usenum');
 			// 修改该优惠券状态 已用
@@ -1055,7 +1055,7 @@ class Order extends Api
 			//总金额 = 总优惠后金额 + 运费
 			return [bcadd($payment, $freight_price, 2), $paycoupon, $freight_price, $paycoupon, $newGoodsList];
 		}else{
-			model('app\api\model\flshop\groups\Order')->destroy($order_id);
+			model('app\api\model\flbooth\groups\Order')->destroy($order_id);
 			$this->error('订单金额'.$priceAll.'元，不满'.$coupon['limit'].'元');
 		}
 	}
@@ -1071,12 +1071,12 @@ class Order extends Api
 	private function freight($id = null, $weigh = null, $number = 0, $city = null)
 	{
 		// 运费模板
-		$data = model('app\api\model\flshop\ShopFreight')->where('id', $id)->field('id,delivery,isdelivery,name,valuation')->find();
+		$data = model('app\api\model\flbooth\ShopFreight')->where('id', $id)->field('id,delivery,isdelivery,name,valuation')->find();
 		$data['price'] = 0;
 		// 是否包邮:0=自定义运费,1=卖家包邮
 		if($data['isdelivery'] == 0){
 			// 获取地址编码 1.1.0升级
-			$list = model('app\api\model\flshop\ShopFreightData')
+			$list = model('app\api\model\flbooth\ShopFreightData')
 				->where([
 					['EXP', Db::raw('FIND_IN_SET('.model('app\common\model\Area')->get(['name' => $city])->id.', citys)')],
 					'freight_id' => $id
@@ -1084,7 +1084,7 @@ class Order extends Api
 				->find();
 			// 查询是否存在运费模板数据
 			if(!$list){
-				$list = model('app\api\model\flshop\ShopFreightData')->get(['freight_id' => $id]);
+				$list = model('app\api\model\flbooth\ShopFreightData')->get(['freight_id' => $id]);
 			}
 			
 			// 计价方式:0=按件数,1=按重量,2=按体积  1.0.2升级 
@@ -1118,7 +1118,7 @@ class Order extends Api
 		if (!extension_loaded('redis')) {
 		    $this->error('服务器不支持Redis，请安装Redis和php redis拓展');
 		}
-		$config = get_addon_config('flshop');
+		$config = get_addon_config('flbooth');
 		$redis = new \Redis;
 		if ($config['redis']['persistent'] == 'Y') {
 		    $redis->pconnect($config['redis']['host'], $config['redis']['port'], $config['redis']['timeout'], 'persistent_id_' . $config['redis']['select']);
@@ -1143,7 +1143,7 @@ class Order extends Api
 	 */
 	private function creatToken() {
 		$code = chr(mt_rand(0xB0, 0xF7)) . chr(mt_rand(0xA1, 0xFE)) . chr(mt_rand(0xB0, 0xF7)) . chr(mt_rand(0xA1, 0xFE)) . chr(mt_rand(0xB0, 0xF7)) . chr(mt_rand(0xA1, 0xFE));
-		$key = "flshop.COM";
+		$key = "flbooth.COM";
 		$code = md5($key . substr(md5($code), 8, 10));
 		Cache::set('orderToken', $code);
 		return $code;

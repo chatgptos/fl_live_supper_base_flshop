@@ -1,12 +1,12 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
-use addons\flshop\library\WanlChat\WanlChat;
+use addons\flbooth\library\WanlChat\WanlChat;
 use think\Session;
 use think\Db;
 /**
- * flshop即时通讯接口
+ * flbooth即时通讯接口
  */
 class Chat extends Api
 {
@@ -20,13 +20,13 @@ class Chat extends Api
 		//WanlChat 即时通讯调用
 		$this->wanlchat = new WanlChat();
 		// 调用配置
-		$this->chatConfig = get_addon_config('flshop');
+		$this->chatConfig = get_addon_config('flbooth');
     }
 	
 	/**
 	 * 查询店铺信息 1.0.8升级
 	 *
-	 * @ApiSummary  (flshop 查询店铺信息)
+	 * @ApiSummary  (flbooth 查询店铺信息)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 店铺ID
@@ -40,7 +40,7 @@ class Chat extends Api
 			// 1.0.2升级 判断来源
 			$type = $this->request->post('type');
 			$id ? $id : ($this->error(__('非正常访问')));
-			$row = model('app\api\model\flshop\Shop')
+			$row = model('app\api\model\flbooth\Shop')
 				->where(['id' => $id])
 				->field('id,user_id,shopname,avatar,state,level,city,like,isself,created')
 				->find();
@@ -50,12 +50,12 @@ class Chat extends Api
 						$this->error('IM即时通讯异常：请启动IM即时通讯服务');
 					}else{
 						// 查询是否发送离线消息
-						$shop_config = model('app\api\model\flshop\ShopConfig')
+						$shop_config = model('app\api\model\flbooth\ShopConfig')
 							->where(['shop_id' => $row['id']])
 							->find();
 						// 查询是否存在聊天记录，如果不存在则发送欢迎消息
 						if($shop_config['welcome']){
-							$count = model('app\api\model\flshop\Chat')->where("((form_uid={$row['user_id']} and to_id={$this->auth->id}) or (form_uid={$this->auth->id} and to_id={$row['user_id']})) and type='chat'")->count();
+							$count = model('app\api\model\flbooth\Chat')->where("((form_uid={$row['user_id']} and to_id={$this->auth->id}) or (form_uid={$this->auth->id} and to_id={$row['user_id']})) and type='chat'")->count();
 							if($count == 0){
 								$this->wanlchat->send($this->auth->id, [
 									'id' => $count + 1,
@@ -115,14 +115,14 @@ class Chat extends Api
 			    // 重新绑定一个新的
 			    $this->wanlchat->bind($client_id, $user_id);
 			    // 查询是否有离线消息
-				$list = model('app\api\model\flshop\Chat')
+				$list = model('app\api\model\flbooth\Chat')
 					->where(['to_id' => $user_id, 'online' => 0, 'type' => 'chat'])
 					->whereTime('created', 'week')
 					->field('id,form_uid,to_id,form,message,type,online,created')
 					->select();
 				foreach($list as $message){
 					$this->wanlchat->send($user_id, $message);
-					model('app\api\model\flshop\Chat')->save(['online' => 1], ['id' => $message['id']]);
+					model('app\api\model\flbooth\Chat')->save(['online' => 1], ['id' => $message['id']]);
 				}
 				$this->success(__('即时通讯初始化成功'), $client_id);
 			}else{
@@ -144,12 +144,12 @@ class Chat extends Api
 	{
 		$user_id = $this->auth->id;
 		$list = [];
-		$sub = Db::name('flshopChat')
+		$sub = Db::name('flboothChat')
 			->where(['type' => 'chat'])
 			->order('created', 'desc')
 		    ->field('to_id as uid, message, isread, type, created')
 		    ->where('form_uid ='.$user_id)
-		    ->union('SELECT form_uid as uid, message, isread, type, created FROM '.config('database.prefix').'flshop_chat WHERE to_id = '.$user_id)
+		    ->union('SELECT form_uid as uid, message, isread, type, created FROM '.config('database.prefix').'flbooth_chat WHERE to_id = '.$user_id)
 			->buildSql();
 		$query = Db::table($sub)
 			->alias('temp')
@@ -158,11 +158,11 @@ class Chat extends Api
 		foreach($query as $row)
 		{
 			if($row['type'] == 'chat'){ //临时
-				$shop = model('app\api\model\flshop\Shop')
+				$shop = model('app\api\model\flbooth\Shop')
 					->where(['user_id' => $row['uid']])
 					->find();
 				// 统计未读
-				$count = model('app\api\model\flshop\Chat')
+				$count = model('app\api\model\flbooth\Chat')
 					->where(['form_uid' => $shop['user_id'], 'to_id' => $user_id, 'isread' => 0])
 					->count();
 				
@@ -226,7 +226,7 @@ class Chat extends Api
 			// 查询是否在线
 			$online = $this->wanlchat->isOnline($message['to_id']);
 			// 保存聊天记录到服务器
-			$data = model('app\api\model\flshop\Chat');
+			$data = model('app\api\model\flbooth\Chat');
 			$data->form_uid = $message['form']['id'];
 			$data->to_id = $message['to_id'];
 			$data->form = json_encode($message['form']);
@@ -274,7 +274,7 @@ class Chat extends Api
 			$id?'':($this->error(__('Invalid parameters')));
 			$uid = $this->auth->id;
 			// 查询历史记录
-			$result = model('app\api\model\flshop\Chat')
+			$result = model('app\api\model\flbooth\Chat')
 				->where("((form_uid={$uid} and to_id={$id}) or (form_uid={$id} and to_id={$uid})) and type='chat'")
 				->whereTime('created', 'month')
 				->order('created Desc')
@@ -294,7 +294,7 @@ class Chat extends Api
 	{
 		if($this->request->isPost()){
 			$uid = $this->auth->id;
-			$data = model('app\api\model\flshop\Chat')
+			$data = model('app\api\model\flbooth\Chat')
 				->where(['to_id' => $uid, 'isread' => 0, 'type' => 'chat'])
 				->update(['isread' => 1]);	
 			$this->success(__('更新成功'), []);
@@ -319,7 +319,7 @@ class Chat extends Api
 			$id?'':($this->error(__('Invalid parameters')));
 			$uid = $this->auth->id;
 			// 设置成已读
-			$data = model('app\api\model\flshop\Chat')
+			$data = model('app\api\model\flbooth\Chat')
 				->where(['form_uid' => $id, 'to_id' => $uid, 'isread' => 0])
 				->update(['isread' => 1]);	
 			$this->success(__('更新成功'), $data);
@@ -344,7 +344,7 @@ class Chat extends Api
 			$id ? '' : ($this->error(__('Invalid parameters')));
 			$uid = $this->auth->id;
 			// 设置成已读
-			$data = model('app\api\model\flshop\Chat')
+			$data = model('app\api\model\flbooth\Chat')
 				->where("((form_uid={$uid} and to_id={$id}) or (form_uid={$id} and to_id={$uid})) and type='chat'")
 				->delete();
 			$this->success(__('更新成功'), $data);
@@ -406,7 +406,7 @@ class Chat extends Api
 					if($content == '人工客服' || $content == '客服' || $content == '人工'){
 						// 查询 哪个后台在线
 						$online = [];
-						$admin = model('app\api\model\flshop\Admin')
+						$admin = model('app\api\model\flbooth\Admin')
 							->field('id,nickname,avatar')
 							->select();
 						foreach($admin as $user){
@@ -425,7 +425,7 @@ class Chat extends Api
 						}
 						$this->wanlchat->send($form_id, $data);
 					}else{
-						$list = model('app\api\model\flshop\Article')
+						$list = model('app\api\model\flbooth\Article')
 							->where('keywords',$content)
 							->field('id,title,content')
 							->find();
@@ -438,7 +438,7 @@ class Chat extends Api
 							foreach($arr as $value){
 								$like[] = '%'.$value.'%';
 							}
-							$article = model('app\api\model\flshop\Article')
+							$article = model('app\api\model\flbooth\Article')
 								->where('title|content','like',$like,'OR')
 								->field('id,title,keywords')
 								->select();
@@ -460,7 +460,7 @@ class Chat extends Api
 			}else{
 				$online = 1;
 				// 保存聊天记录到服务器
-				$data = model('app\api\model\flshop\Chat');
+				$data = model('app\api\model\flbooth\Chat');
 				$data->form_uid = $post['form']['id'];
 				$data->to_id = $post['to_id'];
 				$data->form = json_encode($post['form']);

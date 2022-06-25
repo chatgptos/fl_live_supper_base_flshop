@@ -1,10 +1,10 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use think\Db;
 /**
- * flshop 消息接口
+ * flbooth 消息接口
  */
 class Notice extends Api
 {
@@ -20,7 +20,7 @@ class Notice extends Api
 	/**
 	 * 获取消息列表
 	 *
-	 * @ApiSummary  (flshop 消息接口获取消息列表)
+	 * @ApiSummary  (flbooth 消息接口获取消息列表)
 	 * @ApiMethod   (GET)
 	 * 2020年5月12日23:25:40
 	 *
@@ -28,7 +28,7 @@ class Notice extends Api
 	 */
 	public function getNoticeList($type)
 	{
-		$list = model('app\api\model\flshop\Notice')
+		$list = model('app\api\model\flbooth\Notice')
 			->where(['user_id' => $this->auth->id, 'type' => $type])
 			->where('created','> time',date('Y-m-d',time()-2592000))
 			->order('created desc')
@@ -55,7 +55,7 @@ class Notice extends Api
 					break;
 					// 直播模块
 					case 'live':
-						$order['url'] = '/pages/flshop/no_network?id='.$order['modules_id'];
+						$order['url'] = '/pages/flbooth/no_network?id='.$order['modules_id'];
 					break;
 					// 商品模块
 					case 'goods':

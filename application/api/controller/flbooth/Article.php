@@ -1,10 +1,10 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 
 /**
- * flshop文章接口
+ * flbooth文章接口
  */
 class Article extends Api
 {
@@ -15,7 +15,7 @@ class Article extends Api
     /**
      * 获取指定文章列表
      *
-     * @ApiSummary  (flshop 获取文章列表)
+     * @ApiSummary  (flbooth 获取文章列表)
      * @ApiMethod   (POST)
 	 * 
 	 * @param string $type 文章类型
@@ -28,7 +28,7 @@ class Article extends Api
 		if ($this->request->isPost()) {
 			$type = $this->request->post('type');
 			$where['status'] = 'normal';
-			$config = get_addon_config('flshop');
+			$config = get_addon_config('flbooth');
 			if($type == 'help'){
 				$where['category_id'] = $config['config']['help_category'];
 			}
@@ -38,7 +38,7 @@ class Article extends Api
 			if($type == 'sys'){
 				$where['category_id'] = $config['config']['sys_category'];
 			}
-			$data = model('app\api\model\flshop\Article')
+			$data = model('app\api\model\flbooth\Article')
 				->where($where)
 				->field('id,title,description,image,images,flag,views,created')
 				->order('created desc')
@@ -54,7 +54,7 @@ class Article extends Api
     /**
      * 获取内容详情
      *
-     * @ApiSummary  (flshop 获取内容详情)
+     * @ApiSummary  (flbooth 获取内容详情)
      * @ApiMethod   (POST)
      * 
 	 * @param string $id 文章ID
@@ -65,7 +65,7 @@ class Article extends Api
 		$this->request->filter(['strip_tags']);
 		$id = $this->request->get('id');
 		$id ? $id : ($this->error(__('Invalid parameters')));
-		$row = model('app\api\model\flshop\Article')
+		$row = model('app\api\model\flbooth\Article')
 			->where(['id' => $id])
 			->find();
 		// 1.0.5升级
@@ -81,14 +81,14 @@ class Article extends Api
 	/**
 	 * 获取广告详情
 	 *
-	 * @ApiSummary  (flshop 获取内容详情)
+	 * @ApiSummary  (flbooth 获取内容详情)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 文章ID
 	 */
 	public function adDetails($id = null)
 	{
-		$row = model('app\api\model\flshop\Advert')->get($id);
+		$row = model('app\api\model\flbooth\Advert')->get($id);
 		// 1.0.5升级
 		if(!$row){
 			$this->error(__('没有找到任何内容'));

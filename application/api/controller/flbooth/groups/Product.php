@@ -1,13 +1,13 @@
 <?php
-namespace app\api\controller\flshop\groups;
+namespace app\api\controller\flbooth\groups;
 
-use addons\flshop\library\WanlSdk\Common;
+use addons\flbooth\library\WanlSdk\Common;
 use app\common\controller\Api;
 use fast\Tree;
 use think\Db;
 
 /**
- * flshop 拼团应用产品接口
+ * flbooth 拼团应用产品接口
  */
 class Product extends Api
 {
@@ -20,7 +20,7 @@ class Product extends Api
 	/**
 	 * 获取商品推荐列表
 	 *
-	 * @ApiSummary  (flshop 产品接口获取商品推荐列表)
+	 * @ApiSummary  (flbooth 产品接口获取商品推荐列表)
 	 * @ApiMethod   (GET)
 	 * 
 	 */
@@ -30,7 +30,7 @@ class Product extends Api
 		$this->request->filter(['strip_tags']);
 		// 获取子类目
 		if($cid){
-			$where['category_id'] = ['in', implode(',', array_column(Tree::instance()->init(model('app\api\model\flshop\Category')->all())->getChildren($cid, true), 'id'))];
+			$where['category_id'] = ['in', implode(',', array_column(Tree::instance()->init(model('app\api\model\flbooth\Category')->all())->getChildren($cid, true), 'id'))];
 		}
 		// 查询商家
 		if($shop_id){
@@ -38,13 +38,13 @@ class Product extends Api
 		}
 		$where['status'] = 'normal';
 		// 商品
-		$list = model('app\api\model\flshop\groups\Goods')
+		$list = model('app\api\model\flbooth\groups\Goods')
 			->where($where)
 			->orderRaw('rand()')
 			->paginate();
 		foreach ($list as $row) {
 			$row->shop->visible(['state','shopname']);
-			$row->isLive = model('app\api\model\flshop\Live')->where(['shop_id' => $row['shop_id'], 'state' => 1])->field('id')->find();
+			$row->isLive = model('app\api\model\flbooth\Live')->where(['shop_id' => $row['shop_id'], 'state' => 1])->field('id')->find();
 		}
 		$this->success('返回成功', $list);
 	}
@@ -52,7 +52,7 @@ class Product extends Api
     /**
      * 获取商品详情
      *
-     * @ApiSummary  (flshop 产品接口、浏览+1、获取UUID生成访问记录)
+     * @ApiSummary  (flbooth 产品接口、浏览+1、获取UUID生成访问记录)
      * @ApiMethod   (GET)
      * 
      * @param string $id 商品ID
@@ -66,8 +66,8 @@ class Product extends Api
 		// 是否传入商品ID
 		$id ? $id : ($this->error(__('非正常访问')));
 		// 加载商品模型
-		$goodsModel = model('app\api\model\flshop\groups\Goods');
-		$groupsModel = model('app\api\model\flshop\groups\Groups');
+		$goodsModel = model('app\api\model\flbooth\groups\Goods');
+		$groupsModel = model('app\api\model\flbooth\groups\Groups');
 		// 查询商品
 		$goods = $goodsModel
 			->where(['id' => $id])
@@ -93,7 +93,7 @@ class Product extends Api
 			// 查询SPU
 			$goods['spu'] = $goods->spu;
 			// 查询直播状态
-			$goods['isLive'] = model('app\api\model\flshop\Live')->where(['shop_id' => $goods['shop_id'], 'state' => 1])->field('id')->find();
+			$goods['isLive'] = model('app\api\model\flbooth\Live')->where(['shop_id' => $goods['shop_id'], 'state' => 1])->field('id')->find();
 			// 查询评论
 			$goods['comment_list'] = $goods->comment_list;
 			// 获取店铺详情
@@ -168,7 +168,7 @@ class Product extends Api
 	/**
 	 * 实时查询库存
 	 *
-	 * @ApiSummary  (flshop 实时查询库存)
+	 * @ApiSummary  (flbooth 实时查询库存)
 	 * @ApiMethod   (GET)
 	 * 
 	 * @param string $sku_id  SKU
@@ -176,7 +176,7 @@ class Product extends Api
 	public function stock($sku_id = '')
 	{
 		$redis = Common::redis();
-		$sku = model('app\api\model\flshop\groups\GoodsSku')->get($sku_id);
+		$sku = model('app\api\model\flbooth\groups\GoodsSku')->get($sku_id);
 		$sku_key = 'groups_'.$sku['goods_id'].'_'.$sku['id'];
 		// 获取缓存数量
 		$llen = $redis->llen("{$sku_key}");
@@ -193,7 +193,7 @@ class Product extends Api
 	/**
 	 * 是否关注商品
 	 *
-	 * @ApiSummary  (flshop 保存浏览记录)
+	 * @ApiSummary  (flbooth 保存浏览记录)
 	 * @ApiMethod   (GET)
 	 * 
 	 * @param string $goods  商品数据
@@ -202,7 +202,7 @@ class Product extends Api
 	{
 		$data = false;
 		if ($this->auth->isLogin()) {
-			$follow = model('app\api\model\flshop\GoodsFollow')
+			$follow = model('app\api\model\flbooth\GoodsFollow')
 				->where([
 					'user_id' => $this->auth->id, 
 					'goods_id' => $goods_id,
@@ -217,7 +217,7 @@ class Product extends Api
 	/**
 	 * 保存浏览记录
 	 *
-	 * @ApiSummary  (flshop 保存浏览记录)
+	 * @ApiSummary  (flbooth 保存浏览记录)
 	 * @ApiMethod   (GET)
 	 * 
 	 * @param string $goods  商品数据
@@ -230,7 +230,7 @@ class Product extends Api
 			$charid = strtoupper(md5($this->request->header('user-agent').$this->request->ip()));
 			$uuid = substr($charid, 0, 8).chr(45).substr($charid, 8, 4).chr(45).substr($charid,12, 4).chr(45).substr($charid,16, 4).chr(45).substr($charid,20,12);
 		}
-		$recordModel = model('app\api\model\flshop\Record');
+		$recordModel = model('app\api\model\flbooth\Record');
 		$goods_type = 'groups';
 		$record = $recordModel
 			->where([
@@ -264,7 +264,7 @@ class Product extends Api
 	/**
 	 * 关注商品
 	 *
-	 * @ApiSummary  (flshop 关注或取消商品)
+	 * @ApiSummary  (flbooth 关注或取消商品)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 商品ID
@@ -278,8 +278,8 @@ class Product extends Api
 			// 是否传入商品ID
 			$id ? $id : ($this->error(__('非正常访问')));
 			// 加载商品模型
-			$goodsModel = model('app\api\model\flshop\groups\Goods');
-			$goodsFollowModel = model('app\api\model\flshop\GoodsFollow');
+			$goodsModel = model('app\api\model\flbooth\groups\Goods');
+			$goodsFollowModel = model('app\api\model\flbooth\GoodsFollow');
 			$data = [
 				'user_id' => $this->auth->id, 
 				'goods_id' => $id,
@@ -302,7 +302,7 @@ class Product extends Api
 	/**
 	 * 获取商品评论
 	 *
-	 * @ApiSummary  (flshop 获取商品下所有评论)
+	 * @ApiSummary  (flbooth 获取商品下所有评论)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $tag 评论分类
@@ -319,7 +319,7 @@ class Product extends Api
 		// 是否传入商品ID
 		$id ? $id : ($this->error(__('非正常访问')));
 		// 加载商品模型
-		$goodsCommentModel = model('app\api\model\flshop\GoodsComment')->order('created desc');
+		$goodsCommentModel = model('app\api\model\flbooth\GoodsComment')->order('created desc');
 		//查询tag 评价:0=好评,1=中评,2=差评
 		if($tag){
 			if($tag == 'good'){
@@ -344,7 +344,7 @@ class Product extends Api
 		foreach ($comment['comment'] as $row) {
 			$row->getRelation('user')->visible(['username','nickname','avatar']);
 		}
-		$goods = model('app\api\model\flshop\groups\Goods')
+		$goods = model('app\api\model\flbooth\groups\Goods')
 			->where(['id' => $id])
 			->find();
 		$comment['statistics'] = [
@@ -370,12 +370,12 @@ class Product extends Api
 	private function freight($id = null, $weigh = 0, $city = '北京', $number = 1)
 	{
 		// 运费模板
-		$data = model('app\api\model\flshop\ShopFreight')->where('id', $id)->field('id,delivery,isdelivery,name,valuation')->find();
+		$data = model('app\api\model\flbooth\ShopFreight')->where('id', $id)->field('id,delivery,isdelivery,name,valuation')->find();
 		$data['price'] = 0;
 		// 是否包邮:0=自定义运费,1=卖家包邮
 		if($data['isdelivery'] == 0){
 			// 获取地址编码 1.1.0升级
-			$list = model('app\api\model\flshop\ShopFreightData')
+			$list = model('app\api\model\flbooth\ShopFreightData')
 				->where([
 					['EXP', Db::raw('FIND_IN_SET('.model('app\common\model\Area')->get(['name' => $city])->id.', citys)')],
 					'freight_id' => $id
@@ -383,7 +383,7 @@ class Product extends Api
 				->find();
 			// 查询是否存在运费模板数据
 			if(!$list){
-				$list = model('app\api\model\flshop\ShopFreightData')->get(['freight_id' => $id]);
+				$list = model('app\api\model\flbooth\ShopFreightData')->get(['freight_id' => $id]);
 			}
 			
 			// 计价方式:0=按件数,1=按重量,2=按体积
@@ -418,7 +418,7 @@ class Product extends Api
 	{
 		$user_coupon = [];
 		if ($this->auth->isLogin()) {
-			foreach (model('app\api\model\flshop\CouponReceive')->where([
+			foreach (model('app\api\model\flbooth\CouponReceive')->where([
 				'user_id' => $this->auth->id, 
 				'shop_id' => $shop_id,
 				'limit' => ['<=', intval($price)],
@@ -432,7 +432,7 @@ class Product extends Api
 		$goods_id = explode(",",$goods_id);
 		$shop_category_id = explode(",",$shop_category_id);
 		//要追加一个排序 选出一个性价比最高的
-		foreach (model('app\api\model\flshop\Coupon')->where([
+		foreach (model('app\api\model\flbooth\Coupon')->where([
 			'shop_id' => $shop_id,
 			'limit' => ['<=', intval($price)]
 		])->select() as $row) { 
@@ -527,7 +527,7 @@ class Product extends Api
 	    }
 		// 历遍所有
 		if (array_key_exists('category_id', $filter)) {
-			$filter['category_id'] = implode(',', array_column(Tree::instance()->init(model('app\api\model\flshop\Category')->all())->getChildren($filter['category_id'], true), 'id'));
+			$filter['category_id'] = implode(',', array_column(Tree::instance()->init(model('app\api\model\flbooth\Category')->all())->getChildren($filter['category_id'], true), 'id'));
 		}
 	    foreach ($filter as $k => $v) {
 	        $sym = isset($op[$k]) ? $op[$k] : '=';

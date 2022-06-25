@@ -1,13 +1,13 @@
 <?php
 // 2020年2月18日18:06:58
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use fast\Tree;
 use think\Db;
 
 /**
- * flshop页面接口
+ * flbooth页面接口
  */
 class Page extends Api
 {
@@ -17,7 +17,7 @@ class Page extends Api
     /**
      * 获取APP首页
      *
-     * @ApiSummary  (flshop 获取自定义页面数据)
+     * @ApiSummary  (flbooth 获取自定义页面数据)
      * @ApiMethod   (GET)
      *
      * @param string $id 页面ID
@@ -25,7 +25,7 @@ class Page extends Api
     public function index($id = null)
     {
 		$error = __('页面不存在');
-		$row = !$id ? $this->error($error) : model('app\api\model\flshop\Page')
+		$row = !$id ? $this->error($error) : model('app\api\model\flbooth\Page')
 			->where(['page_token' => $id])
 			->field('page, item')
 			->find();
@@ -34,13 +34,13 @@ class Page extends Api
 	/**
 	 * 获取指定文章
 	 *
-	 * @ApiSummary  (flshop 产品接口获取文章)
+	 * @ApiSummary  (flbooth 产品接口获取文章)
 	 * @ApiMethod   (GET)
 	 * 
 	 */
 	public function article($ids = null)
 	{
-	    $row = model('app\api\model\flshop\Article')
+	    $row = model('app\api\model\flbooth\Article')
 	    	->where('id', 'in', $ids)
 	    	->field('id,title,image,views,created')
 	    	->select();
@@ -50,14 +50,14 @@ class Page extends Api
 	/**
 	 * 获取头条文章
 	 *
-	 * @ApiSummary  (flshop 产品接口获取文章)
+	 * @ApiSummary  (flbooth 产品接口获取文章)
 	 * @ApiMethod   (GET)
 	 * 
 	 */
 	public function headlines()
 	{
-		$config = get_addon_config('flshop');
-	    $row = model('app\api\model\flshop\Article')
+		$config = get_addon_config('flbooth');
+	    $row = model('app\api\model\flbooth\Article')
 	    	->where([
 				['EXP', Db::raw("FIND_IN_SET('index', `flag`)")],
 				'category_id' => $config['config']['new_category']
@@ -71,19 +71,19 @@ class Page extends Api
 	/**
 	 * 获取商品
 	 *
-	 * @ApiSummary  (flshop 产品接口获取商品)
+	 * @ApiSummary  (flbooth 产品接口获取商品)
 	 * @ApiMethod   (GET)
 	 * 
 	 */
 	public function goods($ids = null)
 	{
-		$list = model('app\api\model\flshop\Goods')
+		$list = model('app\api\model\flbooth\Goods')
 			->where('id', 'in' ,$ids)
 			->field('id,image,title,price,shop_id,comment,praise')
 			->select();
 		foreach($list as $row){
 			$row->shop->visible(['state','shopname']);
-			$row->isLive = model('app\api\model\flshop\Live')->where(['shop_id' => $row['shop_id'], 'state' => 1])->field('id')->find();
+			$row->isLive = model('app\api\model\flbooth\Live')->where(['shop_id' => $row['shop_id'], 'state' => 1])->field('id')->find();
 		}
 		$this->success('ok', $list);
 	}
@@ -93,7 +93,7 @@ class Page extends Api
 	/**
 	 * 获取热门拼团
 	 *
-	 * @ApiSummary  (flshop 页面接口获取热门拼团品)
+	 * @ApiSummary  (flbooth 页面接口获取热门拼团品)
 	 * @ApiMethod   (GET)
 	 * 火线上线，后续通过算法查询
 	 * 
@@ -104,7 +104,7 @@ class Page extends Api
 		if($shop_id){
 			$where['shop_id'] = $shop_id;
 		}
-		$list = model('app\api\model\flshop\groups\Goods')
+		$list = model('app\api\model\flbooth\groups\Goods')
 			->orderRaw('rand()')
 			->where($where)
 			->field('id,image,title,description,price')
@@ -116,7 +116,7 @@ class Page extends Api
 	/**
 	 * 获取活动橱窗
 	 *
-	 * @ApiSummary  (flshop 获取活动橱窗)
+	 * @ApiSummary  (flbooth 获取活动橱窗)
 	 * @ApiMethod   (GET)
 	 * 
 	 */
@@ -163,7 +163,7 @@ class Page extends Api
 				switch ($data['activity'])
 				{
 					case "group":
-					$row = model('app\api\model\flshop\groups\Goods')
+					$row = model('app\api\model\flbooth\groups\Goods')
 						->orderRaw('rand()')
 						->limit($col[$key])
 						->field('id,image')
@@ -186,7 +186,7 @@ class Page extends Api
 	/**
 	 * 获取类目商品
 	 *
-	 * @ApiSummary  (flshop 页面接口获取类目商品)
+	 * @ApiSummary  (flbooth 页面接口获取类目商品)
 	 * @ApiMethod   (GET)
 	 * 
 	 */
@@ -223,9 +223,9 @@ class Page extends Api
 		$list = [];
 		foreach(json_decode(html_entity_decode($param['data']),true) as $key => $data){
 			if($key < 20){
-				$category = Tree::instance()->init(model('app\api\model\flshop\Category')->all())->getChildren($data['categoryId'], true);
+				$category = Tree::instance()->init(model('app\api\model\flbooth\Category')->all())->getChildren($data['categoryId'], true);
 				$category_ids = array_column($category, 'id');
-				$row = model('app\api\model\flshop\Goods')
+				$row = model('app\api\model\flbooth\Goods')
 					->where('category_id', 'in', $category_ids)
 					->orderRaw('rand()')
 					->limit($col[$key])

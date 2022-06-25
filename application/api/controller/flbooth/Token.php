@@ -1,11 +1,11 @@
 <?php
 
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use fast\Random;
 /**
- * flshop Token接口
+ * flbooth Token接口
  */
 class Token extends Api
 {

@@ -1,13 +1,13 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use fast\Random;
-use addons\flshop\library\AliyunSdk\Alilive;
-use addons\flshop\library\WanlChat\WanlChat;
+use addons\flbooth\library\AliyunSdk\Alilive;
+use addons\flbooth\library\WanlChat\WanlChat;
 
 /**
- * flshop 发现接口
+ * flbooth 发现接口
  */
 class Live extends Api
 {
@@ -21,7 +21,7 @@ class Live extends Api
 		if(!$this->wanlchat->isWsStart()){
 			$this->error(__('即时通讯服务未启动'));
 		}
-	    $this->model = new \app\api\model\flshop\Live;
+	    $this->model = new \app\api\model\flbooth\Live;
 	}
 	
 	/**
@@ -29,7 +29,7 @@ class Live extends Api
 	 */
 	public function getIsLive()
 	{
-		$row = model('app\api\model\flshop\Shop')
+		$row = model('app\api\model\flbooth\Shop')
 			->where(['user_id' => $this->auth->id])
 			->field('id, avatar, user_id, shopname, islive, isself')
 			->find();
@@ -55,7 +55,7 @@ class Live extends Api
 		if ($this->request->isPost()) {
 			$post = $this->request->post();
 			$user_id = $this->auth->id;
-			$shop = model('app\api\model\flshop\Shop')
+			$shop = model('app\api\model\flbooth\Shop')
 				->where(['user_id' => $user_id])
 				->find();
 			if($shop){
@@ -119,7 +119,7 @@ class Live extends Api
 		if($this->auth->isLogin()){
 		    // 获取店铺信息
 		    $row->shop->visible(['id','avatar','shopname']);
-		    $follow = model('app\api\model\flshop\find\Follow')->where('user_no', $row->shop['find_user']['user_no'])->count();
+		    $follow = model('app\api\model\flbooth\find\Follow')->where('user_no', $row->shop['find_user']['user_no'])->count();
 			// 浏览 +1
 			$this->model->where(['id' => $id])->setInc('views');
 			// 创建一个群组将我加入进去
@@ -131,7 +131,7 @@ class Live extends Api
 		}
 		$row->isFollow = $follow == 0 ? false : true;
 		// 获取商品信息
-		$row->goods = model('app\api\model\flshop\Goods')
+		$row->goods = model('app\api\model\flbooth\Goods')
 			->where('id', 'in', $row['goods_ids'])
 			->field('id,image,title,price')
 			->select();
@@ -149,18 +149,18 @@ class Live extends Api
 			'text' => '关注了主播'
 		]);
 		$user_no ? $user_no : ($this->error(__('非正常访问')));
-		$model = model('app\api\model\flshop\find\Follow');
+		$model = model('app\api\model\flbooth\find\Follow');
 		$where['user_no'] = $user_no;
 		$where['user_id'] = $this->auth->id;
 		if($model->where($where)->count() == 0){
 			$model->save($where);
-			model('app\api\model\flshop\find\User')
+			model('app\api\model\flbooth\find\User')
 				->where('user_no', $user_no)
 				->setInc('fans');
 			$this->success('返回成功', true);
 		}else{
 			$model->where($where)->delete();
-			model('app\api\model\flshop\find\User')
+			model('app\api\model\flbooth\find\User')
 				->where('user_no', $user_no)
 				->setDec('fans');
 			$this->success('返回成功', false);
@@ -238,12 +238,12 @@ class Live extends Api
 	 */
 	public function goods()
 	{
-		$shop = model('app\api\model\flshop\Shop')
+		$shop = model('app\api\model\flbooth\Shop')
 			->where(['user_id' => $this->auth->id])
 			->find();
 			$list = [];
 		if($shop){
-			$list = model('app\api\model\flshop\Goods')
+			$list = model('app\api\model\flbooth\Goods')
 				->where(['shop_id' => $shop['id']])
 				->field('id,image,title,price')
 				->select();
@@ -263,7 +263,7 @@ class Live extends Api
 	{
 		$row = $this->model->get($id);
 		if($row->save(['goods_ids'  => $goods_ids])){
-			$goods = model('app\api\model\flshop\Goods')
+			$goods = model('app\api\model\flbooth\Goods')
 				->where('id', 'in', $goods_ids)
 				->field('id,title,image,price')
 				->select();

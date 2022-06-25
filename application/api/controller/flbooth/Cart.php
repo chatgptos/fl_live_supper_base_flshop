@@ -1,10 +1,10 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 
 /**
- * flshop购物车接口
+ * flbooth购物车接口
  */
 class Cart extends Api
 {
@@ -14,13 +14,13 @@ class Cart extends Api
 	public function _initialize()
 	{
 	    parent::_initialize();
-	    $this->model = new \app\api\model\flshop\Cart;
+	    $this->model = new \app\api\model\flbooth\Cart;
 	}
 	
 	/**
 	 * 获取或合并购物车
 	 *
-	 * @ApiSummary  (flshop 购物车接口获取或合并购物车)
+	 * @ApiSummary  (flbooth 购物车接口获取或合并购物车)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $cart 本地购物车数据
@@ -37,7 +37,7 @@ class Cart extends Api
 			    $newlist = [];
 				foreach($post['cart'] as $row){
 					// 1.1.2升级 排除失效商品
-					if(model('app\api\model\flshop\Goods')->get($row['goods_id'])){
+					if(model('app\api\model\flbooth\Goods')->get($row['goods_id'])){
 						$where = [
 							'goods_id' => $row['goods_id'],
 							'shop_id' => $row['shop_id'],
@@ -90,7 +90,7 @@ class Cart extends Api
 	/**
 	 * 操作购物车数据库
 	 *
-	 * @ApiSummary  (flshop 购物车接口操作购物车数据库)
+	 * @ApiSummary  (flbooth 购物车接口操作购物车数据库)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $type 操作方式
@@ -166,7 +166,7 @@ class Cart extends Api
                     $this->model->where($where)->delete();
                 }
                 $follow = array_unique($follow, SORT_REGULAR);
-                $return = model('app\api\model\flshop\GoodsFollow')->saveAll($follow, false);
+                $return = model('app\api\model\flbooth\GoodsFollow')->saveAll($follow, false);
                 $return = count($return);
 			}else{
 			    $this->error(__('网络繁忙'));

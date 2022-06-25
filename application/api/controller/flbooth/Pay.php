@@ -1,8 +1,8 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
-use addons\flshop\library\WanlPay\WanlPay;
-use addons\flshop\library\WanlSdk\Common;
+use addons\flbooth\library\WanlPay\WanlPay;
+use addons\flbooth\library\WanlSdk\Common;
 use app\common\controller\Api;
 use think\Cache;
 use think\Db;
@@ -10,7 +10,7 @@ use think\Exception;
 
 
 /**
- * flshop支付接口
+ * flbooth支付接口
  */
 class Pay extends Api
 {
@@ -20,7 +20,7 @@ class Pay extends Api
 	/**
 	 * 获取支付信息 ----
 	 *
-	 * @ApiSummary  (flshop 获取支付信息)
+	 * @ApiSummary  (flbooth 获取支付信息)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $id 订单ID
@@ -35,9 +35,9 @@ class Pay extends Api
 			$order_type = $this->request->post('order_type');
 			// 1.0.8升级 拼团
 			if($order_type == 'groups'){
-				$model_order = model('app\api\model\flshop\groups\Order');
+				$model_order = model('app\api\model\flbooth\groups\Order');
 			}else{
-				$model_order = model('app\api\model\flshop\Order');
+				$model_order = model('app\api\model\flbooth\Order');
 			}
 			// 判断权限
 			$orderState = $model_order
@@ -45,7 +45,7 @@ class Pay extends Api
 				->find();
 			$orderState['state'] != 1 ? ($this->error(__('订单异常'))):'';
 			// 获取支付信息 1.1.2升级
-			$pay = model('app\api\model\flshop\Pay')
+			$pay = model('app\api\model\flbooth\Pay')
 				->where(['order_id' => $id, 'type' => $order_type == 'groups' ? 'groups' : 'goods'])
 				->field('id,order_id,order_no,pay_no,price')
 				->find();
@@ -60,7 +60,7 @@ class Pay extends Api
 	/**
 	 * 支付订单
 	 *
-	 * @ApiSummary  (flshop 支付订单)
+	 * @ApiSummary  (flbooth 支付订单)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $order_id 订单ID
@@ -91,15 +91,15 @@ class Pay extends Api
 			
 			// 1.0.8升级 拼团
 			if($order_type == 'groups'){
-				$model_order = model('app\api\model\flshop\groups\Order');
-				$model_order_goods = model('app\api\model\flshop\groups\OrderGoods');
-				$model_goods = model('app\api\model\flshop\groups\Goods');
-				$model_goods_sku = model('app\api\model\flshop\groups\GoodsSku');
+				$model_order = model('app\api\model\flbooth\groups\Order');
+				$model_order_goods = model('app\api\model\flbooth\groups\OrderGoods');
+				$model_goods = model('app\api\model\flbooth\groups\Goods');
+				$model_goods_sku = model('app\api\model\flbooth\groups\GoodsSku');
 			}else{
-				$model_order = model('app\api\model\flshop\Order');
-				$model_order_goods = model('app\api\model\flshop\OrderGoods');
-				$model_goods = model('app\api\model\flshop\Goods');
-				$model_goods_sku = model('app\api\model\flshop\GoodsSku');
+				$model_order = model('app\api\model\flbooth\Order');
+				$model_order_goods = model('app\api\model\flbooth\OrderGoods');
+				$model_goods = model('app\api\model\flbooth\Goods');
+				$model_goods_sku = model('app\api\model\flbooth\GoodsSku');
 			}
 			
 			// 判断权限
@@ -186,7 +186,7 @@ class Pay extends Api
 	    //设置过滤方法
 		$this->request->filter(['strip_tags']);
 	    if ($this->request->isPost()) {
-		    $row = model('app\api\model\flshop\PayAccount')
+		    $row = model('app\api\model\flbooth\PayAccount')
 		        ->where(['user_id' => $this->auth->id])
 		        ->order('created desc')
 		        ->select();
@@ -205,7 +205,7 @@ class Pay extends Api
 	    if ($this->request->isPost()) {
 		    $post = $this->request->post();
 		    $post['user_id'] = $this->auth->id;
-            $row = model('app\api\model\flshop\PayAccount')->allowField(true)->save($post);
+            $row = model('app\api\model\flbooth\PayAccount')->allowField(true)->save($post);
 		    if($row){
 		        $this->success('ok', $row);
 		    }else{
@@ -220,7 +220,7 @@ class Pay extends Api
 	 */
 	public function delPayAccount($ids = '')
 	{	
-		$row = model('app\api\model\flshop\PayAccount')
+		$row = model('app\api\model\flbooth\PayAccount')
 			->where('id', 'in', $ids)
 			->where(['user_id' => $this->auth->id])
 			->delete();
@@ -239,8 +239,8 @@ class Pay extends Api
 	    //设置过滤方法
 		$this->request->filter(['strip_tags']);
 	    if ($this->request->isPost()) {
-			$config = get_addon_config('flshop');
-		    $bank = model('app\api\model\flshop\PayAccount')
+			$config = get_addon_config('flbooth');
+		    $bank = model('app\api\model\flbooth\PayAccount')
 		        ->where(['user_id' => $this->auth->id])
 		        ->order('created desc')
 		        ->find();
@@ -275,11 +275,11 @@ class Pay extends Api
                 $this->error("提现账户不能为空");
             }
             // 查询提现账户
-            $account = \app\api\model\flshop\PayAccount::where(['id' => $account_id, 'user_id' => $this->auth->id])->find();
+            $account = \app\api\model\flbooth\PayAccount::where(['id' => $account_id, 'user_id' => $this->auth->id])->find();
             if (!$account) {
                 $this->error("提现账户不存在");
             }
-            $config = get_addon_config('flshop');
+            $config = get_addon_config('flbooth');
             if ($config['withdraw']['state'] == 'N'){
                 $this->error("系统该关闭提现功能，请联系平台客服");
             }
@@ -287,7 +287,7 @@ class Pay extends Api
                 $this->error('提现金额不能低于' . $config['withdraw']['minmoney'] . '元');
             }
             if ($config['withdraw']['monthlimit']) {
-                $count = \app\api\model\flshop\Withdraw::where('user_id', $this->auth->id)->whereTime('created', 'month')->count();
+                $count = \app\api\model\flbooth\Withdraw::where('user_id', $this->auth->id)->whereTime('created', 'month')->count();
                 if ($count >= $config['withdraw']['monthlimit']) {
                     $this->error("已达到本月最大可提现次数");
                 }
@@ -310,7 +310,7 @@ class Pay extends Api
                     'account' => $account['cardCode'],
 					'orderid' => date("Ymdhis") . sprintf("%08d", $this->auth->id) . mt_rand(1000, 9999)
                 ];
-                $withdraw = \app\api\model\flshop\Withdraw::create($data);
+                $withdraw = \app\api\model\flbooth\Withdraw::create($data);
 				$pay = new WanlPay;
 				$pay->money(-$money, $this->auth->id, '申请提现', 'withdraw', $withdraw['id']);
                 Db::commit();
@@ -331,7 +331,7 @@ class Pay extends Api
 	    //设置过滤方法
 		$this->request->filter(['strip_tags']);
 		if ($this->request->isPost()) {
-			$list = model('app\api\model\flshop\Withdraw')
+			$list = model('app\api\model\flbooth\Withdraw')
 				->where('user_id', $this->auth->id)
 				->order('created desc')
 				->paginate();
@@ -364,15 +364,15 @@ class Pay extends Api
 	{
 		if($type == 'pay'){
 			$field = 'id,shop_id,created,paymenttime';
-			$order = model('app\api\model\flshop\Order')
+			$order = model('app\api\model\flbooth\Order')
 				->where('order_no', 'in', $id)
 				->where('user_id', $this->auth->id)
 				->field($field)
 				->select();
 			//1.0.5升级 临时修改,后续升级版本重构
 			if(!$order){
-				$shop = model('app\api\model\flshop\Shop')->get(['user_id' => $this->auth->id]);
-				$order = model('app\api\model\flshop\Order')
+				$shop = model('app\api\model\flbooth\Shop')->get(['user_id' => $this->auth->id]);
+				$order = model('app\api\model\flbooth\Order')
 					->where('order_no', 'in', $id)
 					->where('shop_id', $shop['id'])
 					->field($field)
@@ -381,12 +381,12 @@ class Pay extends Api
 			}
 			foreach($order as $vo){
 				// 1.1.2升级
-				$vo['pay'] = model('app\api\model\flshop\Pay')
+				$vo['pay'] = model('app\api\model\flbooth\Pay')
 					->where(['order_id' => $vo['id'], 'type' => 'goods'])
 					->field('price,pay_no,order_no,order_price,trade_no,actual_payment,freight_price,discount_price,total_amount')
 					->find();
 				$vo->shop->visible(['shopname']);
-				$vo->goods = model('app\api\model\flshop\OrderGoods')
+				$vo->goods = model('app\api\model\flbooth\OrderGoods')
 					->where(['order_id' => $vo['id']])
 					->field('id,title,difference,image,price,number')
 					->select();
@@ -394,15 +394,15 @@ class Pay extends Api
 			$this->success('ok', $order);
 		}else if($type == 'groups'){
 			$field = 'id,shop_id,created,paymenttime';
-			$order = model('app\api\model\flshop\groups\Order')
+			$order = model('app\api\model\flbooth\groups\Order')
 				->where('order_no', 'in', $id)
 				->where('user_id', $this->auth->id)
 				->field($field)
 				->select();
 			//1.0.5升级 临时修改,后续升级版本重构
 			if(!$order){
-				$shop = model('app\api\model\flshop\Shop')->get(['user_id' => $this->auth->id]);
-				$order = model('app\api\model\flshop\groups\Order')
+				$shop = model('app\api\model\flbooth\Shop')->get(['user_id' => $this->auth->id]);
+				$order = model('app\api\model\flbooth\groups\Order')
 					->where('order_no', 'in', $id)
 					->where('shop_id', $shop['id'])
 					->field($field)
@@ -411,12 +411,12 @@ class Pay extends Api
 			}
 			foreach($order as $vo){
 				// 1.1.2升级
-				$vo['pay'] = model('app\api\model\flshop\Pay')
+				$vo['pay'] = model('app\api\model\flbooth\Pay')
 					->where(['order_id' => $vo['id'], 'type' => 'groups'])
 					->field('price,pay_no,order_no,order_price,trade_no,actual_payment,freight_price,discount_price,total_amount')
 					->find();
 				$vo->shop->visible(['shopname']);
-				$vo->goods = model('app\api\model\flshop\groups\OrderGoods')
+				$vo->goods = model('app\api\model\flbooth\groups\OrderGoods')
 					->where(['order_id' => $vo['id']])
 					->field('id,title,difference,image,price,number')
 					->select();
@@ -424,10 +424,10 @@ class Pay extends Api
 			$this->success('ok', $order);
 		}else if($type == 'recharge' || $type == 'withdraw'){ // 用户充值
 			if($type == 'recharge'){
-				$model = model('app\api\model\flshop\RechargeOrder');
+				$model = model('app\api\model\flbooth\RechargeOrder');
 				$field = 'id,paytype,orderid,memo';
 			}else{
-				$model = model('app\api\model\flshop\Withdraw');
+				$model = model('app\api\model\flbooth\Withdraw');
 				$field = 'id,money,handingfee,status,type,account,orderid,memo,transfertime';
 			}
 			$row = $model
@@ -436,7 +436,7 @@ class Pay extends Api
 				->find();
 			$this->success('ok', $row);
 		}else if($type == 'refund'){
-			$order = model('app\api\model\flshop\Order')
+			$order = model('app\api\model\flbooth\Order')
 				->where('order_no', $id)
 				->where('user_id', $this->auth->id)
 				->field('id,shop_id,order_no,created,paymenttime')
@@ -445,7 +445,7 @@ class Pay extends Api
 				$this->error(__('订单异常'));
 			}
 			$order->shop->visible(['shopname']);
-			$order['refund'] = model('app\api\model\flshop\Refund')
+			$order['refund'] = model('app\api\model\flbooth\Refund')
 				->where(['order_id' => $order['id'], 'user_id' => $this->auth->id])
 				->field('id,price,type,reason,created,completetime')
 				->find();
@@ -468,7 +468,7 @@ class Pay extends Api
 	 */
 	private function creatToken() {
 		$code = chr(mt_rand(0xB0, 0xF7)) . chr(mt_rand(0xA1, 0xFE)) . chr(mt_rand(0xB0, 0xF7)) . chr(mt_rand(0xA1, 0xFE)) . chr(mt_rand(0xB0, 0xF7)) . chr(mt_rand(0xA1, 0xFE));
-		$key = "flshop.COM";
+		$key = "flbooth.COM";
 		$code = md5($key . substr(md5($code), 8, 10));
 		Cache::set('orderToken', $code, 180);
 		return $code;

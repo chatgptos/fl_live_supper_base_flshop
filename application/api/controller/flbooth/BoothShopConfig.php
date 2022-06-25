@@ -37,7 +37,7 @@ class BoothShopConfig extends Api
     {
         $booth_id = $this->request->post("shop_id");
 
-        $booth_info = \app\admin\model\booth\ShopConfig::where('shop_id', $booth_id)->find();
+        $booth_info = \app\admin\model\ShopConfig::where('shop_id', $booth_id)->find();
 
         $this->success('', $booth_info);
     }

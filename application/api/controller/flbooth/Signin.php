@@ -1,5 +1,5 @@
 <?php
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use fast\Date;
@@ -9,7 +9,7 @@ use think\Exception;
 use think\exception\PDOException;
 
 /**
- * flshop签到接口
+ * flbooth签到接口
  */
 class Signin extends Api
 {
@@ -20,7 +20,7 @@ class Signin extends Api
 	/**
 	 * 获取签到
 	 *
-	 * @ApiSummary  (flshop 获取签到)
+	 * @ApiSummary  (flbooth 获取签到)
 	 * @ApiMethod   (GET)
 	 * 
 	 * @param string $date 日期 2020-06-05
@@ -69,7 +69,7 @@ class Signin extends Api
 	/**
 	 * 立即签到
 	 *
-	 * @ApiSummary  (flshop 获取签到)
+	 * @ApiSummary  (flbooth 获取签到)
 	 * @ApiMethod   (POST)
 	 * 
 	 */
@@ -105,7 +105,7 @@ class Signin extends Api
 	/**
 	 * 签到补签
 	 *
-	 * @ApiSummary  (flshop 签到补签)
+	 * @ApiSummary  (flbooth 签到补签)
 	 * @ApiMethod   (GET)
 	 * 
 	 * @param string $date 日期 2020-06-05
@@ -184,7 +184,7 @@ class Signin extends Api
 	/**
 	 * 排行榜
 	 *
-	 * @ApiSummary  (flshop 签到补签)
+	 * @ApiSummary  (flbooth 签到补签)
 	 * @ApiMethod   (GET)
 	 * 
 	 */

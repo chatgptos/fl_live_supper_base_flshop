@@ -1,12 +1,12 @@
 <?php
 
-namespace app\api\controller\flshop;
+namespace app\api\controller\flbooth;
 
 use app\common\controller\Api;
 use app\common\model\User;
 
 /**
- * flshop验证接口
+ * flbooth验证接口
  */
 class Validate extends Api
 {
