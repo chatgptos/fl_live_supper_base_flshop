@@ -34,7 +34,7 @@ class Notice extends Api
 			->order('created desc')
 			->paginate()
 			->each(function($order, $key){
-				// 类型:order=订单,refund=退款,groupsorder=拼团订单,groupsrefund=拼团退款,live=直播,goods=商品
+				// 类型:order=订单,refund=退款,groupsorder=营销活动-拼团订单,groupsrefund=营销活动-拼团退款,live=直播,goods=商品
 				switch ($order['modules'])
 				{
 					// 订单模块
@@ -45,11 +45,11 @@ class Notice extends Api
 					case 'refund':
 						$order['url'] = '/pages/user/refund/details?id='.$order['modules_id'];
 					break;
-					// 拼团订单模块
+					// 营销活动-拼团订单模块
 					case 'groupsorder':
 						$order['url'] = '/pages/apps/groups/order/details?id='.$order['modules_id'];
 					break;  
-					// 拼团退款模块
+					// 营销活动-拼团退款模块
 					case 'groupsrefund':
 						$order['url'] = '/pages/user/refund/details?id='.$order['modules_id'];
 					break;

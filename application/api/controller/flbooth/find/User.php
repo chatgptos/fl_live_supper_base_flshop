@@ -5,7 +5,7 @@ use app\common\controller\Api;
 use fast\Random;
 
 /**
- * flbooth 发现创作中心接口
+ * flbooth 发现中心接口
  */
 class User extends Api
 {

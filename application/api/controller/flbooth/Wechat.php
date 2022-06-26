@@ -7,7 +7,7 @@ use EasyWeChat\Factory;
 use addons\flbooth\library\WeixinSdk\Mp;
 
 /**
- * flbooth 微信接口 1.0.8已经为开发者引入，直接使用以下方法二次开发，后续完善
+ * flbooth 微信接口
  */
 class Wechat extends Api
 {

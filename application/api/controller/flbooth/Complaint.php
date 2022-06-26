@@ -29,7 +29,7 @@ class Complaint extends Api
 			->order('created desc')
 			->paginate();
 		foreach ($list as $row) {
-			// 举报类型:0=用户举报,1=商品举报,2=店铺举报,3=拼团举报
+			// 举报类型:0=用户举报,1=商品举报,2=店铺举报,3=营销活动-拼团举报
 			if($row['type'] === '1'){
 				$row->goods ? $row->goods->visible(['id','title','image','price']) : [];
 			}

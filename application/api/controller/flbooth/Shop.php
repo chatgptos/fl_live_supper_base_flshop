@@ -19,8 +19,8 @@ class Shop extends Api
 	}
 	
 	/**
-	 * 一次性获取展商相关数据 1.0.0升级
-	 *
+	 * 获取展商店铺相关数据
+     *
 	 * @ApiSummary  (flbooth 一次性获取店铺相关数据)
 	 * @ApiMethod   (GET)
 	 *
@@ -33,7 +33,7 @@ class Shop extends Api
 		// 获取店铺信息
 		$row = $this->model->get($id);
 		if (!$row) {
-		    $this->error(__('未找到此商家'));
+		    $this->error(__('未找到此展商'));
 		}
 		// 获取商家类目
 		$tree = Tree::instance();
@@ -80,11 +80,11 @@ class Shop extends Api
      * @ApiSummary  (展商报名参展信息)
      * @ApiMethod   (POST)
      * @ApiParams   (name="name", type="integer", required=true, description="展商名称")
-     * @ApiParams   (name="number", type="integer", required=true, description="展商名称")
-     * @ApiParams   (name="image", type="integer", required=true, description="展商名称")
-     * @ApiParams   (name="trademark", type="integer", required=true, description="展商名称")
-     * @ApiParams   (name="wechat", type="integer", required=true, description="展商名称")
-     * @ApiParams   (name="mobile", type="integer", required=true, description="展商名称")
+     * @ApiParams   (name="number", type="integer", required=true, description="身份证号码/纳税人识别号")
+     * @ApiParams   (name="image", type="string", required=false, description="申请材料照片")
+     * @ApiParams   (name="trademark", type="integer", required=false, description="备注")
+     * @ApiParams   (name="wechat", type="integer", required=false, description="微信名称")
+     * @ApiParams   (name="mobile", type="integer", required=true, description="手机号")
      * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")
      * @ApiReturnParams   (name="msg", type="string", required=true, sample="返回成功")
      * @ApiReturnParams   (name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}", description="扩展数据返回")
@@ -93,6 +93,7 @@ class Shop extends Api
      */
 	public function apply()
 	{
+	    //   (name="image", type="File", required=true, description="申请材料照片")
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
 		$row = model('app\api\model\flbooth\Auth')
@@ -101,7 +102,7 @@ class Shop extends Api
 		if ($this->request->isPost()) {
 			$params = $this->request->post();
 //            var_dump($this->auth);
-//            var_dump($params);
+//            var_dump($params['file']);die;
 //            die;
 			$data = [
 				'name' => $params['name'],

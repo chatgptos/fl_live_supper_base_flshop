@@ -26,7 +26,7 @@ class BoothUserExhibitor extends Api
      * @ApiTitle    (展商登记信息)
      * @ApiSummary  (展商登记信息)
      * @ApiMethod   (POST)
-     * @ApiParams   (name="exhibitor_id", type="integer", required=true, description="exhibitor_id")
+     * @ApiParams   (name="exhibitor_id", type="integer", required=true, description="1858")
      * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")
      * @ApiReturnParams   (name="msg", type="string", required=true, sample="返回成功")
      * @ApiReturnParams   (name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}", description="扩展数据返回")
@@ -37,7 +37,7 @@ class BoothUserExhibitor extends Api
     {
         $booth_id = $this->request->post("exhibitor_id");
 
-        $booth_info = \app\admin\model\UserExhibitor::where('exhibitor_id', $booth_id)->find();
+        $booth_info = \app\admin\model\booth\UserExhibitor::where('exhibitor_id', $booth_id)->find();
 
         $this->success('', $booth_info);
     }

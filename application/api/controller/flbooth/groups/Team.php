@@ -5,7 +5,7 @@ use app\common\controller\Api;
 use think\Db;
 
 /**
- * flbooth 拼团应用团接口
+ * flbooth 营销活动
  */
 class Team extends Api
 {
@@ -13,9 +13,9 @@ class Team extends Api
 	protected $noNeedRight = ['*'];
 	
 	/**
-	 * 获取拼团详情
+	 * 获取营销活动-拼团详情
 	 *
-	 * @ApiSummary  (flbooth 拼团应用获取拼团详情)
+	 * @ApiSummary  (flbooth 营销活动-拼团应用获取营销活动-拼团详情)
 	 * @ApiMethod   (GET)
 	 * 2021年5月26日04:56:03
 	 *
@@ -33,7 +33,7 @@ class Team extends Api
 			->field('id,group_no,user_id,group_type,people_num,join_num,state,validitytime')
 			->find();
 		if(!$row){
-			$this->error(__('未找到任何拼团'));
+			$this->error(__('未找到任何营销活动-拼团'));
 		}
 		$row->team = model('app\api\model\flbooth\groups\Team')
 			->field('id,user_id,username,nickname,avatar,order_goods_id,created')

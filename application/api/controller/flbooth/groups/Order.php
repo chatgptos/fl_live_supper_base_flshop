@@ -10,7 +10,7 @@ use think\Exception;
 use think\exception\PDOException;
 
 /**
- * flbooth 拼团应用订单接口
+ * flbooth 营销活动
  */
 class Order extends Api
 {
@@ -18,9 +18,9 @@ class Order extends Api
 	protected $noNeedRight = ['*'];
     
 	/**
-     * 获取拼团订单列表 ---
+     * 获取营销活动-拼团订单列表 ---
      *
-     * @ApiSummary  (flbooth 拼团订单接口获取拼团订单列表)
+     * @ApiSummary  (flbooth 营销活动-拼团订单接口获取营销活动-拼团订单列表)
      * @ApiMethod   (GET)
 	 * 2021年6月28日12:50:01
 	 *
@@ -116,14 +116,14 @@ class Order extends Api
 		switch ($order['state']) {
 			case 1:
 				$express = [
-					'context' => '付款后，完成拼团即可将宝贝发出',
+					'context' => '付款后，完成营销活动-拼团即可将宝贝发出',
 					'status' => '尚未付款',
 					'time' => date('Y-m-d H:i:s', $order['created'])
 				];
 				break;
 			case 2:
 				$express = [
-					'context' => '正在分享拼团中',
+					'context' => '正在分享营销活动-拼团中',
 					'status' => '已付款',
 					'time' => date('Y-m-d H:i:s', $order['created'])
 				];
@@ -203,7 +203,7 @@ class Order extends Api
 				if(model('app\api\model\flbooth\groups\Goods')->get($vo['goods_id'])['stock'] == 'porder'){
 					model('app\api\model\flbooth\groups\GoodsSku')->where('id', $vo['goods_sku_id'])->setInc('stock', $vo['number']);
 				}
-				// 删除拼团-1.0.8临时方案
+				// 删除营销活动-拼团-1.0.8临时方案
 				model('app\api\model\flbooth\groups\Groups')
 					->where([
 						'group_no' => $vo['group_no'], 
@@ -476,7 +476,7 @@ class Order extends Api
 	/**
 	 * 查询购买次数限制
 	 *
-	 * @ApiSummary  (flbooth 拼团接口查询购买次数限制)
+	 * @ApiSummary  (flbooth 营销活动-拼团接口查询购买次数限制)
 	 * @ApiMethod   (POST)
 	 * 
 	 * @param string $data 商品数据
@@ -504,9 +504,9 @@ class Order extends Api
 	}
 	
     /**
-     * 确认拼团订单
+     * 确认营销活动-拼团订单
      *
-     * @ApiSummary  (flbooth 拼团接口确认订单)
+     * @ApiSummary  (flbooth 营销活动-拼团接口确认订单)
      * @ApiMethod   (POST)
 	 * 
 	 * @param string $data 商品数据
@@ -754,7 +754,7 @@ class Order extends Api
 							$redis = Common::redis();
 							// 查询商品
 							$goods = model('app\api\model\flbooth\groups\Goods')->get($data['goods_id']);
-							// 判断是否为阶梯拼团
+							// 判断是否为阶梯营销活动-拼团
 							$isLadder = false;
 							if($goods['is_ladder'] === 1 && $data['groupType'] === 'ladder'){
 								$ladder = model('app\api\model\flbooth\groups\Ladder')->get($data['ladder_id']);
@@ -811,7 +811,7 @@ class Order extends Api
 								if((int)$data['groups_id'] !== 0){
 									// 判断权限
 									$joinGroups = model('app\api\model\flbooth\groups\Groups')->get($data['groups_id']);
-									// 获取其他团的拼团人数
+									// 获取其他团的营销活动-拼团人数
 									if($joinGroups['group_type'] === 'ladder'){
 										$ladder = model('app\api\model\flbooth\groups\Ladder')->get($joinGroups['ladder_id']);
 										$data['groupType'] = 'ladder';
@@ -823,7 +823,7 @@ class Order extends Api
 									}
 									// 判断状态
 									if($joinGroups['state'] !== 'start'){
-										$joinGroupsText = ['ready' => '准备中','success' => '已成团','fail' => '拼团关闭','auto' => '已成团'][$joinGroups['state']];
+										$joinGroupsText = ['ready' => '准备中','success' => '已成团','fail' => '营销活动-拼团关闭','auto' => '已成团'][$joinGroups['state']];
 										throw new Exception('参与拼单失败，因选择的团'.$joinGroupsText);
 									}
 									// 判断拼自己的团
@@ -832,7 +832,7 @@ class Order extends Api
 									}
 									// 判断是否超团
 									if(model('app\api\model\flbooth\groups\Team')->where(['group_no' => $joinGroups['group_no']])->count() >= $joinGroups['people_num']){
-										throw new Exception("参与拼单失败，因拼团已完成");
+										throw new Exception("参与拼单失败，因营销活动-拼团已完成");
 									}
 									$group_no = $joinGroups['group_no'];
 								}else{
@@ -844,12 +844,12 @@ class Order extends Api
 										'shop_id' => $shop_id,
 										'goods_id' => $goods['id'],
 										// 'goods_sku_id' => $sku['id'],
-										'group_type' => $data['groupType'], // 拼团类型
+										'group_type' => $data['groupType'], // 营销活动-拼团类型
 										'is_ladder' => $goods['is_ladder'], // 是否阶梯
 										'ladder_id' =>  $isLadder ? $ladder['id'] : 0, // 阶梯ID
 										'people_num' => $isLadder ? $ladder['people_num'] : $goods['people_num'], //成团人数
 										'state' => 'ready', // 未开始
-										'validitytime' => time() + $goods['group_hour'] * 60 * 60  // 拼团有效期
+										'validitytime' => time() + $goods['group_hour'] * 60 * 60  // 营销活动-拼团有效期
 									];
 								}
 								// 查询团购阶梯
@@ -871,7 +871,7 @@ class Order extends Api
 								'shop_id' => $shop_id,
 								'title' => $goods['title'],
 								'image' => $goods['image'],
-								// 拼团类型
+								// 营销活动-拼团类型
 								'group_type' => $data['groupType'], 
 								'group_no' => $group_no, 
 								'is_alone' => $goods['is_alone'], // 是否单购是
@@ -1000,7 +1000,7 @@ class Order extends Api
 	}
 	
 	/**
-	 * 拼团 获取优惠券后金额 内部方法
+	 * 营销活动-拼团 获取优惠券后金额 内部方法
 	 * 1.0.5升级
 	 * @param string $coupon  优惠券数据
 	 * @param string $goodsList  商品列表

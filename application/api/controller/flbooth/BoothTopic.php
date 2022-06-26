@@ -5,7 +5,7 @@ namespace app\api\controller\flbooth;
 use app\common\controller\Api;
 
 /**
- * 主题接口
+ * 峰会接口
  */
 class BoothTopic extends Api
 {
@@ -23,8 +23,8 @@ class BoothTopic extends Api
     /**
      * 主题接口
      *
-     * @ApiTitle    (主题接口)
-     * @ApiSummary  (主题接口)
+     * @ApiTitle    (峰会接口)
+     * @ApiSummary  (峰会接口)
      * @ApiMethod   (POST)
      * @ApiParams   (name="id", type="integer", required=true, description="活动主题id")
      * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")

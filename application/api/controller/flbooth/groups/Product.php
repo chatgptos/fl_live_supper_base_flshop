@@ -7,7 +7,7 @@ use fast\Tree;
 use think\Db;
 
 /**
- * flbooth 拼团应用产品接口
+ * flbooth 营销活动
  */
 class Product extends Api
 {
@@ -102,7 +102,7 @@ class Product extends Api
 			$goods['freight'] = $this->freight($goods['freight_id']);
 			// 查询促销
 			$goods['promotion'] = $id; //--未来版本更新--
-			// 查询拼团
+			// 查询营销活动-拼团
 			$groupsType = 1;
 			$choiceGroupsList = '';
 			$groupsList = $groupsModel
@@ -141,7 +141,7 @@ class Product extends Api
 					$groupsType = 6;
 				}
 			}
-			// 拼团列表
+			// 营销活动-拼团列表
 			$goods['groups'] = [
 				'type' => $groupsType,
 				'list' => $groupsList,

@@ -90,7 +90,7 @@ class Common extends Api
 			$row->shop->visible(['state','shopname']);
 			$row->isLive = model('app\api\model\flbooth\Live')->where(['shop_id' => $row['shop_id'], 'state' => 1])->field('id')->find();
 		}
-		// 拼团
+		// 营销活动-拼团
 		$groups = model('app\api\model\flbooth\groups\Goods')
 			->where('category_id', 'in', $category_id)
 			->where('status', 'normal')

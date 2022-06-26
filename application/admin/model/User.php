@@ -19,7 +19,7 @@ class User extends Model
     // 追加属性
     protected $append = [
         'prevtime_text',
-        'login_time_text',
+//        'login_time_text',
         'jointime_text'
     ];
 

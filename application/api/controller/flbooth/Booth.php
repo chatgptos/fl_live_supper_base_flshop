@@ -60,8 +60,7 @@ class Booth extends Api
     {
         $booth_id = $this->request->post("id");
 
-        $booth_info = \app\admin\model\booth\Boothtem::where('id', $booth_id)->find();
-
+        $booth_info = \app\admin\model\Boothtem::where('id', $booth_id)->find();
         $this->success('', $booth_info);
     }
 
@@ -82,7 +81,7 @@ class Booth extends Api
     {
         $booth_id = $this->request->post("id");
 
-        $booth_info = \app\admin\model\booth\Boothtype::where('id', $booth_id)->find();
+        $booth_info = \app\admin\model\Boothtype::where('id', $booth_id)->find();
 
         $this->success('', $booth_info);
     }

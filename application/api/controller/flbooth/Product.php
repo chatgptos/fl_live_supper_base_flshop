@@ -18,9 +18,9 @@ class Product extends Api
 	protected $excludeFields = "";
 	
     /**
-     * 获取商品列表 1.0.3升级 隐藏查询结果 1.0.4升级 错误查询
+     * 获取商品列表
      *
-     * @ApiSummary  (flbooth 产品接口获取商品列表)
+     * @ApiSummary  (flbooth 获取商品列表)
      * @ApiMethod   (GET)
 	 * 
 	 */
@@ -54,7 +54,7 @@ class Product extends Api
 	/**
 	 * 搜索获取品牌列表
 	 *
-	 * @ApiSummary  (flbooth 产品接口获取品牌列表)
+	 * @ApiSummary  (flbooth 获取品牌列表)
 	 * @ApiMethod   (GET)
 	 * 
 	 */
@@ -207,7 +207,7 @@ class Product extends Api
     /**
      * 获取商品详情
      *
-     * @ApiSummary  (flbooth 产品接口、浏览+1、获取UUID生成访问记录)
+     * @ApiSummary  (flbooth  访问记录)
      * @ApiMethod   (GET)
      * 
      * @param string $id 商品ID
@@ -400,7 +400,7 @@ class Product extends Api
 	}
 	
 	/**
-	 * 收藏夹列表 1.0.8升级
+	 * 收藏夹列表
 	 */
 	public function collect($type = 'goods')
 	{
@@ -436,7 +436,7 @@ class Product extends Api
 	}
 	
 	/**
-	 * 足迹列表 1.0.8升级
+	 * 足迹列表
 	 */
 	public function footprint($type = 'goods')
 	{
@@ -566,7 +566,7 @@ class Product extends Api
 	}
 	
 	/**
-	 * 获取运费模板和子类 内部方法 -----下个版本完善------
+	 * 获取运费模板和子类
 	 * @param string $id  运费ID
 	 * @param string $weigh  商品重量
 	 * @param string $city  邮递城市
@@ -612,7 +612,7 @@ class Product extends Api
 	}
 	
 	/**
-	 * 查询我的优惠券 内部方法 (跨段存在登录问题，无法解决，暂时复制进来这个方法)
+	 * 查询我的优惠券 
 	 *
 	 * @param string $goods_id 商品ID
 	 * @param string $shop_id 店铺ID

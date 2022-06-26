@@ -33,7 +33,7 @@ class Pay extends Api
 			$id = $this->request->post('order_id');
 			$id ? $id : ($this->error(__('非法请求')));
 			$order_type = $this->request->post('order_type');
-			// 1.0.8升级 拼团
+			// 1.0.8升级 营销活动-拼团
 			if($order_type == 'groups'){
 				$model_order = model('app\api\model\flbooth\groups\Order');
 			}else{
@@ -89,7 +89,7 @@ class Pay extends Api
 			$user_id = $this->auth->id;
 			$type ? $type : ($this->error(__('未选择支付类型')));
 			
-			// 1.0.8升级 拼团
+			// 1.0.8升级 营销活动-拼团
 			if($order_type == 'groups'){
 				$model_order = model('app\api\model\flbooth\groups\Order');
 				$model_order_goods = model('app\api\model\flbooth\groups\OrderGoods');

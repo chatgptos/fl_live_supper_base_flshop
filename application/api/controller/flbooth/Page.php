@@ -91,9 +91,9 @@ class Page extends Api
 	
 	
 	/**
-	 * 获取热门拼团
+	 * 获取热门营销活动-拼团
 	 *
-	 * @ApiSummary  (flbooth 页面接口获取热门拼团品)
+	 * @ApiSummary  (flbooth 页面接口获取热门营销活动-拼团品)
 	 * @ApiMethod   (GET)
 	 * 火线上线，后续通过算法查询
 	 * 
@@ -151,7 +151,7 @@ class Page extends Api
 		}
 		$activity = [
 			'distribution' => '分销',
-			'group' => '团购拼团',
+			'group' => '团购营销活动-拼团',
 			'bargain' => '砍价',
 			'rush' => '限时抢购',
 			'coupon' => '领券中心'

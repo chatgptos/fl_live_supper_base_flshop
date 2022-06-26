@@ -5,7 +5,7 @@ namespace app\api\controller\flbooth;
 use app\common\controller\Api;
 
 /**
- * 展商报名参展信息
+ * 展商用户信息
  */
 class BoothUser extends Api
 {
@@ -21,12 +21,12 @@ class BoothUser extends Api
 
 
     /**
-     * 展商报名参展信息
+     * 展商用户信息
      *
-     * @ApiTitle    (展商报名参展信息)
-     * @ApiSummary  (展商报名参展信息)
+     * @ApiTitle    (展商用户信息)
+     * @ApiSummary  (展商用户信息)
      * @ApiMethod   (POST)
-     * @ApiParams   (name="id", type="integer", required=true, description="展商id")
+     * @ApiParams   (name="id", type="integer", required=true, description="user_id")
      * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")
      * @ApiReturnParams   (name="msg", type="string", required=true, sample="返回成功")
      * @ApiReturnParams   (name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}", description="扩展数据返回")
