@@ -22,7 +22,7 @@ class Common extends Api
     /**
      * 首页
      *
-     * @ApiSummary  (flbooth 获取首页、购物车、类目数据)
+     * @ApiSummary  (flbooth 获取首页、应用、展商)
      * @ApiMethod   (GET)
      *
      */
@@ -134,7 +134,52 @@ class Common extends Api
             "homeModules" => $homeModules,
             "exhibitors" => $Exhibitor['data'],
         ];
-        $this->success('', $modulesData);  
+        $this->success('', $modulesData);
+    }
+
+
+
+
+
+    /**
+     * 活动扫码-入口接口
+     *
+     * @ApiTitle    (活动扫码-入口接口)
+     * @ApiSummary  (活动扫码-入口接口)
+     * @ApiMethod   (POST)
+     * @ApiParams   (name="id", type="integer", required=true, description="活动id")
+     * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")
+     * @ApiReturnParams   (name="msg", type="string", required=true, sample="返回成功")
+     * @ApiReturnParams   (name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}", description="扩展数据返回")
+     * @ApiReturn   ({"code":1,"msg":"","time":"1655881227","data":{"id":1,"shop_id":1,"freight":"1","iscloud":"0","isauto":"0","secret":null,"key":null,"partner_id":null,"partner_key":null,"siid":null,"tempid":null,"welcome":"你好欢迎到店铺","send_name":"杨林","send_phone_num":"13236390680","send_addr":"深圳市福田区车公庙泰然家园","return_name":"杨林","return_phone_num":"13236390680","return_addr":"深圳市福田区车公庙泰然家园","created":1616935663,"modified":1617506640,"freight_text":"Freight 1","iscloud_text":"Iscloud 0","isauto_text":"Isauto 0"}})
+
+     */
+    public function getActivityById()
+    {
+        $activity_id = $this->request->post("id");
+
+
+        //获取介绍
+        $activity = \app\admin\model\Activity::where('id', $activity_id)->find();
+        //获取导航等信息
+        $activity['hall_area'] ='20000';
+        $activity['exhibitor_num'] ='2500';
+        $activity['viewer_num'] ='150000';
+        $activity['meetting_num'] ='1000';
+
+
+        //获取主题
+        $activity['theme'] = model('app\admin\model\Theme')::where('act_id', $activity_id)
+            ->field('*')
+            ->paginate(3,0)->toArray();
+        $activity['theme_num'] =count($activity['theme']['data']);
+        $activity['theme'] =$activity['theme']['data'];
+        $activity['activity_img'] ='http://flshop.com//assets/addons/flshop/img/show/main_bg3x.png';
+
+
+
+
+        $this->success('', $activity);
     }
 	/**
 	 * 一次性加载
