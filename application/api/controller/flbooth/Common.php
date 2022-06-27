@@ -168,15 +168,174 @@ class Common extends Api
         $activity['meetting_num'] ='1000';
 
 
+
+        //合作伙伴/合作媒体/关于我们/联系我们/关注我们
+        $activity['cooperative_partner_img'] ='http://flshop.com//assets/addons/flshop/img/show/main_bg3x.png';
+        $activity['cooperative_media_img'] ='http://flshop.com//assets/addons/flshop/img/show/main_bg3x.png';
+        $activity['about_us'] ='简介：蜂雷是科权科技（上海）有限公司旗下服务于个体创业的一款网络购物手机软件。开创新型模式，提供商品资源，获得销售商进货的低价位，
+                                 减少厂商与消费者之间中间环节的消耗。联系我们：021-57630866 关注我们<img src="http://flshop.com//assets/addons/flshop/img/show/main_bg3x.png"> ';
+
+
         //获取主题
         $activity['theme'] = model('app\admin\model\Theme')::where('act_id', $activity_id)
             ->field('*')
-            ->paginate(3,0)->toArray();
+            ->paginate(1,8)->toArray();
         $activity['theme_num'] =count($activity['theme']['data']);
         $activity['theme'] =$activity['theme']['data'];
         $activity['activity_img'] ='http://flshop.com//assets/addons/flshop/img/show/main_bg3x.png';
+        //获取峰会
+        $activity['topic'] = model('app\admin\model\Topic')::where('act_id', $activity_id)
+            ->field('*')
+            ->paginate(1,8)->toArray();
+        $activity['topic_num'] =count($activity['topic']['data']);
+        $activity['topic'] =$activity['topic']['data'];
 
 
+
+        //获取新闻
+        $type = 'new';
+        $where['status'] = 'normal';
+        $config = get_addon_config('flbooth');
+        if($type == 'exhibition'){
+            $where['category_id'] = $config['config']['exhibition_category'];
+        }
+        if($type == 'new'){
+            $where['category_id'] = $config['config']['new_category'];
+        }
+        if($type == 'sys'){
+            $where['category_id'] = $config['config']['sys_category'];
+        }
+        $activity['article_new'] = model('app\api\model\flbooth\Article')
+            ->where($where)
+            ->field('id,title,description,image,images,flag,views,created')
+            ->order('created desc')
+            ->paginate()->toArray();
+        $activity['article_num_new']=count($activity['article_new']['data']);
+        $activity['article_new'] =$activity['article_new']['data'];
+
+
+        //获取新闻
+        $type = 'exhibition';
+        $where['status'] = 'normal';
+        $config = get_addon_config('flbooth');
+        if($type == 'exhibition'){
+            $where['category_id'] = $config['config']['exhibition_category'];
+        }
+        if($type == 'new'){
+            $where['category_id'] = $config['config']['new_category'];
+        }
+        if($type == 'sys'){
+            $where['category_id'] = $config['config']['sys_category'];
+        }
+        $activity['article_exhibition'] = model('app\api\model\flbooth\Article')
+            ->where($where)
+            ->field('id,title,description,image,images,flag,views,created')
+            ->order('created desc')
+            ->paginate()->toArray();
+        $activity['article_num_exhibition']=count($activity['article_exhibition']['data']);
+        $activity['article_exhibition'] =$activity['article_exhibition']['data'];
+
+
+        $this->success('', $activity);
+    }
+
+
+
+
+
+    /**
+     * 获取电子门票-入口接口
+     *
+     * @ApiTitle    (活动扫码-入口接口)
+     * @ApiSummary  (活动扫码-入口接口)
+     * @ApiMethod   (POST)
+     * @ApiParams   (name="id", type="integer", required=true, description="活动id")
+     * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")
+     * @ApiReturnParams   (name="msg", type="string", required=true, sample="返回成功")
+     * @ApiReturnParams   (name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}", description="扩展数据返回")
+     * @ApiReturn   ({"code":1,"msg":"","time":"1655881227","data":{"id":1,"shop_id":1,"freight":"1","iscloud":"0","isauto":"0","secret":null,"key":null,"partner_id":null,"partner_key":null,"siid":null,"tempid":null,"welcome":"你好欢迎到店铺","send_name":"杨林","send_phone_num":"13236390680","send_addr":"深圳市福田区车公庙泰然家园","return_name":"杨林","return_phone_num":"13236390680","return_addr":"深圳市福田区车公庙泰然家园","created":1616935663,"modified":1617506640,"freight_text":"Freight 1","iscloud_text":"Iscloud 0","isauto_text":"Isauto 0"}})
+
+     */
+    public function getTicketById()
+    {
+        $activity_id = $this->request->post("id");
+
+
+        //获取介绍
+        $activity = \app\admin\model\Activity::where('id', $activity_id)->find();
+        //获取导航等信息
+        $activity['hall_area'] ='20000';
+        $activity['exhibitor_num'] ='2500';
+        $activity['viewer_num'] ='150000';
+        $activity['meetting_num'] ='1000';
+
+
+
+        //合作伙伴/合作媒体/关于我们/联系我们/关注我们
+        $activity['cooperative_partner_img'] ='http://flshop.com//assets/addons/flshop/img/show/main_bg3x.png';
+        $activity['cooperative_media_img'] ='http://flshop.com//assets/addons/flshop/img/show/main_bg3x.png';
+        $activity['about_us'] ='简介：蜂雷是科权科技（上海）有限公司旗下服务于个体创业的一款网络购物手机软件。开创新型模式，提供商品资源，获得销售商进货的低价位，
+                                 减少厂商与消费者之间中间环节的消耗。联系我们：021-57630866 关注我们<img src="http://flshop.com//assets/addons/flshop/img/show/main_bg3x.png"> ';
+
+
+        //获取主题
+        $activity['theme'] = model('app\admin\model\Theme')::where('act_id', $activity_id)
+            ->field('*')
+            ->paginate(1,8)->toArray();
+        $activity['theme_num'] =count($activity['theme']['data']);
+        $activity['theme'] =$activity['theme']['data'];
+        $activity['activity_img'] ='http://flshop.com//assets/addons/flshop/img/show/main_bg3x.png';
+        //获取峰会
+        $activity['topic'] = model('app\admin\model\Topic')::where('act_id', $activity_id)
+            ->field('*')
+            ->paginate(1,8)->toArray();
+        $activity['topic_num'] =count($activity['topic']['data']);
+        $activity['topic'] =$activity['topic']['data'];
+
+
+
+        //获取新闻
+        $type = 'new';
+        $where['status'] = 'normal';
+        $config = get_addon_config('flbooth');
+        if($type == 'exhibition'){
+            $where['category_id'] = $config['config']['exhibition_category'];
+        }
+        if($type == 'new'){
+            $where['category_id'] = $config['config']['new_category'];
+        }
+        if($type == 'sys'){
+            $where['category_id'] = $config['config']['sys_category'];
+        }
+        $activity['article_new'] = model('app\api\model\flbooth\Article')
+            ->where($where)
+            ->field('id,title,description,image,images,flag,views,created')
+            ->order('created desc')
+            ->paginate()->toArray();
+        $activity['article_num_new']=count($activity['article_new']['data']);
+        $activity['article_new'] =$activity['article_new']['data'];
+
+
+        //获取新闻
+        $type = 'exhibition';
+        $where['status'] = 'normal';
+        $config = get_addon_config('flbooth');
+        if($type == 'exhibition'){
+            $where['category_id'] = $config['config']['exhibition_category'];
+        }
+        if($type == 'new'){
+            $where['category_id'] = $config['config']['new_category'];
+        }
+        if($type == 'sys'){
+            $where['category_id'] = $config['config']['sys_category'];
+        }
+        $activity['article_exhibition'] = model('app\api\model\flbooth\Article')
+            ->where($where)
+            ->field('id,title,description,image,images,flag,views,created')
+            ->order('created desc')
+            ->paginate()->toArray();
+        $activity['article_num_exhibition']=count($activity['article_exhibition']['data']);
+        $activity['article_exhibition'] =$activity['article_exhibition']['data'];
 
 
         $this->success('', $activity);
