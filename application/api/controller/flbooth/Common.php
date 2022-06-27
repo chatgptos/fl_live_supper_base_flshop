@@ -19,7 +19,7 @@ class Common extends Api
 	protected $noNeedRight = ['*'];
     
 	/**
-	 * 一次性加载App
+	 * 一次性加载
 	 *
 	 * @ApiSummary  (flbooth 获取首页、购物车、类目数据)
 	 * @ApiMethod   (GET)

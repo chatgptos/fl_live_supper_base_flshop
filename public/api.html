@@ -167,8 +167,8 @@
                                                             </span>
                         </a>
                                             </div>
-                                        <a href="#flbooth展商接口" class="list-group-item" data-toggle="collapse" data-parent="#sidebar">flbooth展商接口  <i class="fa fa-caret-down"></i></a>
-                    <div class="child collapse" id="flbooth展商接口">
+                                        <a href="#flbooth展商店铺接口" class="list-group-item" data-toggle="collapse" data-parent="#sidebar">flbooth展商店铺接口  <i class="fa fa-caret-down"></i></a>
+                    <div class="child collapse" id="flbooth展商店铺接口">
                                                 <a href="javascript:;" data-id="167" class="list-group-item">获取展商店铺相关数据                            <span class="tag">
                                                             </span>
                         </a>
@@ -982,7 +982,7 @@
                                             </div>
                                         <a href="#flbooth公共接口" class="list-group-item" data-toggle="collapse" data-parent="#sidebar">flbooth公共接口  <i class="fa fa-caret-down"></i></a>
                     <div class="child collapse" id="flbooth公共接口">
-                                                <a href="javascript:;" data-id="48" class="list-group-item">一次性加载App                            <span class="tag">
+                                                <a href="javascript:;" data-id="48" class="list-group-item">一次性加载                            <span class="tag">
                                                             </span>
                         </a>
                                                 <a href="javascript:;" data-id="49" class="list-group-item">加载类目页                            <span class="tag">
@@ -1264,36 +1264,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading"><strong>参数</strong></div>
                                         <div class="panel-body">
-                                                                                        <table class="table table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>名称</th>
-                                                        <th>类型</th>
-                                                        <th>必选</th>
-                                                        <th>描述</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                                                                        <tr>
-                                                        <td>version</td>
-                                                        <td>string</td>
-                                                        <td>是</td>
-                                                        <td>版本号</td>
-                                                    </tr>
-                                                                                                        <tr>
-                                                        <td>lng</td>
-                                                        <td>string</td>
-                                                        <td>是</td>
-                                                        <td>经度</td>
-                                                    </tr>
-                                                                                                        <tr>
-                                                        <td>lat</td>
-                                                        <td>string</td>
-                                                        <td>是</td>
-                                                        <td>纬度</td>
-                                                    </tr>
-                                                                                                    </tbody>
-                                            </table>
+                                                                                        无
                                                                                     </div>
                                     </div>
                                     <div class="panel panel-default">
@@ -1315,16 +1286,7 @@
                                                 <div class="panel-body">
                                                     <form enctype="application/x-www-form-urlencoded" role="form" action="/api/common/getBackendAccount" method="get" name="form1" id="form1">
                                                                                                                 <div class="form-group">
-                                                            <label class="control-label" for="version">version</label>
-                                                            <input type="string" class="form-control input-sm" id="version" required placeholder="版本号" name="version">
-                                                        </div>
-                                                                                                                <div class="form-group">
-                                                            <label class="control-label" for="lng">lng</label>
-                                                            <input type="string" class="form-control input-sm" id="lng" required placeholder="经度" name="lng">
-                                                        </div>
-                                                                                                                <div class="form-group">
-                                                            <label class="control-label" for="lat">lat</label>
-                                                            <input type="string" class="form-control input-sm" id="lat" required placeholder="纬度" name="lat">
+                                                            无
                                                         </div>
                                                                                                                 <div class="form-group form-group-submit">
                                                             <button type="submit" class="btn btn-success send" rel="1">提交</button>
@@ -1497,7 +1459,7 @@
                         </div>
                     </div>
                 </div>
-                                <h2>flbooth展商接口</h2>
+                                <h2>flbooth展商店铺接口</h2>
                 <hr>
                                 <div class="panel panel-default">
                     <div class="panel-heading" id="heading-167">
@@ -1521,7 +1483,7 @@
 
                                 <div class="tab-pane active" id="info167">
                                     <div class="well">
-                                        flbooth 一次性获取店铺相关数据                                    </div>
+                                        flbooth 获取店铺相关数据                                    </div>
                                     <div class="panel panel-default">
                                         <div class="panel-heading"><strong>权限</strong></div>
                                         <div class="panel-body">
@@ -1562,7 +1524,7 @@
                                                         <td>id</td>
                                                         <td>string</td>
                                                         <td>是</td>
-                                                        <td>页面ID</td>
+                                                        <td>shop_id</td>
                                                     </tr>
                                                                                                     </tbody>
                                             </table>
@@ -1588,7 +1550,7 @@
                                                     <form enctype="application/x-www-form-urlencoded" role="form" action="/api/flbooth.shop/getShopInfo" method="GET" name="form167" id="form167">
                                                                                                                 <div class="form-group">
                                                             <label class="control-label" for="id">id</label>
-                                                            <input type="string" class="form-control input-sm" id="id" required placeholder="页面ID" name="id">
+                                                            <input type="string" class="form-control input-sm" id="id" required placeholder="shop_id" name="id">
                                                         </div>
                                                                                                                 <div class="form-group form-group-submit">
                                                             <button type="submit" class="btn btn-success send" rel="167">提交</button>
@@ -26865,7 +26827,7 @@
                     <div class="panel-heading" id="heading-48">
                         <h4 class="panel-title">
                             <span class="label label-success">GET</span>
-                            <a data-toggle="collapse" data-parent="#accordion48" href="#collapseOne48"> 一次性加载App <span class="text-muted">/api/flbooth.common/init</span></a>
+                            <a data-toggle="collapse" data-parent="#accordion48" href="#collapseOne48"> 一次性加载 <span class="text-muted">/api/flbooth.common/init</span></a>
                         </h4>
                     </div>
                     <div id="collapseOne48" class="panel-collapse collapse">
@@ -29638,7 +29600,7 @@
 
                 </div>
                 <div class="col-md-6" align="right">
-                    Generated on 2022-06-27 07:47:49 <a href="./" target="_blank">蜂雷直播基地平台</a>
+                    Generated on 2022-06-27 08:25:26 <a href="./" target="_blank">蜂雷直播基地平台</a>
                 </div>
             </div>
 

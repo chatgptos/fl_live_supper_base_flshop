@@ -411,7 +411,7 @@ class User extends Api
 			switch ($platform)
 			{
 				// 微信小程序登录
-				case 'mp_weixin': 
+				case 'mp_weixin':
 					$params = [
 						'appid'      => $config[$platform]['appid'],
 						'secret'     => $config[$platform]['appsecret'],

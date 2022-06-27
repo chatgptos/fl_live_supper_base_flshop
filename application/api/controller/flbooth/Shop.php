@@ -5,7 +5,7 @@ namespace app\api\controller\flbooth;
 use app\common\controller\Api;
 use fast\Tree;
 /**
- * flbooth展商接口
+ * flbooth展商店铺接口
  */
 class Shop extends Api
 {
@@ -21,10 +21,10 @@ class Shop extends Api
 	/**
 	 * 获取展商店铺相关数据
      *
-	 * @ApiSummary  (flbooth 一次性获取店铺相关数据)
+	 * @ApiSummary  (flbooth 获取店铺相关数据)
 	 * @ApiMethod   (GET)
 	 *
-	 * @param string $id 页面ID
+	 * @param string $id shop_id
 	 */
 	public function getShopInfo($id = null)
 	{
@@ -60,7 +60,7 @@ class Shop extends Api
 		$shopConfig = model('app\api\model\flbooth\ShopConfig')
 			->where(['shop_id' => $row['id']])
 			->find();
-		$row['categoryStyle'] = (int)$shopConfig['category_style'];
+		//$row['categoryStyle'] = (int)$shopConfig['category_style'];
 		// 获取商家自定义页面
 		$row['page'] = model('app\api\model\flbooth\Page')
 			->where([

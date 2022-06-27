@@ -65,14 +65,9 @@ class Common extends Api
     /**
      * 获取测试后台工具信息
      *
-     * @param string $version 版本号
-     * @param string $lng     经度
-     * @param string $lat     纬度
      */
     public function getBackendAccount()
     {
-
-
         //配置信息
         $upload = Config::get('upload');
         //如果非服务端中转模式需要修改为中转
@@ -95,7 +90,8 @@ class Common extends Api
             'backend_url' => $upload['cdnurl'].'/aeILJiYECR.php',
             'account' => 'admin',
             'password' => '112233',
-            'state' => 1
+            'state' => 1,
+            'remark' => '您可以用该账号登入url后台地址，便捷为api填充相关需要测试的数据，目前超过50%api数据均可以使用该工具填充'
         ];
 
         $this->success('返回成功', $data);

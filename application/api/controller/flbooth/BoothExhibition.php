@@ -21,7 +21,7 @@ class BoothExhibition extends Api
 
 
     /**
-     * 商家店铺配置接口
+     * 展会接口
      *
      * @ApiTitle    (展会)
      * @ApiSummary  (展会)
