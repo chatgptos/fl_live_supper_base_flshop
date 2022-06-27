@@ -25,7 +25,7 @@ class Live extends Api
 	}
 	
 	/**
-	 * 查询直播权限 1.0.8升级
+	 * 查询直播间权限 
 	 */
 	public function getIsLive()
 	{

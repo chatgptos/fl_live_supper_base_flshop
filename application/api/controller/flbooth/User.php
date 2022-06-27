@@ -144,7 +144,6 @@ class User extends Api
 			}else{
 				$third = model('app\api\model\flbooth\Third')->get(['platform' => 'mp_weixin', 'openid' => $json['openid']]);
 			}
-			
 		    if ($third && $third['user_id'] != 0) {
 		        //如果已经有账号则直接登录
     			$ret = $this->auth->direct($third['user_id']);
@@ -407,11 +406,12 @@ class User extends Api
 			// 登录项目
 			$time = time();
 			$platform = $post['platform'];
+
 			// 开始登录
 			switch ($platform)
 			{
 				// 微信小程序登录
-				case 'mp_weixin':
+				case 'mp_weixin': 
 					$params = [
 						'appid'      => $config[$platform]['appid'],
 						'secret'     => $config[$platform]['appsecret'],

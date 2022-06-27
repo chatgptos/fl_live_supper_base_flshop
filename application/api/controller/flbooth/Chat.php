@@ -24,7 +24,7 @@ class Chat extends Api
     }
 	
 	/**
-	 * 查询店铺信息 1.0.8升级
+	 * 查询店铺信息
 	 *
 	 * @ApiSummary  (flbooth 查询店铺信息)
 	 * @ApiMethod   (POST)
@@ -353,7 +353,7 @@ class Chat extends Api
 	}
 	
 	/**
-	 * 加载欢迎消息 1.0.2升级
+	 * 加载欢迎消息
 	 *
 	 * @ApiSummary  (WanlChat 加载欢迎消息)
 	 * @ApiMethod   (POST)
@@ -381,7 +381,7 @@ class Chat extends Api
 	}
 	
 	/**
-	 * 智能小秘
+	 * 智能客服
 	 *
 	 * @ApiSummary  (WanlChat 智能小秘)
 	 * @ApiMethod   (POST)

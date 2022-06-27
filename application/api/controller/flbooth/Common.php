@@ -105,7 +105,7 @@ class Common extends Api
 	}
 	
 	/**
-	 * APP热更新 1.0.3升级
+	 * APP热更新
 	 *
 	 * @ApiSummary  (flbooth APP热更新)
 	 * @ApiMethod   (GET)
@@ -122,7 +122,7 @@ class Common extends Api
 	}
 	
 	/**
-	 * 获取后端地址 1.0.6升级
+	 * 获取后端地址
 	 *
 	 * @ApiSummary  (flbooth APP热更新)
 	 * @ApiMethod   (GET)
@@ -313,7 +313,7 @@ class Common extends Api
 	}
 	
 	/**
-	 * 获取上传配置 1.0.2升级
+	 * 获取上传配置
 	 *
 	 * @ApiSummary  (flbooth 上传配置)
 	 * @ApiMethod   (GET)

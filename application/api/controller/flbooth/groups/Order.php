@@ -61,7 +61,7 @@ class Order extends Api
 	/**
 	 * 查询用户店铺订单记录 
 	 *
-	 * @ApiSummary  (查询用户店铺订单记录 1.0.2升级)
+	 * @ApiSummary  (查询用户店铺订单记录 )
 	 * @ApiMethod   (POST)
 	 *
 	 * @param string $shop_id 店铺ID
@@ -1000,8 +1000,7 @@ class Order extends Api
 	}
 	
 	/**
-	 * 营销活动-拼团 获取优惠券后金额 内部方法
-	 * 1.0.5升级
+	 * 营销活动-拼团 获取优惠券后金额 内部方法 
 	 * @param string $coupon  优惠券数据
 	 * @param string $goodsList  商品列表
 	 * @param string $priceAll  订单总价格
