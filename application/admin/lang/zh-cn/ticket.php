@@ -11,6 +11,7 @@ return [
     'Status'                 => '1正常,2失效',
     'Apply_time'             => '申请时间',
     'Enable_time'            => '有效时间',
+    'Views'                  => '浏览次数',
     'Address'                => '地址',
     'Ticket_fee'             => '门票价格',
     'Ticket_name'            => '电子门票名称',

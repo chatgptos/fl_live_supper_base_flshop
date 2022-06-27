@@ -64,9 +64,9 @@ class Ticket extends Api
     
 	
     /**
-     * 获取内容详情
+     * 获取门票详情
      *
-     * @ApiSummary  (flbooth 获取内容详情)
+     * @ApiSummary  (flbooth 获取门票详情)
      * @ApiMethod   (POST)
      * 
 	 * @param string $id 门票ID
@@ -75,16 +75,18 @@ class Ticket extends Api
     {
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
-		$id = $this->request->get('id');
+		$id = $this->request->post('id');
 		$id ? $id : ($this->error(__('Invalid parameters')));
-		$row = model('app\api\model\flbooth\Article')
+		$row = model('app\admin\model\Ticket')
 			->where(['id' => $id])
 			->find();
-		// 1.0.5升级
+
+		//
 		if(!$row){
 			$this->error(__('没有找到任何内容'));
 		}
 		// 点击 +1
+
 		$row->setInc('views');
 		$this->success('返回成功', $row);
     }
@@ -96,12 +98,12 @@ class Ticket extends Api
 	 * @ApiSummary  (flbooth 获取内容详情)
 	 * @ApiMethod   (POST)
 	 * 
-	 * @param string $id 门票ID
+	 * @param string $id 广告ID
 	 */
 	public function adDetails($id = null)
 	{
 		$row = model('app\api\model\flbooth\Advert')->get($id);
-		// 1.0.5升级
+		//
 		if(!$row){
 			$this->error(__('没有找到任何内容'));
 		}

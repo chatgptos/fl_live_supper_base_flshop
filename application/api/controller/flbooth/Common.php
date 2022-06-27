@@ -246,10 +246,10 @@ class Common extends Api
     /**
      * 获取电子门票-入口接口
      *
-     * @ApiTitle    (活动扫码-入口接口)
-     * @ApiSummary  (活动扫码-入口接口)
+     * @ApiTitle    (获取电子门票-入口接口)
+     * @ApiSummary  (获取电子门票-入口接口)
      * @ApiMethod   (POST)
-     * @ApiParams   (name="id", type="integer", required=true, description="活动id")
+     * @ApiParams   (name="id", type="integer", required=true, description="门票id")
      * @ApiReturnParams   (name="code", type="integer", required=true, sample="0")
      * @ApiReturnParams   (name="msg", type="string", required=true, sample="返回成功")
      * @ApiReturnParams   (name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}", description="扩展数据返回")

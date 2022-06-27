@@ -37,6 +37,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'status', title: __('Status'), searchList: {"11":__('Status 11')}, formatter: Table.api.formatter.status},
                         {field: 'apply_time', title: __('Apply_time'), operate: 'LIKE'},
                         {field: 'enable_time', title: __('Enable_time'), operate: 'LIKE'},
+                        {field: 'views', title: __('Views')},
                         {field: 'address', title: __('Address'), operate: 'LIKE'},
                         {field: 'ticket_fee', title: __('Ticket_fee'), operate:'BETWEEN'},
                         {field: 'ticket_name', title: __('Ticket_name'), operate: 'LIKE'},
