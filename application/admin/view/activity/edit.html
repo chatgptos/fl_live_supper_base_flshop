@@ -1,6 +1,12 @@
 <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
 
     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Is_recommend')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-is_recommend" class="form-control" name="row[is_recommend]" type="number" value="{$row.is_recommend|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
         <div class="col-xs-12 col-sm-8">
             <input id="c-name" class="form-control" name="row[name]" type="text" value="{$row.name|htmlentities}">
@@ -61,9 +67,9 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Act_time_end')}:</label>
+        <label class="control-label col-xs-12 col-sm-2">{:__('End_time')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-act_time_end" class="form-control" name="row[act_time_end]" type="text" value="{$row.act_time_end|htmlentities}">
+            <input id="c-end_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[end_time]" type="text" value="{:$row.end_time?datetime($row.end_time):''}">
         </div>
     </div>
     <div class="form-group">

@@ -22,7 +22,7 @@ class Ticket extends Backend
     {
         parent::_initialize();
         $this->model = new \app\admin\model\Ticket;
-
+        $this->view->assign("statusList", $this->model->getStatusList());
     }
 
 

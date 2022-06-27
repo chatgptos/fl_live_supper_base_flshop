@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'Is_recommend'    => '1推荐',
     'Name'            => '活动名称',
     'Act_add'         => '活动添加人',
     'Act_date'        => '活动日期',
@@ -10,5 +11,5 @@ return [
     'Tel'             => '联系方式',
     'Registrant_id'   => '报名用户id',
     'Act_time_minute' => '活动时长',
-    'Act_time_end'    => '结束时间'
+    'End_time'        => '结束时间'
 ];

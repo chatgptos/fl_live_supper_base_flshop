@@ -3,9 +3,12 @@
 return [
     'Id'                     => '电子门票id',
     'User_id'                => '领取人用户id',
+    'Topic_id'               => '峰会id',
     'Exhibition_id'          => '展会id',
     'Ticket_qr_code_url_img' => '电子门票二维码',
     'Ticket_desc'            => '门票介绍',
+    'Type'                   => '1展会,2峰会',
+    'Status'                 => '1正常,2失效',
     'Apply_time'             => '申请时间',
     'Enable_time'            => '有效时间',
     'Address'                => '地址',
