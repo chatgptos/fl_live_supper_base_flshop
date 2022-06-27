@@ -15,9 +15,61 @@ use think\Hook;
  */
 class Common extends Api
 {
-    protected $noNeedLogin = ['init','category','search','update', 'area', 'adverts','searchList','setSearch','about', 'thumbnail'];
+    protected $noNeedLogin = ['index','init','category','search','update', 'area', 'adverts','searchList','setSearch','about', 'thumbnail'];
 	protected $noNeedRight = ['*'];
-    
+
+
+    /**
+     * 首页
+     *
+     * @ApiSummary  (flbooth 获取首页、购物车、类目数据)
+     * @ApiMethod   (GET)
+     *
+     */
+    public function index()
+    {
+        $cacheTime = 60; // 1.1.2升级 查询缓存
+        // 首页
+        $homeList = model('app\api\model\flbooth\Page')
+            ->where('type','index')
+            ->cache(true, $cacheTime)
+            ->field('page, item')
+            ->find();
+        if(!$homeList){
+            $this->error(__('尚未添加首页，请到后台【页面管理】添加首页'));
+        }
+        // 类目
+        $tree = Tree::instance();
+        $tree->init(model('app\api\model\flbooth\Category')
+            ->where(['type' => 'goods', 'isnav' => 1])
+            ->cache(true, $cacheTime)
+            ->field('id, pid, name, image')
+            ->order('weigh asc')
+            ->select());
+        // 搜索关键字
+        $searchList = model('app\api\model\flbooth\Search')
+            ->where(['flag' => 'index'])
+            ->field('keywords')
+            ->order('views desc')
+            ->limit(10)
+            ->select();
+        // 获取配置
+        $config = get_addon_config('flbooth');
+        // 一次性获取模块
+        $modulesData  = [
+            "homeModules" => $homeList,
+            "categoryModules" => $tree->getTreeArray(0),
+            "searchModules" => $searchList
+        ];
+        // 追加h5地址用于分享二维码等
+        $config['config']['domain'] = $config['h5']['domain'].($config['h5']['router_mode'] == 'hash' ? '/#':'');
+        // 输出
+        $this->success('返回成功', [
+            "modulesData" => $modulesData,
+            "appStyle" => $config['style'],
+            "appConfig" => $config['config']
+        ]);
+    }
 	/**
 	 * 一次性加载
 	 *
