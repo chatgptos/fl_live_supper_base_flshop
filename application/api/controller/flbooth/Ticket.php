@@ -42,11 +42,11 @@ class Ticket extends Api
             $where['type'] = $type;
             $where=array_filter($where);
 
-			$data = model('app\admin\model\Ticket')
+			$data['ticket_list'] = model('app\admin\model\Ticket')
 				->where($where)
 				->field('*')
 				->order('apply_time desc')
-				->paginate();
+				->select();
 
 
             //获取推荐活动

@@ -35,6 +35,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'hall_map', title: __('Hall_map'), operate: 'LIKE'},
                         {field: 'hall_addr', title: __('Hall_addr'), operate: 'LIKE'},
                         {field: 'map_height', title: __('Map_height')},
+                        {field: 'modified', title: __('Modified')},
+                        {field: 'created', title: __('Created')},
                         {field: 'map_width', title: __('Map_width')},
                         {field: 'hall_namein', title: __('Hall_namein'), operate: 'LIKE'},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}

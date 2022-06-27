@@ -40,6 +40,7 @@ return [
     'English_abbreviate' => '英文缩写',
     'Xiongk_num_free'    => '胸卡数量库存',
     'Xiongk_num_change'  => '胸卡发放数量',
+    'Is_recommend'       => '1推荐',
     'Is_assigned'        => '展位签到',
     'Imp_buyernum'       => '展位买家数量',
     'Upload_batch'       => '下载地址'

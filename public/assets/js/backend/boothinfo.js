@@ -66,6 +66,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'english_abbreviate', title: __('English_abbreviate'), operate: 'LIKE'},
                         {field: 'xiongk_num_free', title: __('Xiongk_num_free')},
                         {field: 'xiongk_num_change', title: __('Xiongk_num_change')},
+                        {field: 'is_recommend', title: __('Is_recommend')},
                         {field: 'is_assigned', title: __('Is_assigned')},
                         {field: 'imp_buyernum', title: __('Imp_buyernum')},
                         {field: 'upload_batch', title: __('Upload_batch')},

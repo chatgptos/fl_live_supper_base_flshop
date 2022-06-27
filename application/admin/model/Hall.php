@@ -16,11 +16,11 @@ class Hall extends Model
     protected $name = 'booth_hall';
     
     // 自动写入时间戳字段
-    protected $autoWriteTimestamp = false;
+    protected $autoWriteTimestamp = 'integer';
 
     // 定义时间戳字段名
-    protected $created = false;
-    protected $modified = false;
+    protected $created = 'created';
+    protected $modified = 'modified';
     protected $deleted = false;
 
     // 追加属性
