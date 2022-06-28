@@ -103,17 +103,11 @@ class BoothHall extends Api
         $where=array_filter($where);
 
 
-        $data['hall_list'] = model('app\admin\model\Exhibition')
+        $data = model('app\admin\model\Exhibition')
             ->where($where)
             ->field('*')
             ->order('created desc')
             ->find();
-
-
-        $where['is_recommend'] = 1;
-        //获取推荐活动
-        $recommend_exhibitor = \app\admin\model\Boothinfo::where($where)->select();
-        $data['recommend_exhibitor']=$recommend_exhibitor;
         $this->success('', $data);
     }
 
