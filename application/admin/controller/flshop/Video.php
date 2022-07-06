@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -18,14 +18,14 @@ class Video extends Backend
     
     /**
      * Video模型对象
-     * @var \app\admin\model\flbooth\Video
+     * @var \app\admin\model\flshop\Video
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Video;
+        $this->model = new \app\admin\model\flshop\Video;
         $this->view->assign("suggestionList", $this->model->getSuggestionList());
     }
 
@@ -118,7 +118,7 @@ class Video extends Backend
                 $count += $row->restore();
             }
             if(isset($video)){
-                foreach (model('app\admin\model\flbooth\Find')->onlyTrashed()->where('video_id', 'in', $find)->select() as $k => $v) {
+                foreach (model('app\admin\model\flshop\Find')->onlyTrashed()->where('video_id', 'in', $find)->select() as $k => $v) {
                     $v->restore();
                 }
             }
@@ -162,7 +162,7 @@ class Video extends Backend
                     $count += $row->delete();
                 }
                 if(isset($video)){
-                    foreach (model('app\admin\model\flbooth\Find')->where('video_id', 'in', $video)->select() as $k => $v) {
+                    foreach (model('app\admin\model\flshop\Find')->where('video_id', 'in', $video)->select() as $k => $v) {
                         $v->delete();
                     }
                 }

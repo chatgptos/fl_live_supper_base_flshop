@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Comment extends Backend
     
     /**
      * Comment模型对象
-     * @var \app\admin\model\flbooth\Comment
+     * @var \app\admin\model\flshop\Comment
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Comment;
+        $this->model = new \app\admin\model\flshop\Comment;
         $this->view->assign("stateList", $this->model->getStateList());
         $this->view->assign("statusList", $this->model->getStatusList());
     }
@@ -31,6 +31,7 @@ class Comment extends Backend
      */
     public function index()
     {
+        die;
         //当前是否为关联查询
         $this->relationSearch = true;
         //设置过滤方法

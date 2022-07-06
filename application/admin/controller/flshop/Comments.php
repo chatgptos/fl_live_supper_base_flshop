@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -17,14 +17,14 @@ class Comments extends Backend
     
     /**
      * Comments模型对象
-     * @var \app\admin\model\flbooth\Comments
+     * @var \app\admin\model\flshop\Comments
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Comments;
+        $this->model = new \app\admin\model\flshop\Comments;
         $this->view->assign("statusList", $this->model->getStatusList());
     }
 
@@ -105,7 +105,7 @@ class Comments extends Backend
                 }
                 // 使用setDec特殊清空下会有异常，校准一次评论总数
                 foreach ($find as $id) {
-                    model('app\admin\model\flbooth\Find')
+                    model('app\admin\model\flshop\Find')
                         ->where('id', $id)
                         ->update([
                             'comments' => $this->model->where('find_id', $id)->count()
@@ -156,7 +156,7 @@ class Comments extends Backend
             }
             // 使用setDec特殊清空下会有异常，校准一次评论总数
             foreach ($find as $id) {
-                model('app\admin\model\flbooth\Find')
+                model('app\admin\model\flshop\Find')
                     ->where('id', $id)
                     ->update([
                         'comments' => $this->model->where('find_id', $id)->count()

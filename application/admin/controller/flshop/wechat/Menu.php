@@ -1,11 +1,11 @@
 <?php
 
-namespace app\admin\controller\flbooth\wechat;
+namespace app\admin\controller\flshop\wechat;
 
 use app\common\controller\Backend;
 
 use EasyWeChat\Factory;
-use addons\flbooth\library\WeixinSdk\Mp;
+use addons\flshop\library\WeixinSdk\Mp;
 use think\Exception;
 
 /**
@@ -20,7 +20,7 @@ class Menu extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->wechatcfg = model('app\admin\model\flbooth\WechatConfig')->get(['name' => 'menu']);
+        $this->wechatcfg = model('app\admin\model\flshop\WechatConfig')->get(['name' => 'menu']);
     }
 
     /**
@@ -29,7 +29,7 @@ class Menu extends Backend
     public function index()
     {
         $responselist = array();
-        $all = model('app\admin\model\flbooth\WechatResponse')->all();
+        $all = model('app\admin\model\flshop\WechatResponse')->all();
         foreach ($all as $k => $v) {
             $responselist[$v['eventkey']] = $v['title'];
         }

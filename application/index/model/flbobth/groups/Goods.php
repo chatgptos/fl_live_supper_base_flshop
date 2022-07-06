@@ -1,5 +1,5 @@
 <?php
-namespace app\index\model\flbooth\groups;
+namespace app\index\model\flshop\groups;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -125,13 +125,13 @@ class Goods extends Model
 	
 	public function category()
 	{
-	    return $this->belongsTo('app\index\model\flbooth\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\index\model\flshop\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
 	
 	public function shopsort()
 	{
-	    return $this->belongsTo('app\index\model\flbooth\ShopSort', 'shop_category_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\index\model\flshop\ShopSort', 'shop_category_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flbooth;
+namespace app\admin\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -82,7 +82,7 @@ class Advert extends Model
 
 	public function category()
 	{
-	    return $this->belongsTo('app\admin\model\flbooth\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flshop\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 use think\Config;
@@ -222,10 +222,10 @@ class Client extends Backend
 		// 获取配置
 		$config = get_addon_config('flbooth');
 		// 升级种草
-		$findModel = model('app\admin\model\flbooth\Find');
+		$findModel = model('app\admin\model\flshop\Find');
 		$findList = [];
 		foreach ($findModel->where(['user_id' => 0])->select() as $vo) {
-			$shop = model('app\admin\model\flbooth\Shop')->get($vo['shop_id']);
+			$shop = model('app\admin\model\flshop\Shop')->get($vo['shop_id']);
 			$findList[] = [
 				'id' => $vo['id'],
 				'user_id' => $shop['user_id'],
@@ -236,7 +236,7 @@ class Client extends Backend
 		// 更新
 		$find = $findModel->isUpdate()->saveAll($findList);
 		// 升级 自定义页面
-		$pageModel = model('app\admin\model\flbooth\Page');
+		$pageModel = model('app\admin\model\flshop\Page');
 		$pageData = $pageModel->select();
 		$pageList = [];
 		foreach ($pageData as $vo) {
@@ -311,13 +311,13 @@ class Client extends Backend
 		
 		// 清空版本管理
 		$version = 0;
-		foreach (model('app\admin\model\flbooth\Version')->select() as $k => $v) {
+		foreach (model('app\admin\model\flshop\Version')->select() as $k => $v) {
 		    $version += $v->delete();
 		}
 		
 		// 修复商品全部字段
 		$goodsAll = [];
-		$goodsModel = model('app\admin\model\flbooth\Goods');
+		$goodsModel = model('app\admin\model\flshop\Goods');
 		foreach ($goodsModel->select() as $row) {
 		    if($row['activity_id'] == 0){
 				$goodsAll[] = [
@@ -330,7 +330,7 @@ class Client extends Backend
 		
 		// 修复错误优惠券
 		$couponAll = [];
-		$couponModel = model('app\admin\model\flbooth\Coupon');
+		$couponModel = model('app\admin\model\flshop\Coupon');
 		foreach ($couponModel->select() as $row) {
 		    if($row['rangetype'] == 'category'){
 				$couponAll[] = [
@@ -507,7 +507,7 @@ class Client extends Backend
 		// 获取配置
 		$config = get_addon_config('flbooth');
 		// 热更新生成版本名和版本号
-		$version = model('app\admin\model\flbooth\Version')
+		$version = model('app\admin\model\flshop\Version')
 			->order('versionCode desc')
 			->find();
 		if(!$version){

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -20,14 +20,14 @@ class Theme extends Backend
     
     /**
      * Theme模型对象
-     * @var \app\admin\model\flbooth\Theme
+     * @var \app\admin\model\flshop\Theme
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Theme;
+        $this->model = new \app\admin\model\flshop\Theme;
         $this->view->assign("statusList", $this->model->getStatusList());
     }
 

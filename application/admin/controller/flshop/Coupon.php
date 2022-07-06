@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Coupon extends Backend
     
     /**
      * Coupon模型对象
-     * @var \app\admin\model\flbooth\Coupon
+     * @var \app\admin\model\flshop\Coupon
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Coupon;
+        $this->model = new \app\admin\model\flshop\Coupon;
         $this->view->assign("typeList", $this->model->getTypeList());
         $this->view->assign("usertypeList", $this->model->getUsertypeList());
         $this->view->assign("rangetypeList", $this->model->getRangetypeList());

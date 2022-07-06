@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Goods extends Backend
     
     /**
      * Goods模型对象
-     * @var \app\admin\model\flbooth\Goods
+     * @var \app\admin\model\flshop\Goods
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Goods;
+        $this->model = new \app\admin\model\flshop\Goods;
         $this->view->assign("flagList", $this->model->getFlagList());
         $this->view->assign("stockList", $this->model->getStockList());
         $this->view->assign("specsList", $this->model->getSpecsList());

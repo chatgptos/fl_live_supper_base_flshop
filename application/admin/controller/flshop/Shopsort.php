@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 use fast\Tree;
@@ -14,14 +14,14 @@ class Shopsort extends Backend
     
     /**
      * Shopsort模型对象
-     * @var \app\admin\model\flbooth\Shopsort
+     * @var \app\admin\model\flshop\Shopsort
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\ShopSort;
+        $this->model = new \app\admin\model\flshop\ShopSort;
 		$tree = Tree::instance();
 		$tree->init(collection($this->model->order('weigh desc,id desc')->select())->toArray(), 'pid');
 		$this->channelList = $tree->getTreeList($tree->getTreeArray(0), 'name');

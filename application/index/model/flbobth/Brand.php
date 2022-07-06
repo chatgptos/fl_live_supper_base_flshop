@@ -1,6 +1,6 @@
 <?php
 
-namespace app\index\model\flbooth;
+namespace app\index\model\flshop;
 use think\Model;
 
 class Brand extends Model
@@ -60,6 +60,6 @@ class Brand extends Model
 	
 	public function category()
 	{
-	    return $this->belongsTo('app\index\model\flbooth\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\index\model\flshop\Category', 'category_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 }

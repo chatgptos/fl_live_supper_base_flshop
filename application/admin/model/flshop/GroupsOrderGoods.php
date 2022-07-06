@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\model\flbooth;
+namespace app\admin\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;

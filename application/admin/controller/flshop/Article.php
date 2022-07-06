@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 
@@ -14,16 +14,16 @@ class Article extends Backend
     
     /**
      * Article模型对象
-     * @var \app\admin\model\flbooth\Article
+     * @var \app\admin\model\flshop\Article
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Article;
+        $this->model = new \app\admin\model\flshop\Article;
         $channelList = [];
-        foreach (collection(\app\admin\model\flbooth\Category::where(['type' => 'article'])->select())->toArray() as $k => $v) {
+        foreach (collection(\app\admin\model\flshop\Category::where(['type' => 'article'])->select())->toArray() as $k => $v) {
             $channelList[] = [
                 'id'     => $v['id'],
                 'parent' => $v['pid'] ? $v['pid'] : '#',

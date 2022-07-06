@@ -27,7 +27,7 @@ return [
     'created'            => '创建时间',
     'modified'            => '更新时间',
     'deleted'            => '删除时间',
-    'flboothshop.shopname' => '店铺名称',
+    'flshopshop.shopname' => '店铺名称',
 	
 	// 追加
 	'All'                 => '全部',

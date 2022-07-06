@@ -1,5 +1,5 @@
 <?php
-namespace app\index\model\flbooth;
+namespace app\index\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -68,21 +68,21 @@ class GoodsComment extends Model
 	
 	public function goods()
 	{
-	    return $this->belongsTo('app\index\model\flbooth\Goods', 'goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\index\model\flshop\Goods', 'goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
 	public function groups()
 	{
-	    return $this->belongsTo('app\index\model\flbooth\groups\Goods', 'goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\index\model\flshop\groups\Goods', 'goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 	
     public function ordergoods()
     {
-        return $this->belongsTo('app\index\model\flbooth\OrderGoods', 'order_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flshop\OrderGoods', 'order_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
     
     public function ordergroups()
     {
-        return $this->belongsTo('app\index\model\flbooth\groups\OrderGoods', 'order_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flshop\groups\OrderGoods', 'order_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

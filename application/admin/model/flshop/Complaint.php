@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flbooth;
+namespace app\admin\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -95,16 +95,16 @@ class Complaint extends Model
 
     public function goods()
     {
-        return $this->belongsTo('app\admin\model\flbooth\Goods', 'complaint_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flshop\Goods', 'complaint_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 	
 	public function groups()
 	{
-	    return $this->belongsTo('app\admin\model\flbooth\GroupsGoods', 'complaint_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flshop\GroupsGoods', 'complaint_goods_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 
     public function shop()
     {
-        return $this->belongsTo('app\admin\model\flbooth\Shop', 'complaint_shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flshop\Shop', 'complaint_shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

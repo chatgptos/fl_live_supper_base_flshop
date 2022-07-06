@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Order extends Backend
     
     /**
      * Order模型对象
-     * @var \app\admin\model\flbooth\Order
+     * @var \app\admin\model\flshop\Order
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Order;
+        $this->model = new \app\admin\model\flshop\Order;
         $this->view->assign("stateList", $this->model->getStateList());
         $this->view->assign("statusList", $this->model->getStatusList());
     }
@@ -59,7 +59,7 @@ class Order extends Backend
             foreach ($list as $row) {
                 $row->getRelation('user')->visible(['username','nickname']);
                 $row->getRelation('shop')->visible(['shopname']);
-				$row->pay = model('app\admin\model\flbooth\Pay')
+				$row->pay = model('app\admin\model\flshop\Pay')
 					->where(['order_id' => $row['id'], 'type' => 'goods'])
 					->field('pay_no, price, order_price, freight_price, discount_price, actual_payment')
 					->find();
@@ -82,13 +82,13 @@ class Order extends Backend
 			$this->error(__('No Results were found'));
 		}
 		
-		$row['address'] = model('app\api\model\flbooth\OrderAddress')
+		$row['address'] = model('app\api\model\flshop\OrderAddress')
 			->where(['order_id' => $id])
 			->order('isaddress desc')
 			->field('id,name,mobile,address,address_name')
 			->find();
 			
-		$row['pay'] = model('app\admin\model\flbooth\Pay')
+		$row['pay'] = model('app\admin\model\flshop\Pay')
 			->where(['order_id' => $row['id'], 'type' => 'goods'])
 			->find();
 			
@@ -109,7 +109,7 @@ class Order extends Backend
 				];
 				break;
 			default: // 获取物流
-				$eData = model('app\api\model\flbooth\KuaidiSub')
+				$eData = model('app\api\model\flshop\KuaidiSub')
 					->where(['express_no' => $row['express_no']])
 					->find();
 				$ybData = json_decode($eData['data'], true);
@@ -153,7 +153,7 @@ class Order extends Backend
 		if (!$row) {
 			$this->error(__('No Results were found'));
 		}
-		$data = model('app\api\model\flbooth\KuaidiSub')
+		$data = model('app\api\model\flshop\KuaidiSub')
 			->where(['express_no' => $row['express_no']])
 			->find();
 		$data = json_decode($data['data'], true);

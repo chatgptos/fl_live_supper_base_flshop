@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flbooth;
+namespace app\admin\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -48,6 +48,6 @@ class Video extends Model
 
     public function flboothfind()
     {
-        return $this->belongsTo('app\admin\model\flbooth\Find', 'video_id', 'video_id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\flshop\Find', 'video_id', 'video_id', [], 'LEFT')->setEagerlyType(0);
     }
 }

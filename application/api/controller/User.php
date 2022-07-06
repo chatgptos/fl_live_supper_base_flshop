@@ -49,6 +49,17 @@ class User extends Api
         if (!$account || !$password) {
             $this->error(__('Invalid parameters'));
         }
+
+
+        $token = $this->auth->getToken();
+        var_dump($token);
+
+        $ret = $this->auth->login($account, $password);
+
+        $token = $this->auth->getToken();
+        var_dump($token);
+//        die;
+
         $ret = $this->auth->login($account, $password);
         if ($ret) {
             $data = ['userinfo' => $this->auth->getUserinfo()];

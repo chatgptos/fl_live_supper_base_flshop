@@ -1,5 +1,5 @@
 <?php
-namespace app\index\model\flbooth\groups;
+namespace app\index\model\flshop\groups;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -112,17 +112,17 @@ class Order extends Model
         
         public function shop()
         {
-            return $this->belongsTo('app\index\model\flbooth\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+            return $this->belongsTo('app\index\model\flshop\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
         }
     
     	public function ordergoods()
     	{
-    	    return $this->hasMany('app\index\model\flbooth\groups\OrderGoods', 'order_id', 'id', [], 'LEFT');
+    	    return $this->hasMany('app\index\model\flshop\groups\OrderGoods', 'order_id', 'id', [], 'LEFT');
     	}
     	
     	public function coupon()
     	{
-    		return $this->belongsTo('app\index\model\flbooth\CouponReceive', 'coupon_id', 'id', [], 'LEFT')->setEagerlyType(0);
+    		return $this->belongsTo('app\index\model\flshop\CouponReceive', 'coupon_id', 'id', [], 'LEFT')->setEagerlyType(0);
     	}
     }
     

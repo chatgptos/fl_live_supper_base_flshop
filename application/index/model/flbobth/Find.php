@@ -1,6 +1,6 @@
 <?php
 
-namespace app\index\model\flbooth;
+namespace app\index\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -55,6 +55,6 @@ class Find extends Model
     
 	public function shop()
 	{
-	    return $this->belongsTo('app\index\model\flbooth\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\index\model\flshop\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 }

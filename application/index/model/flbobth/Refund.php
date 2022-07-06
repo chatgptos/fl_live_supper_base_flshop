@@ -1,5 +1,5 @@
 <?php
-namespace app\index\model\flbooth;
+namespace app\index\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -103,26 +103,26 @@ class Refund extends Model
     
     public function goods()
     {
-        return $this->belongsTo('app\index\model\flbooth\OrderGoods', 'goods_ids', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flshop\OrderGoods', 'goods_ids', 'id', [], 'LEFT')->setEagerlyType(0);
     }
     
     public function groupsgoods()
     {
-        return $this->belongsTo('app\index\model\flbooth\groups\OrderGoods', 'goods_ids', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flshop\groups\OrderGoods', 'goods_ids', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 	
     public function order()
     {
-        return $this->belongsTo('app\index\model\flbooth\Order', 'order_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flshop\Order', 'order_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
     
 	public function groupsorder()
 	{
-	    return $this->belongsTo('app\index\model\flbooth\groups\Order', 'order_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\index\model\flshop\groups\Order', 'order_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
     
     public function pay()
     {
-        return $this->belongsTo('app\index\model\flbooth\Pay', 'order_pay_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\index\model\flshop\Pay', 'order_pay_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

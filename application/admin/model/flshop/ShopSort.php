@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model\flbooth;
+namespace app\admin\model\flshop;
 
 use think\Model;
 
@@ -69,6 +69,6 @@ class ShopSort extends Model
 
 	public function shop()
 	{
-	    return $this->belongsTo('app\admin\model\flbooth\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\admin\model\flshop\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 }

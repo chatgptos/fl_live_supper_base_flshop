@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 use fast\Tree; 
@@ -19,14 +19,14 @@ class Link extends Backend
     
     /**
      * Link模型对象
-     * @var \app\admin\model\flbooth\Link
+     * @var \app\admin\model\flshop\Link
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Link;
+        $this->model = new \app\admin\model\flshop\Link;
         $this->view->assign("typeList", $this->model->getTypeList());
         $this->view->assign("statusList", $this->model->getStatusList());
     }
@@ -54,7 +54,7 @@ class Link extends Backend
 	        $list = collection($list)->toArray();
 			// 追加全局子页面
 			if(!$filter || $filter == 'page'){
-				$page = model('app\admin\model\flbooth\Page')
+				$page = model('app\admin\model\flshop\Page')
 					->where(['shop_id' => 0, 'type' => 'page'])
 					->limit($offset, $limit)
 					->select();
@@ -77,7 +77,7 @@ class Link extends Backend
 			}
 			// 追加全局商品
 			if(!$filter || $filter == 'product'){
-				$product = model('app\admin\model\flbooth\Goods')
+				$product = model('app\admin\model\flshop\Goods')
 					->limit($offset, $limit)
 					->select();
 				$productData = [];

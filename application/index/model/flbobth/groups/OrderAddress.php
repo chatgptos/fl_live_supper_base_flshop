@@ -1,5 +1,5 @@
 <?php
-namespace app\index\model\flbooth\groups;
+namespace app\index\model\flshop\groups;
 
 use think\Model;
 
@@ -18,6 +18,6 @@ class OrderAddress extends Model
 	// 店铺
 	public function shop()
 	{
-	    return $this->belongsTo('app\index\model\flbooth\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+	    return $this->belongsTo('app\index\model\flshop\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
 	}
 }

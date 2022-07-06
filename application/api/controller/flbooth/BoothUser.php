@@ -36,7 +36,6 @@ class BoothUser extends Api
     public function getUserById()
     {
         $booth_id = $this->request->post("id");
-
         $booth_info = \app\admin\model\User::where('id', $booth_id)->find();
 
         $this->success('', $booth_info);

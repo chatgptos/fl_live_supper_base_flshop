@@ -1,9 +1,9 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
-use addons\flbooth\library\WanlChat\WanlChat;
+use addons\flshop\library\WanlChat\WanlChat;
 
 /**
  * 店铺服务
@@ -15,7 +15,7 @@ class Service extends Backend
     
     /**
      * Service模型对象
-     * @var \app\admin\model\flbooth\Service
+     * @var \app\admin\model\flshop\Service
      */
     protected $model = null;
 
@@ -24,7 +24,7 @@ class Service extends Backend
         parent::_initialize();
 		//WanlChat 即时通讯调用
 		$this->wanlchat = new WanlChat();
-        $this->model = new \app\admin\model\flbooth\Service;
+        $this->model = new \app\admin\model\flshop\Service;
         $this->view->assign("statusList", $this->model->getStatusList());
     }
     
@@ -41,7 +41,7 @@ class Service extends Backend
 		    $user_id = bcadd(8080000, $this->auth->id);
 			$this->wanlchat->bind($client_id, $user_id);
 			// 查询是否有离线消息
-			$list = model('app\admin\model\flbooth\Chat')
+			$list = model('app\admin\model\flshop\Chat')
 				->where(['to_id' => $user_id, 'online' => 0, 'type' => 'service'])
 				->whereTime('created', 'week')
 				->field('id,form_uid,to_id,form,message,type,online,created')
@@ -63,7 +63,7 @@ class Service extends Backend
 		$this->request->filter(['strip_tags']);
 		if ($this->request->isAjax()) {
 		    $user_id = bcadd(8080000, $this->auth->id);
-			$chatModel = model('app\admin\model\flbooth\Chat');
+			$chatModel = model('app\admin\model\flshop\Chat');
 		    $formlist = [];
 		    $tolist = [];
 		    
@@ -153,7 +153,7 @@ class Service extends Backend
 			$id = $this->request->post('id');
 			$id?'':($this->error(__('Invalid parameters')));
 			$user_id = bcadd(8080000, $this->auth->id);
-			$chat = model('app\admin\model\flbooth\Chat');
+			$chat = model('app\admin\model\flshop\Chat');
 			// 查询历史记录
 			$result = $chat
 				->where("((form_uid={$user_id} and to_id={$id}) or (form_uid={$id} and to_id={$user_id})) and type='service'")
@@ -182,7 +182,7 @@ class Service extends Backend
 		    $id = $this->request->post('id');
 		    $id ? '' : ($this->error(__('Invalid parameters')));
 		    // 设置成已读
-		    $chat = model('app\admin\model\flbooth\Chat')
+		    $chat = model('app\admin\model\flshop\Chat')
 		        ->where(['form_uid' => $id, 'to_id' => bcadd(8080000, $this->auth->id), 'isread' => 0])
 		        ->update(['isread' => 1]);
 		    $this->success(__('全部已读'));
@@ -211,7 +211,7 @@ class Service extends Backend
 			}
 			
 			// 保存聊天记录到服务器
-			$data = model('app\admin\model\flbooth\Chat');
+			$data = model('app\admin\model\flshop\Chat');
 			$data->form_uid = bcadd(8080000, $this->auth->id);
 			$data->to_id = $message['to_id'];
 			$data->form = json_encode($message['form']);

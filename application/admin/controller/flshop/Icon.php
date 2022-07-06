@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Icon extends Backend
     
     /**
      * Icon模型对象
-     * @var \app\admin\model\flbooth\Icon
+     * @var \app\admin\model\flshop\Icon
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Icon;
+        $this->model = new \app\admin\model\flshop\Icon;
         $this->view->assign("statusList", $this->model->getStatusList());
     }
     

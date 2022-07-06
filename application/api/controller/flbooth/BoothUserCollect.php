@@ -28,20 +28,19 @@ class BoothUserCollect extends Api
 	 */
 	public function getList()
 	{
+echo 1;
+	    die;
 		//设置过滤方法
 		$this->request->filter(['strip_tags']);
 		if ($this->request->isPost()) { 
-			$user_id = $this->auth->id;
+//			$user_id = $this->auth->id;
 
-
-            $post = $this->request->post();
-
-
+            $post = $this->request->post('user_id');
 			// 查询展商
 			$list = [];
 			foreach ($this->model->where('user_id', $user_id)->select() as $vo) {
 //				$sku = $vo->id; //1.0.3升级 很诡异的问题命名sku和会产生冲突
-				// 查询是否还有库存
+
                     $shop = $vo->shop;
                     $activity = $vo->activity;
 					$topic = $vo->topic;

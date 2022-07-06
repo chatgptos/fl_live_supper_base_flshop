@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 
@@ -14,14 +14,14 @@ class Attribute extends Backend
     
     /**
      * Attribute模型对象
-     * @var \app\admin\model\flbooth\Attribute
+     * @var \app\admin\model\flshop\Attribute
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Attribute;
+        $this->model = new \app\admin\model\flshop\Attribute;
         $this->view->assign("statusList", $this->model->getStatusList());
     }
 

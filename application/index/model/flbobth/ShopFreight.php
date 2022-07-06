@@ -1,5 +1,5 @@
 <?php
-namespace app\index\model\flbooth;
+namespace app\index\model\flshop;
 
 use think\Model;
 use traits\model\SoftDelete;
@@ -86,7 +86,7 @@ class ShopFreight extends Model
 
 	public function freightdata()
 	{
-	    return $this->hasMany('app\index\model\flbooth\ShopFreightData', 'freight_id', 'id', [], 'LEFT');
+	    return $this->hasMany('app\index\model\flshop\ShopFreightData', 'freight_id', 'id', [], 'LEFT');
 	}
 	
 }

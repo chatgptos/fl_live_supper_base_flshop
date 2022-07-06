@@ -1,6 +1,6 @@
 <?php
 
-namespace app\index\model\flbooth;
+namespace app\index\model\flshop;
 
 use think\Model;
 

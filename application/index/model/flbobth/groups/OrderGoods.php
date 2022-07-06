@@ -1,5 +1,5 @@
 <?php
-namespace app\index\model\flbooth\groups;
+namespace app\index\model\flshop\groups;
 
 use think\Model;
 use traits\model\SoftDelete;

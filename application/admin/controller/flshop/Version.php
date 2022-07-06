@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -19,14 +19,14 @@ class Version extends Backend
     
     /**
      * Version模型对象
-     * @var \app\admin\model\flbooth\Version
+     * @var \app\admin\model\flshop\Version
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Version;
+        $this->model = new \app\admin\model\flshop\Version;
         $this->view->assign("typeList", $this->model->getTypeList());
     }
 

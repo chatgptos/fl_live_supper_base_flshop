@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 use fast\Tree;
@@ -14,14 +14,14 @@ class Category extends Backend
     
     /**
      * Category模型对象
-     * @var \app\admin\model\flbooth\Category
+     * @var \app\admin\model\flshop\Category
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Category;
+        $this->model = new \app\admin\model\flshop\Category;
 		$this->tree = Tree::instance();
 		$type = $this->request->request("type");
 		if($type){

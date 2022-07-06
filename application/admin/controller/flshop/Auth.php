@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\flbooth;
+namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
 use think\Db;
@@ -19,14 +19,14 @@ class Auth extends Backend
     
     /**
      * Auth模型对象
-     * @var \app\admin\model\flbooth\Auth
+     * @var \app\admin\model\flshop\Auth
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\flbooth\Auth;
+        $this->model = new \app\admin\model\flshop\Auth;
         $this->view->assign("stateList", $this->model->getStateList());
         $this->view->assign("verifyList", $this->model->getVerifyList());
         $this->view->assign("statusList", $this->model->getStatusList());
