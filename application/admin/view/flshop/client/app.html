@@ -9,7 +9,7 @@
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade active in" id="ini">
 				<div class="widget-body no-padding">
-					<form id="ini-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('flbooth.client/edit')}">
+					<form id="ini-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('flshop.client/edit')}">
 					    {:token()}	
 						<table class="table table-striped">
 							<thead>
@@ -24,7 +24,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[ini][name]', $flbooth.ini.name, ['data-rule'=>'required','data-tip'=>'请填写应用名称','placeholder'=>'应用名称，同等于app名称'])}
+												{:Form::text('row[ini][name]', $flshop.ini.name, ['data-rule'=>'required','data-tip'=>'请填写应用名称','placeholder'=>'应用名称，同等于app名称'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -35,7 +35,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[ini][urlschemes]', $flbooth.ini.urlschemes, ['data-rule'=>'required','data-tip'=>'请填写UrlSchemes','placeholder'=>'可以理解为http打开页面，自定义UrlSchemes，在网页中拉起APP，如：flbooth'])}
+												{:Form::text('row[ini][urlschemes]', $flshop.ini.urlschemes, ['data-rule'=>'required','data-tip'=>'请填写UrlSchemes','placeholder'=>'可以理解为http打开页面，自定义UrlSchemes，在网页中拉起APP，如：flbooth'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>
@@ -46,7 +46,7 @@
 									<td>
 										<div class="row">
 											<div class="col-sm-8 col-xs-12">
-												{:Form::text('row[ini][package_name]', $flbooth.ini.package_name, ['data-rule'=>'required','data-tip'=>'请填写应用包名','placeholder'=>'包名一般域名倒序，如com.def.abc'])}
+												{:Form::text('row[ini][package_name]', $flshop.ini.package_name, ['data-rule'=>'required','data-tip'=>'请填写应用包名','placeholder'=>'包名一般域名倒序，如com.def.abc'])}
 											</div>
 											<div class="col-sm-4"></div>
 										</div>

@@ -118,7 +118,7 @@ class Client extends Backend
 		$this->service = Service::config('flbooth');
 		$this->addon = get_addon_info('flbooth');
 		$this->assignconfig('flbooth', $config);
-		$this->view->assign("flbooth", $config);
+		$this->view->assign("flshop", $config);
     }
 	
 	/**
