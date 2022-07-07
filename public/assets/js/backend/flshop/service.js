@@ -82,7 +82,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					}, n.onmessage = function(a) {
 						var p = JSON.parse(a.data);
 						if ("init" == p.type && Fast.api.ajax({
-								url: "flbooth/service/bind.html",
+								url: "flshop/service/bind.html",
 								data: {
 									client_id: p.client_id
 								}
@@ -184,7 +184,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					}, ws.onmessage = function(e) {
 						var n = JSON.parse(e.data);
 						"init" == n.type && Fast.api.ajax({
-							url: "flbooth/service/bind.html",
+							url: "flshop/service/bind.html",
 							data: {
 								client_id: n.client_id
 							}
@@ -209,7 +209,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					history: function() {
 						var t = this;
 						Fast.api.ajax({
-							url: "flbooth/service/history.html",
+							url: "flshop/service/history.html",
 							data: {
 								id: this.to_id
 							}
@@ -249,7 +249,7 @@ define(["jquery", "bootstrap", "backend", "table", "form", "vue"], function(t, e
 					},
 					send: function(t) {
 						Fast.api.ajax({
-							url: "flbooth/service/send.html",
+							url: "flshop/service/send.html",
 							data: t
 						}, function(t, e) {
 							return !1

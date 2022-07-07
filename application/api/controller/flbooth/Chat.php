@@ -144,7 +144,7 @@ class Chat extends Api
 	{
 		$user_id = $this->auth->id;
 		$list = [];
-		$sub = Db::name('flboothChat')
+		$sub = Db::name('boothChat')
 			->where(['type' => 'chat'])
 			->order('created', 'desc')
 		    ->field('to_id as uid, message, isread, type, created')

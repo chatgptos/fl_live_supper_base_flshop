@@ -3,7 +3,7 @@
 namespace app\admin\controller\flshop;
 
 use app\common\controller\Backend;
-use addons\flshop\library\WanlChat\WanlChat;
+use addons\flbooth\library\WanlChat\WanlChat;
 
 /**
  * 店铺服务

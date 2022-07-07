@@ -125,7 +125,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 			methods: {
 				loadUpdate(){
 					Fast.api.ajax({
-						url: "flbooth/client/update.html",
+						url: "flshop/client/update.html",
 					}, (data, ret) => {
 						if(data === 0){
 							Layer.open({
@@ -146,7 +146,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 								</div>`,
 								yes: index => {
 								    Fast.api.ajax({
-								    	url: "flbooth/client/repairSql.html",
+								    	url: "flshop/client/repairSql.html",
 								    }, (data, ret) => {
 								    	Layer.close(index);
 								    })
@@ -162,7 +162,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 				loadData() {
 					let app = this;
 					Fast.api.ajax({
-						url: "flbooth/service/lists.html",
+						url: "flshop/service/lists.html",
 					}, (data, ret) => {
 						app.chatlist = data.chat;
 						app.service = data.service;
@@ -190,7 +190,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 							if (data.type == 'init') {
 								console.log('@message_client_id：' + data.client_id);
 								Fast.api.ajax({
-									url: "flbooth/service/bind.html",
+									url: "flshop/service/bind.html",
 									data: {client_id: data.client_id}
 								}, function(data, ret){
 									app.shopOnline = data;
@@ -235,7 +235,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 				// 发送到服务器
 				send(data) {
 					Fast.api.ajax({
-						url: "flbooth/service/send.html",
+						url: "flshop/service/send.html",
 						data: data
 					}, function(data, ret){
 						return false;
@@ -278,7 +278,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 					let chat = this.wanlchat[index];
 					let app = this;
 					Fast.api.ajax({
-						url: "flbooth/service/history.html",
+						url: "flshop/service/history.html",
 						data: {
 							id: chat.user_id
 						}
@@ -327,7 +327,7 @@ if (Config.modulename == 'admin' && Config.controllername == 'index' && Config.a
 							wanlchat.content = content;
 							// 设置已读
 							Fast.api.ajax({
-								url: "flbooth/service/read.html",
+								url: "flshop/service/read.html",
 								data: {
 									id: wanlchat.user_id
 								}

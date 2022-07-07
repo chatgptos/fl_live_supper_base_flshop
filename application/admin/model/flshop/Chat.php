@@ -13,7 +13,7 @@ class Chat extends Model
     
 
     // 表名
-    protected $name = 'flbooth_chat';
+    protected $name = 'booth_chat';
     
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
