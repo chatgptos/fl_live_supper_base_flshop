@@ -388,11 +388,7 @@ class Auth
         $data = $this->_user->toArray();
         $allowFields = $this->getAllowFields();
         $userinfo = array_intersect_key($data, array_flip($allowFields));
-        
-        var_dump($userinfo);
         $userinfo = array_merge($userinfo, Token::get($this->_token));
-
-        var_dump($userinfo);
         return $userinfo;
     }
 

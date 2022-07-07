@@ -18,7 +18,7 @@ return [
     // 服务器地址
     'hostname'        => Env::get('database.hostname', '127.0.0.1'),
     // 数据库名
-    'database'        => Env::get('database.database', 'fl_live_base1'),
+    'database'        => Env::get('database.database', 'fl_live_base'),
 //     密码
     'password'        => Env::get('database.password', 'ZSaknFBrz82Artr7'),
 //    'password'        => Env::get('database.password', 'root'),
